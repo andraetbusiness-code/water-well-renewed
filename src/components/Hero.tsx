@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Shield, Clock, Award, Droplets } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { WaveDividerLayered } from "@/components/WaveDivider";
 import heroImage from "@/assets/hero-water.jpg";
@@ -85,13 +86,13 @@ export const Hero = () => {
             className="flex flex-col sm:flex-row gap-4 mb-14"
           >
             <Button size="lg" variant="hero" asChild>
-              <a href="#contact">
+              <Link to="/process">
                 Get Your Free Water Test
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
+              </Link>
             </Button>
             <Button size="lg" variant="heroOutline" asChild>
-              <a href="#how-it-works">See How It Works</a>
+              <Link to="/hygia-system">See How It Works</Link>
             </Button>
           </motion.div>
 

@@ -7,10 +7,10 @@ import logo from "@/assets/logo.png";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/#about" },
-  { label: "Services", href: "/#services" },
+  { label: "HYGIA+ System", href: "/hygia-system" },
+  { label: "Technology", href: "/filtration-technology" },
   { label: "Process", href: "/process" },
-  { label: "FAQ", href: "/#faq" },
+  { label: "Maintenance", href: "/maintenance" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -132,18 +132,21 @@ export const Header = () => {
             <nav className="relative h-full flex flex-col justify-center px-8 pt-20">
               <div className="space-y-2">
                 {navItems.map((item, index) => (
-                  <motion.a
+                  <motion.div
                     key={item.label}
-                    href={item.href}
                     initial={{ opacity: 0, x: -40 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -40 }}
                     transition={{ delay: index * 0.08, duration: 0.4 }}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-3xl font-serif text-foreground hover:text-primary transition-colors py-3"
                   >
-                    {item.label}
-                  </motion.a>
+                    <Link
+                      to={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="block text-3xl font-serif text-foreground hover:text-primary transition-colors py-3"
+                    >
+                      {item.label}
+                    </Link>
+                  </motion.div>
                 ))}
               </div>
               
