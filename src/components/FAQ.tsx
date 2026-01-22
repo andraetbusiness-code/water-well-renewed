@@ -1,13 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { HelpCircle } from "lucide-react";
+import { useRef, useState } from "react";
+import { ChevronDown, MessageCircle, Droplets } from "lucide-react";
 
 const faqs = [
   {
@@ -44,80 +38,130 @@ const faqs = [
   },
 ];
 
+const FAQItem = ({ faq, index, isOpen, onToggle }: { 
+  faq: typeof faqs[0]; 
+  index: number; 
+  isOpen: boolean; 
+  onToggle: () => void;
+}) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.05 }}
+    >
+      <button
+        onClick={onToggle}
+        className="w-full text-left py-6 group"
+      >
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex items-start gap-4">
+            {/* Question number/bullet */}
+            <span className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors ${
+              isOpen ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground group-hover:bg-primary/10"
+            }`}>
+              {index + 1}
+            </span>
+            
+            <span className={`text-lg font-medium transition-colors ${
+              isOpen ? "text-primary" : "text-foreground group-hover:text-primary"
+            }`}>
+              {faq.question}
+            </span>
+          </div>
+          
+          <ChevronDown className={`h-5 w-5 text-muted-foreground transition-transform flex-shrink-0 mt-1 ${
+            isOpen ? "rotate-180 text-primary" : ""
+          }`} />
+        </div>
+      </button>
+      
+      <motion.div
+        initial={false}
+        animate={{ 
+          height: isOpen ? "auto" : 0,
+          opacity: isOpen ? 1 : 0
+        }}
+        transition={{ duration: 0.3 }}
+        className="overflow-hidden"
+      >
+        <div className="pl-12 pb-6 pr-8">
+          <p className="text-muted-foreground leading-relaxed">
+            {faq.answer}
+          </p>
+        </div>
+      </motion.div>
+      
+      {/* Subtle divider */}
+      <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+    </motion.div>
+  );
+};
+
 export const FAQ = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-24 md:py-32 bg-secondary/20 relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-water-light/20 rounded-full blur-3xl" />
+    <section id="faq" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Organic background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/30 rounded-full blur-3xl -translate-y-1/3 translate-x-1/4" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-water-light/20 rounded-full blur-3xl translate-y-1/4 -translate-x-1/4" />
+      </div>
       
       <div className="container relative" ref={ref}>
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
-          {/* Left column - Header */}
+        <div className="max-w-4xl mx-auto">
+          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
-            className="lg:col-span-2"
+            className="text-center mb-16"
           >
-            <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4">
-              FAQ
-            </span>
-            <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-5">
+            <div className="inline-flex items-center gap-2 text-primary font-medium text-sm uppercase tracking-wider mb-4">
+              <MessageCircle className="h-4 w-4" />
+              <span>FAQ</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground mb-5">
               Questions? We've Got Answers
             </h2>
-            <p className="text-muted-foreground mb-8">
-              Get answers to common questions about our water treatment systems, 
-              installation process, and warranties.
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Everything you need to know about our water treatment systems.
             </p>
-            
-            {/* Decorative illustration placeholder */}
-            <div className="hidden lg:flex items-center justify-center">
-              <div className="relative">
-                <div className="w-40 h-40 bg-secondary rounded-full flex items-center justify-center">
-                  <HelpCircle className="w-20 h-20 text-primary/30" />
-                </div>
-                {/* Floating droplets */}
-                <motion.div 
-                  animate={{ y: [-5, 5, -5] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute -top-4 -right-4 w-8 h-8 bg-water-light rounded-full"
-                />
-                <motion.div 
-                  animate={{ y: [5, -5, 5] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                  className="absolute -bottom-2 -left-6 w-6 h-6 bg-primary/20 rounded-full"
-                />
-              </div>
-            </div>
           </motion.div>
 
-          {/* Right column - Accordion */}
+          {/* FAQ list - no boxes, clean lines */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="lg:col-span-3"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <Accordion type="single" collapsible className="space-y-4">
-              {faqs.map((faq, index) => (
-                <AccordionItem
-                  key={index}
-                  value={`item-${index}`}
-                  className="bg-card rounded-2xl border border-border px-6 data-[state=open]:border-primary/30 data-[state=open]:shadow-md transition-all duration-300"
-                >
-                  <AccordionTrigger className="text-left font-medium text-foreground hover:text-primary py-5 hover:no-underline">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pb-5 leading-relaxed">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+            {faqs.map((faq, index) => (
+              <FAQItem
+                key={index}
+                faq={faq}
+                index={index}
+                isOpen={openIndex === index}
+                onToggle={() => setOpenIndex(openIndex === index ? null : index)}
+              />
+            ))}
+          </motion.div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-12 text-center"
+          >
+            <div className="inline-flex items-center gap-3 px-6 py-4 rounded-full bg-secondary/50">
+              <Droplets className="h-5 w-5 text-primary" />
+              <span className="text-foreground">
+                Still have questions? <a href="#contact" className="text-primary font-medium hover:underline">Contact us</a>
+              </span>
+            </div>
           </motion.div>
         </div>
       </div>

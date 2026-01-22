@@ -6,7 +6,8 @@ import {
   ClipboardCheck, 
   Hammer, 
   ThumbsUp,
-  ArrowRight
+  ArrowRight,
+  ArrowDown
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -15,25 +16,29 @@ const steps = [
     number: "01",
     icon: CalendarCheck,
     title: "Schedule Free Assessment",
-    description: "Book your complimentary in-home water quality test at a time that works for you. Our experts come to you.",
+    description: "Book your complimentary in-home water quality test at a time that works for you.",
+    color: "from-primary/20 to-water-light/30",
   },
   {
     number: "02",
     icon: ClipboardCheck,
     title: "Custom Solution Design",
-    description: "We analyze your water and design a personalized filtration system tailored to your home's specific needs.",
+    description: "We analyze your water and design a personalized filtration system for your home.",
+    color: "from-water-light/30 to-accent/20",
   },
   {
     number: "03",
     icon: Hammer,
     title: "Professional Installation",
-    description: "Our licensed technicians install your system in just one day—we leave your home spotless.",
+    description: "Our licensed technicians install your system in just one day—mess-free.",
+    color: "from-accent/20 to-primary/25",
   },
   {
     number: "04",
     icon: ThumbsUp,
     title: "Enjoy Pure Water",
-    description: "Experience the difference with our 5-day risk-free trial. Love it or we'll remove it—no questions asked.",
+    description: "Experience the difference with our 5-day risk-free trial and lifetime warranty.",
+    color: "from-primary/25 to-water-light/40",
   },
 ];
 
@@ -42,16 +47,19 @@ export const HowItWorks = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="how-it-works" className="py-24 md:py-32 relative overflow-hidden">
-      {/* Organic background */}
-      <div className="absolute inset-0 water-pattern opacity-30" />
+    <section id="how-it-works" className="py-24 md:py-32 relative overflow-hidden bg-secondary/20">
+      {/* Organic background shapes */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 -left-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 -right-40 w-96 h-96 bg-water-light/20 rounded-full blur-3xl" />
+      </div>
       
       <div className="container relative" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16 md:mb-20"
+          className="text-center mb-20"
         >
           <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4">
             Your Journey
@@ -60,76 +68,104 @@ export const HowItWorks = () => {
             Four Simple Steps to Pure Water
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Getting pure, soft water in your home is easier than you think. 
-            Here's how we make it happen.
+            Getting pure, soft water in your home is easier than you think.
           </p>
         </motion.div>
 
-        {/* Vertical flowing timeline */}
-        <div className="max-w-4xl mx-auto">
-          <div className="relative">
-            {/* Flowing water stream line */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 md:-translate-x-1/2">
+        {/* Horizontal flowing steps - no boxes */}
+        <div className="max-w-6xl mx-auto">
+          {/* Desktop: Horizontal flow */}
+          <div className="hidden lg:flex items-start justify-between relative">
+            {/* Connecting flow line */}
+            <div className="absolute top-16 left-20 right-20 h-1">
               <motion.div 
-                initial={{ height: 0 }}
-                animate={isInView ? { height: "100%" } : {}}
-                transition={{ duration: 1.5, ease: "easeOut" }}
-                className="w-full h-full bg-gradient-to-b from-primary via-water-accent to-primary/30 rounded-full"
+                initial={{ scaleX: 0 }}
+                animate={isInView ? { scaleX: 1 } : {}}
+                transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
+                className="h-full bg-gradient-to-r from-primary via-water-accent to-accent origin-left rounded-full"
               />
             </div>
-
-            {/* Steps */}
-            <div className="space-y-12 md:space-y-16">
-              {steps.map((step, index) => (
-                <motion.div
-                  key={step.number}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.3 + index * 0.2 }}
-                  className={`relative flex items-start gap-6 md:gap-12 ${
-                    index % 2 === 1 ? "md:flex-row-reverse" : ""
-                  }`}
-                >
-                  {/* Step number bubble on the line */}
-                  <div className="absolute left-8 md:left-1/2 -translate-x-1/2 z-10">
-                    <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center shadow-lg ring-4 ring-background">
-                      <span className="text-primary-foreground font-bold text-lg">
-                        {step.number}
-                      </span>
-                    </div>
+            
+            {steps.map((step, index) => (
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, y: 40 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.2 + index * 0.15 }}
+                className="relative flex-1 text-center px-4"
+              >
+                {/* Large number with gradient blob behind */}
+                <div className="relative inline-block mb-6">
+                  <motion.div 
+                    className={`absolute inset-0 -m-6 bg-gradient-to-br ${step.color} rounded-full blur-2xl`}
+                    animate={{ 
+                      scale: [1, 1.15, 1],
+                    }}
+                    transition={{ 
+                      duration: 4, 
+                      repeat: Infinity,
+                      delay: index * 0.5 
+                    }}
+                  />
+                  <div className="relative w-32 h-32 rounded-full bg-card flex items-center justify-center shadow-xl border-4 border-background">
+                    <span className="text-5xl font-serif text-primary">{step.number}</span>
                   </div>
+                </div>
+                
+                {/* Icon */}
+                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-secondary/50 flex items-center justify-center">
+                  <step.icon className="h-6 w-6 text-primary" />
+                </div>
+                
+                <h3 className="text-xl font-serif text-foreground mb-3">
+                  {step.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed max-w-[220px] mx-auto">
+                  {step.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
 
-                  {/* Content card */}
-                  <div className={`flex-1 ml-24 md:ml-0 ${
-                    index % 2 === 1 ? "md:pr-16 lg:pr-24" : "md:pl-16 lg:pl-24"
-                  }`}>
-                    <div className="bg-card rounded-3xl p-6 md:p-8 border border-border card-elevated">
-                      {/* Large watermark number */}
-                      <span className="absolute -top-4 -right-4 text-8xl font-serif text-primary/5 pointer-events-none hidden md:block">
-                        {step.number}
-                      </span>
-                      
-                      {/* Icon */}
-                      <div className="relative mb-5">
-                        <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center">
-                          <step.icon className="h-6 w-6 text-primary" />
-                        </div>
-                      </div>
-
-                      <h3 className="text-xl font-semibold text-foreground mb-3">
-                        {step.title}
-                      </h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        {step.description}
-                      </p>
-                    </div>
+          {/* Mobile: Vertical flow */}
+          <div className="lg:hidden space-y-12">
+            {steps.map((step, index) => (
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, x: -30 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.2 + index * 0.15 }}
+                className="relative flex items-start gap-6"
+              >
+                {/* Number circle */}
+                <div className="relative flex-shrink-0">
+                  <motion.div 
+                    className={`absolute inset-0 -m-3 bg-gradient-to-br ${step.color} rounded-full blur-xl`}
+                  />
+                  <div className="relative w-20 h-20 rounded-full bg-card flex items-center justify-center shadow-lg border-2 border-background">
+                    <span className="text-2xl font-serif text-primary">{step.number}</span>
                   </div>
-
-                  {/* Spacer for alternating layout */}
-                  <div className="hidden md:block flex-1" />
-                </motion.div>
-              ))}
-            </div>
+                  
+                  {/* Connector line */}
+                  {index < steps.length - 1 && (
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-primary/40 to-transparent" />
+                  )}
+                </div>
+                
+                {/* Content */}
+                <div className="pt-2">
+                  <div className="flex items-center gap-3 mb-2">
+                    <step.icon className="h-5 w-5 text-primary" />
+                    <h3 className="text-lg font-serif text-foreground">
+                      {step.title}
+                    </h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
 
