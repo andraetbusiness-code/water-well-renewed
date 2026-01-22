@@ -57,15 +57,27 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Organic palette extras
+        water: {
+          light: "hsl(var(--water-light))",
+          medium: "hsl(var(--water-medium))",
+          accent: "hsl(var(--water-accent))",
+        },
+        earth: {
+          warm: "hsl(var(--earth-warm))",
+          stone: "hsl(var(--earth-stone))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        "organic": "60% 40% 30% 70% / 60% 30% 70% 40%",
+        "organic-alt": "40% 60% 70% 30% / 40% 50% 60% 50%",
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Playfair Display', 'serif'],
+        serif: ['DM Serif Display', 'Georgia', 'serif'],
       },
       keyframes: {
         "accordion-down": {
@@ -88,6 +100,18 @@ export default {
           from: { opacity: "0", transform: "scale(0.95)" },
           to: { opacity: "1", transform: "scale(1)" },
         },
+        "float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-12px)" },
+        },
+        "wave-morph": {
+          "0%, 100%": { 
+            borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
+          },
+          "50%": { 
+            borderRadius: "40% 60% 70% 30% / 30% 60% 40% 70%",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -95,6 +119,8 @@ export default {
         "fade-in": "fade-in 0.6s ease-out forwards",
         "slide-in-right": "slide-in-right 0.5s ease-out forwards",
         "scale-in": "scale-in 0.4s ease-out forwards",
+        "float": "float 6s ease-in-out infinite",
+        "wave-morph": "wave-morph 8s ease-in-out infinite",
       },
     },
   },

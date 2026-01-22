@@ -7,6 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { HelpCircle } from "lucide-react";
 
 const faqs = [
   {
@@ -48,47 +49,77 @@ export const FAQ = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="faq" className="py-20 md:py-28 bg-background">
-      <div className="container max-w-4xl" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium mb-4">
-            FAQ
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            Get answers to common questions about our water treatment systems.
-          </p>
-        </motion.div>
+    <section id="faq" className="py-24 md:py-32 bg-secondary/20 relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-water-light/20 rounded-full blur-3xl" />
+      
+      <div className="container relative" ref={ref}>
+        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
+          {/* Left column - Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="lg:col-span-2"
+          >
+            <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4">
+              FAQ
+            </span>
+            <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-5">
+              Questions? We've Got Answers
+            </h2>
+            <p className="text-muted-foreground mb-8">
+              Get answers to common questions about our water treatment systems, 
+              installation process, and warranties.
+            </p>
+            
+            {/* Decorative illustration placeholder */}
+            <div className="hidden lg:flex items-center justify-center">
+              <div className="relative">
+                <div className="w-40 h-40 bg-secondary rounded-full flex items-center justify-center">
+                  <HelpCircle className="w-20 h-20 text-primary/30" />
+                </div>
+                {/* Floating droplets */}
+                <motion.div 
+                  animate={{ y: [-5, 5, -5] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  className="absolute -top-4 -right-4 w-8 h-8 bg-water-light rounded-full"
+                />
+                <motion.div 
+                  animate={{ y: [5, -5, 5] }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                  className="absolute -bottom-2 -left-6 w-6 h-6 bg-primary/20 rounded-full"
+                />
+              </div>
+            </div>
+          </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="bg-card rounded-xl border border-border px-6 data-[state=open]:border-primary/30 transition-colors"
-              >
-                <AccordionTrigger className="text-left font-medium text-foreground hover:text-primary py-5">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-5">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </motion.div>
+          {/* Right column - Accordion */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="lg:col-span-3"
+          >
+            <Accordion type="single" collapsible className="space-y-4">
+              {faqs.map((faq, index) => (
+                <AccordionItem
+                  key={index}
+                  value={`item-${index}`}
+                  className="bg-card rounded-2xl border border-border px-6 data-[state=open]:border-primary/30 data-[state=open]:shadow-md transition-all duration-300"
+                >
+                  <AccordionTrigger className="text-left font-medium text-foreground hover:text-primary py-5 hover:no-underline">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pb-5 leading-relaxed">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
