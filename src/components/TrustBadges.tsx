@@ -85,16 +85,14 @@ export const TrustBadges = () => {
               Trusted Partner
             </span>
             
-            {/* Logo with organic glow */}
+            {/* Logo blended naturally */}
             <div className="relative group">
-              <div className="absolute inset-0 -m-6 bg-primary-foreground/10 rounded-full blur-xl group-hover:bg-primary-foreground/20 transition-colors" />
-              <div className="relative bg-primary-foreground rounded-2xl p-4 shadow-2xl">
-                <img 
-                  src={homeDepotAuthorized} 
-                  alt="Home Depot Home Services Authorized Independent Provider" 
-                  className="h-20 md:h-24 w-auto"
-                />
-              </div>
+              <div className="absolute inset-0 -m-8 bg-primary-foreground/5 rounded-full blur-2xl group-hover:bg-primary-foreground/10 transition-colors" />
+              <img 
+                src={homeDepotAuthorized} 
+                alt="Home Depot Home Services Authorized Independent Provider" 
+                className="relative h-24 md:h-32 w-auto drop-shadow-lg"
+              />
             </div>
           </div>
         </motion.div>
