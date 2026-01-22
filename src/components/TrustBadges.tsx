@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import homeDepotLogo from "@/assets/home-depot-logo.png";
+import homeDepotAuthorized from "@/assets/home-depot-authorized.png";
 import { WaveDivider } from "@/components/WaveDivider";
 
 const stats = [
@@ -88,11 +88,11 @@ export const TrustBadges = () => {
             {/* Logo with organic glow */}
             <div className="relative group">
               <div className="absolute inset-0 -m-6 bg-primary-foreground/10 rounded-full blur-xl group-hover:bg-primary-foreground/20 transition-colors" />
-              <div className="relative bg-primary-foreground rounded-2xl px-10 py-5 shadow-2xl">
+              <div className="relative bg-primary-foreground rounded-2xl p-4 shadow-2xl">
                 <img 
-                  src={homeDepotLogo} 
-                  alt="Home Depot Partner" 
-                  className="h-10 md:h-12 w-auto"
+                  src={homeDepotAuthorized} 
+                  alt="Home Depot Home Services Authorized Independent Provider" 
+                  className="h-20 md:h-24 w-auto"
                 />
               </div>
             </div>
