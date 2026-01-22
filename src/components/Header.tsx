@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
 const navItems = [
-  { label: "Home", href: "#" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Process", href: "#how-it-works" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/#about" },
+  { label: "Services", href: "/#services" },
+  { label: "Process", href: "/process" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export const Header = () => {
@@ -52,7 +53,7 @@ export const Header = () => {
         <div className="container">
           <div className="flex items-center justify-between">
             {/* Logo - Left on mobile, centered visual weight on desktop */}
-            <a href="#" className="relative z-10">
+            <Link to="/" className="relative z-10">
               <img 
                 src={logo} 
                 alt="Select Source Water" 
@@ -60,18 +61,18 @@ export const Header = () => {
                   isScrolled ? "h-10 md:h-12" : "h-12 md:h-14"
                 }`}
               />
-            </a>
+            </Link>
 
             {/* Desktop Navigation - Minimal, floating */}
             <nav className="hidden lg:flex items-center gap-1 bg-card/80 backdrop-blur-sm rounded-full px-2 py-1 shadow-sm border border-border/50">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.label}
-                  href={item.href}
+                  to={item.href}
                   className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-secondary/50 rounded-full transition-all duration-200"
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </nav>
 
