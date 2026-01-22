@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { 
   Droplets, 
   Filter, 
@@ -17,36 +18,42 @@ const services = [
     title: "Free Water Testing",
     description: "Comprehensive in-home water quality analysis to identify contaminants and hardness levels.",
     accent: "from-accent/30 to-accent/10",
+    link: "/process",
   },
   {
     icon: Filter,
     title: "Custom Filtration",
     description: "State-of-the-art carbon filtration systems designed for your specific water conditions.",
     accent: "from-primary/20 to-water-light/30",
+    link: "/filtration-technology",
   },
   {
     icon: Droplets,
     title: "Water Softening",
     description: "Dual-tank softening systems with lifetime resin that eliminate hard water minerals.",
     accent: "from-water-light/40 to-primary/20",
+    link: "/hygia-system",
   },
   {
     icon: Wrench,
     title: "Professional Installation",
     description: "White-glove, one-day installation by licensed technicians with zero mess.",
     accent: "from-secondary to-water-light/20",
+    link: "/process",
   },
   {
     icon: Settings,
     title: "Maintenance Plans",
     description: "Affordable annual maintenance to keep your system running at peak efficiency.",
     accent: "from-primary/15 to-secondary",
+    link: "/maintenance",
   },
   {
     icon: Headphones,
     title: "Lifetime Support",
     description: "Dedicated customer service and comprehensive lifetime warranty coverage.",
     accent: "from-accent/20 to-primary/15",
+    link: "/hygia-system",
   },
 ];
 
@@ -93,47 +100,54 @@ export const Services = () => {
                   initial={{ opacity: 0, x: isEven ? -40 : 40 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`relative flex items-center gap-6 md:gap-10 py-8 md:py-10 group ${
-                    isEven ? "" : "md:flex-row-reverse"
-                  }`}
                 >
-                  {/* Flowing gradient background on hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-r ${service.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[3rem] ${
-                    isEven ? "-skew-x-2" : "skew-x-2"
-                  }`} />
-                  
-                  {/* Icon with organic shape */}
-                  <div className="relative flex-shrink-0 z-10">
-                    <motion.div 
-                      className={`absolute inset-0 bg-gradient-to-br ${service.accent} rounded-full blur-xl scale-150 opacity-60`}
-                      animate={{ 
-                        scale: [1.5, 1.7, 1.5],
-                      }}
-                      transition={{ 
-                        duration: 4, 
-                        repeat: Infinity,
-                        delay: index * 0.3 
-                      }}
-                    />
-                    <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-card flex items-center justify-center shadow-lg border border-border/50">
-                      <service.icon className="h-9 w-9 md:h-11 md:w-11 text-primary" />
+                  <Link 
+                    to={service.link}
+                    className={`relative flex items-center gap-6 md:gap-10 py-8 md:py-10 group ${
+                      isEven ? "" : "md:flex-row-reverse"
+                    }`}
+                  >
+                    {/* Flowing gradient background on hover */}
+                    <div className={`absolute inset-0 bg-gradient-to-r ${service.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[3rem] ${
+                      isEven ? "-skew-x-2" : "skew-x-2"
+                    }`} />
+                    
+                    {/* Icon with organic shape */}
+                    <div className="relative flex-shrink-0 z-10">
+                      <motion.div 
+                        className={`absolute inset-0 bg-gradient-to-br ${service.accent} rounded-full blur-xl scale-150 opacity-60`}
+                        animate={{ 
+                          scale: [1.5, 1.7, 1.5],
+                        }}
+                        transition={{ 
+                          duration: 4, 
+                          repeat: Infinity,
+                          delay: index * 0.3 
+                        }}
+                      />
+                      <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-card flex items-center justify-center shadow-lg border border-border/50">
+                        <service.icon className="h-9 w-9 md:h-11 md:w-11 text-primary" />
+                      </div>
                     </div>
-                  </div>
-                  
-                  {/* Content */}
-                  <div className={`relative z-10 flex-1 ${isEven ? "" : "md:text-right"}`}>
-                    <h3 className="text-xl md:text-2xl font-serif text-foreground mb-2 group-hover:text-primary transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed max-w-lg">
-                      {service.description}
-                    </p>
-                  </div>
-                  
-                  {/* Subtle connector line */}
-                  {index < services.length - 1 && (
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-px h-6 bg-gradient-to-b from-border to-transparent hidden md:block" />
-                  )}
+                    
+                    {/* Content */}
+                    <div className={`relative z-10 flex-1 ${isEven ? "" : "md:text-right"}`}>
+                      <h3 className="text-xl md:text-2xl font-serif text-foreground mb-2 group-hover:text-primary transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed max-w-lg">
+                        {service.description}
+                      </p>
+                      <span className="inline-flex items-center gap-1 text-primary text-sm font-medium mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        Learn more <ArrowRight className="h-3 w-3" />
+                      </span>
+                    </div>
+                    
+                    {/* Subtle connector line */}
+                    {index < services.length - 1 && (
+                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-px h-6 bg-gradient-to-b from-border to-transparent hidden md:block" />
+                    )}
+                  </Link>
                 </motion.div>
               );
             })}
@@ -147,13 +161,13 @@ export const Services = () => {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center mt-16"
         >
-          <a 
-            href="#contact" 
+          <Link 
+            to="/process" 
             className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
           >
             <span>Get started with a free water test</span>
             <ArrowRight className="h-4 w-4" />
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>
