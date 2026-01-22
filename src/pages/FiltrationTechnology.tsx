@@ -1,0 +1,222 @@
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+import { Link } from "react-router-dom";
+import { 
+  ArrowRight,
+  ArrowDown,
+  Droplets,
+  Home,
+  Check
+} from "lucide-react";
+import { PageLayout, PageHero } from "@/components/layout/PageLayout";
+import { Button } from "@/components/ui/button";
+import { FloatingBubbles } from "@/components/WaterEffects";
+
+const filtrationStages = [
+  {
+    name: "Sediment Filter",
+    description: "Removes sand, silt, and rust.",
+    side: "left"
+  },
+  {
+    name: "Catalytic Carbon",
+    description: "Eliminates chlorine & chloramines.",
+    side: "left"
+  },
+  {
+    name: "Blonde Resin 10%",
+    description: "Reduces hardness minerals.",
+    side: "left"
+  },
+  {
+    name: "Black Resin 10%",
+    description: "Further softens the water.",
+    side: "left"
+  },
+  {
+    name: "Coconut Shell Carbon",
+    description: "Removes chemicals & odors.",
+    side: "left"
+  },
+  {
+    name: "KDF Media",
+    description: "Reduces heavy metals.",
+    side: "right"
+  },
+  {
+    name: "Activated Carbon",
+    description: "Improves taste & removes VOCs.",
+    side: "right"
+  },
+  {
+    name: "Fine Filter",
+    description: "Polishes and clarifies water.",
+    side: "right"
+  },
+  {
+    name: "UV Light",
+    description: "Kills bacteria & viruses.",
+    side: "right"
+  },
+  {
+    name: "Final Polishing Filter",
+    description: "Gives water a fresh taste.",
+    side: "right"
+  }
+];
+
+export default function FiltrationTechnology() {
+  const stagesRef = useRef(null);
+  const stagesInView = useInView(stagesRef, { once: true, margin: "-100px" });
+
+  return (
+    <PageLayout>
+      <PageHero 
+        badge="Advanced Technology"
+        title="10 Stages of"
+        subtitle="Whole House Water Filtration"
+        description="Each stage targets specific contaminants, ensuring you get the cleanest, safest water possible."
+      />
+
+      {/* 10 Stages Section */}
+      <section className="py-20 md:py-28 relative overflow-hidden">
+        <FloatingBubbles count={10} />
+        
+        <div className="container relative" ref={stagesRef}>
+          {/* Stages grid */}
+          <div className="max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-x-16 gap-y-4">
+              {/* Left column - stages 1-5 */}
+              <div className="space-y-4">
+                {filtrationStages.filter(s => s.side === "left").map((stage, index) => (
+                  <motion.div
+                    key={stage.name}
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={stagesInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="relative group"
+                  >
+                    <div className="flex items-start gap-4 p-5 rounded-xl bg-card border border-border/50 hover:border-primary/30 hover:shadow-md transition-all">
+                      <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold flex-shrink-0">
+                        {index + 1}
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-1">{stage.name}</h3>
+                        <p className="text-sm text-muted-foreground">{stage.description}</p>
+                      </div>
+                    </div>
+                    {index < 4 && (
+                      <div className="absolute left-7 -bottom-4 z-10">
+                        <ArrowDown className="h-4 w-4 text-primary/40" />
+                      </div>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+              
+              {/* Right column - stages 6-10 */}
+              <div className="space-y-4 md:mt-20">
+                {filtrationStages.filter(s => s.side === "right").map((stage, index) => (
+                  <motion.div
+                    key={stage.name}
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={stagesInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                    className="relative group"
+                  >
+                    <div className="flex items-start gap-4 p-5 rounded-xl bg-card border border-border/50 hover:border-primary/30 hover:shadow-md transition-all">
+                      <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold flex-shrink-0">
+                        {index + 6}
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-1">{stage.name}</h3>
+                        <p className="text-sm text-muted-foreground">{stage.description}</p>
+                      </div>
+                    </div>
+                    {index < 4 && (
+                      <div className="absolute left-7 -bottom-4 z-10">
+                        <ArrowDown className="h-4 w-4 text-primary/40" />
+                      </div>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Result indicator */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={stagesInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 1 }}
+              className="mt-12 text-center"
+            >
+              <div className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-primary text-primary-foreground">
+                <Home className="h-5 w-5" />
+                <span className="font-semibold">Clean Water To Your Home</span>
+                <Droplets className="h-5 w-5" />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why 10 Stages */}
+      <section className="py-20 md:py-28 bg-secondary/30 relative overflow-hidden">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4">
+                Why <span className="text-primary">10 Stages</span>?
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Each stage is specifically designed to target different contaminants, 
+                ensuring comprehensive water treatment that single-stage filters can't achieve.
+              </p>
+            </motion.div>
+            
+            <div className="grid sm:grid-cols-2 gap-6">
+              {[
+                "Multi-layer protection against all contaminants",
+                "Extended filter life through staged filtration",
+                "Better taste with specialized polishing stages",
+                "Bacteria elimination with UV treatment",
+                "Scale prevention for appliance protection",
+                "Chemical-free softening and purification"
+              ].map((item, index) => (
+                <motion.div
+                  key={item}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="flex items-start gap-3"
+                >
+                  <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Check className="h-3 w-3 text-primary" />
+                  </div>
+                  <span className="text-foreground">{item}</span>
+                </motion.div>
+              ))}
+            </div>
+            
+            <div className="mt-12 text-center">
+              <Button asChild size="lg">
+                <Link to="/hygia-system" className="gap-2">
+                  Explore HYGIA+ System
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </PageLayout>
+  );
+}
