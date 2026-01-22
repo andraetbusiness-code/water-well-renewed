@@ -15,64 +15,28 @@ import { Button } from "./ui/button";
 
 const transformations = [
   { 
-    before: { 
-      title: "Chlorine", 
-      desc: "Chemical taste & odor" 
-    },
-    after: { 
-      title: "Chlorine", 
-      desc: "Removed" 
-    },
-    icon: Droplets,
-    link: "/what-in-water"
-  },
-  { 
-    before: { 
-      title: "Hardness", 
-      desc: "Scale buildup in pipes" 
-    },
-    after: { 
-      title: "Hardness", 
-      desc: "Reduced" 
-    },
+    before: "Hard water scale damaging appliances",
+    after: "Protected pipes & appliances",
     icon: Home,
     link: "/hygia-system"
   },
   { 
-    before: { 
-      title: "VOCs", 
-      desc: "Pesticides & chemicals" 
-    },
-    after: { 
-      title: "VOCs", 
-      desc: "Removed" 
-    },
-    icon: Sparkles,
-    link: "/filtration-technology"
-  },
-  { 
-    before: { 
-      title: "Bacteria", 
-      desc: "Harmful contaminants" 
-    },
-    after: { 
-      title: "Bacteria", 
-      desc: "Neutralized" 
-    },
+    before: "Dry, itchy skin and dull hair",
+    after: "Soft skin & silky hair",
     icon: Heart,
     link: "/hygia-system"
   },
   { 
-    before: { 
-      title: "Scale", 
-      desc: "Appliance damage" 
-    },
-    after: { 
-      title: "Scale", 
-      desc: "Prevented" 
-    },
-    icon: Waves,
-    link: "/maintenance"
+    before: "Spots on dishes and fixtures",
+    after: "Sparkling clean everything",
+    icon: Sparkles,
+    link: "/filtration-technology"
+  },
+  { 
+    before: "Chemical taste and odors",
+    after: "Pure, refreshing taste",
+    icon: Droplets,
+    link: "/what-in-water"
   },
 ];
 
@@ -82,14 +46,13 @@ export const ProblemSolution = () => {
 
   return (
     <section id="about" className="py-24 md:py-32 relative overflow-hidden">
-      {/* Flowing background elements */}
+      {/* Soft background gradient */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-water-light/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-gradient-radial from-primary/5 via-transparent to-transparent rounded-full" />
       </div>
       
-      {/* Floating bubbles animation */}
-      <FloatingBubbles count={12} />
+      {/* Subtle floating bubbles */}
+      <FloatingBubbles count={8} />
 
       <div className="container relative" ref={ref}>
         {/* Header */}
@@ -101,93 +64,63 @@ export const ProblemSolution = () => {
         >
           <div className="inline-flex items-center gap-2 text-primary font-medium text-sm uppercase tracking-wider mb-4">
             <Waves className="h-4 w-4" />
-            <span>What's In Your Water?</span>
+            <span>The Transformation</span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground mb-5">
-            Before & After<br />
-            <span className="text-primary">Filtration</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground mb-2">
+            Transform Your Water,
+          </h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-primary mb-6">
+            Transform Your Life
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            See the real difference our HYGIA+ system makes to your water quality.
+            Watch how we turn everyday water frustrations into pure comfort.
           </p>
         </motion.div>
 
-        {/* Before/After comparison - consistent layout */}
-        <div className="max-w-5xl mx-auto">
-          {/* Headers for desktop */}
-          <div className="hidden md:grid md:grid-cols-[1fr_auto_1fr] gap-8 mb-8 px-4">
-            <div className="text-right">
-              <span className="text-sm font-semibold uppercase tracking-wider text-destructive/70">
-                Before Filtration
-              </span>
-            </div>
-            <div className="w-16" /> {/* Spacer for icon column */}
-            <div className="text-left">
-              <span className="text-sm font-semibold uppercase tracking-wider text-primary">
-                After Filtration
-              </span>
-            </div>
-          </div>
+        {/* Vertical timeline with centered icons - CONSISTENT Before Left, After Right */}
+        <div className="max-w-4xl mx-auto relative">
+          {/* Vertical line connecting icons */}
+          <div className="absolute left-1/2 top-8 bottom-8 w-px bg-gradient-to-b from-primary/20 via-primary/40 to-primary/20 -translate-x-1/2 hidden md:block" />
 
-          {/* Transformation rows */}
-          <div className="space-y-4 md:space-y-3">
+          <div className="space-y-6 md:space-y-0">
             {transformations.map((item, index) => (
               <motion.div
-                key={item.before.title}
+                key={item.before}
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
+                transition={{ duration: 0.5, delay: 0.15 + index * 0.1 }}
               >
                 <Link 
                   to={item.link}
                   className="group block"
                 >
-                  <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-8 items-center p-4 md:p-6 rounded-2xl bg-card/50 hover:bg-card border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
+                  <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-8 items-center py-4 md:py-6">
                     
-                    {/* Before - Always on Left */}
-                    <div className="flex items-center gap-4 md:justify-end">
-                      {/* Mobile label */}
-                      <span className="md:hidden text-xs font-semibold uppercase tracking-wider text-destructive/70 w-16 flex-shrink-0">
+                    {/* BEFORE - Always Left Side */}
+                    <div className="text-center md:text-right order-1">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/70 mb-1 block">
                         Before
                       </span>
-                      <div className="md:text-right flex-1">
-                        <span className="text-foreground font-medium line-through decoration-destructive/40">
-                          {item.before.title}
-                        </span>
-                        <p className="text-sm text-muted-foreground">
-                          {item.before.desc}
-                        </p>
-                      </div>
-                      {/* Red indicator - desktop only */}
-                      <div className="hidden md:block w-2 h-2 rounded-full bg-destructive/60" />
+                      <p className="text-foreground/70 line-through decoration-muted-foreground/30 group-hover:text-foreground/50 transition-colors">
+                        {item.before}
+                      </p>
                     </div>
 
-                    {/* Center Icon with Arrow */}
-                    <div className="hidden md:flex flex-col items-center gap-1">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                        <item.icon className="h-5 w-5 text-primary group-hover:text-primary-foreground transition-colors" />
+                    {/* Center Icon */}
+                    <div className="flex justify-center order-first md:order-2">
+                      <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-card border-2 border-primary/20 shadow-lg flex items-center justify-center group-hover:border-primary/50 group-hover:scale-110 transition-all duration-300 relative z-10">
+                        <item.icon className="h-6 w-6 md:h-7 md:w-7 text-primary" />
                       </div>
-                      <ArrowRight className="h-4 w-4 text-primary/40" />
                     </div>
 
-                    {/* After - Always on Right */}
-                    <div className="flex items-center gap-4">
-                      {/* Mobile label */}
-                      <span className="md:hidden text-xs font-semibold uppercase tracking-wider text-primary w-16 flex-shrink-0">
+                    {/* AFTER - Always Right Side */}
+                    <div className="text-center md:text-left order-2 md:order-3">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-primary mb-1 block">
                         After
                       </span>
-                      {/* Green indicator - desktop only */}
-                      <div className="hidden md:block w-2 h-2 rounded-full bg-green-500" />
-                      <div className="flex-1">
-                        <span className="text-foreground font-semibold">
-                          {item.after.title}
-                        </span>
-                        <p className="text-sm text-primary font-medium">
-                          {item.after.desc}
-                        </p>
-                      </div>
-                      {/* Learn more arrow */}
-                      <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                      <p className="text-foreground font-semibold group-hover:text-primary transition-colors">
+                        {item.after}
+                      </p>
                     </div>
                   </div>
                 </Link>
@@ -203,11 +136,10 @@ export const ProblemSolution = () => {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center mt-12"
         >
-          <Button asChild size="lg" variant="default">
+          <Button asChild size="lg" variant="outline" className="rounded-full px-8">
             <Link to="/what-in-water" className="gap-2">
               <Droplets className="h-4 w-4" />
-              See Full Water Analysis
-              <ArrowRight className="h-4 w-4" />
+              Experience the difference today
             </Link>
           </Button>
         </motion.div>
