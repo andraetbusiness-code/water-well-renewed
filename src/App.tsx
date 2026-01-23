@@ -10,6 +10,7 @@ import FiltrationTechnology from "./pages/FiltrationTechnology";
 import WhatInWater from "./pages/WhatInWater";
 import Maintenance from "./pages/Maintenance";
 import Process from "./pages/Process";
+import Gallery from "./pages/Gallery";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/what-in-water" element={<WhatInWater />} />
           <Route path="/maintenance" element={<Maintenance />} />
           <Route path="/process" element={<Process />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

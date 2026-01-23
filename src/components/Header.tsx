@@ -10,7 +10,7 @@ const navItems = [
   { label: "HYGIA+ System", href: "/hygia-system" },
   { label: "Technology", href: "/filtration-technology" },
   { label: "Process", href: "/process" },
-  { label: "Maintenance", href: "/maintenance" },
+  { label: "Gallery", href: "/gallery" },
   { label: "Contact", href: "/#contact" },
 ];
 
