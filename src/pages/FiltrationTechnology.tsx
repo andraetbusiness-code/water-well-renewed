@@ -12,6 +12,9 @@ import {
 import { PageLayout, PageHero } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { FloatingBubbles } from "@/components/WaterEffects";
+import { InfographicCard, InfographicGrid } from "@/components/InfographicCard";
+import filtrationStagesImg from "@/assets/infographics/10-stages-filtration-styled.png";
+import benefitsImg from "@/assets/infographics/benefits-styled.png";
 
 const filtrationStages = [
   {
@@ -158,6 +161,39 @@ export default function FiltrationTechnology() {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Infographics Section */}
+      <section className="py-20 md:py-28 relative overflow-hidden">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4">
+              See The <span className="text-primary">Difference</span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Visual guides to understanding our advanced filtration technology.
+            </p>
+          </motion.div>
+          
+          <InfographicGrid columns={2}>
+            <InfographicCard 
+              src={filtrationStagesImg} 
+              alt="10 Stages of Water Filtration - Visual guide showing each filtration stage"
+              delay={0}
+            />
+            <InfographicCard 
+              src={benefitsImg} 
+              alt="Benefits of Whole House Water Filtration"
+              delay={0.15}
+            />
+          </InfographicGrid>
         </div>
       </section>
 

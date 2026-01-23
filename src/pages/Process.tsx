@@ -15,6 +15,8 @@ import {
 import { PageLayout, PageHero } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { FloatingBubbles, WaveBackground } from "@/components/WaterEffects";
+import { InfographicCard, InfographicGrid } from "@/components/InfographicCard";
+import customerJourneyImg from "@/assets/infographics/customer-journey-styled.png";
 
 const processSteps = [
   {
@@ -156,6 +158,19 @@ export default function Process() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Customer Journey Infographic */}
+      <section className="py-16 md:py-20 relative overflow-hidden bg-secondary/20">
+        <div className="container">
+          <InfographicGrid columns={1}>
+            <InfographicCard 
+              src={customerJourneyImg} 
+              alt="The Path to Cleaner Water - Customer Journey"
+              className="max-w-2xl mx-auto"
+            />
+          </InfographicGrid>
         </div>
       </section>
 
