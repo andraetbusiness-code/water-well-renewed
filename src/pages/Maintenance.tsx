@@ -16,6 +16,8 @@ import {
 import { PageLayout, PageHero } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { FloatingBubbles } from "@/components/WaterEffects";
+import { InfographicCard, InfographicGrid } from "@/components/InfographicCard";
+import maintenanceScheduleImg from "@/assets/infographics/maintenance-schedule-styled.png";
 
 const maintenanceTasks = [
   {
@@ -141,6 +143,19 @@ export default function Maintenance() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Maintenance Infographic */}
+      <section className="py-16 md:py-20 relative overflow-hidden bg-secondary/20">
+        <div className="container">
+          <InfographicGrid columns={1}>
+            <InfographicCard 
+              src={maintenanceScheduleImg} 
+              alt="Annual Water Filter Maintenance Schedule"
+              className="max-w-2xl mx-auto"
+            />
+          </InfographicGrid>
         </div>
       </section>
 

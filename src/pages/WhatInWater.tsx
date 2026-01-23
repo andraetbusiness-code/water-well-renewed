@@ -14,6 +14,9 @@ import {
 import { PageLayout, PageHero } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { FloatingBubbles } from "@/components/WaterEffects";
+import { InfographicCard, InfographicGrid } from "@/components/InfographicCard";
+import whatsInWaterImg from "@/assets/infographics/whats-in-water-styled.png";
+import homeNeedsFiltrationImg from "@/assets/infographics/home-needs-filtration-styled.png";
 
 const contaminants = [
   {
@@ -65,6 +68,36 @@ export default function WhatInWater() {
         subtitle="Your Water?"
         description="Discover what contaminants may be lurking in your tap water and how our HYGIA+ system eliminates them."
       />
+
+      {/* Infographics Section */}
+      <section className="py-20 md:py-28 relative overflow-hidden bg-secondary/20">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4">
+              Understanding Your <span className="text-primary">Water Quality</span>
+            </h2>
+          </motion.div>
+          
+          <InfographicGrid columns={2}>
+            <InfographicCard 
+              src={whatsInWaterImg} 
+              alt="What's In Your Water - Common Contaminants"
+              delay={0}
+            />
+            <InfographicCard 
+              src={homeNeedsFiltrationImg} 
+              alt="Does Your Home Need Water Filtration?"
+              delay={0.15}
+            />
+          </InfographicGrid>
+        </div>
+      </section>
 
       {/* Before/After Comparison */}
       <section className="py-20 md:py-28 relative overflow-hidden">

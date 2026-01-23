@@ -16,7 +16,10 @@ import {
 import { PageLayout, PageHero } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { FloatingBubbles } from "@/components/WaterEffects";
+import { InfographicCard, InfographicGrid } from "@/components/InfographicCard";
 import homeDepotAuthorized from "@/assets/home-depot-authorized.png";
+import systemDiagramImg from "@/assets/infographics/system-diagram-styled.png";
+import whyChooseUsImg from "@/assets/infographics/why-choose-us-styled.png";
 
 const systemFeatures = [
   {
@@ -124,6 +127,36 @@ export default function HygiaSystem() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* System Infographics */}
+      <section className="py-16 md:py-20 relative overflow-hidden bg-secondary/20">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4">
+              Visual <span className="text-primary">Guides</span>
+            </h2>
+          </motion.div>
+          
+          <InfographicGrid columns={2}>
+            <InfographicCard 
+              src={systemDiagramImg} 
+              alt="HYGIA+ Water Filtration System Diagram"
+              delay={0}
+            />
+            <InfographicCard 
+              src={whyChooseUsImg} 
+              alt="Why Choose Select Source Water"
+              delay={0.15}
+            />
+          </InfographicGrid>
         </div>
       </section>
 
