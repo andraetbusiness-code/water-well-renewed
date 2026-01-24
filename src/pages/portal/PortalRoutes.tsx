@@ -3,23 +3,23 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { AuthProvider } from '@/components/portal/AuthProvider';
 import { ProtectedRoute } from '@/components/portal/ProtectedRoute';
-import { PortalLayout } from '@/components/portal/PortalLayout';
 
 // Lazy load portal pages
 const Login = lazy(() => import('./Login'));
 const Dashboard = lazy(() => import('./Dashboard'));
+const ProgramPage = lazy(() => import('./ProgramPage'));
+const AssignmentsPage = lazy(() => import('./AssignmentsPage'));
+const CheckinsPage = lazy(() => import('./CheckinsPage'));
+const ScorecardPage = lazy(() => import('./ScorecardPage'));
 
-// Placeholder pages - will be implemented in later phases
-const PlaceholderPage = ({ title }: { title: string }) => (
-  <PortalLayout title={title}>
-    <div className="flex items-center justify-center h-64">
-      <div className="text-center">
-        <h2 className="text-xl font-semibold text-foreground">{title}</h2>
-        <p className="text-muted-foreground mt-2">Coming soon...</p>
-      </div>
-    </div>
-  </PortalLayout>
-);
+// Manager pages
+const TeamPage = lazy(() => import('./manager/TeamPage'));
+const ReviewsPage = lazy(() => import('./manager/ReviewsPage'));
+
+// Admin pages
+const UsersPage = lazy(() => import('./admin/UsersPage'));
+const ContentPage = lazy(() => import('./admin/ContentPage'));
+const SettingsPage = lazy(() => import('./admin/SettingsPage'));
 
 // Loading fallback
 const PageLoader = () => (
@@ -43,59 +43,54 @@ export default function PortalRoutes() {
             </ProtectedRoute>
           } />
           
-          {/* LMS routes - placeholders for now */}
+          {/* LMS routes */}
           <Route path="/program" element={
             <ProtectedRoute>
-              <PlaceholderPage title="Training Program" />
-            </ProtectedRoute>
-          } />
-          <Route path="/courses" element={
-            <ProtectedRoute>
-              <PlaceholderPage title="Courses" />
+              <ProgramPage />
             </ProtectedRoute>
           } />
           <Route path="/assignments" element={
             <ProtectedRoute>
-              <PlaceholderPage title="Assignments" />
+              <AssignmentsPage />
             </ProtectedRoute>
           } />
           <Route path="/checkins" element={
             <ProtectedRoute>
-              <PlaceholderPage title="Daily Check-ins" />
+              <CheckinsPage />
             </ProtectedRoute>
           } />
           <Route path="/scorecard" element={
             <ProtectedRoute>
-              <PlaceholderPage title="My Scorecard" />
+              <ScorecardPage />
             </ProtectedRoute>
           } />
           
           {/* Manager routes */}
           <Route path="/manager/team" element={
             <ProtectedRoute requiredRoles={['admin', 'manager']}>
-              <PlaceholderPage title="My Team" />
+              <TeamPage />
             </ProtectedRoute>
           } />
           <Route path="/manager/reviews" element={
             <ProtectedRoute requiredRoles={['admin', 'manager']}>
-              <PlaceholderPage title="Submission Reviews" />
+              <ReviewsPage />
             </ProtectedRoute>
           } />
           
           {/* Admin routes */}
           <Route path="/admin/users" element={
             <ProtectedRoute requiredRoles={['admin']}>
-              <PlaceholderPage title="User Management" />
+              <UsersPage />
             </ProtectedRoute>
           } />
           <Route path="/admin/content" element={
             <ProtectedRoute requiredRoles={['admin']}>
-              <PlaceholderPage title="Content Management" />
+              <ContentPage />
             </ProtectedRoute>
           } />
           <Route path="/admin/settings" element={
             <ProtectedRoute requiredRoles={['admin']}>
-              <PlaceholderPage title="Portal Settings" />
+              <SettingsPage />
             </ProtectedRoute>
           } />
           
