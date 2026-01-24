@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Facebook, Instagram, Youtube, Droplets } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 const footerLinks = {
@@ -17,6 +18,7 @@ const footerLinks = {
     { label: "Privacy Policy", href: "#" },
     { label: "Terms of Service", href: "#" },
     { label: "Warranty Info", href: "#faq" },
+    { label: "Staff Login", href: "/portal", isInternal: true },
   ],
 };
 
@@ -127,12 +129,21 @@ export const Footer = () => {
                 <ul className="space-y-3">
                   {footerLinks.legal.map((link) => (
                     <li key={link.label}>
-                      <a
-                        href={link.href}
-                        className="text-primary-foreground/50 hover:text-accent transition-colors inline-block"
-                      >
-                        {link.label}
-                      </a>
+                      {(link as any).isInternal ? (
+                        <Link
+                          to={link.href}
+                          className="text-primary-foreground/50 hover:text-accent transition-colors inline-block"
+                        >
+                          {link.label}
+                        </Link>
+                      ) : (
+                        <a
+                          href={link.href}
+                          className="text-primary-foreground/50 hover:text-accent transition-colors inline-block"
+                        >
+                          {link.label}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>
