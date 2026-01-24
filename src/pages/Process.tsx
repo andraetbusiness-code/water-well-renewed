@@ -17,6 +17,8 @@ import { Button } from "@/components/ui/button";
 import { FloatingBubbles, WaveBackground } from "@/components/WaterEffects";
 import { InfographicCard, InfographicGrid } from "@/components/InfographicCard";
 import customerJourneyImg from "@/assets/infographics/customer-journey-styled.png";
+import waterTestImg from "@/assets/photos/water-test.png";
+import proInstallsImg from "@/assets/photos/pro-installs.png";
 
 const processSteps = [
   {
@@ -157,6 +159,65 @@ export default function Process() {
                 })}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Photos Section */}
+      <section className="py-16 md:py-20 relative overflow-hidden">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4">
+              Our Team <span className="text-primary">In Action</span>
+            </h2>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="relative group"
+            >
+              <div className="overflow-hidden rounded-2xl border border-border/30 shadow-lg">
+                <img 
+                  src={waterTestImg} 
+                  alt="Water Quality Testing" 
+                  className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="absolute bottom-4 left-4 right-4 bg-card/90 backdrop-blur-sm rounded-lg p-3">
+                <p className="font-semibold text-foreground text-sm">Water Quality Assessment</p>
+                <p className="text-muted-foreground text-xs">Free in-home testing by certified specialists</p>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              viewport={{ once: true }}
+              className="relative group"
+            >
+              <div className="overflow-hidden rounded-2xl border border-border/30 shadow-lg">
+                <img 
+                  src={proInstallsImg} 
+                  alt="Professional Installation" 
+                  className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="absolute bottom-4 left-4 right-4 bg-card/90 backdrop-blur-sm rounded-lg p-3">
+                <p className="font-semibold text-foreground text-sm">Professional Installation</p>
+                <p className="text-muted-foreground text-xs">White-glove service by licensed technicians</p>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
