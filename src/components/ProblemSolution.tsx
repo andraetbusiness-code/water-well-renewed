@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { FloatingBubbles } from "./WaterEffects";
 import { Button } from "./ui/button";
+import crewImg from "@/assets/photos/crew.png";
 
 const transformations = [
   { 
@@ -128,6 +129,26 @@ export const ProblemSolution = () => {
             ))}
           </div>
         </div>
+
+        {/* Crew Photo - Trust Builder */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="max-w-2xl mx-auto mt-12"
+        >
+          <div className="relative group overflow-hidden rounded-2xl border border-border/30 shadow-lg">
+            <img 
+              src={crewImg} 
+              alt="Select Source Water Team" 
+              className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-foreground/80 to-transparent p-6 text-center">
+              <p className="text-primary-foreground font-serif text-lg">Our Expert Team</p>
+              <p className="text-primary-foreground/70 text-sm">Serving Florida since 1998</p>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Bottom CTA */}
         <motion.div

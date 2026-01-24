@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { FloatingBubbles } from "@/components/WaterEffects";
 import { InfographicCard, InfographicGrid } from "@/components/InfographicCard";
 import maintenanceScheduleImg from "@/assets/infographics/maintenance-schedule-styled.png";
+import waterSoftenerImg from "@/assets/photos/water-softener.png";
 
 const maintenanceTasks = [
   {
@@ -146,16 +147,37 @@ export default function Maintenance() {
         </div>
       </section>
 
-      {/* Maintenance Infographic */}
+      {/* Maintenance Infographic & Equipment Photo */}
       <section className="py-16 md:py-20 relative overflow-hidden bg-secondary/20">
         <div className="container">
-          <InfographicGrid columns={1}>
+          <div className="grid md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto">
+            {/* Equipment Photo */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="relative group"
+            >
+              <div className="overflow-hidden rounded-2xl border border-border/30 shadow-xl">
+                <img 
+                  src={waterSoftenerImg} 
+                  alt="HYGIA+ Water Softener Maintenance" 
+                  className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="absolute bottom-4 left-4 right-4 bg-card/90 backdrop-blur-sm rounded-lg p-3">
+                <p className="font-semibold text-foreground text-sm">HYGIA+ System</p>
+                <p className="text-muted-foreground text-xs">Check salt level & brine tank monthly</p>
+              </div>
+            </motion.div>
+            
+            {/* Infographic */}
             <InfographicCard 
               src={maintenanceScheduleImg} 
               alt="Annual Water Filter Maintenance Schedule"
-              className="max-w-2xl mx-auto"
             />
-          </InfographicGrid>
+          </div>
         </div>
       </section>
 

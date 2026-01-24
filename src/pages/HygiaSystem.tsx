@@ -20,6 +20,7 @@ import { InfographicCard, InfographicGrid } from "@/components/InfographicCard";
 import homeDepotAuthorized from "@/assets/home-depot-authorized.png";
 import systemDiagramImg from "@/assets/infographics/system-diagram-styled.png";
 import whyChooseUsImg from "@/assets/infographics/why-choose-us-styled.png";
+import waterSoftenerImg from "@/assets/photos/water-softener.png";
 
 const systemFeatures = [
   {
@@ -143,6 +144,27 @@ export default function HygiaSystem() {
             <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4">
               Visual <span className="text-primary">Guides</span>
             </h2>
+          </motion.div>
+          
+          {/* Equipment Photo */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto mb-12"
+          >
+            <div className="relative group overflow-hidden rounded-2xl border border-border/30 shadow-xl">
+              <img 
+                src={waterSoftenerImg} 
+                alt="HYGIA+ Water Softener System" 
+                className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-foreground/80 to-transparent p-6">
+                <p className="text-primary-foreground font-serif text-xl">HYGIA+ Dual-Tank System</p>
+                <p className="text-primary-foreground/70 text-sm">Premium water softening equipment</p>
+              </div>
+            </div>
           </motion.div>
           
           <InfographicGrid columns={2}>

@@ -17,6 +17,12 @@ import whyChooseUsImg from "@/assets/infographics/why-choose-us-styled.png";
 import customerJourneyImg from "@/assets/infographics/customer-journey-styled.png";
 import betterWaterHeroImg from "@/assets/infographics/better-water-hero-styled.png";
 
+// Import team and equipment photos
+import proInstallsImg from "@/assets/photos/pro-installs.png";
+import waterSoftenerImg from "@/assets/photos/water-softener.png";
+import waterTestImg from "@/assets/photos/water-test.png";
+import crewImg from "@/assets/photos/crew.png";
+
 const infographics = [
   {
     id: 1,
@@ -89,10 +95,43 @@ const infographics = [
     title: "Maintenance Schedule",
     category: "Maintenance",
     link: "/maintenance"
+  },
+  // Team & Equipment Photos
+  {
+    id: 10,
+    src: crewImg,
+    alt: "Select Source Water Team",
+    title: "Our Expert Team",
+    category: "Team",
+    link: "/process"
+  },
+  {
+    id: 11,
+    src: proInstallsImg,
+    alt: "Professional Installation",
+    title: "Professional Installation",
+    category: "Team",
+    link: "/process"
+  },
+  {
+    id: 12,
+    src: waterTestImg,
+    alt: "Water Quality Testing",
+    title: "Free Water Testing",
+    category: "Process",
+    link: "/process"
+  },
+  {
+    id: 13,
+    src: waterSoftenerImg,
+    alt: "HYGIA+ Water Softener Equipment",
+    title: "HYGIA+ Equipment",
+    category: "Technology",
+    link: "/hygia-system"
   }
 ];
 
-const categories = ["All", "Technology", "Water Quality", "Benefits", "Process", "Maintenance", "About", "Overview"];
+const categories = ["All", "Technology", "Water Quality", "Benefits", "Process", "Maintenance", "Team", "About", "Overview"];
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<typeof infographics[0] | null>(null);
