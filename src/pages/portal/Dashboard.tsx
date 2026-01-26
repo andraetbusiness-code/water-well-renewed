@@ -15,6 +15,11 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { PortalLayout } from '@/components/portal/PortalLayout';
 import { useAuthContext } from '@/components/portal/AuthProvider';
+import { IntegrationBanner } from '@/components/portal/widgets/IntegrationBanner';
+import { EnzyWidget } from '@/components/portal/widgets/EnzyWidget';
+import { GHLWidget } from '@/components/portal/widgets/GHLWidget';
+import { HousecallWidget } from '@/components/portal/widgets/HousecallWidget';
+import { useIntegrationStatus } from '@/hooks/useIntegrations';
 import { cn } from '@/lib/utils';
 
 // Placeholder data - will be replaced with real data from DB
@@ -38,10 +43,18 @@ const managerStats = {
 
 function DashboardContent() {
   const { user, role, isAdmin, isManager } = useAuthContext();
+  const { data: integrationStatus, isLoading: isLoadingIntegrations } = useIntegrationStatus();
+  
   const firstName = user?.user_metadata?.first_name || user?.email?.split('@')[0] || 'there';
 
   const progressPercent = (learnerStats.coursesCompleted / learnerStats.totalCourses) * 100;
   const salesProgress = (learnerStats.currentSales / learnerStats.salesGoal) * 100;
+
+  // Check which integrations are connected
+  const hasHousecall = integrationStatus?.housecall_pro.configured && integrationStatus?.housecall_pro.active;
+  const hasEnzy = integrationStatus?.enzy.configured && integrationStatus?.enzy.active;
+  const hasGHL = integrationStatus?.ghl.configured && integrationStatus?.ghl.active;
+  const hasAnyIntegration = hasHousecall || hasEnzy || hasGHL;
 
   return (
     <div className="space-y-6">
@@ -62,6 +75,15 @@ function DashboardContent() {
           })}
         </p>
       </motion.div>
+
+      {/* Integration Banner (for admins when not all integrations connected) */}
+      {isAdmin() && !isLoadingIntegrations && (
+        <IntegrationBanner 
+          hasHousecall={!!hasHousecall} 
+          hasEnzy={!!hasEnzy} 
+          hasGHL={!!hasGHL} 
+        />
+      )}
 
       {/* Manager/Admin Quick Stats */}
       {(isManager() || isAdmin()) && (
@@ -118,6 +140,20 @@ function DashboardContent() {
               </div>
             </CardContent>
           </Card>
+        </motion.div>
+      )}
+
+      {/* Integration Widgets Row */}
+      {hasAnyIntegration && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.15 }}
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+        >
+          {hasEnzy && <EnzyWidget />}
+          {hasGHL && <GHLWidget />}
+          {hasHousecall && <HousecallWidget />}
         </motion.div>
       )}
 
