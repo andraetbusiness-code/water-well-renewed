@@ -1,10 +1,12 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Target, DollarSign, Users, Filter, ArrowRight, Phone, Mail, MoreHorizontal } from 'lucide-react';
+import { Target, DollarSign, Users, Filter, ArrowRight, Phone, Mail, MoreHorizontal, Plus } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { PortalLayout } from '@/components/portal/PortalLayout';
 import { useAuthContext } from '@/components/portal/AuthProvider';
+import { AddLeadModal } from '@/components/portal/modals/AddLeadModal';
 
 // Placeholder pipeline stages with sample leads
 const pipelineStages = [
@@ -113,6 +115,7 @@ function PipelineColumn({ stage }: { stage: typeof pipelineStages[0] }) {
 
 export default function PipelinePage() {
   const { isAdmin, isManager } = useAuthContext();
+  const [showAddLead, setShowAddLead] = useState(false);
   
   const totalLeads = pipelineStages.reduce((sum, stage) => sum + stage.leads.length, 0);
   const totalValue = pipelineStages.reduce(
@@ -151,6 +154,10 @@ export default function PipelinePage() {
                 Team View
               </Button>
             )}
+            <Button size="sm" onClick={() => setShowAddLead(true)}>
+              <Plus className="h-4 w-4 mr-2" />
+              Add Lead
+            </Button>
           </div>
         </motion.div>
 
@@ -230,6 +237,9 @@ export default function PipelinePage() {
             </p>
           </CardContent>
         </Card>
+
+        {/* Add Lead Modal */}
+        <AddLeadModal open={showAddLead} onOpenChange={setShowAddLead} />
       </div>
     </PortalLayout>
   );
