@@ -4,10 +4,25 @@ import { SectorOverviewSlide } from './slides/SectorOverviewSlide';
 import { SectorDetailSlide } from './slides/SectorDetailSlide';
 import { LeadershipSlide } from './slides/LeadershipSlide';
 import { QuoteSlide } from './slides/QuoteSlide';
+import { ImageSlide } from './slides/ImageSlide';
+
+// Import lifestyle photos
+import homeDepotImage from '@/assets/presentations/home-depot-sales.jpg';
+import d2dImage from '@/assets/presentations/d2d-sales.jpg';
+import digitalImage from '@/assets/presentations/digital-marketing.jpg';
+import waterTestingImage from '@/assets/presentations/water-testing.jpg';
+
+// Map sector icons to images
+const sectorImages: Record<string, string> = {
+  'store': homeDepotImage,
+  'map-pin': d2dImage,
+  'monitor': digitalImage,
+  'refresh': waterTestingImage
+};
 
 export interface SlideData {
   id: string;
-  slide_type: 'title' | 'purpose' | 'sector-overview' | 'sector-detail' | 'leadership' | 'quote';
+  slide_type: 'title' | 'purpose' | 'sector-overview' | 'sector-detail' | 'leadership' | 'quote' | 'image';
   title?: string;
   content: Record<string, any>;
   speaker_notes?: string;
@@ -47,11 +62,13 @@ export function SlideRenderer({ slide }: SlideRendererProps) {
       );
     
     case 'sector-detail':
+      const sectorIcon = slide.content.icon || 'store';
       return (
         <SectorDetailSlide 
           sectorName={slide.content.sectorName || slide.title || ''} 
-          icon={slide.content.icon || 'store'}
+          icon={sectorIcon}
           bullets={slide.content.bullets || []}
+          imageSrc={sectorImages[sectorIcon]}
         />
       );
     
@@ -68,6 +85,15 @@ export function SlideRenderer({ slide }: SlideRendererProps) {
         <QuoteSlide 
           heading={slide.content.heading || slide.title || ''} 
           quote={slide.content.quote || ''}
+        />
+      );
+    
+    case 'image':
+      return (
+        <ImageSlide 
+          imageSrc={slide.content.imageSrc || slide.background_value || ''} 
+          caption={slide.content.caption}
+          overlay={slide.content.overlay !== false}
         />
       );
     

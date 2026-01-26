@@ -5,6 +5,7 @@ interface SectorDetailSlideProps {
   sectorName: string;
   icon: 'store' | 'users' | 'monitor' | 'refresh' | 'map-pin';
   bullets: string[];
+  imageSrc?: string;
 }
 
 const iconMap: Record<string, LucideIcon> = {
@@ -15,33 +16,49 @@ const iconMap: Record<string, LucideIcon> = {
   'map-pin': MapPin
 };
 
-export function SectorDetailSlide({ sectorName, icon, bullets }: SectorDetailSlideProps) {
+export function SectorDetailSlide({ sectorName, icon, bullets, imageSrc }: SectorDetailSlideProps) {
   const IconComponent = iconMap[icon];
   
   return (
     <SlideFrame backgroundType="cream">
-      <div className="flex flex-col w-full max-w-4xl">
-        {/* Teal header bar */}
-        <div className="bg-primary rounded-2xl p-6 mb-10 flex items-center gap-4">
-          <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
-            <IconComponent className="w-6 h-6 text-primary-foreground" />
+      <div className="flex w-full max-w-5xl gap-8">
+        {/* Left: Content */}
+        <div className="flex-1 flex flex-col">
+          {/* Teal header bar */}
+          <div className="bg-primary rounded-2xl p-6 mb-10 flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+              <IconComponent className="w-6 h-6 text-primary-foreground" />
+            </div>
+            <h2 className="font-serif text-3xl md:text-4xl text-primary-foreground">
+              {sectorName}
+            </h2>
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl text-primary-foreground">
-            {sectorName}
-          </h2>
+          
+          {/* Bullet points */}
+          <ul className="space-y-5 pl-4">
+            {bullets.map((bullet, index) => (
+              <li key={index} className="flex items-start gap-4">
+                <ChevronRight className="w-6 h-6 text-accent flex-shrink-0 mt-0.5" />
+                <span className="text-xl md:text-2xl text-foreground/90 leading-relaxed">
+                  {bullet}
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
         
-        {/* Bullet points */}
-        <ul className="space-y-5 pl-4">
-          {bullets.map((bullet, index) => (
-            <li key={index} className="flex items-start gap-4">
-              <ChevronRight className="w-6 h-6 text-accent flex-shrink-0 mt-0.5" />
-              <span className="text-xl md:text-2xl text-foreground/90 leading-relaxed">
-                {bullet}
-              </span>
-            </li>
-          ))}
-        </ul>
+        {/* Right: Image */}
+        {imageSrc && (
+          <div className="flex-1 hidden lg:block">
+            <div className="rounded-3xl overflow-hidden shadow-xl h-full">
+              <img 
+                src={imageSrc} 
+                alt={sectorName}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        )}
       </div>
       
       {/* Extra organic blob for sector slides */}
