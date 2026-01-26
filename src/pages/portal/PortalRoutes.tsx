@@ -11,6 +11,8 @@ const ProgramPage = lazy(() => import('./ProgramPage'));
 const AssignmentsPage = lazy(() => import('./AssignmentsPage'));
 const CheckinsPage = lazy(() => import('./CheckinsPage'));
 const ScorecardPage = lazy(() => import('./ScorecardPage'));
+const LeaderboardPage = lazy(() => import('./LeaderboardPage'));
+const PipelinePage = lazy(() => import('./PipelinePage'));
 
 // Manager pages
 const TeamPage = lazy(() => import('./manager/TeamPage'));
@@ -62,6 +64,16 @@ export default function PortalRoutes() {
           <Route path="/scorecard" element={
             <ProtectedRoute>
               <ScorecardPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/leaderboard" element={
+            <ProtectedRoute>
+              <LeaderboardPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/pipeline" element={
+            <ProtectedRoute>
+              <PipelinePage />
             </ProtectedRoute>
           } />
           

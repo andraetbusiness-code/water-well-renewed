@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Settings, Save, Building, Users, Bell, Shield, Palette, Mail } from 'lucide-react';
+import { Settings, Save, Building, Users, Bell, Shield, Palette, Mail, Link2, Briefcase, Trophy, Target } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -7,8 +7,22 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PortalLayout } from '@/components/portal/PortalLayout';
+import { IntegrationCard } from '@/components/portal/IntegrationCard';
+import { useIntegrationStatus } from '@/hooks/useIntegrations';
+import { toast } from '@/hooks/use-toast';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function SettingsPage() {
+  const { data: integrationStatus, isLoading: isLoadingIntegrations, error: integrationError } = useIntegrationStatus();
+
+  const handleConnectIntegration = (system: string) => {
+    // This will prompt the user to add the API key via secrets
+    toast({
+      title: 'Connect Integration',
+      description: `To connect ${system}, please add the API key in your backend secrets. Contact your administrator for assistance.`,
+    });
+  };
+
   return (
     <PortalLayout title="Portal Settings">
       <div className="space-y-6">
@@ -26,6 +40,10 @@ export default function SettingsPage() {
         <Tabs defaultValue="general">
           <TabsList>
             <TabsTrigger value="general">General</TabsTrigger>
+            <TabsTrigger value="integrations">
+              <Link2 className="h-4 w-4 mr-2" />
+              Integrations
+            </TabsTrigger>
             <TabsTrigger value="teams">Teams</TabsTrigger>
             <TabsTrigger value="notifications">Notifications</TabsTrigger>
             <TabsTrigger value="security">Security</TabsTrigger>
@@ -88,6 +106,111 @@ export default function SettingsPage() {
               <Save className="h-4 w-4 mr-2" />
               Save Changes
             </Button>
+          </TabsContent>
+
+          {/* Integrations Tab */}
+          <TabsContent value="integrations" className="space-y-6 mt-6">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Card className="mb-6">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Link2 className="h-5 w-5" />
+                    External Integrations
+                  </CardTitle>
+                  <CardDescription>
+                    Connect your tools to sync data automatically. Add API keys to enable each integration.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+
+              {isLoadingIntegrations ? (
+                <div className="space-y-4">
+                  {[1, 2, 3].map((i) => (
+                    <Card key={i}>
+                      <CardContent className="p-6">
+                        <div className="flex items-center gap-4">
+                          <Skeleton className="h-10 w-10 rounded-lg" />
+                          <div className="flex-1 space-y-2">
+                            <Skeleton className="h-5 w-40" />
+                            <Skeleton className="h-4 w-64" />
+                          </div>
+                          <Skeleton className="h-9 w-24" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              ) : integrationError ? (
+                <Card className="border-destructive/50 bg-destructive/5">
+                  <CardContent className="py-6 text-center">
+                    <p className="text-destructive">Failed to load integration status. Please try again.</p>
+                  </CardContent>
+                </Card>
+              ) : (
+                <div className="space-y-4">
+                  <IntegrationCard
+                    system="housecall_pro"
+                    name="Housecall Pro"
+                    description="Sync job scheduling, customer records, and revenue data"
+                    icon={<Briefcase className="h-5 w-5" />}
+                    configured={integrationStatus?.housecall_pro.configured ?? false}
+                    active={integrationStatus?.housecall_pro.active ?? false}
+                    lastSync={integrationStatus?.housecall_pro.lastSync ?? null}
+                    error={integrationStatus?.housecall_pro.error ?? null}
+                    onConnect={() => handleConnectIntegration('Housecall Pro')}
+                  />
+
+                  <IntegrationCard
+                    system="enzy"
+                    name="Enzy"
+                    description="Sync leaderboard rankings, badges, and gamification data"
+                    icon={<Trophy className="h-5 w-5" />}
+                    configured={integrationStatus?.enzy.configured ?? false}
+                    active={integrationStatus?.enzy.active ?? false}
+                    lastSync={integrationStatus?.enzy.lastSync ?? null}
+                    error={integrationStatus?.enzy.error ?? null}
+                    onConnect={() => handleConnectIntegration('Enzy')}
+                  />
+
+                  <IntegrationCard
+                    system="ghl"
+                    name="GoHighLevel"
+                    description="Sync CRM contacts, deal pipeline, and lead tracking"
+                    icon={<Target className="h-5 w-5" />}
+                    configured={integrationStatus?.ghl.configured ?? false}
+                    active={integrationStatus?.ghl.active ?? false}
+                    lastSync={integrationStatus?.ghl.lastSync ?? null}
+                    error={integrationStatus?.ghl.error ?? null}
+                    onConnect={() => handleConnectIntegration('GoHighLevel')}
+                  />
+                </div>
+              )}
+
+              {/* API Key Instructions */}
+              <Card className="mt-6 border-dashed border-2 border-muted-foreground/30">
+                <CardContent className="py-6">
+                  <h4 className="font-medium mb-2">How to Connect Integrations</h4>
+                  <ol className="text-sm text-muted-foreground space-y-2 list-decimal list-inside">
+                    <li>Obtain your API key from the external service (Housecall Pro, Enzy, or GoHighLevel)</li>
+                    <li>Add the API key as a secret in your backend configuration</li>
+                    <li>The integration will automatically activate once the key is detected</li>
+                    <li>Use "Sync Now" to manually pull data or wait for automatic syncing</li>
+                  </ol>
+                  <div className="mt-4 p-3 bg-muted rounded-lg">
+                    <p className="text-xs text-muted-foreground">
+                      <strong>Secret Names:</strong><br />
+                      Housecall Pro: <code className="bg-background px-1 rounded">HOUSECALL_PRO_API_KEY</code><br />
+                      Enzy: <code className="bg-background px-1 rounded">ENZY_API_KEY</code><br />
+                      GoHighLevel: <code className="bg-background px-1 rounded">GHL_API_KEY</code>
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
           </TabsContent>
 
           {/* Teams Settings */}

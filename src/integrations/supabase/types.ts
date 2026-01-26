@@ -14,6 +14,244 @@ export type Database = {
   }
   public: {
     Tables: {
+      external_user_mappings: {
+        Row: {
+          created_at: string
+          external_id: string
+          id: string
+          system: Database["public"]["Enums"]["integration_system"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          external_id: string
+          id?: string
+          system: Database["public"]["Enums"]["integration_system"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          external_id?: string
+          id?: string
+          system?: Database["public"]["Enums"]["integration_system"]
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "external_user_mappings_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      integrations: {
+        Row: {
+          config: Json
+          created_at: string
+          id: string
+          is_active: boolean
+          last_error: string | null
+          last_sync_at: string | null
+          system: Database["public"]["Enums"]["integration_system"]
+          updated_at: string
+        }
+        Insert: {
+          config?: Json
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          last_error?: string | null
+          last_sync_at?: string | null
+          system: Database["public"]["Enums"]["integration_system"]
+          updated_at?: string
+        }
+        Update: {
+          config?: Json
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          last_error?: string | null
+          last_sync_at?: string | null
+          system?: Database["public"]["Enums"]["integration_system"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      jobs: {
+        Row: {
+          assigned_to: string | null
+          completed_at: string | null
+          customer_name: string | null
+          external_id: string
+          id: string
+          job_type: string | null
+          revenue: number | null
+          scheduled_at: string | null
+          status: string
+          synced_at: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          completed_at?: string | null
+          customer_name?: string | null
+          external_id: string
+          id?: string
+          job_type?: string | null
+          revenue?: number | null
+          scheduled_at?: string | null
+          status?: string
+          synced_at?: string
+        }
+        Update: {
+          assigned_to?: string | null
+          completed_at?: string | null
+          customer_name?: string | null
+          external_id?: string
+          id?: string
+          job_type?: string | null
+          revenue?: number | null
+          scheduled_at?: string | null
+          status?: string
+          synced_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "jobs_assigned_to_fkey"
+            columns: ["assigned_to"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      kpi_snapshots: {
+        Row: {
+          created_at: string
+          id: string
+          metrics: Json
+          snapshot_date: string
+          source: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          metrics?: Json
+          snapshot_date: string
+          source: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          metrics?: Json
+          snapshot_date?: string
+          source?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "kpi_snapshots_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      leaderboard_cache: {
+        Row: {
+          badges: Json | null
+          fetched_at: string
+          id: string
+          period: string
+          rank: number | null
+          score: number | null
+          user_id: string
+        }
+        Insert: {
+          badges?: Json | null
+          fetched_at?: string
+          id?: string
+          period: string
+          rank?: number | null
+          score?: number | null
+          user_id: string
+        }
+        Update: {
+          badges?: Json | null
+          fetched_at?: string
+          id?: string
+          period?: string
+          rank?: number | null
+          score?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "leaderboard_cache_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      leads: {
+        Row: {
+          assigned_to: string | null
+          contact_email: string | null
+          contact_name: string | null
+          contact_phone: string | null
+          created_at: string
+          deal_value: number | null
+          external_id: string
+          id: string
+          lead_source: string | null
+          pipeline_stage: string
+          synced_at: string
+          updated_at: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          contact_email?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          deal_value?: number | null
+          external_id: string
+          id?: string
+          lead_source?: string | null
+          pipeline_stage?: string
+          synced_at?: string
+          updated_at?: string
+        }
+        Update: {
+          assigned_to?: string | null
+          contact_email?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          deal_value?: number | null
+          external_id?: string
+          id?: string
+          lead_source?: string | null
+          pipeline_stage?: string
+          synced_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "leads_assigned_to_fkey"
+            columns: ["assigned_to"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       presentations: {
         Row: {
           category: Database["public"]["Enums"]["presentation_category"]
@@ -256,6 +494,7 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "manager" | "learner"
+      integration_system: "housecall_pro" | "enzy" | "ghl"
       presentation_category: "training" | "marketing" | "internal"
       slide_background_type: "cream" | "teal" | "white" | "image"
       slide_type:
@@ -394,6 +633,7 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "manager", "learner"],
+      integration_system: ["housecall_pro", "enzy", "ghl"],
       presentation_category: ["training", "marketing", "internal"],
       slide_background_type: ["cream", "teal", "white", "image"],
       slide_type: [

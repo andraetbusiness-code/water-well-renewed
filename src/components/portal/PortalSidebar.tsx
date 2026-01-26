@@ -7,7 +7,9 @@ import {
   FileEdit,
   Settings,
   GraduationCap,
-  CheckSquare
+  CheckSquare,
+  Trophy,
+  Target
 } from 'lucide-react';
 import { NavLink as RouterNavLink, useLocation } from 'react-router-dom';
 import { useAuthContext } from './AuthProvider';
@@ -40,6 +42,8 @@ const mainNavItems: NavItem[] = [
   { title: 'Assignments', url: '/portal/assignments', icon: ClipboardCheck },
   { title: 'Check-ins', url: '/portal/checkins', icon: CheckSquare },
   { title: 'Scorecard', url: '/portal/scorecard', icon: BarChart3 },
+  { title: 'Leaderboard', url: '/portal/leaderboard', icon: Trophy },
+  { title: 'Pipeline', url: '/portal/pipeline', icon: Target },
 ];
 
 const managerNavItems: NavItem[] = [
