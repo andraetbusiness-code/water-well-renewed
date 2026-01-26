@@ -12,6 +12,8 @@ import WhatInWater from "./pages/WhatInWater";
 import Maintenance from "./pages/Maintenance";
 import Process from "./pages/Process";
 import Gallery from "./pages/Gallery";
+import Presentations from "./pages/Presentations";
+import PresentationViewer from "./pages/PresentationViewer";
 import PortalRoutes from "./pages/portal/PortalRoutes";
 
 const queryClient = new QueryClient();
@@ -31,6 +33,8 @@ const App = () => (
             <Route path="/maintenance" element={<Maintenance />} />
             <Route path="/process" element={<Process />} />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/presentations" element={<Presentations />} />
+            <Route path="/presentations/:slug" element={<PresentationViewer />} />
             <Route path="/portal/*" element={<PortalRoutes />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

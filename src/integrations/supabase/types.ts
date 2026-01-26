@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      presentations: {
+        Row: {
+          category: Database["public"]["Enums"]["presentation_category"]
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          is_public: boolean
+          slug: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category?: Database["public"]["Enums"]["presentation_category"]
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          is_public?: boolean
+          slug: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: Database["public"]["Enums"]["presentation_category"]
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          is_public?: boolean
+          slug?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string | null
@@ -67,6 +103,53 @@ export type Database = {
           name?: Database["public"]["Enums"]["app_role"]
         }
         Relationships: []
+      }
+      slides: {
+        Row: {
+          background_type: Database["public"]["Enums"]["slide_background_type"]
+          background_value: string | null
+          content: Json
+          created_at: string
+          id: string
+          order_index: number
+          presentation_id: string
+          slide_type: Database["public"]["Enums"]["slide_type"]
+          speaker_notes: string | null
+          title: string | null
+        }
+        Insert: {
+          background_type?: Database["public"]["Enums"]["slide_background_type"]
+          background_value?: string | null
+          content?: Json
+          created_at?: string
+          id?: string
+          order_index: number
+          presentation_id: string
+          slide_type: Database["public"]["Enums"]["slide_type"]
+          speaker_notes?: string | null
+          title?: string | null
+        }
+        Update: {
+          background_type?: Database["public"]["Enums"]["slide_background_type"]
+          background_value?: string | null
+          content?: Json
+          created_at?: string
+          id?: string
+          order_index?: number
+          presentation_id?: string
+          slide_type?: Database["public"]["Enums"]["slide_type"]
+          speaker_notes?: string | null
+          title?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "slides_presentation_id_fkey"
+            columns: ["presentation_id"]
+            isOneToOne: false
+            referencedRelation: "presentations"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       team_members: {
         Row: {
@@ -173,6 +256,15 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "manager" | "learner"
+      presentation_category: "training" | "marketing" | "internal"
+      slide_background_type: "cream" | "teal" | "white" | "image"
+      slide_type:
+        | "title"
+        | "purpose"
+        | "sector-overview"
+        | "sector-detail"
+        | "leadership"
+        | "quote"
       user_status: "active" | "invited" | "suspended"
     }
     CompositeTypes: {
@@ -302,6 +394,16 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "manager", "learner"],
+      presentation_category: ["training", "marketing", "internal"],
+      slide_background_type: ["cream", "teal", "white", "image"],
+      slide_type: [
+        "title",
+        "purpose",
+        "sector-overview",
+        "sector-detail",
+        "leadership",
+        "quote",
+      ],
       user_status: ["active", "invited", "suspended"],
     },
   },
