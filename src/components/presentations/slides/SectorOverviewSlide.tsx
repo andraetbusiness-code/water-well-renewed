@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { Store, Users, Monitor, RefreshCw, LucideIcon } from 'lucide-react';
 import { SlideFrame } from '../SlideFrame';
 
@@ -21,33 +22,57 @@ const iconMap: Record<string, LucideIcon> = {
 export function SectorOverviewSlide({ heading, sectors }: SectorOverviewSlideProps) {
   return (
     <SlideFrame backgroundType="cream">
-      <div className="flex flex-col items-center w-full max-w-4xl">
+      <div className="flex flex-col items-center w-full max-w-4xl relative z-10">
         {/* Section label */}
-        <span className="text-sm font-medium text-primary tracking-wider uppercase mb-4">
+        <motion.span 
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-sm font-medium text-primary tracking-wider uppercase mb-4"
+        >
           Sectors
-        </span>
+        </motion.span>
         
         {/* Heading */}
-        <h2 className="font-serif text-4xl md:text-5xl text-foreground mb-16 text-center">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="font-serif text-4xl md:text-5xl text-foreground mb-16 text-center"
+        >
           {heading}
-        </h2>
+        </motion.h2>
         
-        {/* 2x2 Grid of sector cards */}
+        {/* 2x2 Grid of sector cards with stagger */}
         <div className="grid grid-cols-2 gap-6 w-full">
           {sectors.map((sector, index) => {
             const IconComponent = iconMap[sector.icon];
             return (
-              <div 
+              <motion.div 
                 key={index}
-                className="bg-card border border-border/30 rounded-3xl p-8 flex flex-col items-center justify-center gap-4 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: 0.3 + index * 0.1,
+                  type: 'spring',
+                  stiffness: 100
+                }}
+                whileHover={{ scale: 1.03, y: -5 }}
+                className="bg-card/80 backdrop-blur-sm border border-border/30 rounded-3xl p-8 flex flex-col items-center justify-center gap-4 shadow-sm hover:shadow-xl transition-shadow duration-300"
               >
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                <motion.div 
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.4, delay: 0.5 + index * 0.1, type: 'spring' }}
+                  className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center"
+                >
                   <IconComponent className="w-8 h-8 text-primary" />
-                </div>
+                </motion.div>
                 <span className="text-xl font-medium text-foreground text-center">
                   {sector.name}
                 </span>
-              </div>
+              </motion.div>
             );
           })}
         </div>
