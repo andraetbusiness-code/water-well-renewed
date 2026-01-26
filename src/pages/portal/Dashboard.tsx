@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   BookOpen, 
@@ -7,7 +8,10 @@ import {
   AlertTriangle,
   CheckCircle2,
   Users,
-  FileEdit
+  FileEdit,
+  UserPlus,
+  Trophy,
+  Calendar
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -20,6 +24,9 @@ import { EnzyWidget } from '@/components/portal/widgets/EnzyWidget';
 import { GHLWidget } from '@/components/portal/widgets/GHLWidget';
 import { HousecallWidget } from '@/components/portal/widgets/HousecallWidget';
 import { useIntegrationStatus } from '@/hooks/useIntegrations';
+import { AddLeadModal } from '@/components/portal/modals/AddLeadModal';
+import { LogActivityModal } from '@/components/portal/modals/LogActivityModal';
+import { CreateJobModal } from '@/components/portal/modals/CreateJobModal';
 import { cn } from '@/lib/utils';
 
 // Placeholder data - will be replaced with real data from DB
@@ -44,6 +51,11 @@ const managerStats = {
 function DashboardContent() {
   const { user, role, isAdmin, isManager } = useAuthContext();
   const { data: integrationStatus, isLoading: isLoadingIntegrations } = useIntegrationStatus();
+  
+  // Modal states
+  const [showAddLead, setShowAddLead] = useState(false);
+  const [showLogActivity, setShowLogActivity] = useState(false);
+  const [showCreateJob, setShowCreateJob] = useState(false);
   
   const firstName = user?.user_metadata?.first_name || user?.email?.split('@')[0] || 'there';
 
@@ -279,7 +291,36 @@ function DashboardContent() {
           <CardHeader>
             <CardTitle>Quick Actions</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="space-y-4">
+            {/* Integration Quick Actions */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <Button 
+                variant="default" 
+                className="h-auto py-4 flex-col gap-2"
+                onClick={() => setShowAddLead(true)}
+              >
+                <UserPlus className="h-5 w-5" />
+                <span>Add Lead</span>
+              </Button>
+              <Button 
+                variant="default" 
+                className="h-auto py-4 flex-col gap-2 bg-orange-500 hover:bg-orange-600"
+                onClick={() => setShowLogActivity(true)}
+              >
+                <Trophy className="h-5 w-5" />
+                <span>Log Activity</span>
+              </Button>
+              <Button 
+                variant="default" 
+                className="h-auto py-4 flex-col gap-2 bg-green-600 hover:bg-green-700"
+                onClick={() => setShowCreateJob(true)}
+              >
+                <Calendar className="h-5 w-5" />
+                <span>Schedule Job</span>
+              </Button>
+            </div>
+            
+            {/* Navigation Quick Actions */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <Button asChild variant="outline" className="h-auto py-4 flex-col gap-2">
                 <Link to="/portal/checkins">
@@ -309,6 +350,11 @@ function DashboardContent() {
           </CardContent>
         </Card>
       </motion.div>
+
+      {/* Modals */}
+      <AddLeadModal open={showAddLead} onOpenChange={setShowAddLead} />
+      <LogActivityModal open={showLogActivity} onOpenChange={setShowLogActivity} />
+      <CreateJobModal open={showCreateJob} onOpenChange={setShowCreateJob} />
     </div>
   );
 }

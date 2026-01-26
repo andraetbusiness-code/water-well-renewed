@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Trophy, Medal, Award, TrendingUp, Crown, Star, Flame, Target } from 'lucide-react';
+import { Trophy, Medal, Award, TrendingUp, Crown, Star, Flame, Target, Plus } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { PortalLayout } from '@/components/portal/PortalLayout';
+import { LogActivityModal } from '@/components/portal/modals/LogActivityModal';
 
 // Placeholder leaderboard data
 const leaderboardData = [
@@ -106,6 +107,7 @@ function LeaderboardRow({ entry, isCurrentUser = false }: { entry: typeof leader
 
 export default function LeaderboardPage() {
   const [period, setPeriod] = useState<'weekly' | 'monthly' | 'all_time'>('weekly');
+  const [showLogActivity, setShowLogActivity] = useState(false);
 
   return (
     <PortalLayout title="Leaderboard">
@@ -114,14 +116,22 @@ export default function LeaderboardPage() {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
+          className="flex flex-col md:flex-row md:items-center justify-between gap-4"
         >
-          <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-2">
-            <Trophy className="h-7 w-7 text-yellow-500" />
-            Leaderboard
-          </h1>
-          <p className="text-muted-foreground mt-1">
-            Compete with your team and climb the rankings
-          </p>
+          <div>
+            <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-2">
+              <Trophy className="h-7 w-7 text-yellow-500" />
+              Leaderboard
+            </h1>
+            <p className="text-muted-foreground mt-1">
+              Compete with your team and climb the rankings
+            </p>
+          </div>
+          
+          <Button onClick={() => setShowLogActivity(true)} className="bg-orange-500 hover:bg-orange-600">
+            <Plus className="h-4 w-4 mr-2" />
+            Log Activity
+          </Button>
         </motion.div>
 
         {/* Current User Stats */}
@@ -259,6 +269,9 @@ export default function LeaderboardPage() {
             </p>
           </CardContent>
         </Card>
+
+        {/* Log Activity Modal */}
+        <LogActivityModal open={showLogActivity} onOpenChange={setShowLogActivity} />
       </div>
     </PortalLayout>
   );

@@ -252,6 +252,53 @@ export type Database = {
           },
         ]
       }
+      pending_syncs: {
+        Row: {
+          action: string
+          created_at: string
+          error_message: string | null
+          id: string
+          last_attempt: string | null
+          payload: Json
+          retry_count: number
+          status: string
+          system: Database["public"]["Enums"]["integration_system"]
+          user_id: string
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          last_attempt?: string | null
+          payload?: Json
+          retry_count?: number
+          status?: string
+          system: Database["public"]["Enums"]["integration_system"]
+          user_id: string
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          last_attempt?: string | null
+          payload?: Json
+          retry_count?: number
+          status?: string
+          system?: Database["public"]["Enums"]["integration_system"]
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pending_syncs_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       presentations: {
         Row: {
           category: Database["public"]["Enums"]["presentation_category"]
