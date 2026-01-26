@@ -1,263 +1,249 @@
 
-# 30 Day Execution Plan - Presentation System Implementation
+# CRM Integration Infrastructure Plan
 
 ## Overview
 
-Building a brand-native presentation system that matches your website's exact design language. The 16-slide "30 Day Execution Plan" deck will be the first presentation, accessible at `/presentations/30-day-execution-plan`.
+This plan builds the complete foundation for Housecall Pro, Enzy, and GoHighLevel integrations so that everything is ready and waiting - you just need to add the API keys when you get them.
+
+The system will be designed to:
+- Store integration settings in the database
+- Show connection status in the admin Settings page  
+- Have edge functions ready that check for API keys gracefully
+- Display placeholder widgets on the dashboard that activate when connected
 
 ---
 
-## Brand Tokens Applied
+## What You'll See When Complete
 
-| Element | Value |
-|---------|-------|
-| Heading Font | DM Serif Display |
-| Body Font | Inter |
-| Primary Color | Deep Teal (#0F766E) |
-| Accent Color | Coral (#F97316) |
-| Background | Warm Cream (#FAF8F5) |
-| Text | Warm Dark (#3D3630) |
-| Card Radius | 1.5rem (rounded-3xl) |
-| Icon Style | Lucide outline |
-| Logo | Select Source Water badge |
-
----
-
-## What Gets Built
-
-### 1. Presentation Viewer (Full-Screen)
-- Keyboard navigation (arrows, space, escape)
-- Fullscreen toggle (F key or button)
-- Progress bar showing current slide
-- Mobile swipe support
-- Smooth framer-motion transitions between slides
-- Speaker notes panel (toggle with S key)
-
-### 2. Slide Components (Brand-Matched)
-Each slide type matches your website's aesthetic exactly:
-
-| Slide Type | Used For | Design Elements |
-|------------|----------|-----------------|
-| TitleSlide | Slide 1, 16 | DM Serif heading, coral underline accent, logo, organic blob decorations |
-| PurposeSlide | Slide 2 | Bullet points with teal checkmarks, Inter font |
-| SectorOverviewSlide | Slide 3 | 4 cards with icons, rounded-3xl corners, hover shadows |
-| SectorDetailSlide | Slides 4-7 | Teal gradient header, bullet content, organic shapes |
-| LeadershipSlide | Slides 8-15 | Name in DM Serif, responsibilities in Inter, coral accent |
-| QuoteSlide | Slide 16 | Centered quote with decorative elements |
-
-### 3. Admin Builder (Portal)
-- Create/edit presentations at `/portal/admin/presentations`
-- Drag-and-drop slide reordering
-- Live preview thumbnails
-- Speaker notes editor
-
-### 4. Export Options
-- PDF download (browser print with brand CSS)
-- PNG slides export for embedding
-
----
-
-## Database Schema
-
-Two tables store presentation data:
-
-**presentations**
-- id, slug, title, description
-- category (training/marketing/internal)
-- is_public (boolean)
-- created_by, created_at, updated_at
-
-**slides**
-- id, presentation_id, order_index
-- slide_type, title, content (JSON)
-- speaker_notes
-- background_type, background_value
-
----
-
-## Files Created
-
+### Admin Settings Page (New "Integrations" Tab)
 ```text
-src/pages/
-├── Presentations.tsx                    # Public gallery
-└── PresentationViewer.tsx               # Full-screen viewer
++------------------------------------------+
+|  Integrations                            |
++------------------------------------------+
+|                                          |
+|  [Housecall Pro]          Not Connected  |
+|  Job scheduling & invoicing              |
+|  [Connect] button                        |
+|                                          |
+|  [Enzy]                   Not Connected  |
+|  Sales gamification & leaderboards       |
+|  [Connect] button                        |
+|                                          |
+|  [GoHighLevel]            Not Connected  |
+|  CRM & lead pipeline                     |
+|  [Connect] button                        |
+|                                          |
++------------------------------------------+
+```
 
-src/components/presentations/
-├── slides/
-│   ├── TitleSlide.tsx
-│   ├── PurposeSlide.tsx
-│   ├── SectorOverviewSlide.tsx
-│   ├── SectorDetailSlide.tsx
-│   ├── LeadershipSlide.tsx
-│   └── QuoteSlide.tsx
-├── SlideFrame.tsx                       # Shared wrapper with organic background
-├── SlideRenderer.tsx                    # Routes to correct slide type
-├── PresentationControls.tsx             # Navigation buttons
-├── PresentationProgress.tsx             # Progress bar
-├── SpeakerNotes.tsx                     # Notes panel
-└── PresentationExport.tsx               # PDF/PNG export
+When you click "Connect", you'll be prompted to enter the API key. Once saved, the status changes to "Connected" with a green checkmark.
 
-src/pages/portal/admin/presentations/
-├── PresentationsManager.tsx
-├── PresentationEditor.tsx
-└── SlideEditor.tsx
+### Dashboard Widgets (Activate When Connected)
+- Leaderboard widget showing Enzy rankings
+- Pipeline summary showing GHL deals  
+- Today's Jobs from Housecall Pro
+
+---
+
+## Technical Implementation
+
+### Phase 1: Database Schema
+
+Create new tables to store integration configuration and synced data:
+
+**`integrations` table** - Stores API connection settings
+| Column | Type | Purpose |
+|--------|------|---------|
+| id | uuid | Primary key |
+| system | text | 'housecall_pro', 'enzy', 'ghl' |
+| is_active | boolean | Whether integration is enabled |
+| config | jsonb | Non-sensitive settings (sync frequency, etc.) |
+| last_sync_at | timestamptz | When data was last pulled |
+| last_error | text | Any error from last sync attempt |
+| created_at | timestamptz | Record creation time |
+
+**`external_user_mappings` table** - Links portal users to external system IDs
+| Column | Type | Purpose |
+|--------|------|---------|
+| id | uuid | Primary key |
+| user_id | uuid | References profiles(id) |
+| system | text | 'housecall_pro', 'enzy', 'ghl' |
+| external_id | text | User's ID in external system |
+| created_at | timestamptz | Record creation time |
+
+**`kpi_snapshots` table** - Unified daily metrics from all sources
+| Column | Type | Purpose |
+|--------|------|---------|
+| id | uuid | Primary key |
+| user_id | uuid | References profiles(id) |
+| snapshot_date | date | The date for this data |
+| source | text | 'housecall', 'enzy', 'ghl', 'manual' |
+| metrics | jsonb | Flexible KPI data |
+| created_at | timestamptz | Record creation time |
+
+**Row Level Security:**
+- Admins can manage all integration settings
+- Users can only see their own KPI snapshots
+- Managers can see their team's snapshots
+
+---
+
+### Phase 2: Backend Functions (Edge Functions)
+
+Create 4 edge functions that are ready to work once API keys are added:
+
+**1. `integration-status` function**
+- Returns which integrations have API keys configured
+- Called by the Settings page to show connection status
+- No API key required - just checks if secrets exist
+
+**2. `housecall-sync` function**  
+- Pulls jobs, customers, and revenue from Housecall Pro
+- Gracefully returns "not configured" if API key missing
+- When configured: syncs data to `kpi_snapshots` table
+
+**3. `enzy-sync` function**
+- Pulls leaderboard rankings and badges from Enzy
+- Gracefully returns "not configured" if API key missing  
+- When configured: syncs to `kpi_snapshots` and `leaderboard_cache`
+
+**4. `ghl-sync` function**
+- Pulls contacts, opportunities, and pipeline data from GHL
+- Gracefully returns "not configured" if API key missing
+- When configured: syncs to `kpi_snapshots` and `leads` tables
+
+All functions follow this pattern:
+```text
+1. Check if API key exists in secrets
+2. If no key: return { configured: false, message: "API key not set" }
+3. If key exists: attempt sync and return results
+4. Update last_sync_at and last_error in integrations table
 ```
 
 ---
 
-## Routes Added
+### Phase 3: Settings Page Updates
 
-| Path | Purpose |
+Add new "Integrations" tab to the existing Settings page:
+
+**Features:**
+- Card for each integration (Housecall Pro, Enzy, GHL)
+- Shows connection status (Connected/Not Connected)
+- "Connect" button opens secure modal to enter API key
+- "Test Connection" button to verify key works
+- "Sync Now" button to manually trigger data pull
+- Last sync time and any error messages displayed
+
+**Security:**
+- API keys are stored as Supabase secrets (not in the database)
+- Only admins can access the Integrations tab
+- Keys are never displayed after being saved
+
+---
+
+### Phase 4: Dashboard Enhancements
+
+Add conditional widgets to the Dashboard that only appear when integrations are connected:
+
+**Integration Status Banner**
+```text
++------------------------------------------------+
+|  Connect your tools to unlock real-time data   |
+|  [Housecall Pro] [Enzy] [GoHighLevel]          |
+|              [Go to Settings]                  |
++------------------------------------------------+
+```
+This banner disappears once at least one integration is connected.
+
+**Enzy Leaderboard Widget** (when connected)
+- Top 5 rankings with avatars and scores
+- User's current position highlighted
+- "View Full Leaderboard" link
+
+**GHL Pipeline Widget** (when connected)  
+- Deal count by stage (Lead > Qualified > Proposal > Closed)
+- Total pipeline value
+- "View Pipeline" link
+
+**Housecall Jobs Widget** (when connected)
+- Today's scheduled jobs count
+- Revenue this week
+- "View All Jobs" link
+
+---
+
+### Phase 5: New Portal Pages
+
+**Pipeline Page** (`/portal/pipeline`)
+- Kanban board showing GHL deals by stage
+- Cards show contact name, value, and assigned rep
+- Managers see full team pipeline
+- Filter by rep, date range, deal size
+
+**Leaderboard Page** (`/portal/leaderboard`)
+- Full Enzy rankings display
+- Weekly, monthly, all-time views
+- Badge showcase for achievements
+- Personal stats and trends
+
+---
+
+## Files to Create/Modify
+
+### New Files
+| File | Purpose |
 |------|---------|
-| /presentations | Gallery of all public presentations |
-| /presentations/30-day-execution-plan | The 30 Day Execution Plan deck |
-| /presentations/:slug/embed | Embeddable iframe version |
-| /portal/admin/presentations | Admin management (requires admin role) |
+| `supabase/functions/integration-status/index.ts` | Check which integrations are configured |
+| `supabase/functions/housecall-sync/index.ts` | Sync Housecall Pro data |
+| `supabase/functions/enzy-sync/index.ts` | Sync Enzy leaderboard data |
+| `supabase/functions/ghl-sync/index.ts` | Sync GoHighLevel CRM data |
+| `src/pages/portal/PipelinePage.tsx` | GHL pipeline kanban view |
+| `src/pages/portal/LeaderboardPage.tsx` | Enzy leaderboard display |
+| `src/components/portal/IntegrationCard.tsx` | Reusable integration status card |
+| `src/components/portal/widgets/EnzyWidget.tsx` | Dashboard leaderboard widget |
+| `src/components/portal/widgets/GHLWidget.tsx` | Dashboard pipeline widget |
+| `src/components/portal/widgets/HousecallWidget.tsx` | Dashboard jobs widget |
+| `src/hooks/useIntegrations.ts` | Hook to check integration status |
+
+### Modified Files
+| File | Changes |
+|------|---------|
+| `src/pages/portal/admin/SettingsPage.tsx` | Add Integrations tab with API key management |
+| `src/pages/portal/Dashboard.tsx` | Add conditional integration widgets |
+| `src/components/portal/PortalSidebar.tsx` | Add Pipeline and Leaderboard nav items |
+| `src/pages/portal/PortalRoutes.tsx` | Add routes for new pages |
 
 ---
 
-## The 16 Slides
+## API Keys You'll Need
 
-### Slide 1 - Title
-- **Type**: TitleSlide
-- **Headline**: "30 Day Execution Plan" (DM Serif Display)
-- **Subtitle**: "Leadership + Sectors + Execution Ownership" (Inter)
-- **Footer**: "Internal Use" (small, muted)
-- **Design**: Logo centered, coral underline accent, organic blob decorations
+When you're ready, you'll add these as secrets:
 
-### Slide 2 - Purpose and Outcome
-- **Type**: PurposeSlide
-- **Heading**: "What this plan does"
-- **Bullets** (with teal checkmark icons):
-  - Standardize execution across all sectors
-  - Clarify leadership ownership
-  - Create a repeatable hiring + production engine
-  - Drive consistent weekly performance for 30 days
-
-### Slide 3 - Sectors Overview
-- **Type**: SectorOverviewSlide
-- **Heading**: "Our 4 Sectors"
-- **Cards** (2x2 grid, rounded-3xl):
-  - Home Depot (Store icon)
-  - D2D / Event (Users icon)
-  - Digital Direct (Monitor icon)
-  - Retest / Referral (RefreshCw icon)
-
-### Slides 4-7 - Sector Details
-Each sector gets a dedicated slide with:
-- Teal gradient header bar with sector name
-- 4-5 bullet points describing the sector
-- Organic blob decoration in corner
-
-| Slide | Sector | Icon |
-|-------|--------|------|
-| 4 | Home Depot | Store |
-| 5 | D2D / Event | MapPin |
-| 6 | Digital Direct | Monitor |
-| 7 | Retest / Referral | RefreshCw |
-
-### Slides 8-15 - Leadership Ownership
-Each leader gets a slide with:
-- Name in large DM Serif Display
-- Coral accent underline
-- Responsibility bullets with Lucide icons
-- Clean white/cream background
-
-| Slide | Leader | Key Responsibilities |
-|-------|--------|---------------------|
-| 8 | Glover | Human Capital, Sales systems, Accountability, BackStop |
-| 9 | Fox | Ops/Sales Synergy, High value recruiting, Resources, Incentives |
-| 10 | Rucker | HD intake training, High value recruiting, Leadership development |
-| 11 | Ryan | Digital Direct, Marketing Strategy, Retest/Referral, Tech support |
-| 12 | Diamond | Recruiter, Sales leadership assistant, Supports Digital/HD |
-| 13 | Josh M | Head of Field Sales (D2D), Self Gen Developer, Summer teams, NoCal/SoCal |
-| 14 | Chris T | Head of Retesting/Referral, Works with field specialists |
-| 15 | Eric K | HD southern region, Developing for SoCal sector |
-
-### Slide 16 - Assignment Note
-- **Type**: QuoteSlide
-- **Heading**: "Leadership Assignments"
-- **Quote**: "These are the leaders who I will be assigning these descriptions to."
-- **Design**: Centered, decorative quote marks, coral accent
+| Integration | Secret Name | How to Get It |
+|-------------|-------------|---------------|
+| Housecall Pro | `HOUSECALL_PRO_API_KEY` | Housecall Pro Settings > API |
+| Enzy | `ENZY_API_KEY` | Contact Enzy support or check dashboard |
+| GoHighLevel | `GHL_API_KEY` | GHL Settings > API Keys |
 
 ---
 
-## Technical Implementation Details
+## Implementation Order
 
-### Keyboard Controls
-| Key | Action |
-|-----|--------|
-| Right Arrow / Space | Next slide |
-| Left Arrow | Previous slide |
-| F | Toggle fullscreen |
-| S | Toggle speaker notes |
-| Escape | Exit fullscreen |
-
-### Mobile Support
-- Swipe left/right for navigation
-- Tap edges to navigate
-- Pinch-to-zoom disabled for consistent sizing
-
-### Animations
-All slides use framer-motion with:
-- Fade + slide-up entrance (0.5s, ease-out)
-- Cross-fade between slides (0.3s)
-- Organic blob float animation on hover
-
-### Security
-- RLS policies: Only admin role can create/edit
-- Public presentations viewable by anyone
-- Internal presentations require authentication
+1. **Database first** - Create tables and RLS policies
+2. **Edge functions** - Build sync functions that check for keys gracefully
+3. **Settings UI** - Add Integrations tab with connect buttons
+4. **Dashboard widgets** - Add conditional display components
+5. **New pages** - Pipeline and Leaderboard views
+6. **Sidebar updates** - Add navigation to new pages
 
 ---
 
-## Implementation Phases
+## Summary
 
-### Phase 1: Core Viewer (Day 1)
-1. Create database tables (presentations + slides)
-2. Build SlideFrame wrapper with brand styling
-3. Build all 6 slide type components
-4. Create PresentationViewer with keyboard/touch navigation
-5. Add routes to App.tsx
+This approach builds everything now so that when you get the API keys, you simply:
+1. Go to Portal Settings > Integrations
+2. Click "Connect" on each integration
+3. Enter the API key
+4. Data starts syncing automatically
 
-### Phase 2: First Deck Content (Day 1)
-1. Seed the "30 Day Execution Plan" presentation in database
-2. Insert all 16 slides with proper content and speaker notes
-3. Test navigation and animations
-
-### Phase 3: Admin Builder (Day 2)
-1. Create PresentationsManager list view
-2. Build PresentationEditor for metadata
-3. Build SlideEditor with live preview
-4. Add drag-and-drop reordering
-
-### Phase 4: Export (Day 2)
-1. Add print CSS for PDF export
-2. Implement "Download PDF" button
-3. Add PNG slide export option
-
----
-
-## Deliverables
-
-| Item | Format | Description |
-|------|--------|-------------|
-| Web Presentation | URL | `/presentations/30-day-execution-plan` |
-| PDF Export | Download | Single PDF with all 16 slides |
-| PNG Slides | Download | 16 individual slide images |
-| Admin Editor | Portal | Full CRUD for presentations |
-
----
-
-## Subdomain Setup (When Ready)
-
-Once built, you can add a subdomain like `internal.selectsourcewater.com`:
-
-1. Go to Settings in Lovable
-2. Navigate to Domains
-3. Add `internal.selectsourcewater.com`
-4. In your DNS, add A record pointing to `185.158.133.1`
-5. Add TXT record for verification
-
-The presentation will then be accessible at:
-`https://internal.selectsourcewater.com/presentations/30-day-execution-plan`
+No code changes needed once the infrastructure is in place - just add keys and go!
