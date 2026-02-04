@@ -1,0 +1,66 @@
+/* Print styles for Field Rep Onboarding */
+@media print {
+  /* Reset body background for print */
+  body {
+    background: white !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide non-print elements */
+  .print\\:hidden {
+    display: none !important;
+  }
+
+  /* Each slide is one page */
+  .slide {
+    page-break-after: always;
+    page-break-inside: avoid;
+    break-after: page;
+    break-inside: avoid;
+    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Last slide shouldn't have page break after */
+  .slide:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  /* Ensure backgrounds print */
+  .slide {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Remove animations for print */
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Ensure text is visible on colored backgrounds */
+  .bg-primary,
+  .bg-foreground {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide header in print */
+  header {
+    display: none !important;
+  }
+
+  /* Remove padding from main */
+  main {
+    padding-top: 0 !important;
+  }
+
+  /* Optimize for A4/Letter */
+  @page {
+    size: letter landscape;
+    margin: 0;
+  }
+}

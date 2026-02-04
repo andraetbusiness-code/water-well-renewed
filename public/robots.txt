@@ -1,14 +1,19 @@
 User-agent: Googlebot
 Allow: /
+Disallow: /onboarding
 
 User-agent: Bingbot
 Allow: /
+Disallow: /onboarding
 
 User-agent: Twitterbot
 Allow: /
+Disallow: /onboarding
 
 User-agent: facebookexternalhit
 Allow: /
+Disallow: /onboarding
 
 User-agent: *
 Allow: /
+Disallow: /onboarding

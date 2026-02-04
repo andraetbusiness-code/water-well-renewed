@@ -1,0 +1,80 @@
+import { motion } from 'framer-motion';
+import { OnboardingSlideLayout } from '../OnboardingSlideLayout';
+import { MessageSquare, Users, CalendarCheck, Award } from 'lucide-react';
+
+const metrics = [
+  {
+    icon: MessageSquare,
+    title: 'Conversations',
+    description: 'Doors knocked / interactions',
+    placeholder: '[X per day]',
+  },
+  {
+    icon: Users,
+    title: 'Contacts Captured',
+    description: 'Names + phone numbers collected',
+    placeholder: '[X per week]',
+  },
+  {
+    icon: CalendarCheck,
+    title: 'Appointments Set',
+    description: 'Water tests / consultations booked',
+    placeholder: '[X per week]',
+  },
+  {
+    icon: Award,
+    title: 'Show / Close Rate',
+    description: 'Appointments completed → sales',
+    placeholder: '[If tracked]',
+  },
+];
+
+export function HowMetricsWorkSlide() {
+  return (
+    <OnboardingSlideLayout id="performance" variant="cream">
+      <div className="min-h-[80vh] flex flex-col justify-center">
+        <motion.h2
+          className="font-serif text-4xl md:text-5xl text-foreground mb-4 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          How Metrics Work
+        </motion.h2>
+
+        <motion.p
+          className="text-muted-foreground text-center mb-12"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1, duration: 0.4 }}
+        >
+          What we track and why it matters
+        </motion.p>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto w-full">
+          {metrics.map((metric, index) => (
+            <motion.div
+              key={metric.title}
+              className="p-6 rounded-2xl bg-card border border-border text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+            >
+              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                <metric.icon className="w-7 h-7 text-primary" />
+              </div>
+              <h3 className="font-serif text-lg text-foreground mb-2">{metric.title}</h3>
+              <p className="text-sm text-muted-foreground mb-3">{metric.description}</p>
+              <span className="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
+                {metric.placeholder}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </OnboardingSlideLayout>
+  );
+}
