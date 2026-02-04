@@ -15,6 +15,10 @@ import Gallery from "./pages/Gallery";
 import Presentations from "./pages/Presentations";
 import PresentationViewer from "./pages/PresentationViewer";
 import PortalRoutes from "./pages/portal/PortalRoutes";
+import FieldRepOnboarding from "./pages/FieldRepOnboarding";
+
+// Import print styles for onboarding
+import "./styles/onboarding-print.css";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +40,8 @@ const App = () => (
             <Route path="/presentations" element={<Presentations />} />
             <Route path="/presentations/:slug" element={<PresentationViewer />} />
             <Route path="/portal/*" element={<PortalRoutes />} />
+            {/* Field Rep Onboarding - Private, not linked in navigation */}
+            <Route path="/onboarding" element={<FieldRepOnboarding />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

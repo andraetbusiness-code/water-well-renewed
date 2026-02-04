@@ -1,0 +1,49 @@
+import { motion } from 'framer-motion';
+import { OnboardingSlideLayout } from '../OnboardingSlideLayout';
+
+const standards = [
+  'Intentional in how we show up.',
+  'Consistent in how we operate.',
+  'Accountable to the process.',
+];
+
+export function OurStandardSlide() {
+  return (
+    <OnboardingSlideLayout variant="teal">
+      <div className="min-h-[80vh] flex flex-col items-center justify-center text-center">
+        <motion.span
+          className="text-sm font-semibold tracking-[0.3em] text-white/70 uppercase mb-6"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+        >
+          Our Standard
+        </motion.span>
+
+        <div className="space-y-6 max-w-3xl">
+          {standards.map((text, index) => (
+            <motion.h2
+              key={index}
+              className="font-serif text-3xl md:text-4xl lg:text-5xl text-white leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 + index * 0.15, duration: 0.6 }}
+            >
+              {text}
+            </motion.h2>
+          ))}
+        </div>
+
+        <motion.div
+          className="w-24 h-1 bg-accent rounded-full mt-12"
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.8, duration: 0.5 }}
+        />
+      </div>
+    </OnboardingSlideLayout>
+  );
+}
