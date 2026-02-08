@@ -1,0 +1,92 @@
+/* ================================================================
+   Audit Report – Print / PDF Stylesheet
+   Triggered by window.print() → "Save as PDF"
+   ================================================================ */
+
+@media print {
+  /* ── Page setup ── */
+  @page {
+    size: letter portrait;
+    margin: 0.75in;
+  }
+
+  /* ── Hide non-print elements ── */
+  .audit-header {
+    display: none !important;
+  }
+
+  /* ── Reset body for print ── */
+  .audit-body {
+    padding-top: 0 !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* ── Ensure backgrounds print ── */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* ── Remove all animations and transitions ── */
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* ── Section page breaks ── */
+  .audit-section {
+    page-break-inside: auto;
+  }
+
+  /* Major section breaks */
+  #findings,
+  #performance-tables,
+  #confidence,
+  #leadership-decisions,
+  #appendix {
+    page-break-before: always;
+  }
+
+  /* ── Prevent breaks inside key elements ── */
+  .audit-no-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  table {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  figure {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* ── Images fit within margins ── */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* ── Remove shadows for cleaner print ── */
+  .shadow-sm,
+  .shadow-md {
+    box-shadow: none !important;
+  }
+
+  /* ── Ensure borders print ── */
+  .border,
+  .border-l-4 {
+    border-color: currentColor;
+  }
+
+  /* ── Footer styling ── */
+  footer {
+    page-break-before: avoid;
+  }
+}
