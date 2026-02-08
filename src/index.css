@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,32 +6,32 @@
 
 @layer base {
   :root {
-    /* Warm & Organic Palette */
+    /* SSW Brand Palette */
     
-    /* Primary - Deep Teal */
-    --primary: 168 80% 28%;
-    --primary-foreground: 45 30% 98%;
+    /* Primary - Water Blue (#1E6FD9) */
+    --primary: 214 75% 48%;
+    --primary-foreground: 0 0% 100%;
     
-    /* Background & Surfaces - Warm Cream */
-    --background: 40 30% 97%;
-    --foreground: 25 20% 20%;
+    /* Background & Surfaces - White */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 7%;
     
-    --card: 40 25% 99%;
-    --card-foreground: 25 20% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
     
-    --popover: 40 25% 99%;
-    --popover-foreground: 25 20% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
     
-    /* Secondary - Sandy Warm */
-    --secondary: 35 30% 92%;
-    --secondary-foreground: 168 60% 25%;
+    /* Secondary - Light Gray (#F3F5F7) */
+    --secondary: 210 18% 96%;
+    --secondary-foreground: 214 75% 30%;
     
-    /* Muted - Warm Gray */
-    --muted: 35 15% 90%;
-    --muted-foreground: 25 10% 45%;
+    /* Muted - Soft Gray */
+    --muted: 210 14% 93%;
+    --muted-foreground: 0 0% 40%;
     
-    /* Accent - Warm Coral */
-    --accent: 24 95% 55%;
+    /* Accent - Deep Blue (#123B8A) */
+    --accent: 218 78% 30%;
     --accent-foreground: 0 0% 100%;
     
     /* Destructive */
@@ -39,84 +39,80 @@
     --destructive-foreground: 0 0% 100%;
     
     /* Borders & Inputs */
-    --border: 35 20% 88%;
-    --input: 35 20% 88%;
-    --ring: 168 80% 28%;
+    --border: 210 14% 89%;
+    --input: 210 14% 89%;
+    --ring: 214 75% 48%;
     
     --radius: 1rem;
     
-    /* Organic Custom Tokens */
+    /* Brand Custom Tokens */
     --hero-overlay: linear-gradient(
       180deg, 
-      hsla(168, 60%, 15%, 0.7) 0%, 
-      hsla(168, 80%, 20%, 0.5) 50%,
-      hsla(168, 60%, 25%, 0.6) 100%
+      hsla(218, 78%, 20%, 0.75) 0%, 
+      hsla(214, 75%, 35%, 0.55) 50%,
+      hsla(218, 78%, 25%, 0.65) 100%
     );
-    --warm-gradient: linear-gradient(135deg, hsl(35 30% 95%) 0%, hsl(40 30% 97%) 100%);
-    --teal-gradient: linear-gradient(135deg, hsl(168 80% 28%) 0%, hsl(175 70% 35%) 100%);
-    --card-shadow: 0 4px 24px -6px hsla(25, 20%, 20%, 0.08);
-    --card-hover-shadow: 0 16px 48px -12px hsla(25, 20%, 20%, 0.15);
-    --organic-shadow: 0 8px 32px -8px hsla(168, 50%, 25%, 0.2);
+    --warm-gradient: linear-gradient(135deg, hsl(210 18% 96%) 0%, hsl(0 0% 100%) 100%);
+    --teal-gradient: linear-gradient(135deg, hsl(214 75% 48%) 0%, hsl(210 70% 55%) 100%);
+    --card-shadow: 0 4px 24px -6px hsla(0, 0%, 0%, 0.06);
+    --card-hover-shadow: 0 16px 48px -12px hsla(0, 0%, 0%, 0.12);
+    --organic-shadow: 0 8px 32px -8px hsla(214, 50%, 30%, 0.18);
     
-    /* Water Colors */
-    --water-light: 180 60% 92%;
-    --water-medium: 175 55% 80%;
-    --water-accent: 180 70% 45%;
-    
-    /* Earth tones */
-    --earth-warm: 35 40% 85%;
-    --earth-stone: 30 15% 75%;
+    /* Water Colors - Blue family */
+    --water-light: 210 60% 94%;
+    --water-medium: 214 55% 82%;
+    --water-accent: 214 75% 48%;
     
     /* Sidebar tokens */
-    --sidebar-background: 40 30% 97%;
-    --sidebar-foreground: 25 20% 20%;
-    --sidebar-primary: 168 80% 28%;
-    --sidebar-primary-foreground: 45 30% 98%;
-    --sidebar-accent: 35 30% 92%;
-    --sidebar-accent-foreground: 168 60% 25%;
-    --sidebar-border: 35 20% 88%;
-    --sidebar-ring: 168 80% 28%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 7%;
+    --sidebar-primary: 214 75% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 18% 96%;
+    --sidebar-accent-foreground: 214 75% 30%;
+    --sidebar-border: 210 14% 89%;
+    --sidebar-ring: 214 75% 48%;
   }
 
   .dark {
-    --primary: 168 70% 45%;
-    --primary-foreground: 25 20% 10%;
+    --primary: 214 70% 55%;
+    --primary-foreground: 0 0% 100%;
     
-    --background: 25 20% 8%;
-    --foreground: 40 20% 95%;
+    --background: 220 15% 8%;
+    --foreground: 210 15% 95%;
     
-    --card: 25 18% 12%;
-    --card-foreground: 40 20% 95%;
+    --card: 220 13% 12%;
+    --card-foreground: 210 15% 95%;
     
-    --popover: 25 18% 12%;
-    --popover-foreground: 40 20% 95%;
+    --popover: 220 13% 12%;
+    --popover-foreground: 210 15% 95%;
     
-    --secondary: 25 15% 18%;
-    --secondary-foreground: 40 20% 95%;
+    --secondary: 220 12% 18%;
+    --secondary-foreground: 210 15% 95%;
     
-    --muted: 25 15% 18%;
-    --muted-foreground: 35 15% 60%;
+    --muted: 220 12% 18%;
+    --muted-foreground: 210 10% 60%;
     
-    --accent: 24 90% 50%;
+    --accent: 218 70% 45%;
     --accent-foreground: 0 0% 100%;
     
     --destructive: 0 63% 31%;
-    --destructive-foreground: 40 20% 95%;
+    --destructive-foreground: 210 15% 95%;
     
-    --border: 25 15% 20%;
-    --input: 25 15% 20%;
-    --ring: 168 70% 45%;
+    --border: 220 12% 20%;
+    --input: 220 12% 20%;
+    --ring: 214 70% 55%;
     
-    --hero-overlay: linear-gradient(180deg, hsla(25, 20%, 5%, 0.9) 0%, hsla(168, 60%, 15%, 0.7) 100%);
+    --hero-overlay: linear-gradient(180deg, hsla(220, 15%, 5%, 0.9) 0%, hsla(214, 60%, 20%, 0.7) 100%);
     
-    --sidebar-background: 25 20% 10%;
-    --sidebar-foreground: 40 20% 95%;
-    --sidebar-primary: 168 70% 45%;
-    --sidebar-primary-foreground: 25 20% 10%;
-    --sidebar-accent: 25 15% 18%;
-    --sidebar-accent-foreground: 40 20% 95%;
-    --sidebar-border: 25 15% 20%;
-    --sidebar-ring: 168 70% 45%;
+    --sidebar-background: 220 15% 10%;
+    --sidebar-foreground: 210 15% 95%;
+    --sidebar-primary: 214 70% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 12% 18%;
+    --sidebar-accent-foreground: 210 15% 95%;
+    --sidebar-border: 220 12% 20%;
+    --sidebar-ring: 214 70% 55%;
   }
 }
 
@@ -132,21 +128,12 @@
   body {
     @apply text-foreground antialiased;
     font-family: 'Inter', system-ui, sans-serif;
-    background: 
-      /* Subtle organic shapes */
-      radial-gradient(ellipse 80% 50% at 20% 10%, hsla(175, 50%, 85%, 0.4) 0%, transparent 50%),
-      radial-gradient(ellipse 60% 40% at 80% 30%, hsla(35, 40%, 90%, 0.5) 0%, transparent 45%),
-      radial-gradient(ellipse 70% 50% at 10% 60%, hsla(168, 40%, 88%, 0.35) 0%, transparent 50%),
-      radial-gradient(ellipse 50% 40% at 90% 80%, hsla(24, 60%, 92%, 0.4) 0%, transparent 40%),
-      radial-gradient(ellipse 100% 60% at 50% 100%, hsla(180, 30%, 92%, 0.5) 0%, transparent 60%),
-      /* Base warm cream */
-      linear-gradient(180deg, hsl(40, 30%, 97%) 0%, hsl(35, 25%, 95%) 50%, hsl(40, 28%, 96%) 100%);
-    background-attachment: fixed;
+    background: hsl(0, 0%, 100%);
   }
   
   h1, h2, h3 {
-    font-family: 'DM Serif Display', serif;
-    font-weight: 400;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 700;
   }
   
   h4, h5, h6 {
@@ -199,16 +186,16 @@
   
   /* Topographic pattern overlay */
   .topo-pattern {
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10c22.091 0 40 17.909 40 40s-17.909 40-40 40-40-17.909-40-40 17.909-40 40-40z' fill='none' stroke='%23d0e5e3' stroke-width='0.5'/%3E%3Cpath d='M50 25c13.807 0 25 11.193 25 25s-11.193 25-25 25-25-11.193-25-25 11.193-25 25-25z' fill='none' stroke='%23d0e5e3' stroke-width='0.5'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10c22.091 0 40 17.909 40 40s-17.909 40-40 40-40-17.909-40-40 17.909-40 40-40z' fill='none' stroke='%23d0dde8' stroke-width='0.5'/%3E%3Cpath d='M50 25c13.807 0 25 11.193 25 25s-11.193 25-25 25-25-11.193-25-25 11.193-25 25-25z' fill='none' stroke='%23d0dde8' stroke-width='0.5'/%3E%3C/svg%3E");
     background-size: 80px 80px;
   }
   
   /* Water ripple pattern */
   .water-pattern {
     background-image: 
-      radial-gradient(ellipse at 30% 20%, hsla(175, 60%, 70%, 0.15) 0%, transparent 50%),
-      radial-gradient(ellipse at 70% 60%, hsla(168, 60%, 60%, 0.1) 0%, transparent 40%),
-      radial-gradient(ellipse at 50% 80%, hsla(180, 50%, 75%, 0.12) 0%, transparent 45%);
+      radial-gradient(ellipse at 30% 20%, hsla(214, 60%, 70%, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 60%, hsla(214, 60%, 60%, 0.1) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 80%, hsla(210, 50%, 75%, 0.12) 0%, transparent 45%);
   }
 }
 
