@@ -17,6 +17,7 @@ import PresentationViewer from "./pages/PresentationViewer";
 import PortalRoutes from "./pages/portal/PortalRoutes";
 import FieldRepOnboarding from "./pages/FieldRepOnboarding";
 import ExecutiveAudit from "./pages/ExecutiveAudit";
+import GrowthExecutionPlan from "./pages/GrowthExecutionPlan";
 
 // Import print styles for onboarding and audit
 import "./styles/onboarding-print.css";
@@ -46,6 +47,8 @@ const App = () => (
             <Route path="/onboarding" element={<FieldRepOnboarding />} />
             {/* Executive Audit Report - Private, not linked in navigation */}
             <Route path="/audit" element={<ExecutiveAudit />} />
+            {/* Growth Execution Plan - Private, not linked in navigation */}
+            <Route path="/growth-plan" element={<GrowthExecutionPlan />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

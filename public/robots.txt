@@ -2,23 +2,28 @@ User-agent: Googlebot
 Allow: /
 Disallow: /onboarding
 Disallow: /audit
+Disallow: /growth-plan
 
 User-agent: Bingbot
 Allow: /
 Disallow: /onboarding
 Disallow: /audit
+Disallow: /growth-plan
 
 User-agent: Twitterbot
 Allow: /
 Disallow: /onboarding
 Disallow: /audit
+Disallow: /growth-plan
 
 User-agent: facebookexternalhit
 Allow: /
 Disallow: /onboarding
 Disallow: /audit
+Disallow: /growth-plan
 
 User-agent: *
 Allow: /
 Disallow: /onboarding
 Disallow: /audit
+Disallow: /growth-plan
