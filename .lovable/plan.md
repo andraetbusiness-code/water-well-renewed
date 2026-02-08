@@ -1,173 +1,151 @@
 
 
-# Executive Marketing & Tracking Audit -- Private Downloadable Report
+# Growth Execution Plan — Private Downloadable Report Page
 
 ## Overview
 
-This builds a new private page at `/audit` containing the complete "Select Source Water -- Executive Marketing & Tracking Audit" report for the date range Jan 7 -- Feb 7, 2026. Every word, number, and data point from the original content will be preserved exactly as written -- nothing summarized, nothing removed. Where the report's structure allows, additional formatting depth (color-coded severity tags, visual callout cards, bordered evidence figures) will be added to make the data easier to parse at a glance.
-
-The page follows the same privacy model as the onboarding packet: no links from the Header, Footer, or sitemap; `noindex, nofollow` meta tags; access only via direct URL.
+This creates a new private page at `/growth-plan` using the exact same design format as the `/audit` page — same header bar, same SectionTitle/CalloutCard/DataTable components, same print CSS classes, same privacy model. The page contains the complete "Select Source Water — Growth Execution Plan" with all 15 sections preserved verbatim. Nothing summarized, nothing removed.
 
 ---
 
-## Image Placement (Only Where They Add Clarity)
+## Privacy Model (Same as Audit + Onboarding)
 
-After reviewing all 10 uploaded files, there are actually **7 unique screenshots** (3 pairs are duplicates with different filenames). Each will be placed as a captioned figure directly adjacent to the data it substantiates:
-
-| Image | Placed In Section | Reason |
-|-------|-------------------|--------|
-| `The_problem_is_measurable.png` | Section 2: Spend Inefficiencies | Shows the Facebook Ads report with campaign-level spend, confirming the $8,089.64 zero-lead campaign |
-| `Paid-social_spend_and_the_"0-lead"_campaign_spend_for_Jan_23_–_Feb_7.png` | Same section (alternate crop if distinct, otherwise skip as duplicate) | Same Meta Ads report |
-| `Missing_"appointment_held"_visibility_in_GHL_reporting.png` | Section 1: Tracking & Attribution Gaps | Shows the GHL appointment report with "Showed" and "No Show" both reading 0 |
-| `Booked_appointment-_Confirmed_appointment-.png` | Appendix: Definitions | Visually supports the definition of "Booked" vs "Confirmed" |
-| `Appointment_held_"sit".png` | Appendix: Definitions | Visually supports the "Appointment Held" definition |
-| `Closed_Sold-.png` | Appendix: Definitions | Visually supports the "Closed / Sold" definition |
-| `Enzy_Marketing_"Sold"_48.png` | Section 3: Pipeline Leakage or Performance Table C | Shows the Enzy status breakdown including the 48 Sold |
-| `Enzy_Marketing_"Sold"_and_other_status_counts_as_shown.png` | Same section (if distinct crop, otherwise skip) | Same Enzy data |
-| `High_confidence_conclusions.png` | Section 6: Confidence & Gaps | Visually shows the high-confidence data items |
-| `Medium_Low_confidence_needs_access_to_confirm.png` | Section 6: Confidence & Gaps | Shows the medium/low confidence items that need verification |
-
-If any pair turns out to be identical, only one will be used to avoid redundancy.
-
----
-
-## Privacy Model
-
-Exactly matches the onboarding packet:
 - Not linked from Header, Footer, sitemap, or any public page
-- `noindex, nofollow` robots meta tag via `react-helmet-async`
-- Accessible only at `/audit` via direct URL
-- Intended for private subdomain mapping (e.g., `audit.selectsourcewater.com`)
+- `noindex, nofollow` meta tags via `react-helmet-async`
+- Accessible only at `/growth-plan` via direct URL
+- Intended for private subdomain mapping (e.g., `growth.selectsourcewater.com`)
+- Added to `robots.txt` Disallow rules
 
 ---
 
 ## New Files
 
-### 1. `src/pages/ExecutiveAudit.tsx`
+### 1. `src/pages/GrowthExecutionPlan.tsx`
 
-The main page component. Contains:
+Uses the same sub-components as the audit page (SectionTitle, CalloutCard, DataTable, SeverityBadge) rebuilt inline to keep it self-contained.
 
 **Header Bar** (fixed, hidden on print)
 - SSW logo on the left
-- "Executive Marketing & Tracking Audit" label
+- "Growth Execution Plan" label
 - "Download PDF" button on the right (triggers `window.print()`)
 
-**Report Sections** (rendered in order, all original text preserved verbatim):
+**Report Sections** (all original text preserved word-for-word):
 
 1. **Cover Block**
-   - Title: "Select Source Water -- Executive Marketing & Tracking Audit"
-   - Date Range: Jan 7 -- Feb 7, 2026
+   - Large centered logo
+   - Title: "Growth Execution Plan"
+   - Subtitle: "Systems - Lead Generation - Recruiting - Marketing - Web/SEO - Training/SOP - Repeatability"
+   - Audience: Glover + Executive Team
+   - Purpose paragraph (full original text)
    - "CONFIDENTIAL" badge
 
-2. **Executive Summary**
-   - All 5 original paragraphs preserved word-for-word:
-     - Volume vs. visibility (319 booked, 181 confirmed, 266 Enzy leads, 48 Sold, $0 GHL revenue)
-     - Paid-social spend vs. results ($14,527.72 spent, 193 leads, $75.27 CPL, $8,089.64 Cold Targeting zero leads)
-     - Pipeline leakage (6 Appointment Scheduled, 77 cancelled, 28 No Sale/SAT, 21 Not Qualified, ~40% lost)
-     - Operational gaps (63% incoming calls missed, no show/no-show tracking)
-     - Why it matters (the full original paragraph)
-   - Each paragraph displayed as a left-bordered callout card with severity color
+2. **Important Context (Scope + Next Layer of Truth)**
+   - Full original text about GHL/Enzy audit basis
+   - "However, this is not yet the full data universe" paragraph
+   - The 4 bullet points about what deeper forensic review will confirm
+   - "Bottom line" statement preserved exactly
 
-3. **Recommended Decisions (No Solutions)**
-   - All 4 numbered items exactly as written:
-     1. Authorize a unified diagnostic
-     2. Implement spend controls
-     3. Define the "closed sale" system of record
-     4. Assign ongoing executive oversight
+3. **Executive Outcomes (What This Plan Delivers)**
+   - Sub-section A: Measurable Performance Outcomes (5 bullets with bold labels)
+   - Sub-section B: Scalable Growth Outcomes (5 bullets with bold labels)
+   - Sub-section C: Standardized SOP + Training System callout
 
-4. **Scope & Data Sources**
-   - Systems audited: GoHighLevel (GHL), Enzi, Call Reports -- with original descriptions
-   - Date ranges: Primary pipeline (Jan 7 -- Feb 7) and Paid-social window (Jan 23 -- Feb 7) with the note about ads data not exposing pre-Jan 23
-   - What was accessible: full original list
-   - What wasn't: full original list
+4. **Phase Plan (90-Day Execution Timeline)**
+   - Phase 1 (Week 1): Stabilize — 5 action items
+   - Phase 2 (Weeks 2-4): Conversion Ops — 5 action items
+   - Phase 3 (Weeks 4-12): Scale — 4 action items
+   - Displayed as timeline-style cards with phase badges
 
-5. **Key Findings & Evidence**
-   - Finding 1: Tracking & Attribution Gaps (Critical)
-     - Full original Observation and Impact text
-     - Embedded figure: GHL appointment report screenshot showing 0 Showed / 0 No Show
-   - Finding 2: Spend Inefficiencies (Critical)
-     - Full original Observation and Impact text
-     - Embedded figure: Facebook Ads report screenshot showing campaign-level spend
-   - Finding 3: Conversion & Pipeline Leakage (High)
-     - Full original Observation and Impact text
-     - Embedded figure: Enzy lead status screenshot
-   - Finding 4: Operational Follow-Up Gaps (High)
-     - Full original Observation and Impact text
+5. **Core System Fixes (Enzy + GoHighLevel)**
+   - Sub-section A: Enzy Fixes — Goal statement, 5 "We will" bullets, "Why it matters" callout
+   - Sub-section B: GoHighLevel Fixes — Goal statement, 5 "We will" bullets with sub-items (pipeline stages, attribution, outcomes, revenue, confirmation flows), Result statement
 
-6. **Performance Tables**
-   - Table A: Appointments (GHL, Jan 7 -- Feb 7) -- all 4 rows: Booked 319, Confirmed 181, Cancelled 95, Show/No-show "Not captured (0 in GHL)"
-   - Table B: Paid-Social Performance (Meta Ads in GHL, Jan 23 -- Feb 7) -- all 4 rows: Spend $14,527.72, Leads 193, CPL $75.27, Highest-risk campaign spend $8,089.64
-   - Table C: Marketing Lead Outcomes (Enzi) -- all 7 rows: Total 266, Sold 48, No Sale/SAT 28, Cancelled 77, Not Qualified 21, Reschedule 17, Appointment Scheduled 6
+6. **Missed Call Elimination (AI Call Handling + Human Routing)**
+   - Goal statement
+   - 4 implementation bullets
+   - Outcome statement
 
-7. **Highest-Risk Waste Indicators**
-   - All 4 bullet points preserved exactly:
-     - "Cold Targeting -- Website" campaign: >$8k spent, 0 leads
-     - Untracked closes: 48 sold in Enzi, $0 in GHL
-     - Missing appointment outcomes: 0 shows/no-shows
-     - High cancelled/no-sale rates: ~40% of marketing leads
+7. **Spend Governance + Budget Reallocation (Including Google)**
+   - Sub-section A: Spend Governance — 3 non-negotiable controls
+   - Sub-section B: Google Solutions — 3 high-intent deployment items
+   - Sub-section C: Budget Reallocation Method — 2 phased approach items
 
-8. **Confidence & Gaps**
-   - Full table with all 5 rows and original confidence levels:
-     - Booked/confirmed/cancelled (GHL): High
-     - Paid-social spend & zero-lead campaign: High
-     - Enzi marketing "Sold" count: High
-     - Date alignment of Enzi counts: Medium
-     - Cost per sit/close & ROI: Low
-   - Each row includes the original "Notes" column text
-   - Embedded figures: confidence screenshots placed alongside
+8. **Field Self-Gen Same-Day Engine (Routes by Territory)**
+   - Goal statement, 3 deliverables
+   - Route Pack "Algorithm" sub-section with 3 iteration steps
 
-9. **Leadership Decisions Required (No Solutions)**
-   - All 4 numbered action items with full original text (same as section 3 but in full-detail context)
+9. **Recruiting Plan (1099) — Weekly Interviews + Monthly Hiring Event**
+   - Goal statement
+   - 3 implementation items
+   - Structured hiring funnel: RSVP -> group interview -> shadow day -> onboarding -> first-week ramp
+   - KPI tracking: 4 metrics
 
-10. **Appendix**
-    - Definitions: All 4 terms with full original definitions:
-      - Booked appointment
-      - Confirmed appointment
-      - Appointment held ("sit")
-      - Closed / Sold
-    - Supporting screenshots placed next to each definition where they match
-    - Assumptions & Calculation Notes: All 3 original bullet points preserved:
-      - CPL calculation formula
-      - ROI cannot be calculated note
-      - Enzi date window assumption
+10. **Social Media + Content Engine**
+    - Goal statement
+    - Content pillars: 4 items
+    - Deliverables: 3 items
 
-### 2. `src/styles/audit-print.css`
+11. **Marketing Materials + Creative Production (Print + Digital)**
+    - Goal statement
+    - 7 deliverable types
 
-Print stylesheet imported alongside `onboarding-print.css`:
-- `@page { size: letter portrait; margin: 0.75in; }` -- portrait orientation for a report format
-- Hides the sticky header bar
-- Removes all animations and transitions
-- Ensures background colors and images print (`print-color-adjust: exact`)
-- Applies page breaks between major sections (after Executive Summary, after Key Findings, after Performance Tables, before Appendix)
-- Avoids page breaks inside tables, figures, or callout cards
-- Sizes embedded screenshots to fit within print margins
+12. **Web Development + SEO (Compounding Growth)**
+    - Goal statement
+    - 4 implementation items
 
-### 3. Modified: `src/App.tsx`
+13. **Training Materials + Onboarding Library (Enzy Library Buildout)**
+    - Goal statement
+    - 5 deliverables
 
-Two additions only:
-- Import: `import ExecutiveAudit from "./pages/ExecutiveAudit";`
-- Import: `import "./styles/audit-print.css";`
-- Route: `<Route path="/audit" element={<ExecutiveAudit />} />` (placed next to the onboarding route with a similar comment about privacy)
+14. **Standardized SOP + Training System (Locked for Scalability)**
+    - Objective statement
+    - 5 deliverables (Role-based SOPs, Non-negotiable workflows, QC checklists, Certification ramp path, Version control)
+
+15. **Access + Data Needed to Finalize (Leadership Action Items)**
+    - 8 access items needed
+    - 4 confirmation outcomes from deeper forensic review
+
+16. **What Leadership Receives Weekly (Executive Scorecard)**
+    - 10 line items in the weekly scorecard
+
+17. **Launch Readiness Statement**
+    - Full original closing paragraph preserved verbatim
+
+**Footer**: "Select Source Water — Growth Execution Plan — Confidential"
+
+---
+
+## Modified Files
+
+### 2. `src/App.tsx`
+
+Two additions:
+- Import: `import GrowthExecutionPlan from "./pages/GrowthExecutionPlan";`
+- Route: `<Route path="/growth-plan" element={<GrowthExecutionPlan />} />` (placed next to the audit route with a comment about privacy)
+
+### 3. `public/robots.txt`
+
+Add `Disallow: /growth-plan` under each user-agent block (same pattern as `/onboarding` and `/audit`).
 
 ---
 
 ## Design Approach
 
-- Clean corporate report layout -- no wave dividers, no blob shapes, no decorative animations
-- Uses the SSW brand tokens (Water Blue `#1E6FD9`, Deep Blue `#123B8A`, white/gray backgrounds, Inter font)
-- Severity badges: "CRITICAL" in red-bordered cards, "HIGH" in amber-bordered cards
-- Tables use brand-colored headers (Deep Blue background, white text) with alternating light gray row striping
-- Figures displayed in bordered cards with caption text (e.g., "Figure 1: Facebook Ads Report -- Meta campaign spend for Jan 23 -- Feb 7, 2026")
-- Confidence levels color-coded: High = green badge, Medium = yellow badge, Low = red badge
-- The "Download PDF" button uses `window.print()` matching the onboarding packet pattern
-- Responsive for screen viewing but optimized for letter-size portrait PDF output
+- Exact same visual format as the audit page: Deep Blue headers, brand-colored section titles, bordered callout cards, alternating-row tables
+- Severity/priority badges adapted for solutions context: "Phase 1" / "Phase 2" / "Phase 3" badges instead of "Critical" / "High"
+- Goal statements displayed as blue-left-bordered callout cards
+- "We will" action items as clean bullet lists
+- The 90-Day Timeline rendered as 3 distinct phase cards with week ranges
+- The Executive Scorecard (Section 14) rendered as a DataTable
+- Access requirements (Section 13) rendered as a checklist-style table
+- Same print CSS classes (`audit-header`, `audit-body`, `audit-section`, `audit-no-break`) reused so the existing `audit-print.css` handles PDF export automatically
+- Page breaks added before major sections for clean PDF output
 
 ---
 
 ## What Does NOT Change
 
-- No modifications to any existing pages, navigation, or components
-- The onboarding packet, presentations, portal, and public site are untouched
-- The existing brand theme is reused as-is
-- No new dependencies needed
+- No modifications to the existing audit page, onboarding packet, portal, or public site
+- The existing `audit-print.css` is reused as-is (no modifications needed)
+- No new dependencies required
 
