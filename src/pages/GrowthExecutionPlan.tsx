@@ -670,7 +670,9 @@ const GrowthExecutionPlan = () => {
               ["5", "Full GHL admin access (post-agreement)"],
               ["6", "Enzy admin reporting/export access"],
               ["7", "Phone/call routing admin access (if separate)"],
-              ["8", "Any other analytics/tracking tools currently in place (including dormant)"],
+              ["8", "Website admin/CMS access (to make updates, landing pages, and conversion improvements)"],
+              ["9", "Website analytics access (e.g., heatmaps, session recordings, or any tracking tools in use)"],
+              ["10", "Any other analytics/tracking tools currently in place (including dormant)"],
             ]}
           />
 
