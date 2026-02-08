@@ -174,7 +174,7 @@ const ExecutiveAudit = () => {
         {/*  1. COVER BLOCK                                            */}
         {/* ═══════════════════════════════════════════════════════════ */}
         <section className="text-center py-16 mb-8 border-b-2 border-gray-200 audit-section">
-          <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4">Select Source Water</p>
+          <img src={logo} alt="Select Source Water" className="mx-auto mb-8 w-48 sm:w-64" />
           <h1 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: "#123B8A" }}>
             Executive Marketing &amp; Tracking Audit
           </h1>
