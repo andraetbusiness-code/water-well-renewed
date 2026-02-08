@@ -43,8 +43,12 @@
   }
 
   /* Major section breaks */
+  #executive-summary,
+  #recommended-decisions,
+  #scope,
   #findings,
   #performance-tables,
+  #waste-indicators,
   #confidence,
   #leadership-decisions,
   #appendix {
