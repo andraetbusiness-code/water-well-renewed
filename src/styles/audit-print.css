@@ -42,17 +42,19 @@
     page-break-inside: auto;
   }
 
-  /* Major section breaks */
-  #executive-summary,
-  #recommended-decisions,
-  #scope,
-  #findings,
-  #performance-tables,
-  #waste-indicators,
-  #confidence,
-  #leadership-decisions,
-  #appendix {
+  /* Cover page gets its own page */
+  #executive-summary {
     page-break-before: always;
+  }
+
+  /* ── Keep section headings with their content ── */
+  /* Prevent any h2/h3 heading from sitting alone at the bottom of a page */
+  .audit-section h2,
+  .audit-section h3 {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    orphans: 3;
+    widows: 3;
   }
 
   /* ── Prevent breaks inside key elements ── */
