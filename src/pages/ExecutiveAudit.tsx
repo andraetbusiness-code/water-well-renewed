@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { Download, AlertTriangle, AlertCircle, Info, Shield } from "lucide-react";
+import { Download, AlertTriangle, AlertCircle, Info, Shield, DollarSign } from "lucide-react";
 import logo from "@/assets/logo.png";
 import metaAdsSpend from "@/assets/audit/meta-ads-spend.png";
 import highConfidence from "@/assets/audit/high-confidence.png";
@@ -130,6 +130,18 @@ const ConfidenceBadge = ({ level }: { level: "High" | "Medium" | "Low" }) => {
   );
 };
 
+const SimpleTermsCard = ({ children }: { children: React.ReactNode }) => (
+  <div className="bg-emerald-50 border-l-4 border-l-emerald-400 rounded-lg p-5 mt-6 mb-4 audit-no-break">
+    <div className="flex items-start gap-3">
+      <DollarSign className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+      <div>
+        <p className="font-bold text-emerald-900 text-sm mb-1">In Simple Terms</p>
+        <p className="text-sm text-emerald-800 leading-relaxed">{children}</p>
+      </div>
+    </div>
+  </div>
+);
+
 /* ------------------------------------------------------------------ */
 /*  Main Page                                                          */
 /* ------------------------------------------------------------------ */
@@ -222,6 +234,10 @@ const ExecutiveAudit = () => {
               Without accurate attribution and visibility into "sits" and "closes," leadership cannot verify current spend levels or confidently optimize future investment with the information available. High spend on non‑performing campaigns and poor lead handling suggest immediate governance is needed.
             </p>
           </CalloutCard>
+
+          <SimpleTermsCard>
+            The systems meant to track your marketing dollars and sales aren't talking to each other. That means right now, no one can tell you exactly how much it costs to get a sale — or how much money is being wasted.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -243,6 +259,10 @@ const ExecutiveAudit = () => {
               <strong>Assign ongoing executive oversight</strong> – empower Growth Ops to deliver weekly reports (spend → lead → booked → confirmed → held → closed) so leadership can make data‑driven budget decisions.
             </li>
           </ol>
+
+          <SimpleTermsCard>
+            Four straightforward moves that give leadership clear visibility into where money is going, what's working, and what needs to stop immediately.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -283,6 +303,10 @@ const ExecutiveAudit = () => {
           <p className="text-sm text-gray-700">
             Show/no‑show data (GHL logs zero shows), revenue by campaign, date‑aligned Enzi lead counts (assumed to match audit window).
           </p>
+
+          <SimpleTermsCard>
+            We looked at what we could access — the appointment system, ad spend, and lead tracking. There's more data we still need to get the complete picture, but what we found is already actionable.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -364,6 +388,10 @@ const ExecutiveAudit = () => {
               </p>
             </div>
           </div>
+
+          <SimpleTermsCard>
+            The data shows real dollars being spent with no way to prove what they produced. Leads are falling through the cracks, calls are going unanswered, and sales aren't being recorded where leadership can see them.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -416,6 +444,10 @@ const ExecutiveAudit = () => {
               ["Appointment Scheduled", "6"],
             ]}
           />
+
+          <SimpleTermsCard>
+            These are the raw numbers. 319 appointments booked but no way to know how many actually happened. $14,500 in ad spend with over $8,000 going to a campaign that produced zero leads. 48 sales recorded in one system but $0 in the other.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -449,6 +481,10 @@ const ExecutiveAudit = () => {
               </p>
             </div>
           </div>
+
+          <SimpleTermsCard>
+            These are the biggest leaks in the bucket right now — money going out the door with nothing to show for it. Fixing these first will have the most immediate impact on your bottom line.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -510,6 +546,10 @@ const ExecutiveAudit = () => {
               number={nextFigure()}
             />
           </div>
+
+          <SimpleTermsCard>
+            Some of these numbers we can confirm with certainty. Others need more data to verify. The items marked "Low" confidence are where the biggest unknowns — and biggest potential upside — still live.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -531,6 +571,10 @@ const ExecutiveAudit = () => {
               <strong>Assign ongoing executive oversight.</strong> Entrust Andrae / Growth Ops with weekly performance reporting (spend → lead → booked → confirmed → held → closed) so budget decisions are based on verified numbers.
             </li>
           </ol>
+
+          <SimpleTermsCard>
+            These are the four decisions that need to happen before anything else can move forward. Each one is designed to stop the bleeding and give leadership the visibility needed to make confident budget decisions.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
