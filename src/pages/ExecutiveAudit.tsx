@@ -197,6 +197,18 @@ const ExecutiveAudit = () => {
           >
             Confidential
           </span>
+
+          <div className="max-w-2xl mx-auto mt-6 p-4 rounded-lg border border-gray-300 bg-gray-50 text-left">
+            <p className="text-xs text-gray-600 leading-relaxed">
+              <span className="font-bold uppercase">Intellectual Property Notice:</span>{" "}
+              All strategies, systems, and methodologies contained within this document are the
+              proprietary intellectual property of Andrae Thames and Thames Legacy LLC DBA Right
+              Way Systems. This document is provided for evaluation purposes only. Unauthorized
+              copying, distribution, or implementation of any strategies described herein is
+              strictly prohibited. Receipt of this document does not constitute a license to use,
+              reproduce, or implement any of the strategies, processes, or systems described.
+            </p>
+          </div>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
