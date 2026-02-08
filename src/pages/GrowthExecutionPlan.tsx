@@ -717,10 +717,229 @@ const GrowthExecutionPlan = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
-        {/*  15. LAUNCH READINESS                                      */}
+        {/*  15. PROJECTED IMPACT                                      */}
+        {/* ═══════════════════════════════════════════════════════════ */}
+        <section className="audit-section" id="projected-impact">
+          <SectionTitle>15) Projected Impact (Baseline Pricing — Old Numbers)</SectionTitle>
+
+          {/* What this projection is based on */}
+          <p className="text-sm text-gray-700 leading-relaxed mb-4">
+            This projection is built from what we verified in GoHighLevel (GHL) and Enzy during the audit period. It models what realistic performance looks like once we fix tracking, eliminate missed calls, enforce confirmation workflows, and deploy structured follow-up—all at current pricing with no price increases. These numbers will be tightened once we gain access to Meta Business Manager, Google Ads, GA4, Google Business Profile, and call tracking/routing tools.
+          </p>
+
+          <CalloutCard severity="info" title="Pricing Basis">
+            <p>
+              <strong>Dual Tank Hygia+ = $7,990</strong> &nbsp;|&nbsp; <strong>Dual Tank Hygia Eco = $8,490</strong>
+              <br />
+              All revenue projections below use these existing system prices. No pricing changes are assumed.
+            </p>
+          </CalloutCard>
+
+          {/* ── Scenario Table ── */}
+          <SubSectionTitle icon={<BarChart3 className="w-5 h-5 text-blue-600" />}>
+            Three Forecast Scenarios
+          </SubSectionTitle>
+
+          <p className="text-sm text-gray-700 leading-relaxed mb-4">
+            Each scenario assumes the same starting baseline—current lead flow and close patterns observed in GHL/Enzy—then layers on the operational improvements already identified. Where a metric cannot yet be independently verified, it is labeled as an <em>assumption</em>.
+          </p>
+
+          <div className="mb-8 audit-no-break">
+            <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr style={{ backgroundColor: "#123B8A" }}>
+                    <th className="px-4 py-3 text-left text-white font-semibold text-xs uppercase tracking-wider">Metric</th>
+                    <th className="px-4 py-3 text-center text-white font-semibold text-xs uppercase tracking-wider">Conservative<br /><span className="font-normal normal-case">(Stabilize)</span></th>
+                    <th className="px-4 py-3 text-center text-white font-semibold text-xs uppercase tracking-wider">Base Case<br /><span className="font-normal normal-case">(Less Leakage)</span></th>
+                    <th className="px-4 py-3 text-center text-white font-semibold text-xs uppercase tracking-wider">Scale Case<br /><span className="font-normal normal-case">(Locked + Recruiting)</span></th>
+                  </tr>
+                </thead>
+                <tbody className="text-gray-700">
+                  <tr className="bg-white">
+                    <td className="px-4 py-3 font-medium border-t border-gray-100">Leads / month</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">80–100</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">120–150</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">180–220</td>
+                  </tr>
+                  <tr className="bg-gray-50">
+                    <td className="px-4 py-3 font-medium border-t border-gray-100">Sit (show) rate</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">45–50%</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">55–62%</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">60–68%</td>
+                  </tr>
+                  <tr className="bg-white">
+                    <td className="px-4 py-3 font-medium border-t border-gray-100">Sits / month</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">36–50</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">66–93</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">108–150</td>
+                  </tr>
+                  <tr className="bg-gray-50">
+                    <td className="px-4 py-3 font-medium border-t border-gray-100">Close rate on sits</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">25–30%</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">28–33%</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">30–35%</td>
+                  </tr>
+                  <tr className="bg-white">
+                    <td className="px-4 py-3 font-medium border-t border-gray-100">Closes / month</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">9–15</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">18–31</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">32–53</td>
+                  </tr>
+                  <tr className="bg-gray-50">
+                    <td className="px-4 py-3 font-medium border-t border-gray-100">Revenue @ 100% Hygia+ ($7,990)</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">$71.9K–$119.9K</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">$143.8K–$247.7K</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">$255.7K–$423.5K</td>
+                  </tr>
+                  <tr className="bg-white">
+                    <td className="px-4 py-3 font-medium border-t border-gray-100">Revenue @ 100% Hygia Eco ($8,490)</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">$76.4K–$127.4K</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">$152.8K–$263.2K</td>
+                    <td className="px-4 py-3 text-center border-t border-gray-100">$271.7K–$449.9K</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-gray-500 mt-2 italic">
+              Note: Actual product mix will likely include both Hygia+ and Eco units. Revenue will fall between the two rows. Leads/month figures in the Scale Case assume recruiting + route packs are active (assumption; will be verified by field data).
+            </p>
+          </div>
+
+          {/* ── Timeline to Impact ── */}
+          <SubSectionTitle icon={<Target className="w-5 h-5 text-blue-600" />}>
+            Timeline to Impact
+          </SubSectionTitle>
+
+          <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 mb-4 border-l-4 border-l-blue-500 audit-no-break">
+            <div className="flex items-center gap-3 mb-3">
+              <PhaseBadge phase="Phase 1" />
+              <span className="font-bold text-gray-900">Weeks 1–2: Stabilize + Measurement Integrity</span>
+            </div>
+            <ul className="list-disc list-outside ml-6 space-y-1.5 text-sm text-gray-700">
+              <li>Lock lead-source metadata across Enzy + GHL so every lead is attributed correctly</li>
+              <li>Deploy missed call handling (AI + human routing) to stop lead loss at the phone</li>
+              <li>Activate confirmation YES/NO workflow to identify no-shows before they happen</li>
+              <li>Establish baseline KPIs so all future improvement is measured against a clean starting point</li>
+            </ul>
+            <p className="text-xs text-gray-500 mt-3 italic">
+              Expected result: No incremental revenue yet—this phase builds the measurement foundation. You will see cleaner data within days and a verified baseline by end of Week 2.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 mb-4 border-l-4 border-l-emerald-500 audit-no-break">
+            <div className="flex items-center gap-3 mb-3">
+              <PhaseBadge phase="Phase 2" />
+              <span className="font-bold text-gray-900">Weeks 3–6: Conversion Improvements Show Consistently</span>
+            </div>
+            <ul className="list-disc list-outside ml-6 space-y-1.5 text-sm text-gray-700">
+              <li>Confirmation workflow drives sit rate toward 55–62% (up from estimated ~40–45%)</li>
+              <li>Speed-to-lead SLA reduces time between "lead created" and "first contact" to under 5 minutes</li>
+              <li>No-show and no-sale reactivation sequences begin recovering previously lost opportunities</li>
+              <li>Spend governance pauses or reallocates any channel that cannot show a lead-to-revenue path</li>
+              <li>Google high-intent capture launched once access is granted (assumption: access pending)</li>
+            </ul>
+            <p className="text-xs text-gray-500 mt-3 italic">
+              Expected result: Conservative-to-Base-Case scenario begins materializing. Monthly closes should move from single digits toward 15–25 range depending on volume. First verifiable ROI improvement visible in weekly reporting.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 mb-4 border-l-4 border-l-purple-500 audit-no-break">
+            <div className="flex items-center gap-3 mb-3">
+              <PhaseBadge phase="Phase 3" />
+              <span className="font-bold text-gray-900">Weeks 7–12: Scale + Repeatability</span>
+            </div>
+            <ul className="list-disc list-outside ml-6 space-y-1.5 text-sm text-gray-700">
+              <li>Route packs deployed; field reps generating same-day sits from door-to-door activity</li>
+              <li>Recruiting flywheel active—weekly interviews feeding a bench of 1099 reps and testers</li>
+              <li>SOPs and training locked; new Home Depot locations can onboard using the same system</li>
+              <li>SEO and web improvements begin compounding organic lead volume (early-stage, not yet at scale)</li>
+              <li>Full source-of-truth reporting in place; leadership can see spend → revenue in one view</li>
+            </ul>
+            <p className="text-xs text-gray-500 mt-3 italic">
+              Expected result: Base-to-Scale-Case performance. System is "working well" by Week 8–10. Monthly closes in the 25–45 range with clear attribution. Multi-store replication is ready.
+            </p>
+          </div>
+
+          {/* ── Why This Is Achievable ── */}
+          <SubSectionTitle icon={<CheckCircle2 className="w-5 h-5 text-emerald-600" />}>
+            Why This Is Achievable
+          </SubSectionTitle>
+
+          <p className="text-sm text-gray-700 leading-relaxed mb-4">
+            These projections are not aspirational targets—they are the natural result of fixing systems that are already partially in place but currently leaking value. Every lever listed below was identified during the audit and confirmed in the operational review:
+          </p>
+
+          <div className="space-y-3 mb-6">
+            <div className="bg-white rounded-lg border border-gray-200 p-4 audit-no-break">
+              <p className="text-sm text-gray-700"><strong>Enzy → Push to GHL adoption:</strong> Leads captured in Enzy today are not consistently making it into GHL where confirmation, follow-up, and sales workflows live. Closing that gap means leads stop falling through the crack between systems. This alone recovers opportunities that are currently invisible.</p>
+            </div>
+            <div className="bg-white rounded-lg border border-gray-200 p-4 audit-no-break">
+              <p className="text-sm text-gray-700"><strong>Confirmation YES/NO workflow:</strong> A simple two-tap confirmation sent 24 hours and 2 hours before the appointment tells you who is showing up and who isn't—before the tester drives to the home. This directly improves sit rate because you can backfill cancellations and stop wasting windshield time on no-shows.</p>
+            </div>
+            <div className="bg-white rounded-lg border border-gray-200 p-4 audit-no-break">
+              <p className="text-sm text-gray-700"><strong>Missed call elimination:</strong> AI call handling catches calls that currently go to voicemail. A human routing layer ensures high-intent callers reach a live person within minutes. The audit showed that inbound calls with no answer represent a measurable source of lead loss.</p>
+            </div>
+            <div className="bg-white rounded-lg border border-gray-200 p-4 audit-no-break">
+              <p className="text-sm text-gray-700"><strong>Speed-to-lead SLA:</strong> Industry data consistently shows that contacting a lead within 5 minutes versus 30+ minutes can double or triple the likelihood of booking an appointment. Enforcing this as an SLA—not a suggestion—converts more of the leads you are already paying for.</p>
+            </div>
+            <div className="bg-white rounded-lg border border-gray-200 p-4 audit-no-break">
+              <p className="text-sm text-gray-700"><strong>No-show / no-sale reactivation:</strong> Leads that didn't show or sat but didn't buy are not dead—they're dormant. A structured 7–14–30 day reactivation sequence (text + call) recovers a meaningful percentage at near-zero incremental cost because you already paid to acquire them.</p>
+            </div>
+            <div className="bg-white rounded-lg border border-gray-200 p-4 audit-no-break">
+              <p className="text-sm text-gray-700"><strong>Standardized metadata + SOP/training lock:</strong> When every store, rep, and territory uses the same tags, statuses, and workflows, you can run one report across all locations and trust the numbers. This is what makes multi-store expansion possible without rebuilding the machine each time.</p>
+            </div>
+            <div className="bg-white rounded-lg border border-gray-200 p-4 audit-no-break">
+              <p className="text-sm text-gray-700"><strong>Spend governance:</strong> Any channel or campaign that cannot demonstrate a clear path from spend → lead → revenue gets paused or reallocated. This is not about cutting budgets—it's about making sure every active dollar has a measurable job to do.</p>
+            </div>
+            <div className="bg-white rounded-lg border border-gray-200 p-4 audit-no-break">
+              <p className="text-sm text-gray-700"><strong>Google high-intent capture:</strong> Once access to Google Ads and GBP is granted, we can activate search campaigns targeting homeowners actively looking for water treatment—people who are already in-market. This is the highest-converting paid channel in home services and is currently untapped (assumption: pending access confirmation).</p>
+            </div>
+          </div>
+
+          <SimpleTermsCard>
+            We are not projecting growth from doing something new and unproven. We are projecting what happens when you stop losing the leads and opportunities you are already generating. The systems exist—they just need to be connected, enforced, and measured.
+          </SimpleTermsCard>
+
+          {/* ── What Would Make This Forecast Tighter ── */}
+          <SubSectionTitle icon={<ClipboardList className="w-5 h-5 text-blue-600" />}>
+            What Would Make This Forecast Tighter
+          </SubSectionTitle>
+
+          <p className="text-sm text-gray-700 leading-relaxed mb-4">
+            The scenarios above are built from what we can verify today. The following access and data points would allow us to narrow the ranges, validate assumptions, and deliver a forecast the executive team can plan against with full confidence:
+          </p>
+
+          <ol className="list-decimal list-outside ml-6 space-y-3 text-sm text-gray-700 mb-6">
+            <li>
+              <strong>Meta Business Manager + Google Ads access</strong> — Verifies actual spend, CPL by channel, and campaign-level attribution. Without this, we are estimating total spend and cost-per-lead from downstream data only.
+            </li>
+            <li>
+              <strong>Google Business Profile (GBP) + GA4 access</strong> — Shows organic demand (search impressions, calls from GBP, website sessions, conversion events). Needed to size the Google high-intent opportunity and confirm whether organic traffic is being captured or wasted.
+            </li>
+            <li>
+              <strong>Call tracking / call routing reports</strong> — Quantifies exact missed call volume, time-to-answer, and after-hours call patterns. Currently estimated from anecdotal evidence; hard data would tighten the "missed call elimination" lever significantly.
+            </li>
+            <li>
+              <strong>Install capacity and scheduling constraints</strong> — If the sales team closes 40 deals/month, the install team needs to keep pace. Understanding current install throughput ensures the Scale Case is operationally feasible, not just mathematically possible.
+            </li>
+            <li>
+              <strong>Historical close data by rep and by product mix</strong> — Allows us to model blended revenue (Hygia+ vs. Eco split) instead of showing two separate rows. Also reveals whether certain reps or territories consistently outperform, which informs recruiting and territory planning.
+            </li>
+          </ol>
+
+          <CalloutCard severity="info" title="Standing offer">
+            <p>
+              As soon as any of the above access is granted, we will update this projection within 48 hours with tighter ranges and verified inputs. The goal is a forecast the team can budget against—not just a directional estimate.
+            </p>
+          </CalloutCard>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════ */}
+        {/*  16. LAUNCH READINESS                                      */}
         {/* ═══════════════════════════════════════════════════════════ */}
         <section className="audit-section" id="launch-readiness">
-          <SectionTitle>15) Launch Readiness Statement</SectionTitle>
+          <SectionTitle>16) Launch Readiness Statement</SectionTitle>
 
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 audit-no-break">
             <div className="flex items-start gap-3">
