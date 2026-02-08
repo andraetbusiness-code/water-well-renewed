@@ -1,151 +1,67 @@
 
 
-# Growth Execution Plan — Private Downloadable Report Page
+# Add "In Simple Terms" Executive Summaries to Growth Execution Plan
 
-## Overview
+## What This Does
 
-This creates a new private page at `/growth-plan` using the exact same design format as the `/audit` page — same header bar, same SectionTitle/CalloutCard/DataTable components, same print CSS classes, same privacy model. The page contains the complete "Select Source Water — Growth Execution Plan" with all 15 sections preserved verbatim. Nothing summarized, nothing removed.
-
----
-
-## Privacy Model (Same as Audit + Onboarding)
-
-- Not linked from Header, Footer, sitemap, or any public page
-- `noindex, nofollow` meta tags via `react-helmet-async`
-- Accessible only at `/growth-plan` via direct URL
-- Intended for private subdomain mapping (e.g., `growth.selectsourcewater.com`)
-- Added to `robots.txt` Disallow rules
+Adds a short, plain-language callout block after each major section that translates the technical details into a simple "what this means for your bottom line" statement. These are designed for leaders who want to understand the revenue impact without getting lost in system terminology.
 
 ---
 
-## New Files
+## New Component: `SimpleTermsCard`
 
-### 1. `src/pages/GrowthExecutionPlan.tsx`
+A new reusable sub-component added alongside the existing `GoalCard`, `CalloutCard`, etc. at the top of the file.
 
-Uses the same sub-components as the audit page (SectionTitle, CalloutCard, DataTable, SeverityBadge) rebuilt inline to keep it self-contained.
-
-**Header Bar** (fixed, hidden on print)
-- SSW logo on the left
-- "Growth Execution Plan" label
-- "Download PDF" button on the right (triggers `window.print()`)
-
-**Report Sections** (all original text preserved word-for-word):
-
-1. **Cover Block**
-   - Large centered logo
-   - Title: "Growth Execution Plan"
-   - Subtitle: "Systems - Lead Generation - Recruiting - Marketing - Web/SEO - Training/SOP - Repeatability"
-   - Audience: Glover + Executive Team
-   - Purpose paragraph (full original text)
-   - "CONFIDENTIAL" badge
-
-2. **Important Context (Scope + Next Layer of Truth)**
-   - Full original text about GHL/Enzy audit basis
-   - "However, this is not yet the full data universe" paragraph
-   - The 4 bullet points about what deeper forensic review will confirm
-   - "Bottom line" statement preserved exactly
-
-3. **Executive Outcomes (What This Plan Delivers)**
-   - Sub-section A: Measurable Performance Outcomes (5 bullets with bold labels)
-   - Sub-section B: Scalable Growth Outcomes (5 bullets with bold labels)
-   - Sub-section C: Standardized SOP + Training System callout
-
-4. **Phase Plan (90-Day Execution Timeline)**
-   - Phase 1 (Week 1): Stabilize — 5 action items
-   - Phase 2 (Weeks 2-4): Conversion Ops — 5 action items
-   - Phase 3 (Weeks 4-12): Scale — 4 action items
-   - Displayed as timeline-style cards with phase badges
-
-5. **Core System Fixes (Enzy + GoHighLevel)**
-   - Sub-section A: Enzy Fixes — Goal statement, 5 "We will" bullets, "Why it matters" callout
-   - Sub-section B: GoHighLevel Fixes — Goal statement, 5 "We will" bullets with sub-items (pipeline stages, attribution, outcomes, revenue, confirmation flows), Result statement
-
-6. **Missed Call Elimination (AI Call Handling + Human Routing)**
-   - Goal statement
-   - 4 implementation bullets
-   - Outcome statement
-
-7. **Spend Governance + Budget Reallocation (Including Google)**
-   - Sub-section A: Spend Governance — 3 non-negotiable controls
-   - Sub-section B: Google Solutions — 3 high-intent deployment items
-   - Sub-section C: Budget Reallocation Method — 2 phased approach items
-
-8. **Field Self-Gen Same-Day Engine (Routes by Territory)**
-   - Goal statement, 3 deliverables
-   - Route Pack "Algorithm" sub-section with 3 iteration steps
-
-9. **Recruiting Plan (1099) — Weekly Interviews + Monthly Hiring Event**
-   - Goal statement
-   - 3 implementation items
-   - Structured hiring funnel: RSVP -> group interview -> shadow day -> onboarding -> first-week ramp
-   - KPI tracking: 4 metrics
-
-10. **Social Media + Content Engine**
-    - Goal statement
-    - Content pillars: 4 items
-    - Deliverables: 3 items
-
-11. **Marketing Materials + Creative Production (Print + Digital)**
-    - Goal statement
-    - 7 deliverable types
-
-12. **Web Development + SEO (Compounding Growth)**
-    - Goal statement
-    - 4 implementation items
-
-13. **Training Materials + Onboarding Library (Enzy Library Buildout)**
-    - Goal statement
-    - 5 deliverables
-
-14. **Standardized SOP + Training System (Locked for Scalability)**
-    - Objective statement
-    - 5 deliverables (Role-based SOPs, Non-negotiable workflows, QC checklists, Certification ramp path, Version control)
-
-15. **Access + Data Needed to Finalize (Leadership Action Items)**
-    - 8 access items needed
-    - 4 confirmation outcomes from deeper forensic review
-
-16. **What Leadership Receives Weekly (Executive Scorecard)**
-    - 10 line items in the weekly scorecard
-
-17. **Launch Readiness Statement**
-    - Full original closing paragraph preserved verbatim
-
-**Footer**: "Select Source Water — Growth Execution Plan — Confidential"
+- Light green background with a dollar-sign or lightbulb icon
+- Bold label: **"In Simple Terms"**
+- 1-3 sentences max, written in plain business language focused on dollars, time saved, or revenue protected
+- Uses `audit-no-break` class for clean PDF output
 
 ---
 
-## Modified Files
+## Where It Gets Added (Section by Section)
 
-### 2. `src/App.tsx`
+Each callout is placed at the **end** of its section, after all technical content, so it reads as a natural summary.
 
-Two additions:
-- Import: `import GrowthExecutionPlan from "./pages/GrowthExecutionPlan";`
-- Route: `<Route path="/growth-plan" element={<GrowthExecutionPlan />} />` (placed next to the audit route with a comment about privacy)
+| Section | "In Simple Terms" Message |
+|---|---|
+| Important Context | "We've already found enough to start fixing things now. Once we get full access to all your platforms, we'll be able to show you exactly where every dollar goes and comes back." |
+| 1) Executive Outcomes | "This plan is designed to help you see exactly how much you spend, how many sales it produces, and where money is being left on the table -- then fix it so every dollar works harder." |
+| 2) Phase Plan | "Week 1 we stop the bleeding. By month 1 we're converting more leads into sales. By month 3 the whole system runs on its own and can be copied to new locations." |
+| 3a) Enzy Fixes | "Right now, not every lead is being tracked the same way, which means sales are slipping through the cracks. We fix that so every lead is accounted for and every sale gets counted." |
+| 3b) GHL Fixes | "We're building one clean pipeline so leadership can see -- at a glance -- how many leads came in, how many showed up, and how many bought. No guessing." |
+| 4) Missed Call Elimination | "Every missed call is a potential sale walking away. This system makes sure every single caller gets answered or called back -- turning calls you're already paying for into revenue." |
+| 5) Spend Governance | "No more ad dollars running without proof they're working. Every dollar gets tracked to a result, and money that isn't producing gets moved to channels that are." |
+| 6) Field Self-Gen | "Instead of reps waiting around for appointments, they'll have a daily game plan to go talk to 10-20 homeowners in their area -- creating same-day opportunities on top of what marketing brings in." |
+| 7) Recruiting | "A steady pipeline of new reps means you're never dependent on just a few people. If someone leaves or underperforms, there's always someone ready to step in." |
+| 8) Social Media + Content | "Consistent content builds trust before a rep ever knocks on a door. It also lowers your ad costs over time because people already recognize and trust the brand." |
+| 9) Marketing Materials | "Professional, consistent materials at every touchpoint -- in-store, at the door, and online -- so the brand looks the same everywhere and closes more deals." |
+| 10) Web + SEO | "Over time, people searching Google for water problems in your area will find you organically -- meaning free leads that keep growing month after month without increasing ad spend." |
+| 11) Training Materials | "New hires get up to speed faster, make fewer mistakes, and start producing revenue sooner. Less hand-holding, more selling." |
+| 12) Standardized SOP | "One proven playbook for every role at every location. When you open a new Home Depot, the system is already built -- just plug people in." |
+| 14) Executive Scorecard | "One simple report every week that tells you exactly what happened: how much was spent, how many leads, how many sales, how much revenue. No digging through multiple tools." |
+| 15) Launch Readiness | "We're ready to start the moment you say go." |
 
-### 3. `public/robots.txt`
-
-Add `Disallow: /growth-plan` under each user-agent block (same pattern as `/onboarding` and `/audit`).
+Sections 13 (Access Needed) will NOT get an "In Simple Terms" block since it's a straightforward checklist that's already plain language.
 
 ---
 
-## Design Approach
+## Design Details
 
-- Exact same visual format as the audit page: Deep Blue headers, brand-colored section titles, bordered callout cards, alternating-row tables
-- Severity/priority badges adapted for solutions context: "Phase 1" / "Phase 2" / "Phase 3" badges instead of "Critical" / "High"
-- Goal statements displayed as blue-left-bordered callout cards
-- "We will" action items as clean bullet lists
-- The 90-Day Timeline rendered as 3 distinct phase cards with week ranges
-- The Executive Scorecard (Section 14) rendered as a DataTable
-- Access requirements (Section 13) rendered as a checklist-style table
-- Same print CSS classes (`audit-header`, `audit-body`, `audit-section`, `audit-no-break`) reused so the existing `audit-print.css` handles PDF export automatically
-- Page breaks added before major sections for clean PDF output
+- **Background**: `bg-emerald-50` with `border-l-4 border-l-emerald-400`
+- **Icon**: DollarSign icon from lucide-react (communicates "this is about your money")
+- **Label**: Bold "In Simple Terms" header
+- **Text**: 1-3 plain sentences, conversational tone, focused on revenue/time/growth impact
+- **Print**: Uses `audit-no-break` so it stays together in PDF output
 
 ---
 
-## What Does NOT Change
+## Files Changed
 
-- No modifications to the existing audit page, onboarding packet, portal, or public site
-- The existing `audit-print.css` is reused as-is (no modifications needed)
-- No new dependencies required
+**`src/pages/GrowthExecutionPlan.tsx`** only:
+- Add `DollarSign` to the lucide-react import
+- Add `SimpleTermsCard` sub-component (approx. 15 lines)
+- Add one `SimpleTermsCard` instance at the end of each of the 15 sections listed above
+
+No other files are modified.
 
