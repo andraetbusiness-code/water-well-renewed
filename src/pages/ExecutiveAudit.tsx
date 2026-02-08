@@ -219,7 +219,7 @@ const ExecutiveAudit = () => {
 
           <CalloutCard severity="info" title="Why it matters">
             <p>
-              Without accurate attribution and visibility into "sits" and "closes," leadership cannot defend current spend levels or optimize future investment. High spend on non‑performing campaigns and poor lead handling suggest immediate governance is needed.
+              Without accurate attribution and visibility into "sits" and "closes," leadership cannot verify current spend levels or confidently optimize future investment with the information available. High spend on non‑performing campaigns and poor lead handling suggest immediate governance is needed.
             </p>
           </CalloutCard>
         </section>
@@ -228,7 +228,7 @@ const ExecutiveAudit = () => {
         {/*  3. RECOMMENDED DECISIONS                                  */}
         {/* ═══════════════════════════════════════════════════════════ */}
         <section className="audit-section">
-          <SectionTitle id="recommended-decisions">Recommended Decisions (No Solutions)</SectionTitle>
+          <SectionTitle id="recommended-decisions">Recommended Decisions</SectionTitle>
           <ol className="list-decimal list-outside ml-6 space-y-4 text-gray-700 text-sm leading-relaxed">
             <li>
               <strong>Authorize a unified diagnostic</strong> – assign Andrae / Growth Ops to reconcile tracking across GHL, Enzi, and ad platforms.
@@ -516,7 +516,7 @@ const ExecutiveAudit = () => {
         {/*  9. LEADERSHIP DECISIONS REQUIRED                          */}
         {/* ═══════════════════════════════════════════════════════════ */}
         <section className="audit-section">
-          <SectionTitle id="leadership-decisions">Leadership Decisions Required (No Solutions)</SectionTitle>
+          <SectionTitle id="leadership-decisions">Leadership Decisions Required</SectionTitle>
           <ol className="list-decimal list-outside ml-6 space-y-5 text-sm text-gray-700 leading-relaxed">
             <li>
               <strong>Authorize a unified diagnostic (owner‑led).</strong> Let Andrae / Growth Ops reconcile GHL, Enzi, and advertising data so leadership has one accurate scoreboard.
