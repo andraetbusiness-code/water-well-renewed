@@ -171,7 +171,7 @@ const GrowthExecutionPlan = () => {
           <p className="text-gray-500 text-base mb-2">
             Systems &bull; Lead Generation &bull; Recruiting &bull; Marketing &bull; Web/SEO &bull; Training/SOP &bull; Repeatability
           </p>
-          <p className="text-gray-500 text-sm mb-6">Audience: Glover + Executive Team</p>
+          <p className="text-gray-500 text-sm mb-6">Audience: Executive Team</p>
 
           <div className="max-w-2xl mx-auto text-left mb-8">
             <p className="text-sm text-gray-700 leading-relaxed">
@@ -185,6 +185,13 @@ const GrowthExecutionPlan = () => {
           >
             Confidential
           </span>
+
+          <div className="max-w-2xl mx-auto mt-6 p-4 rounded-lg border border-gray-300 bg-gray-50 text-left">
+            <p className="text-xs text-gray-600 leading-relaxed">
+              <span className="font-bold uppercase tracking-wide">Intellectual Property Notice:</span>{" "}
+              This document and all strategies, systems, frameworks, workflows, and methodologies described herein are the proprietary intellectual property of Select Source Water and its consulting partners. This material is provided exclusively for evaluation purposes and may not be copied, reproduced, distributed, shared, or implemented—in whole or in part—without express written authorization. Unauthorized use, adaptation, or disclosure of any concept, process, or system contained in this plan constitutes a violation of intellectual property rights and may result in legal action. Receipt of this document does not constitute a license or right to use any of the strategies described.
+            </p>
+          </div>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
