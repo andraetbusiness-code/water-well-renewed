@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { Download, CheckCircle2, Target, Zap, Users, Megaphone, Globe, BookOpen, Lock, ClipboardList, BarChart3, Rocket } from "lucide-react";
+import { Download, CheckCircle2, Target, Zap, Users, Megaphone, Globe, BookOpen, Lock, ClipboardList, BarChart3, Rocket, DollarSign } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 /* ------------------------------------------------------------------ */
@@ -123,6 +123,18 @@ const SubSectionTitle = ({ children, icon }: { children: React.ReactNode; icon?:
   </h3>
 );
 
+const SimpleTermsCard = ({ children }: { children: React.ReactNode }) => (
+  <div className="bg-emerald-50 border-l-4 border-l-emerald-400 rounded-lg p-5 mt-6 mb-4 audit-no-break">
+    <div className="flex items-start gap-3">
+      <DollarSign className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+      <div>
+        <p className="font-bold text-emerald-900 text-sm mb-1">In Simple Terms</p>
+        <p className="text-sm text-emerald-800 leading-relaxed">{children}</p>
+      </div>
+    </div>
+  </div>
+);
+
 /* ------------------------------------------------------------------ */
 /*  Main Page                                                          */
 /* ------------------------------------------------------------------ */
@@ -221,6 +233,10 @@ const GrowthExecutionPlan = () => {
               This plan is execution-ready now, and will become even more precise once full access is granted and we can tell the complete end-to-end story.
             </p>
           </CalloutCard>
+
+          <SimpleTermsCard>
+            We've already found enough to start fixing things now. Once we get full access to all your platforms, we'll be able to show you exactly where every dollar goes and comes back.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -252,6 +268,10 @@ const GrowthExecutionPlan = () => {
               <strong>Locked SOP + Training Suite:</strong> We will build and lock a standardized training library and SOP suite so every rep, tester, VA, and new Home Depot location runs the same proven process—reducing inconsistency and making results repeatable at scale.
             </p>
           </CalloutCard>
+
+          <SimpleTermsCard>
+            This plan is designed to help you see exactly how much you spend, how many sales it produces, and where money is being left on the table — then fix it so every dollar works harder.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -303,6 +323,10 @@ const GrowthExecutionPlan = () => {
               <li>Recruit and onboard consistently; replicate the SOP/training system across additional Home Depot locations</li>
             </ol>
           </div>
+
+          <SimpleTermsCard>
+            Week 1 we stop the bleeding. By month 1 we're converting more leads into sales. By month 3 the whole system runs on its own and can be copied to new locations.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -327,6 +351,10 @@ const GrowthExecutionPlan = () => {
             <p>If only a small percent of reps consistently use the push-and-confirmation workflow, sit rate will remain capped.</p>
           </CalloutCard>
 
+          <SimpleTermsCard>
+            Right now, not every lead is being tracked the same way, which means sales are slipping through the cracks. We fix that so every lead is accounted for and every sale gets counted.
+          </SimpleTermsCard>
+
           <SubSectionTitle icon={<Zap className="w-5 h-5 text-blue-600" />}>B) GoHighLevel Fixes (Automation + Reporting Layer)</SubSectionTitle>
           <GoalCard title="Goal">
             <p>Make GHL the measurable spine of the operation.</p>
@@ -348,6 +376,10 @@ const GrowthExecutionPlan = () => {
           <CalloutCard severity="success" title="Result">
             <p>These system fixes will be documented into a locked SOP suite and training pathway to ensure every location executes the same workflow consistently.</p>
           </CalloutCard>
+
+          <SimpleTermsCard>
+            We're building one clean pipeline so leadership can see — at a glance — how many leads came in, how many showed up, and how many bought. No guessing.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -371,6 +403,10 @@ const GrowthExecutionPlan = () => {
           <CalloutCard severity="success" title="Outcome">
             <p>Increased conversion from existing spend without increasing budget.</p>
           </CalloutCard>
+
+          <SimpleTermsCard>
+            Every missed call is a potential sale walking away. This system makes sure every single caller gets answered or called back — turning calls you're already paying for into revenue.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -403,6 +439,10 @@ const GrowthExecutionPlan = () => {
             <li>Reallocate dead spend into higher intent or proven channels in phases</li>
             <li>Scale only when measurement is stable and show/sold outcomes are consistently captured</li>
           </ul>
+
+          <SimpleTermsCard>
+            No more ad dollars running without proof they're working. Every dollar gets tracked to a result, and money that isn't producing gets moved to channels that are.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -429,6 +469,10 @@ const GrowthExecutionPlan = () => {
             <li>tracking set rate → sit rate → close signals by route type,</li>
             <li>iterating weekly until it becomes a repeatable playbook deployable across new locations.</li>
           </ol>
+
+          <SimpleTermsCard>
+            Instead of reps waiting around for appointments, they'll have a daily game plan to go talk to 10–20 homeowners in their area — creating same-day opportunities on top of what marketing brings in.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -458,6 +502,10 @@ const GrowthExecutionPlan = () => {
             <li>Ramp-to-first-set</li>
             <li>Retention + production by rep</li>
           </ul>
+
+          <SimpleTermsCard>
+            A steady pipeline of new reps means you're never dependent on just a few people. If someone leaves or underperforms, there's always someone ready to step in.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -484,6 +532,10 @@ const GrowthExecutionPlan = () => {
             <li>Story cadence for daily proof</li>
             <li>Content library used for marketing + training</li>
           </ul>
+
+          <SimpleTermsCard>
+            Consistent content builds trust before a rep ever knocks on a door. It also lowers your ad costs over time because people already recognize and trust the brand.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -506,6 +558,10 @@ const GrowthExecutionPlan = () => {
             <li>Social templates and ad creative variations</li>
             <li>Store launch kits replicable across locations</li>
           </ul>
+
+          <SimpleTermsCard>
+            Professional, consistent materials at every touchpoint — in-store, at the door, and online — so the brand looks the same everywhere and closes more deals.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -525,6 +581,10 @@ const GrowthExecutionPlan = () => {
             <li>Build a video-forward SEO system aligned with Google/YouTube visibility</li>
             <li>Ensure analytics measurement supports executive reporting</li>
           </ul>
+
+          <SimpleTermsCard>
+            Over time, people searching Google for water problems in your area will find you organically — meaning free leads that keep growing month after month without increasing ad spend.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -545,6 +605,10 @@ const GrowthExecutionPlan = () => {
             <li>A structured Enzy training library: how-to videos, best practices, motivational performance content</li>
             <li>Ongoing training capture using field footage</li>
           </ul>
+
+          <SimpleTermsCard>
+            New hires get up to speed faster, make fewer mistakes, and start producing revenue sooner. Less hand-holding, more selling.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -565,6 +629,10 @@ const GrowthExecutionPlan = () => {
             <li><strong>Certification ramp path</strong> (Day 1–7 minimum standards before operating solo)</li>
             <li><strong>Version control</strong> (what's live, what's updated, what's approved)</li>
           </ul>
+
+          <SimpleTermsCard>
+            One proven playbook for every role at every location. When you open a new Home Depot, the system is already built — just plug people in.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -624,6 +692,10 @@ const GrowthExecutionPlan = () => {
               ["10", "Route pack performance (conversations → same-day sits)"],
             ]}
           />
+
+          <SimpleTermsCard>
+            One simple report every week that tells you exactly what happened: how much was spent, how many leads, how many sales, how much revenue. No digging through multiple tools.
+          </SimpleTermsCard>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════ */}
@@ -641,6 +713,10 @@ const GrowthExecutionPlan = () => {
               </p>
             </div>
           </div>
+
+          <SimpleTermsCard>
+            We're ready to start the moment you say go.
+          </SimpleTermsCard>
         </section>
 
         {/* ── Footer ── */}
