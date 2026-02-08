@@ -57,15 +57,11 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Organic palette extras
+        // Brand blues
         water: {
           light: "hsl(var(--water-light))",
           medium: "hsl(var(--water-medium))",
           accent: "hsl(var(--water-accent))",
-        },
-        earth: {
-          warm: "hsl(var(--earth-warm))",
-          stone: "hsl(var(--earth-stone))",
         },
       },
       borderRadius: {
@@ -77,7 +73,6 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['DM Serif Display', 'Georgia', 'serif'],
       },
       keyframes: {
         "accordion-down": {

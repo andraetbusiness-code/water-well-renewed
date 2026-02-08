@@ -47,7 +47,7 @@ export function DownloadableFlyer({ showDownloadButton = true, className = '' }:
             .flyer {
               width: 8.5in;
               height: 11in;
-              background: linear-gradient(180deg, #0077B6 0%, #0096C7 40%, #0077B6 100%);
+              background: linear-gradient(180deg, #1E6FD9 0%, #3A85E0 40%, #1E6FD9 100%);
               overflow: hidden;
               position: relative;
               box-shadow: 0 10px 40px rgba(0,0,0,0.2);
@@ -125,7 +125,7 @@ export function DownloadableFlyer({ showDownloadButton = true, className = '' }:
             .benefit-icon {
               width: 28px;
               height: 28px;
-              background: #F97316;
+              background: #123B8A;
               border-radius: 50%;
               display: flex;
               align-items: center;
@@ -141,7 +141,7 @@ export function DownloadableFlyer({ showDownloadButton = true, className = '' }:
             }
             
             .cta-banner {
-              background: #F97316;
+              background: #123B8A;
               color: white;
               text-align: center;
               padding: 20px;
@@ -176,14 +176,14 @@ export function DownloadableFlyer({ showDownloadButton = true, className = '' }:
             .partner-text {
               font-size: 14px;
               font-weight: 700;
-              color: #333;
+              color: #111;
               text-transform: uppercase;
               letter-spacing: 0.5px;
               line-height: 1.3;
             }
             
             .partner-text span {
-              color: #F97316;
+              color: #1E6FD9;
             }
             
             .contact-area {
@@ -194,14 +194,14 @@ export function DownloadableFlyer({ showDownloadButton = true, className = '' }:
             .call-text {
               font-size: 16px;
               font-weight: 600;
-              color: #333;
+              color: #111;
               margin-bottom: 4px;
             }
             
             .phone {
               font-size: 32px;
               font-weight: 800;
-              color: #0077B6;
+              color: #1E6FD9;
               margin-bottom: 4px;
             }
             
@@ -378,10 +378,10 @@ export function DownloadableFlyer({ showDownloadButton = true, className = '' }:
         ref={flyerRef}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-[400px] aspect-[8.5/11] bg-gradient-to-b from-[#0077B6] via-[#0096C7] to-[#0077B6] rounded-lg overflow-hidden shadow-2xl"
+        className="w-full max-w-[400px] aspect-[8.5/11] bg-gradient-to-b from-primary via-primary/80 to-primary rounded-lg overflow-hidden shadow-2xl"
       >
         {/* Top Section */}
-        <div className="pt-8 px-6 text-center text-white">
+        <div className="pt-8 px-6 text-center text-primary-foreground">
           <h2 className="text-lg font-extrabold leading-tight mb-1 drop-shadow-sm">
             CLEANER, HEALTHIER<br/>WATER FOR
           </h2>
@@ -395,7 +395,7 @@ export function DownloadableFlyer({ showDownloadButton = true, className = '' }:
           {/* Image placeholder */}
           <div className="flex-1">
             <div className="aspect-square bg-white/10 rounded-lg flex items-center justify-center">
-              <Droplets className="w-10 h-10 text-white/60" />
+              <Droplets className="w-10 h-10 text-primary-foreground/60" />
             </div>
           </div>
           
@@ -406,9 +406,9 @@ export function DownloadableFlyer({ showDownloadButton = true, className = '' }:
               'Removes chlorine and contaminants',
               'Protects your appliances and plumbing',
             ].map((benefit, i) => (
-              <div key={i} className="flex items-start gap-2 text-white">
+              <div key={i} className="flex items-start gap-2 text-primary-foreground">
                 <div className="w-4 h-4 bg-accent rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <CheckCircle2 className="w-2.5 h-2.5 text-white" />
+                  <CheckCircle2 className="w-2.5 h-2.5 text-accent-foreground" />
                 </div>
                 <span className="text-[10px] leading-tight">{benefit}</span>
               </div>
@@ -417,7 +417,7 @@ export function DownloadableFlyer({ showDownloadButton = true, className = '' }:
         </div>
         
         {/* CTA Banner */}
-        <div className="mx-6 mt-4 bg-accent text-white text-center py-2 rounded-md">
+        <div className="mx-6 mt-4 bg-accent text-accent-foreground text-center py-2 rounded-md">
           <p className="text-xs font-bold uppercase tracking-wide">
             🗓️ Schedule Your FREE Water Test
           </p>
@@ -428,13 +428,13 @@ export function DownloadableFlyer({ showDownloadButton = true, className = '' }:
           <div className="flex items-center gap-2 flex-1">
             <img src={homeDepotAuthorized} alt="Home Depot" className="h-8 object-contain" />
             <div className="text-[8px] font-bold text-foreground leading-tight">
-              <span className="text-accent">TRUSTED</span> HOME DEPOT<br/>VENDOR
+              <span className="text-primary">TRUSTED</span> HOME DEPOT<br/>VENDOR
             </div>
           </div>
           
           <div className="text-right flex-1">
             <p className="text-[7px] font-semibold text-foreground">CALL TODAY!</p>
-            <p className="text-sm font-extrabold text-[#0077B6]">(916) 382-0493</p>
+            <p className="text-sm font-extrabold text-primary">(916) 382-0493</p>
             <p className="text-[7px] text-muted-foreground">selectsourcewater.com</p>
           </div>
           
