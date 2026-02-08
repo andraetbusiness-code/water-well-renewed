@@ -452,7 +452,7 @@ const GrowthExecutionPlan = () => {
           <SectionTitle>6) Field Self-Gen Same-Day Engine (Routes by Territory)</SectionTitle>
 
           <GoalCard title="Goal">
-            <p>Increase daily opportunity volume without relying solely on booked appointments.</p>
+            <p>Increase daily opportunity volume without relying solely on booked appointments — and maximize every minute of downtime between scheduled water tests.</p>
           </GoalCard>
 
           <p className="text-sm text-gray-700 mb-2 font-semibold">We will deliver:</p>
@@ -462,16 +462,32 @@ const GrowthExecutionPlan = () => {
             <li>A route SOP: how to run the route, how to log outcomes, how to trigger same-day tests</li>
           </ul>
 
+          <SubSectionTitle>AI-Powered Route Optimization</SubSectionTitle>
+          <p className="text-sm text-gray-700 mb-3">
+            We deploy proprietary AI software that searches and analyzes <strong>all sold properties in each territory</strong> — then maps them into the most effective and time-efficient door-to-door routes automatically.
+          </p>
+
+          <CalloutCard severity="info" title="How the AI Routing Works">
+            <ul className="list-disc list-outside ml-4 space-y-2 mt-2">
+              <li><strong>Data-Driven Targeting:</strong> The software pulls sold-property records, filters by neighborhood, home age, and water-quality indicators to prioritize the highest-opportunity doors.</li>
+              <li><strong>Smart Route Mapping:</strong> Routes are generated for maximum efficiency — minimizing drive time and gas while maximizing homeowner conversations per hour.</li>
+              <li><strong>Appointment-Aware Scheduling:</strong> Routes automatically <strong>pause and resume</strong> around scheduled water-test appointments. Reps never miss a booked appointment — the route adapts in real time.</li>
+              <li><strong>Proximity Matching:</strong> When a rep has a scheduled appointment, the system generates a targeted list of homes <strong>in the same area</strong> so they can knock doors nearby before and after the appointment — staying close, saving gas, and filling every gap in their day.</li>
+              <li><strong>Downtime Optimizer:</strong> This is designed as an <strong>addition to their regular routine</strong>, not a replacement. Scheduled appointments and booked water tests always take priority. The AI routes fill the in-between time that would otherwise be unproductive.</li>
+            </ul>
+          </CalloutCard>
+
           <SubSectionTitle>Route Pack "Algorithm" (Repeatability)</SubSectionTitle>
-          <p className="text-sm text-gray-700 mb-3">We will build the "perfect routing algorithm" as a team by:</p>
+          <p className="text-sm text-gray-700 mb-3">We will build and refine the routing algorithm continuously by:</p>
           <ol className="list-decimal list-outside ml-6 space-y-2 text-sm text-gray-700 mb-4">
-            <li>testing route filters and neighborhood segments,</li>
-            <li>tracking set rate → sit rate → close signals by route type,</li>
-            <li>iterating weekly until it becomes a repeatable playbook deployable across new locations.</li>
+            <li>Feeding sold-property and territory data into the AI to generate optimized route suggestions</li>
+            <li>Testing route filters and neighborhood segments in the field</li>
+            <li>Tracking set rate → sit rate → close signals by route type</li>
+            <li>Iterating weekly until it becomes a repeatable, AI-assisted playbook deployable across new locations</li>
           </ol>
 
           <SimpleTermsCard>
-            Instead of reps waiting around for appointments, they'll have a daily game plan to go talk to 10–20 homeowners in their area — creating same-day opportunities on top of what marketing brings in.
+            Instead of reps sitting idle between appointments, our AI software builds them a smart route of nearby homes to knock — based on real property data. It pauses when they have a scheduled water test, then picks back up after. When they already have an appointment in an area, it gives them a list of homes nearby so they stay close, save gas, and fill every gap in their day with productive conversations. More doors, less windshield time, more same-day opportunities.
           </SimpleTermsCard>
         </section>
 
