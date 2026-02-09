@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { Download, AlertTriangle, AlertCircle, Info, Shield, DollarSign } from "lucide-react";
+import { AlertTriangle, AlertCircle, Info, Shield, DollarSign } from "lucide-react";
 import logo from "@/assets/logo.png";
 import metaAdsSpend from "@/assets/audit/meta-ads-spend.png";
 import highConfidence from "@/assets/audit/high-confidence.png";
@@ -169,14 +169,6 @@ const ExecutiveAudit = () => {
             Executive Marketing &amp; Tracking Audit
           </span>
         </div>
-        <button
-          onClick={() => window.print()}
-          className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors"
-          style={{ backgroundColor: "#1E6FD9", color: "#fff" }}
-        >
-          <Download className="w-4 h-4" />
-          Download PDF
-        </button>
       </header>
 
       {/* ── Report Body ── */}
