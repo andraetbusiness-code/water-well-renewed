@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { Download, CheckCircle2, Target, Zap, Users, Megaphone, Globe, BookOpen, Lock, ClipboardList, BarChart3, Rocket, DollarSign } from "lucide-react";
+import { CheckCircle2, Target, Zap, Users, Megaphone, Globe, BookOpen, Lock, ClipboardList, BarChart3, Rocket, DollarSign } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 /* ------------------------------------------------------------------ */
@@ -159,14 +159,6 @@ const GrowthExecutionPlan = () => {
             Growth Execution Plan
           </span>
         </div>
-        <button
-          onClick={() => window.print()}
-          className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors"
-          style={{ backgroundColor: "#1E6FD9", color: "#fff" }}
-        >
-          <Download className="w-4 h-4" />
-          Download PDF
-        </button>
       </header>
 
       {/* ── Report Body ── */}
