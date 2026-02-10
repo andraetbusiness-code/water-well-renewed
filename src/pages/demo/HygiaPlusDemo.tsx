@@ -206,6 +206,17 @@ const HygiaPlusDemo = () => {
               </div>
             </motion.div>
 
+            {/* Back-side image */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="mb-12 flex justify-center"
+            >
+              <img src={slickBack} alt="Hygia+ Details" className="w-full max-w-3xl object-contain" />
+            </motion.div>
+
             <div className="grid md:grid-cols-2 gap-10 items-start">
               {/* Left: Pricing + badges */}
               <motion.div
@@ -311,17 +322,6 @@ const HygiaPlusDemo = () => {
                 </div>
               </motion.div>
             </div>
-
-            {/* Back-side image */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="mt-12 flex justify-center"
-            >
-              <img src={slickBack} alt="Hygia+ Details" className="w-full max-w-3xl object-contain" />
-            </motion.div>
 
             {/* CTA */}
             <motion.div
