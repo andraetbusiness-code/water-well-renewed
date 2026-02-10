@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { lazy, Suspense } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import HygiaSystem from "./pages/HygiaSystem";
@@ -19,11 +20,26 @@ import FieldRepOnboarding from "./pages/FieldRepOnboarding";
 import ExecutiveAudit from "./pages/ExecutiveAudit";
 import GrowthExecutionPlan from "./pages/GrowthExecutionPlan";
 
+const HygiaPlusDemo = lazy(() => import("./pages/demo/HygiaPlusDemo"));
+
 // Import print styles for onboarding and audit
 import "./styles/onboarding-print.css";
 import "./styles/audit-print.css";
 
 const queryClient = new QueryClient();
+
+// Subdomain detection
+const hostname = window.location.hostname;
+const subdomain = hostname.split('.')[0];
+const isDemoSubdomain = subdomain === 'demo';
+
+const DemoRoutes = () => (
+  <Routes>
+    <Route path="/" element={<Suspense fallback={null}><HygiaPlusDemo /></Suspense>} />
+    <Route path="/hygia-plus" element={<Suspense fallback={null}><HygiaPlusDemo /></Suspense>} />
+    <Route path="*" element={<NotFound />} />
+  </Routes>
+);
 
 const App = () => (
   <HelmetProvider>
@@ -32,25 +48,27 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/hygia-system" element={<HygiaSystem />} />
-            <Route path="/filtration-technology" element={<FiltrationTechnology />} />
-            <Route path="/what-in-water" element={<WhatInWater />} />
-            <Route path="/maintenance" element={<Maintenance />} />
-            <Route path="/process" element={<Process />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/presentations" element={<Presentations />} />
-            <Route path="/presentations/:slug" element={<PresentationViewer />} />
-            <Route path="/portal/*" element={<PortalRoutes />} />
-            {/* Field Rep Onboarding - Private, not linked in navigation */}
-            <Route path="/onboarding" element={<FieldRepOnboarding />} />
-            {/* Executive Audit Report - Private, not linked in navigation */}
-            <Route path="/audit" element={<ExecutiveAudit />} />
-            {/* Growth Execution Plan - Private, not linked in navigation */}
-            <Route path="/growth-plan" element={<GrowthExecutionPlan />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          {isDemoSubdomain ? (
+            <DemoRoutes />
+          ) : (
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/hygia-system" element={<HygiaSystem />} />
+              <Route path="/filtration-technology" element={<FiltrationTechnology />} />
+              <Route path="/what-in-water" element={<WhatInWater />} />
+              <Route path="/maintenance" element={<Maintenance />} />
+              <Route path="/process" element={<Process />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/presentations" element={<Presentations />} />
+              <Route path="/presentations/:slug" element={<PresentationViewer />} />
+              <Route path="/portal/*" element={<PortalRoutes />} />
+              <Route path="/onboarding" element={<FieldRepOnboarding />} />
+              <Route path="/audit" element={<ExecutiveAudit />} />
+              <Route path="/growth-plan" element={<GrowthExecutionPlan />} />
+              <Route path="/demo/hygia-plus" element={<Suspense fallback={null}><HygiaPlusDemo /></Suspense>} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          )}
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
