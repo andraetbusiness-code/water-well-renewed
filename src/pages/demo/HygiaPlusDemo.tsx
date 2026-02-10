@@ -347,7 +347,7 @@ const HygiaPlusDemo = () => {
         <footer className="bg-accent text-accent-foreground py-6">
           <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <img src={logo} alt="Select Source Water" className="h-8 brightness-0 invert" />
+              <img src={logo} alt="Select Source Water" className="h-8" />
               <span className="text-accent-foreground/40">|</span>
               <img src={homeDepotLogo} alt="Home Depot Authorized" className="h-8 brightness-0 invert opacity-80" />
             </div>
