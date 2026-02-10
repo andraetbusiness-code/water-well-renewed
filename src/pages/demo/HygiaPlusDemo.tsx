@@ -137,7 +137,7 @@ const HygiaPlusDemo = () => {
                 transition={{ delay: 0.3, duration: 0.7 }}
                 className="relative flex items-center justify-center"
               >
-                <img src={slickFront} alt="Hygia+ Dual Tank System" className="w-full rounded-2xl shadow-2xl object-contain" />
+                <img src={slickFront} alt="Hygia+ Dual Tank System" className="w-full object-contain" />
               </motion.div>
             </div>
           </div>
@@ -252,7 +252,7 @@ const HygiaPlusDemo = () => {
               transition={{ duration: 0.5 }}
               className="mt-12 flex justify-center"
             >
-              <img src={slickBack} alt="Hygia+ Details" className="rounded-2xl shadow-lg max-w-md w-full object-contain" />
+              <img src={slickBack} alt="Hygia+ Details" className="w-full max-w-3xl object-contain" />
             </motion.div>
 
             {/* CTA */}
