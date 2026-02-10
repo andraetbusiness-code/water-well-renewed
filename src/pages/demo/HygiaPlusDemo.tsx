@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { Check, Phone, Shield, MapPin, Award, Star, Sparkles } from "lucide-react";
+import { Check, Phone, Shield, MapPin, Award, Star, Sparkles, Clock, Droplets, AlertTriangle, Gift } from "lucide-react";
 import slickFront from "@/assets/marketing/hygia-plus-slick-front.jpg";
 import slickBack from "@/assets/marketing/hygia-plus-slick-back.jpg";
 import homeDepotLogo from "@/assets/home-depot-logo.png";
@@ -144,22 +144,68 @@ const HygiaPlusDemo = () => {
         </section>
 
         {/* ===== SECTION 2: IN-HOME SPECIAL ===== */}
-        <section className="relative bg-background">
-          {/* Accent banner */}
-          <div className="bg-accent text-accent-foreground py-4">
+        <section className="relative bg-background overflow-hidden">
+          {/* Urgent banner */}
+          <div className="bg-gradient-to-r from-primary via-accent to-primary text-accent-foreground py-5">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="max-w-5xl mx-auto px-6 flex items-center justify-center gap-3"
+              className="max-w-5xl mx-auto px-6 flex flex-col items-center gap-2"
             >
-              <Sparkles className="w-6 h-6" />
-              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">IN-HOME SPECIAL!</h2>
-              <Sparkles className="w-6 h-6" />
+              <div className="flex items-center gap-3">
+                <Sparkles className="w-7 h-7 text-primary-foreground" />
+                <h2 className="text-3xl md:text-4xl font-black tracking-tight text-primary-foreground uppercase">
+                  In-Home Special!
+                </h2>
+                <Sparkles className="w-7 h-7 text-primary-foreground" />
+              </div>
+              <div className="flex items-center gap-2 text-primary-foreground/80">
+                <Clock className="w-4 h-4" />
+                <p className="text-sm font-semibold tracking-wide uppercase">
+                  Only available while your water specialist is in-home
+                </p>
+              </div>
             </motion.div>
           </div>
 
           <div className="max-w-5xl mx-auto px-6 py-12 md:py-16">
+            {/* === FREE REVERSE OSMOSIS HERO CARD === */}
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-12 relative"
+            >
+              <div className="bg-gradient-to-br from-accent via-primary/90 to-accent rounded-2xl p-8 md:p-10 text-center border-2 border-primary/30 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-40 h-40 rounded-full bg-primary-foreground/5 blur-3xl" />
+                <div className="absolute bottom-0 left-0 w-32 h-32 rounded-full bg-primary-foreground/5 blur-3xl" />
+                <div className="relative z-10">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                    className="inline-flex items-center gap-2 bg-primary-foreground/20 backdrop-blur-sm rounded-full px-5 py-2 mb-4"
+                  >
+                    <Gift className="w-5 h-5 text-primary-foreground" />
+                    <span className="text-primary-foreground font-bold text-sm uppercase tracking-wider">Bonus Included</span>
+                  </motion.div>
+                  <h3 className="text-3xl md:text-5xl font-black text-primary-foreground mb-3 uppercase">
+                    Free Reverse Osmosis System
+                  </h3>
+                  <p className="text-primary-foreground/80 text-lg md:text-xl max-w-2xl mx-auto mb-4">
+                    A <span className="font-bold text-primary-foreground">$1,500+ value</span> — pure drinking water at your kitchen tap, included at no extra cost with today's installation.
+                  </p>
+                  <div className="inline-flex items-center gap-2 bg-primary-foreground/10 backdrop-blur-sm rounded-full px-4 py-2 border border-primary-foreground/20">
+                    <AlertTriangle className="w-4 h-4 text-primary-foreground" />
+                    <span className="text-primary-foreground text-sm font-semibold">This offer expires when your specialist leaves</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
             <div className="grid md:grid-cols-2 gap-10 items-start">
               {/* Left: Pricing + badges */}
               <motion.div
@@ -181,12 +227,25 @@ const HygiaPlusDemo = () => {
 
                 {/* Offer badges */}
                 <div className="flex flex-wrap gap-3 mb-8">
-                  <div className="bg-primary text-primary-foreground font-bold text-lg px-6 py-3 rounded-xl shadow-lg">
+                  <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1, type: "spring" }}
+                    className="bg-primary text-primary-foreground font-bold text-xl px-7 py-4 rounded-xl shadow-lg"
+                  >
                     $1,000 OFF
-                  </div>
-                  <div className="bg-accent text-accent-foreground font-bold text-lg px-6 py-3 rounded-xl shadow-lg">
-                    FREE REVERSE OSMOSIS
-                  </div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2, type: "spring" }}
+                    className="bg-accent text-accent-foreground font-bold text-xl px-7 py-4 rounded-xl shadow-lg flex items-center gap-2"
+                  >
+                    <Droplets className="w-5 h-5" />
+                    FREE RO SYSTEM
+                  </motion.div>
                 </div>
 
                 {/* Promotions callout */}
@@ -200,9 +259,17 @@ const HygiaPlusDemo = () => {
                 </div>
 
                 {/* Urgency */}
-                <p className="text-muted-foreground text-sm italic">
-                  Offer valid today only
-                </p>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  className="flex items-center gap-2 text-destructive"
+                >
+                  <Clock className="w-4 h-4" />
+                  <p className="text-sm font-bold uppercase tracking-wide">
+                    Today only — while your specialist is here
+                  </p>
+                </motion.div>
               </motion.div>
 
               {/* Right: Features list + description */}
@@ -212,10 +279,11 @@ const HygiaPlusDemo = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.15, duration: 0.5 }}
               >
-                <h3 className="text-lg font-bold text-foreground mb-4">Features:</h3>
+                <h3 className="text-lg font-bold text-foreground mb-4">Everything Included:</h3>
                 <div className="space-y-3 mb-8">
                   {[
                     ...features,
+                    "FREE Reverse Osmosis drinking system",
                     "LIFETIME WARRANTY (ask for details)",
                   ].map((feat, i) => (
                     <motion.div
@@ -230,7 +298,7 @@ const HygiaPlusDemo = () => {
                       <div className="mt-0.5 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                         <Check className="w-3.5 h-3.5 text-primary" />
                       </div>
-                      <span className="text-foreground/80 text-sm">{feat}</span>
+                      <span className={`text-sm ${feat.includes("FREE Reverse Osmosis") ? "text-primary font-bold" : "text-foreground/80"}`}>{feat}</span>
                     </motion.div>
                   ))}
                 </div>
