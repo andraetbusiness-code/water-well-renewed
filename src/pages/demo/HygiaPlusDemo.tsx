@@ -1,6 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { Check, Phone, Shield, MapPin, Droplets, Award, Star, Sparkles } from "lucide-react";
+import { Check, Phone, Shield, MapPin, Award, Star, Sparkles } from "lucide-react";
+import slickFront from "@/assets/marketing/hygia-plus-slick-front.jpg";
+import slickBack from "@/assets/marketing/hygia-plus-slick-back.jpg";
 import homeDepotLogo from "@/assets/home-depot-logo.png";
 import logo from "@/assets/logo.png";
 
@@ -135,14 +137,7 @@ const HygiaPlusDemo = () => {
                 transition={{ delay: 0.3, duration: 0.7 }}
                 className="relative flex items-center justify-center"
               >
-                <div className="w-full max-w-sm mx-auto">
-                  <div className="relative aspect-square rounded-3xl bg-primary-foreground/5 backdrop-blur-sm border border-primary-foreground/10 flex flex-col items-center justify-center p-8">
-                    <Droplets className="w-20 h-20 text-primary-foreground/40 mb-4" />
-                    <p className="text-primary-foreground/60 text-center text-sm leading-relaxed">
-                      Our dual tank technology is designed to remove 99.99% of all hardness and chemicals reported by your water district. These units are uniquely designed to remove each chemical and mineral through the filtration media and are fully warranted for the lifetime you spend in your home.
-                    </p>
-                  </div>
-                </div>
+                <img src={slickFront} alt="Hygia+ Dual Tank System" className="w-full rounded-2xl shadow-2xl object-contain" />
               </motion.div>
             </div>
           </div>
@@ -248,6 +243,17 @@ const HygiaPlusDemo = () => {
                 </div>
               </motion.div>
             </div>
+
+            {/* Back-side image */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="mt-12 flex justify-center"
+            >
+              <img src={slickBack} alt="Hygia+ Details" className="rounded-2xl shadow-lg max-w-md w-full object-contain" />
+            </motion.div>
 
             {/* CTA */}
             <motion.div
