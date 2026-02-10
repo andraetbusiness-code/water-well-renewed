@@ -1,25 +1,22 @@
 
+# Remove White Border from Top Image
 
-# Add PDF Images and Logo to Hygia+ Demo Page
+## Problem
+The front-side PDF image (`slickFront`) has white margins baked into the JPG file from the PDF extraction. On the blue gradient hero background, this creates a visible white outline. The bottom image blends fine because it sits on a white background.
 
-## Changes
-
-Three updates to `src/pages/demo/HygiaPlusDemo.tsx`:
-
-1. **Hero Section (right column, lines 131-146):** Replace the Droplets icon placeholder with the front-side PDF image (`hygia-plus-slick-front.jpg`). The image will be displayed in a rounded container with a subtle shadow, fitting naturally into the blue gradient. The description text currently in that box will be removed since it's already repeated in Section 2.
-
-2. **In-Home Special Section (after the two-column grid, before the CTA, around line 251):** Add the back-side PDF image (`hygia-plus-slick-back.jpg`) as a full-width visual between the content and the phone CTA. Styled with rounded corners, shadow, and a fade-in animation.
-
-3. **Logo in the hero placeholder:** The SSW logo is already displayed in the top-left logo bar (line 50). The "placeholder spot" was the Droplets icon area -- replacing it with the front-side product image addresses both requests.
+## Solution
+Add `overflow-hidden` and `rounded-xl` to the container div, then scale the image up slightly (e.g., `scale-110`) so the white edges get clipped outside the visible area. This crops away the white border while keeping the core content fully visible.
 
 ## Technical Details
 
 **File:** `src/pages/demo/HygiaPlusDemo.tsx`
 
-- Add imports for the two marketing images:
-  - `import slickFront from "@/assets/marketing/hygia-plus-slick-front.jpg"`
-  - `import slickBack from "@/assets/marketing/hygia-plus-slick-back.jpg"`
-- Remove `Droplets` from the lucide-react import (no longer needed)
-- **Lines 138-145:** Replace the Droplets icon + text box with `<img src={slickFront}>` styled with `rounded-2xl shadow-2xl w-full object-contain`
-- **After line 250 (before CTA):** Add a centered `<motion.div>` containing `<img src={slickBack}>` with fade-in animation, `rounded-2xl shadow-lg max-w-md mx-auto`
+**Line 138** -- Update the motion.div container class:
+- From: `"relative flex items-center justify-center"`
+- To: `"relative flex items-center justify-center overflow-hidden rounded-xl"`
 
+**Line 140** -- Update the img class to scale up:
+- From: `"w-full object-contain"`
+- To: `"w-full object-contain scale-110"`
+
+This crops off the white edges while the image content stays centered and visible. No new files or imports needed.
