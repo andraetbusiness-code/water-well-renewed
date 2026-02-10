@@ -4,7 +4,7 @@ import { Check, Phone, Shield, MapPin, Award, Star, Sparkles, Clock, Droplets, A
 import slickFront from "@/assets/marketing/hygia-plus-slick-front.jpg";
 import slickBack from "@/assets/marketing/hygia-plus-slick-back.jpg";
 import homeDepotLogo from "@/assets/home-depot-logo.png";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-icon.png";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
