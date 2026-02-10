@@ -135,9 +135,9 @@ const HygiaPlusDemo = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3, duration: 0.7 }}
-                className="relative flex items-center justify-center"
+                className="relative flex items-center justify-center overflow-hidden rounded-xl"
               >
-                <img src={slickFront} alt="Hygia+ Dual Tank System" className="w-full object-contain" />
+                <img src={slickFront} alt="Hygia+ Dual Tank System" className="w-full object-contain scale-110" />
               </motion.div>
             </div>
           </div>
