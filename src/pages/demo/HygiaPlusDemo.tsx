@@ -2,9 +2,8 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Check, Phone, Shield, MapPin, Award, Star, Sparkles, Clock, Droplets, AlertTriangle, Gift } from "lucide-react";
 import slickFront from "@/assets/marketing/hygia-plus-slick-front.jpg";
-import slickBack from "@/assets/marketing/hygia-plus-slick-back.jpg";
-import homeDepotLogo from "@/assets/home-depot-logo.png";
-import logo from "@/assets/logo-icon.png";
+import inHomeDeal from "@/assets/marketing/hygia-plus-in-home-deal.png";
+import logo from "@/assets/ssw-badge.png";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -49,7 +48,7 @@ const HygiaPlusDemo = () => {
               transition={{ duration: 0.6 }}
               className="flex items-center justify-between mb-10"
             >
-              <img src={logo} alt="Select Source Water" className="h-10 md:h-14 brightness-0 invert" />
+              <img src={logo} alt="Select Source Water" className="h-10 md:h-14" />
               <div className="flex items-center gap-2 text-primary-foreground/70 text-sm">
                 <MapPin className="w-4 h-4" />
                 <span>Manufactured in Southern California</span>
@@ -214,7 +213,7 @@ const HygiaPlusDemo = () => {
               transition={{ duration: 0.5 }}
               className="mb-12 flex justify-center"
             >
-              <img src={slickBack} alt="Hygia+ Details" className="w-full max-w-3xl object-contain" />
+              <img src={inHomeDeal} alt="Hygia+ In-Home Deal" className="w-full max-w-3xl object-contain" />
             </motion.div>
 
             <div className="grid md:grid-cols-2 gap-10 items-start">
@@ -348,8 +347,6 @@ const HygiaPlusDemo = () => {
           <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <img src={logo} alt="Select Source Water" className="h-8" />
-              <span className="text-accent-foreground/40">|</span>
-              <img src={homeDepotLogo} alt="Home Depot Authorized" className="h-8 brightness-0 invert opacity-80" />
             </div>
             <div className="flex items-center gap-6 text-sm text-accent-foreground/70">
               <a href="tel:8336027765" className="hover:text-accent-foreground transition-colors flex items-center gap-1.5">
