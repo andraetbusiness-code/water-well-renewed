@@ -5,7 +5,7 @@ import { CheckSquare } from 'lucide-react';
 const checklistItems = [
   {
     title: 'Join team communication channel',
-    placeholder: '[Slack / GroupMe / other]',
+    placeholder: 'Chat in Enzy.co app',
   },
   {
     title: 'Access CRM / lead form',
