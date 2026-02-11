@@ -1,31 +1,25 @@
 import { motion } from 'framer-motion';
 import { OnboardingSlideLayout } from '../OnboardingSlideLayout';
-import { Target, Calendar, PhoneCall, Database } from 'lucide-react';
+import { Target, Calendar, PhoneCall } from 'lucide-react';
 
 const expectations = [
   {
     icon: Target,
-    title: 'Daily Activity Minimums',
-    description: 'Consistent customer interactions every shift',
-    placeholder: '25 conversations per shift',
+    title: 'Appointments',
+    description: 'Water tests / consultations booked weekly',
+    placeholder: '25 appointments per week',
   },
   {
     icon: Calendar,
-    title: 'Appointment Targets',
-    description: 'Water tests / consultations booked',
-    placeholder: '10 appointments per shift',
+    title: 'Sits',
+    description: 'In-home consultations completed weekly',
+    placeholder: '10 sits per week',
   },
   {
     icon: PhoneCall,
-    title: 'Confirmation Discipline',
-    description: 'Customer must reply YES before dispatch',
-    placeholder: 'Confirmation must be YES before dispatch',
-  },
-  {
-    icon: Database,
-    title: 'Accurate Data Entry',
-    description: 'Every lead logged in GHL same day',
-    placeholder: 'GHL — same day, every lead',
+    title: 'Closes',
+    description: 'Confirmed sales closed weekly',
+    placeholder: '3 closes per week',
   },
 ];
 
