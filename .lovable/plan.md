@@ -1,25 +1,22 @@
 
-# Fix Link Share Thumbnail for Hygia+ Demo Page
+# Remove Marketing Gallery from Onboarding Deck + Add Subdomain Route
 
-## Problem
-When sharing `https://water-well-renewed.lovable.app/demo/hygia-plus`, the preview thumbnail shows a broken/generic image because the page has no Open Graph meta tags, and the global ones in `index.html` point to a default Lovable placeholder.
+## What's Changing
 
-## Solution
-Add OG meta tags to the Hygia+ demo page using the existing `<Helmet>` component, and place a branded image in the `public/` folder so it's accessible via a direct URL (required for social previews).
+1. **Remove the Marketing Gallery slide** from the onboarding deck (line 83 in `FieldRepOnboarding.tsx`) and its import (line 28).
 
-## Steps
+2. **Add a `marketing` subdomain route** in `src/App.tsx` using the same subdomain detection pattern already used for `demo`. When someone visits `marketing.selectsourcewater.com`, it will render the `MarketingGallerySlide` component as a standalone page with a placeholder message indicating more content is coming.
 
-1. **Copy `src/assets/ssw-badge.png` to `public/og-image.png`** so it can be referenced by an absolute URL.
+## Files Modified
 
-2. **Update `src/pages/demo/HygiaPlusDemo.tsx`** -- add OG meta tags inside the existing `<Helmet>` block:
-   - `og:title` = "Dual Tank HYGIA+ | Select Source Water"
-   - `og:description` = "Premium water softening and filtration. Free in-home water testing with exclusive in-home deal."
-   - `og:image` = `https://water-well-renewed.lovable.app/og-image.png`
-   - `og:url` = `https://water-well-renewed.lovable.app/demo/hygia-plus`
-   - `og:type` = "website"
-   - `twitter:card` = "summary_large_image"
-   - `twitter:image` = same image URL
+| File | Change |
+|------|--------|
+| `src/pages/FieldRepOnboarding.tsx` | Remove `MarketingGallerySlide` import and usage (lines 28, 83) |
+| `src/App.tsx` | Add `marketing` subdomain detection and route, rendering the existing `MarketingGallerySlide` as a standalone page |
 
-3. **Update `index.html`** -- change the fallback `og:image` and `twitter:image` from the Lovable placeholder to `https://water-well-renewed.lovable.app/og-image.png` so all pages benefit.
+## Technical Details
 
-After publishing, the shared link will show the SSW badge with the correct title instead of the broken preview. Social platforms cache thumbnails, so it may take a little time to update.
+- In `App.tsx`, extend the existing subdomain logic (currently handles `demo`) to also detect `marketing` and render a `MarketingRoutes` component
+- The marketing subdomain will render the `MarketingGallerySlide` wrapped in a minimal layout (no onboarding header)
+- No new files needed -- reuses the existing `MarketingGallerySlide` component
+- No design or styling changes
