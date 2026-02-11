@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import { OnboardingSlideLayout } from '../OnboardingSlideLayout';
 import { Heart } from 'lucide-react';
+import supportPhoto from '@/assets/photos/support-lifestyle.jpg';
 
 export function SupportStatementSlide() {
   return (
-    <OnboardingSlideLayout id="support" variant="teal">
+    <OnboardingSlideLayout id="support" variant="teal" backgroundImage={supportPhoto} overlayOpacity={0.75}>
       <div className="min-h-[80vh] flex flex-col items-center justify-center text-center">
         <motion.div
           className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center mb-10"

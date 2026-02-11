@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { OnboardingSlideLayout } from '../OnboardingSlideLayout';
 import { DollarSign, Gift, Award } from 'lucide-react';
+import incentivesPhoto from '@/assets/photos/incentives-lifestyle.jpg';
 
 const incentives = [
   {
@@ -22,7 +23,7 @@ const incentives = [
 
 export function IncentivesSlide() {
   return (
-    <OnboardingSlideLayout variant="teal">
+    <OnboardingSlideLayout variant="teal" backgroundImage={incentivesPhoto} overlayOpacity={0.75}>
       <div className="min-h-[80vh] flex flex-col items-center justify-center">
         <motion.h2
           className="font-serif text-4xl md:text-5xl text-white mb-4 text-center"
