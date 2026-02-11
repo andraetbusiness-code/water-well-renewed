@@ -1,49 +1,50 @@
 
-# Add Communication & Notes Context to Enzy and GHL Slides
 
-Content-only updates to two existing slides. No layout or style changes.
+# Fix Text & Icon Visibility on Photo Background Slides
 
----
+## Problem
 
-## 1. EnzySlide.tsx -- Add two new content points
+Two categories of elements are hard to see on slides with teal-tinted photo backgrounds:
 
-**A) Add a new feature card: "Lead Notes"**
-- Title: "Lead Notes"
-- Description: "Log details that help close in-home: age, kids, how long in the home, concerns mentioned during the water test pitch"
-- Icon: `FileText` (from lucide-react)
-- Placed in the existing features grid alongside the other 6 cards
+1. **"No YES confirmation = not booked" callout boxes** -- Use `text-accent` (deep blue) on `bg-accent/10` (nearly transparent deep blue). Against a dark teal photo overlay, this is blue-on-blue and nearly invisible.
 
-**B) Add a new feature card: "Deal Communication"**
-- Title: "Deal Communication"
-- Description: "Enzy is how we communicate with you on your deals. You do not get paid until the project is installed."
-- Icon: `DollarSign` (from lucide-react)
-- Placed in the features grid (total will be 8 cards, still works in the 3-column grid)
+2. **Icon containers in cards** (e.g., the chat bubble in "Create Rapport") -- Use `text-primary` (water blue) on `bg-primary/10` (transparent blue). On a teal background, these blend in completely.
 
-**C) Update the subtitle** from "Daily execution, accountability, and performance in one place." to "Daily execution, accountability, deal communication, and performance in one place."
+These issues appear on: YourOnlyJobSlide, HowMetricsWorkSlide, IncentivesSlide, and any other slide using these patterns on photo backgrounds.
 
 ---
 
-## 2. GHLSlide.tsx -- Add customer communication context
+## Changes
 
-**A) Add a new feature card: "Customer Communication"**
-- Title: "Customer Communication"
-- Description: "GHL is how we communicate with your customers -- confirmations, reminders, and follow-ups"
-- Icon: `MessageSquare` (from lucide-react)
-- Placed in the features grid (total will be 7 cards)
+### 1. YourOnlyJobSlide.tsx (photo background)
+
+- **Icon containers**: Change from `bg-primary/10` + `text-primary` to `bg-white/20` + `text-white` so icons pop against the dark overlay
+- **Step number badges**: Change from `bg-primary text-primary-foreground` to `bg-accent text-white` for contrast
+- **"No YES confirmation" callout**: Change from `bg-accent/10 border-accent/30 text-accent` to `bg-white/15 backdrop-blur-sm border-white/30 text-white font-bold` with a drop shadow
+
+### 2. IncentivesSlide.tsx (photo background)
+
+- The disclaimer text `text-white/60` is too faint -- bump to `text-white/80` with `drop-shadow-md`
+
+### 3. HowMetricsWorkSlide.tsx (cream background, no photo)
+
+- The "No YES confirmation" callout uses `text-accent` on cream -- accent is dark blue on light cream, which should be fine, but we will still strengthen it with `bg-accent text-white font-bold` to make it unmissable and consistent with the other slides
+
+### 4. ScriptRulesSlide.tsx (cream, no photo)
+
+- Already uses solid `bg-card` cards with `text-foreground` -- no changes needed, this is readable.
 
 ---
 
-## 3. InstallPayoutRulesSlide.tsx -- Update payout rule
+## Technical Details
 
-**A) Update the first rule** ("A job counts when:") description from placeholder to:
-"The project is fully installed. You do not get paid until installation is complete."
+| File | Element | Current | New |
+|------|---------|---------|-----|
+| `YourOnlyJobSlide.tsx` | Icon boxes | `bg-primary/10 text-primary` | `bg-white/20 text-white` |
+| `YourOnlyJobSlide.tsx` | Step badges | `bg-primary text-primary-foreground` | `bg-white text-primary font-bold` |
+| `YourOnlyJobSlide.tsx` | Callout box | `bg-accent/10 border-accent/30` + `text-accent` | `bg-white/20 backdrop-blur-sm border-white/30` + `text-white drop-shadow-md` |
+| `IncentivesSlide.tsx` | Disclaimer | `text-white/60` | `text-white/80 drop-shadow-md` |
+| `HowMetricsWorkSlide.tsx` | Callout box | `bg-accent/10 border-accent/30` + `text-accent` | `bg-accent text-white` (solid fill) |
 
----
+No layout or structural changes -- only color/contrast tweaks to ensure every element is clearly readable.
 
-## Files Changed
-
-| File | Change |
-|------|--------|
-| `EnzySlide.tsx` | Add 2 feature cards (Lead Notes, Deal Communication), update subtitle |
-| `GHLSlide.tsx` | Add 1 feature card (Customer Communication) |
-| `InstallPayoutRulesSlide.tsx` | Update payout rule description |
