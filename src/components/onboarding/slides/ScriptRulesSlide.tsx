@@ -8,7 +8,7 @@ const doItems = [
   'Give two appointment options',
   'Collect name + phone + address + email accurately',
   'Watch the customer reply YES before leaving',
-  'Use one-hour window language (no exact arrival promises)',
+  'Use two-hour window language (no exact arrival promises)',
 ];
 
 const dontItems = [

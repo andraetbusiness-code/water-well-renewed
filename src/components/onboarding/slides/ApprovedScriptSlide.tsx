@@ -38,7 +38,7 @@ const scriptSections = [
   },
   {
     label: 'TIME WINDOW',
-    text: `"Give them a one-hour window. They're going to get there as close to the appointment time as possible, but they're driving all over the place doing water tests."`,
+    text: `"Give them a two-hour window. They're going to get there as close to the appointment time as possible, but they're driving all over the place doing water tests."`,
   },
 ];
 
