@@ -405,7 +405,7 @@ const GBPAudit = () => {
 
         {/* ═══════════════ BUSINESS IMPACT ESTIMATE ═══════════════ */}
         <section className="audit-section">
-          <SectionTitle id="impact">Business Impact Estimate (No Hype — Conservative)</SectionTitle>
+          <SectionTitle id="impact">Business Impact Estimate (Conservative)</SectionTitle>
           <p className="text-sm text-gray-700 leading-relaxed mb-4">
             Current paid acquisition: Meta leads at <strong>$75/lead</strong><br />
             Average deal size: <strong>$7,990</strong>
@@ -431,6 +431,70 @@ const GBPAudit = () => {
 
           <SimpleTermsCard>
             Even conservative improvements to your Google presence could drive an additional $63,920/month in revenue — nearly $767K per year — while reducing your dependence on $75 paid leads.
+          </SimpleTermsCard>
+
+          {/* --- Paid Growth Upside Sub-section --- */}
+          <h3 className="text-lg font-bold mt-10 mb-4 audit-no-break" style={{ color: "#123B8A" }}>
+            Paid Growth Upside (Future Layer): If the Same Budget Were Shifted to Properly Structured Google Ads
+          </h3>
+
+          <p className="text-sm text-gray-700 leading-relaxed mb-4">
+            Right now, paid acquisition is coming primarily from Meta at $75 per lead. Meta can work, but it's not always capturing customers at the exact moment they're actively searching for a solution.
+          </p>
+          <p className="text-sm text-gray-700 leading-relaxed mb-4">
+            Google Ads sits in a different intent category: it captures <strong>"I need this now"</strong> searches like <em>water softener installation</em>, <em>whole house water filtration</em>, <em>free water test near me</em>, and <em>water treatment company Sacramento</em>. When the Google foundation is properly structured, Google Ads performance typically improves because Google has clearer signals about what the business is, where it operates, and which searches it should match.
+          </p>
+
+          <h4 className="text-sm font-bold mt-6 mb-3 audit-no-break" style={{ color: "#1E6FD9" }}>
+            What this could mean financially (simple model)
+          </h4>
+          <p className="text-sm text-gray-700 leading-relaxed mb-4">
+            If your current Meta ad spend is <strong>$X/month</strong>, then today you're roughly buying:
+          </p>
+          <p className="text-sm text-gray-700 leading-relaxed mb-4 ml-4 italic">
+            Meta leads/month = $X ÷ $75
+          </p>
+          <p className="text-sm text-gray-700 leading-relaxed mb-4">
+            If that same $X/month is applied to well-structured Google Ads in Sacramento, the expected outcome is usually one (or more) of these improvements:
+          </p>
+          <ul className="list-disc list-outside ml-6 space-y-2 text-sm text-gray-700 mb-6">
+            <li>More qualified leads at similar cost</li>
+            <li>Lower cost per lead (because search intent is higher)</li>
+            <li>Higher close rate (because the customer is actively looking right now)</li>
+            <li>Better scalability (because search demand is consistent)</li>
+          </ul>
+
+          <h4 className="text-sm font-bold mt-6 mb-3 audit-no-break" style={{ color: "#1E6FD9" }}>
+            Range scenarios
+          </h4>
+          <p className="text-sm text-gray-700 leading-relaxed mb-4">
+            To keep this grounded, here are three realistic outcomes when shifting the same spend to Google Ads (actual results vary based on market competition, seasonality, and setup quality):
+          </p>
+
+          <DataTable
+            title="Google Ads Shift — Range Scenarios"
+            subtitle="Same budget, different channel"
+            headers={["Scenario", "Expected Outcome"]}
+            rows={[
+              [<strong>Conservative</strong>, "Same lead volume as Meta, but higher quality → improved close rate and revenue per lead"],
+              [<strong>Strong</strong>, "15–35% more leads at the same spend (or similar leads, but cheaper CPL)"],
+              [<strong>Best-case</strong>, "Meaningful CPL reduction + higher close rates → significantly higher revenue per dollar spent"],
+            ]}
+          />
+
+          <h4 className="text-sm font-bold mt-6 mb-3 audit-no-break" style={{ color: "#1E6FD9" }}>
+            Why this matters even if the focus stays organic
+          </h4>
+          <p className="text-sm text-gray-700 leading-relaxed mb-4">
+            Organic is the long-term compounding asset. But once the profile and local structure are aligned, <strong>Google Ads becomes a multiplier instead of a separate channel</strong> — meaning paid performance can rise because the business is clearly positioned in the market it actually serves.
+          </p>
+
+          <CalloutCard severity="info" title="Bottom Line">
+            Meta can keep producing leads, but a properly structured Google ecosystem unlocks a second growth engine where the same spend can produce higher-intent demand, and potentially a better return per lead over time.
+          </CalloutCard>
+
+          <SimpleTermsCard>
+            You're already spending money on Meta ads at $75 per lead. If that same budget were redirected to Google Ads — after the profile is properly structured — you'd likely get higher-quality leads who are actively searching right now, which typically means better close rates and more revenue per dollar spent.
           </SimpleTermsCard>
         </section>
 
