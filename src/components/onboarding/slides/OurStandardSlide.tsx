@@ -10,10 +10,10 @@ const standards = [
 
 export function OurStandardSlide() {
   return (
-    <OnboardingSlideLayout variant="teal" backgroundImage={proInstalls} overlayOpacity={0.75}>
+    <OnboardingSlideLayout variant="teal" backgroundImage={proInstalls} overlayOpacity={0.8}>
       <div className="min-h-[80vh] flex flex-col items-center justify-center text-center">
         <motion.span
-          className="text-sm font-semibold tracking-[0.3em] text-white/70 uppercase mb-6"
+          className="text-sm font-semibold tracking-[0.3em] text-white/80 uppercase mb-6 drop-shadow-md"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -26,7 +26,7 @@ export function OurStandardSlide() {
           {standards.map((text, index) => (
             <motion.h2
               key={index}
-              className="font-serif text-3xl md:text-4xl lg:text-5xl text-white leading-tight"
+              className="font-serif text-3xl md:text-4xl lg:text-5xl text-white leading-tight drop-shadow-lg"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

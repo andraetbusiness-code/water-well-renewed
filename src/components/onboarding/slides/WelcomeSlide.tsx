@@ -5,7 +5,7 @@ import crewPhoto from '@/assets/photos/crew.png';
 
 export function WelcomeSlide() {
   return (
-    <OnboardingSlideLayout id="identity" variant="teal" backgroundImage={crewPhoto} overlayOpacity={0.75}>
+    <OnboardingSlideLayout id="identity" variant="teal" backgroundImage={crewPhoto} overlayOpacity={0.8}>
       <div className="min-h-[80vh] flex flex-col items-center justify-center text-center">
         <motion.img
           src={logo}
@@ -18,7 +18,7 @@ export function WelcomeSlide() {
         />
 
          <motion.h2
-          className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-8 max-w-3xl"
+          className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-8 max-w-3xl drop-shadow-lg"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -36,7 +36,7 @@ export function WelcomeSlide() {
         />
 
         <motion.p
-          className="text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed"
+          className="text-lg md:text-xl text-white/90 max-w-2xl leading-relaxed drop-shadow-md"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}

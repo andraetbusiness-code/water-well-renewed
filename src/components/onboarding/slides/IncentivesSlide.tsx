@@ -23,10 +23,10 @@ const incentives = [
 
 export function IncentivesSlide() {
   return (
-    <OnboardingSlideLayout variant="teal" backgroundImage={incentivesPhoto} overlayOpacity={0.75}>
+    <OnboardingSlideLayout variant="teal" backgroundImage={incentivesPhoto} overlayOpacity={0.8}>
       <div className="min-h-[80vh] flex flex-col items-center justify-center">
         <motion.h2
-          className="font-serif text-4xl md:text-5xl text-white mb-4 text-center"
+          className="font-serif text-4xl md:text-5xl text-white mb-4 text-center drop-shadow-lg"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -36,7 +36,7 @@ export function IncentivesSlide() {
         </motion.h2>
 
         <motion.p
-          className="text-white/80 text-center mb-12 max-w-lg"
+          className="text-white/90 text-center mb-12 max-w-lg drop-shadow-md"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -49,7 +49,7 @@ export function IncentivesSlide() {
           {incentives.map((item, index) => (
             <motion.div
               key={item.title}
-              className="p-8 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 text-center"
+              className="p-8 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 text-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -58,14 +58,14 @@ export function IncentivesSlide() {
               <div className="w-16 h-16 rounded-xl bg-white/20 flex items-center justify-center mx-auto mb-5">
                 <item.icon className="w-8 h-8 text-white" />
               </div>
-              <h3 className="font-serif text-xl text-white mb-2">{item.title}</h3>
-              <p className="text-white/70 text-sm">{item.description}</p>
+              <h3 className="font-serif text-xl text-white mb-2 drop-shadow-md">{item.title}</h3>
+              <p className="text-white/80 text-sm drop-shadow-sm">{item.description}</p>
             </motion.div>
           ))}
         </div>
 
         <motion.p
-          className="text-xs text-white/50 mt-10 text-center"
+          className="text-xs text-white/60 mt-10 text-center drop-shadow-sm"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
