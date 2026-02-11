@@ -7,13 +7,13 @@ const expectations = [
     icon: Target,
     title: 'Daily Activity Minimums',
     description: 'Consistent customer interactions every shift',
-    placeholder: '[X conversations per shift]',
+    placeholder: '25 conversations per shift',
   },
   {
     icon: Calendar,
-    title: 'Weekly Appointment Minimums',
+    title: 'Appointment Targets',
     description: 'Water tests / consultations booked',
-    placeholder: '[X appointments per week]',
+    placeholder: '10 appointments per shift',
   },
   {
     icon: PhoneCall,

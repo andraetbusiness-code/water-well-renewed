@@ -1,31 +1,40 @@
 import { motion } from 'framer-motion';
 import { OnboardingSlideLayout } from '../OnboardingSlideLayout';
-import { User, Phone, MapPin } from 'lucide-react';
+import { User, Phone } from 'lucide-react';
+
+const enzySupport = [
+  {
+    name: 'Diamond Dunigan',
+    title: 'Enzy Support',
+    phone: '+1 (209) 277-5358',
+    region: 'Enzy Support',
+  },
+];
 
 const leaders = [
   {
-    name: '[Name Placeholder]',
-    title: '[Title Placeholder]',
-    phone: '[Phone Placeholder]',
-    region: '[Region]',
+    name: 'Branden Glover',
+    title: 'Leadership',
+    phone: '+1 (916) 465-3358',
+    region: 'Leadership',
   },
   {
-    name: '[Name Placeholder]',
-    title: '[Title Placeholder]',
-    phone: '[Phone Placeholder]',
-    region: '[Region]',
+    name: 'Chris Thomsen',
+    title: 'Leadership',
+    phone: '+1 (458) 232-2283',
+    region: 'Leadership',
   },
   {
-    name: '[Name Placeholder]',
-    title: '[Title Placeholder]',
-    phone: '[Phone Placeholder]',
-    region: '[Region]',
+    name: 'Josh Martin',
+    title: 'Leadership',
+    phone: '+1 (435) 654-8000',
+    region: 'Leadership',
   },
   {
-    name: '[Name Placeholder]',
-    title: '[Title Placeholder]',
-    phone: '[Phone Placeholder]',
-    region: '[Region]',
+    name: 'Eric Knowlton',
+    title: 'Leadership',
+    phone: '+1 (951) 330-9330',
+    region: 'Leadership',
   },
 ];
 
@@ -53,8 +62,18 @@ export function LeadershipDirectorySlide() {
           Use the latest posted directory for current contact info.
         </motion.p>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto w-full">
-          {leaders.map((leader, index) => (
+        {/* Enzy Support Section */}
+        <motion.h3
+          className="font-serif text-xl text-foreground mb-4 max-w-4xl mx-auto w-full"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.4 }}
+        >
+          Enzy Support
+        </motion.h3>
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto w-full mb-10">
+          {enzySupport.map((leader, index) => (
             <motion.div
               key={index}
               className="p-6 rounded-2xl bg-card border border-border"
@@ -70,15 +89,46 @@ export function LeadershipDirectorySlide() {
                 <div className="flex-1">
                   <h3 className="font-serif text-lg text-foreground">{leader.name}</h3>
                   <p className="text-sm text-primary font-medium mb-3">{leader.title}</p>
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Phone className="w-4 h-4" />
-                      {leader.phone}
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <MapPin className="w-4 h-4" />
-                      {leader.region}
-                    </div>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Phone className="w-4 h-4" />
+                    {leader.phone}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Leadership Section */}
+        <motion.h3
+          className="font-serif text-xl text-foreground mb-4 max-w-4xl mx-auto w-full"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.4 }}
+        >
+          Leadership
+        </motion.h3>
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto w-full">
+          {leaders.map((leader, index) => (
+            <motion.div
+              key={index}
+              className="p-6 rounded-2xl bg-card border border-border"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: (index + 1) * 0.1, duration: 0.5 }}
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <User className="w-7 h-7 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-serif text-lg text-foreground">{leader.name}</h3>
+                  <p className="text-sm text-primary font-medium mb-3">{leader.title}</p>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Phone className="w-4 h-4" />
+                    {leader.phone}
                   </div>
                 </div>
               </div>

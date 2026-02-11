@@ -1,37 +1,25 @@
 import { motion } from 'framer-motion';
 import { OnboardingSlideLayout } from '../OnboardingSlideLayout';
-import { MessageSquare, Users, CalendarCheck, Award, CheckCircle2 } from 'lucide-react';
+import { MessageSquare, CalendarCheck, CheckCircle2 } from 'lucide-react';
 
 const metrics = [
   {
     icon: MessageSquare,
     title: 'Conversations',
     description: 'Customer interactions in-store',
-    placeholder: '[X per shift]',
-  },
-  {
-    icon: Users,
-    title: 'Contacts Captured',
-    description: 'Names + phone numbers collected',
-    placeholder: '[X per week]',
+    placeholder: '25 per shift',
   },
   {
     icon: CalendarCheck,
     title: 'Appointments Set',
     description: 'Water tests / consultations booked',
-    placeholder: '[X per week]',
+    placeholder: '10 per shift',
   },
   {
     icon: CheckCircle2,
-    title: 'Confirmed YES',
-    description: 'Customer replied YES on the spot',
-    placeholder: '[X per week]',
-  },
-  {
-    icon: Award,
-    title: 'Show Rate',
-    description: 'Confirmed appointments that showed up',
-    placeholder: '[Tracked]',
+    title: 'Closed',
+    description: 'Confirmed appointments that convert',
+    placeholder: '3 per shift',
   },
 ];
 
@@ -39,6 +27,16 @@ export function HowMetricsWorkSlide() {
   return (
     <OnboardingSlideLayout id="performance" variant="cream">
       <div className="min-h-[80vh] flex flex-col justify-center">
+        <motion.span
+          className="text-sm font-semibold tracking-[0.2em] text-primary uppercase mb-4 block text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.3 }}
+        >
+          New Rep Minimums (Per Shift)
+        </motion.span>
+
         <motion.h2
           className="font-serif text-4xl md:text-5xl text-foreground mb-4 text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -89,6 +87,18 @@ export function HowMetricsWorkSlide() {
           transition={{ delay: 0.6, duration: 0.5 }}
         >
           <p className="text-sm font-bold">No YES confirmation = not booked</p>
+        </motion.div>
+
+        <motion.div
+          className="mt-4 max-w-lg mx-auto rounded-xl bg-muted/50 border border-border p-4 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.7, duration: 0.5 }}
+        >
+          <p className="text-xs text-muted-foreground">
+            Targets are minimums for new reps. Track in Enzy daily and log every appointment in GHL same-day.
+          </p>
         </motion.div>
       </div>
     </OnboardingSlideLayout>
