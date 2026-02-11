@@ -21,6 +21,7 @@ import ExecutiveAudit from "./pages/ExecutiveAudit";
 import GrowthExecutionPlan from "./pages/GrowthExecutionPlan";
 
 const HygiaPlusDemo = lazy(() => import("./pages/demo/HygiaPlusDemo"));
+const MarketingGallerySlide = lazy(() => import("@/components/onboarding/slides/MarketingGallerySlide").then(m => ({ default: m.MarketingGallerySlide })));
 
 // Import print styles for onboarding and audit
 import "./styles/onboarding-print.css";
@@ -32,11 +33,19 @@ const queryClient = new QueryClient();
 const hostname = window.location.hostname;
 const subdomain = hostname.split('.')[0];
 const isDemoSubdomain = subdomain === 'demo';
+const isMarketingSubdomain = subdomain === 'marketing';
 
 const DemoRoutes = () => (
   <Routes>
     <Route path="/" element={<Suspense fallback={null}><HygiaPlusDemo /></Suspense>} />
     <Route path="/hygia-plus" element={<Suspense fallback={null}><HygiaPlusDemo /></Suspense>} />
+    <Route path="*" element={<NotFound />} />
+  </Routes>
+);
+
+const MarketingRoutes = () => (
+  <Routes>
+    <Route path="/" element={<Suspense fallback={null}><MarketingGallerySlide /></Suspense>} />
     <Route path="*" element={<NotFound />} />
   </Routes>
 );
@@ -50,6 +59,8 @@ const App = () => (
         <BrowserRouter>
           {isDemoSubdomain ? (
             <DemoRoutes />
+          ) : isMarketingSubdomain ? (
+            <MarketingRoutes />
           ) : (
             <Routes>
               <Route path="/" element={<Index />} />
