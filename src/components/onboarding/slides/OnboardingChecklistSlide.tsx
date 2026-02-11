@@ -9,23 +9,27 @@ const checklistItems = [
   },
   {
     title: 'Access CRM / lead form',
-    placeholder: '[System name + login instructions]',
+    placeholder: 'GoHighLevel (GHL) — login instructions from your manager',
   },
   {
     title: 'Calendar setup + scheduling rules',
-    placeholder: '[Booking process details]',
+    placeholder: 'Book via GHL — one-hour windows only',
   },
   {
     title: 'Save script + objections notes',
-    placeholder: '[Where to store / access]',
+    placeholder: 'Saved in Enzy.co SOPs section',
   },
   {
     title: 'Uniform / appearance expectations',
-    placeholder: '[Dress code guidelines]',
+    placeholder: 'Clean, professional — SSW-branded or plain (no other logos)',
   },
   {
     title: 'Reporting settings + daily submission routine',
-    placeholder: '[End-of-day process]',
+    placeholder: 'End-of-day: log all leads in GHL, submit Enzy scorecard',
+  },
+  {
+    title: 'Required: Download the Home Depot App',
+    placeholder: 'Use it to help customers find items/aisles — pitch while you walk them there',
   },
 ];
 
@@ -73,6 +77,19 @@ export function OnboardingChecklistSlide() {
             </motion.div>
           ))}
         </div>
+
+        {/* Home Depot App callout */}
+        <motion.div
+          className="mt-6 max-w-2xl mx-auto w-full rounded-xl bg-muted/50 border border-border p-5"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6, duration: 0.4 }}
+        >
+          <p className="text-sm text-foreground italic text-center">
+            "'How are you finding everything today?' → If they need something, help them locate it in the app and walk them there—then transition into the water test pitch."
+          </p>
+        </motion.div>
       </div>
     </OnboardingSlideLayout>
   );

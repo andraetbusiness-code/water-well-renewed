@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { OnboardingSlideLayout } from '../OnboardingSlideLayout';
-import { Check, X } from 'lucide-react';
+import { Check, X, AlertTriangle } from 'lucide-react';
 
 const doItems = [
   'Say it the same way every time',
@@ -82,6 +82,45 @@ export function ScriptRulesSlide() {
             </ul>
           </motion.div>
         </div>
+
+        {/* Last-Resort Hook Callout */}
+        <motion.div
+          className="mt-8 max-w-4xl mx-auto w-full rounded-2xl bg-card border-2 border-accent/30 overflow-hidden"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+        >
+          <div className="px-6 py-3 bg-accent/10 border-b border-accent/20">
+            <h3 className="font-bold text-accent text-sm flex items-center gap-2">
+              <AlertTriangle className="w-4 h-4" /> Use ONLY at the end (Last-Resort Hook)
+            </h3>
+          </div>
+          <div className="px-6 py-5 space-y-3">
+            <ul className="space-y-2 text-sm text-foreground">
+              <li className="flex items-start gap-2">
+                <X className="w-4 h-4 text-destructive flex-shrink-0 mt-0.5" />
+                Do NOT lead with "toilet to tap."
+              </li>
+              <li className="flex items-start gap-2">
+                <X className="w-4 h-4 text-destructive flex-shrink-0 mt-0.5" />
+                Only use it if the homeowner is NOT booking and you need a final curiosity hook.
+              </li>
+              <li className="flex items-start gap-2">
+                <X className="w-4 h-4 text-destructive flex-shrink-0 mt-0.5" />
+                Keep it neutral and non-alarmist.
+              </li>
+            </ul>
+            <div className="rounded-xl bg-muted/50 p-4 border border-border">
+              <p className="text-sm text-foreground italic">
+                "You should be totally fine—no worries. Quick question though: have you heard about California's water recycling program, sometimes called 'toilet to tap'?"
+              </p>
+            </div>
+            <p className="text-xs text-muted-foreground italic">
+              Only use this if they're walking away without booking. Do not debate—use it as a curiosity question and immediately transition back to scheduling.
+            </p>
+          </div>
+        </motion.div>
       </div>
     </OnboardingSlideLayout>
   );

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { OnboardingSlideLayout } from '../OnboardingSlideLayout';
-import { CheckCircle2, XCircle, Home, Droplets, Clock, Wrench, ArrowRight } from 'lucide-react';
+import { CheckCircle2, XCircle, Home, Droplets, Clock, Wrench, ArrowRight, Users } from 'lucide-react';
 
 const eligibleCriteria = [
   { icon: Home, text: 'Owns a single-family home' },
@@ -96,6 +96,45 @@ export function CustomerEligibilitySlide() {
             </div>
           </motion.div>
         </div>
+
+        {/* Target Demographic Section */}
+        <motion.div
+          className="mt-8 max-w-5xl mx-auto w-full rounded-2xl bg-card border border-border overflow-hidden"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+        >
+          <div className="px-6 py-4 bg-primary/10 border-b border-primary/20 flex items-center gap-2">
+            <Users className="w-5 h-5 text-primary" />
+            <h3 className="font-bold text-primary">Who to Prioritize (Target Demographic)</h3>
+          </div>
+          <div className="p-6 space-y-3">
+            <ul className="space-y-2 text-sm text-foreground">
+              <li className="flex items-start gap-3">
+                <ArrowRight className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                Ideal homeowner age range: 25–60
+              </li>
+              <li className="flex items-start gap-3">
+                <ArrowRight className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                Prioritize families/couples actively shopping together
+              </li>
+              <li className="flex items-start gap-3">
+                <ArrowRight className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                Avoid spending time on low-likelihood targets when better prospects are present
+              </li>
+              <li className="flex items-start gap-3">
+                <ArrowRight className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                Stay respectful—this is about efficiency, not judgment
+              </li>
+            </ul>
+            <div className="rounded-xl bg-muted/50 p-4 border border-border mt-4">
+              <p className="text-sm text-foreground italic">
+                "If an elderly shopper is browsing but a young family/homeowner couple walks by, prioritize the higher-likelihood homeowner."
+              </p>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </OnboardingSlideLayout>
   );
