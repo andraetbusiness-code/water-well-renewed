@@ -5,21 +5,21 @@ import { MessageSquare, CalendarCheck, CheckCircle2 } from 'lucide-react';
 const metrics = [
   {
     icon: MessageSquare,
-    title: 'Conversations',
-    description: 'Customer interactions in-store',
-    placeholder: '25 per shift',
+    title: 'Appointments',
+    description: 'Water tests / consultations booked',
+    placeholder: '25 per week',
   },
   {
     icon: CalendarCheck,
-    title: 'Appointments Set',
-    description: 'Water tests / consultations booked',
-    placeholder: '10 per shift',
+    title: 'Sits',
+    description: 'In-home consultations completed',
+    placeholder: '10 per week',
   },
   {
     icon: CheckCircle2,
-    title: 'Closed',
-    description: 'Confirmed appointments that convert',
-    placeholder: '3 per shift',
+    title: 'Closes',
+    description: 'Confirmed sales closed',
+    placeholder: '3 per week',
   },
 ];
 
@@ -34,7 +34,7 @@ export function HowMetricsWorkSlide() {
           viewport={{ once: true }}
           transition={{ duration: 0.3 }}
         >
-          New Rep Minimums (Per Shift)
+          New Rep Minimums (Per Week)
         </motion.span>
 
         <motion.h2
