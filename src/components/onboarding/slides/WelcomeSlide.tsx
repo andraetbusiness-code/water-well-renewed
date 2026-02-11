@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import { OnboardingSlideLayout } from '../OnboardingSlideLayout';
 import logo from '@/assets/logo.png';
+import crewPhoto from '@/assets/photos/crew.png';
 
 export function WelcomeSlide() {
   return (
-    <OnboardingSlideLayout id="identity" variant="light">
+    <OnboardingSlideLayout id="identity" variant="teal" backgroundImage={crewPhoto} overlayOpacity={0.75}>
       <div className="min-h-[80vh] flex flex-col items-center justify-center text-center">
         <motion.img
           src={logo}
@@ -16,8 +17,8 @@ export function WelcomeSlide() {
           transition={{ duration: 0.5 }}
         />
 
-        <motion.h2
-          className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-8 max-w-3xl"
+         <motion.h2
+          className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-8 max-w-3xl"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -35,7 +36,7 @@ export function WelcomeSlide() {
         />
 
         <motion.p
-          className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
+          className="text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -43,7 +44,7 @@ export function WelcomeSlide() {
         >
           We move fast — but we move correctly.
           <br />
-          <span className="text-foreground font-medium">
+          <span className="text-accent font-medium">
             Your professionalism protects the brand and your paycheck.
           </span>
         </motion.p>

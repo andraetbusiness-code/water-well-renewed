@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { OnboardingSlideLayout } from '../OnboardingSlideLayout';
+import proInstalls from '@/assets/photos/pro-installs.png';
 
 const standards = [
   'Intentional in how we show up.',
@@ -9,7 +10,7 @@ const standards = [
 
 export function OurStandardSlide() {
   return (
-    <OnboardingSlideLayout variant="teal">
+    <OnboardingSlideLayout variant="teal" backgroundImage={proInstalls} overlayOpacity={0.75}>
       <div className="min-h-[80vh] flex flex-col items-center justify-center text-center">
         <motion.span
           className="text-sm font-semibold tracking-[0.3em] text-white/70 uppercase mb-6"

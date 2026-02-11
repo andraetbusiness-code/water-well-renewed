@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { OnboardingSlideLayout } from '../OnboardingSlideLayout';
 import { MessageCircle, UserCheck, Calendar, Clock } from 'lucide-react';
+import waterTestPhoto from '@/assets/photos/water-test.png';
 
 const steps = [
   {
@@ -31,10 +32,10 @@ const steps = [
 
 export function YourOnlyJobSlide() {
   return (
-    <OnboardingSlideLayout variant="light">
+    <OnboardingSlideLayout variant="teal" backgroundImage={waterTestPhoto} overlayOpacity={0.7}>
       <div className="min-h-[80vh] flex flex-col justify-center">
         <motion.h2
-          className="font-serif text-4xl md:text-5xl text-foreground mb-4 text-center"
+          className="font-serif text-4xl md:text-5xl text-white mb-4 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -44,7 +45,7 @@ export function YourOnlyJobSlide() {
         </motion.h2>
 
         <motion.p
-          className="text-muted-foreground text-center mb-12 max-w-xl mx-auto"
+          className="text-white/80 text-center mb-12 max-w-xl mx-auto"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -57,7 +58,7 @@ export function YourOnlyJobSlide() {
           {steps.map((step, index) => (
             <motion.div
               key={step.num}
-              className="relative p-6 rounded-2xl bg-card border border-border text-center"
+              className="relative p-6 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 text-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -69,8 +70,8 @@ export function YourOnlyJobSlide() {
               <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 mt-4">
                 <step.icon className="w-7 h-7 text-primary" />
               </div>
-              <h3 className="font-serif text-lg text-foreground mb-2">{step.title}</h3>
-             <p className="text-sm text-muted-foreground">{step.description}</p>
+              <h3 className="font-serif text-lg text-white mb-2">{step.title}</h3>
+             <p className="text-sm text-white/70">{step.description}</p>
             </motion.div>
           ))}
         </div>
