@@ -493,6 +493,22 @@ const GBPAudit = () => {
             Meta can keep producing leads, but a properly structured Google ecosystem unlocks a second growth engine where the same spend can produce higher-intent demand, and potentially a better return per lead over time.
           </CalloutCard>
 
+          <h3 className="text-lg font-semibold mt-8 mb-3" style={{ color: "#123B8A" }}>
+            If You've Tried Google Ads Before
+          </h3>
+          <p className="text-sm text-gray-700 leading-relaxed mb-4">
+            If you've tried Google Ads in the past and didn't see strong results, it's important to understand what typically causes that outcome.
+          </p>
+          <p className="text-sm text-gray-700 leading-relaxed mb-4">
+            In most cases, it's not that Google Ads "doesn't work" or that Google is automatically "too expensive." The more common issue is that <strong>spend happens before the local infrastructure is properly built</strong> — meaning Google doesn't have strong enough location and relevance signals to confidently place, match, and convert that traffic.
+          </p>
+          <p className="text-sm text-gray-700 leading-relaxed mb-4">
+            When the underlying structure isn't aligned, increasing ad spend doesn't fix the problem. It often just increases the amount of money spent on traffic that doesn't convert efficiently.
+          </p>
+          <CalloutCard severity="medium" title="The Takeaway">
+            Google Ads becomes far more cost-effective after the local foundation is properly aligned. Once the structure is in place, paid search can perform as a true growth multiplier instead of feeling like an unpredictable expense.
+          </CalloutCard>
+
           <SimpleTermsCard>
             You're already spending money on Meta ads at $75 per lead. If that same budget were redirected to Google Ads — after the profile is properly structured — you'd likely get higher-quality leads who are actively searching right now, which typically means better close rates and more revenue per dollar spent.
           </SimpleTermsCard>
