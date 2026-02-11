@@ -40,7 +40,7 @@ export function TrainingScheduleSlide() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          Training Schedule / Access
+          Training Schedule / Access — Coming Soon
         </motion.h2>
 
         <motion.p
@@ -88,7 +88,7 @@ export function TrainingScheduleSlide() {
           transition={{ delay: 0.5, duration: 0.4 }}
         >
           <p className="text-sm text-muted-foreground">
-            <span className="font-medium text-foreground">Recordings:</span> [Add link to recordings archive]
+            <span className="font-medium text-foreground">Recordings:</span> Coming soon
           </p>
         </motion.div>
       </div>
