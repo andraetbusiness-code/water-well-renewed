@@ -82,13 +82,13 @@ export function HowMetricsWorkSlide() {
         </div>
 
         <motion.div
-          className="mt-8 max-w-lg mx-auto rounded-xl bg-accent/10 border border-accent/30 p-4 text-center"
+          className="mt-8 max-w-lg mx-auto rounded-xl bg-accent text-white p-4 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6, duration: 0.5 }}
         >
-          <p className="text-sm font-bold text-accent">No YES confirmation = not booked</p>
+          <p className="text-sm font-bold">No YES confirmation = not booked</p>
         </motion.div>
       </div>
     </OnboardingSlideLayout>
