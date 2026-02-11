@@ -44,7 +44,7 @@ export function WelcomeSlide() {
         >
           We move fast — but we move correctly.
           <br />
-          <span className="text-accent font-medium">
+          <span className="text-white font-semibold drop-shadow-lg">
             Your professionalism protects the brand and your paycheck.
           </span>
         </motion.p>
