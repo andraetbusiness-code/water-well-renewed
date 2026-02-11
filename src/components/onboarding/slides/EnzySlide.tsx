@@ -6,7 +6,6 @@ import {
   BookOpen, 
   MessageCircle, 
   Trophy,
-  GraduationCap,
   AlertCircle,
   ExternalLink
 } from 'lucide-react';
@@ -15,7 +14,7 @@ const features = [
   {
     icon: BarChart3,
     title: 'Daily Scorecards',
-    description: 'Conversations, contacts, appointments',
+    description: 'Conversations, contacts, appointments, confirmed YES',
   },
   {
     icon: CheckSquare,
@@ -24,8 +23,8 @@ const features = [
   },
   {
     icon: BookOpen,
-    title: 'SOP Library + Quick Search',
-    description: 'Scripts, objections, field rules',
+    title: 'SOP Library',
+    description: 'Script, objections, store rules',
   },
   {
     icon: MessageCircle,
@@ -36,11 +35,6 @@ const features = [
     icon: Trophy,
     title: 'Leaderboards',
     description: 'Performance visibility',
-  },
-  {
-    icon: GraduationCap,
-    title: 'Training Modules',
-    description: 'Quizzes (if enabled)',
   },
   {
     icon: AlertCircle,

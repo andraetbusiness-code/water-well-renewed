@@ -6,8 +6,8 @@ const expectations = [
   {
     icon: Target,
     title: 'Daily Activity Minimums',
-    description: 'Consistent door activity every shift',
-    placeholder: '[X doors/conversations per day]',
+    description: 'Consistent customer interactions every shift',
+    placeholder: '[X conversations per shift]',
   },
   {
     icon: Calendar,
@@ -17,15 +17,15 @@ const expectations = [
   },
   {
     icon: PhoneCall,
-    title: 'Required Follow-up Process',
-    description: 'Confirmation calls / texts before appointments',
-    placeholder: '[Process details]',
+    title: 'Confirmation Discipline',
+    description: 'Customer must reply YES before dispatch',
+    placeholder: 'Confirmation must be YES before dispatch',
   },
   {
     icon: Database,
     title: 'Accurate Data Entry',
-    description: 'Clean paperwork, every time',
-    placeholder: '[CRM/system used]',
+    description: 'Every lead logged in GHL same day',
+    placeholder: 'GHL — same day, every lead',
   },
 ];
 

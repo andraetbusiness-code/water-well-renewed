@@ -6,16 +6,18 @@ const doItems = [
   'Say it the same way every time',
   'Keep it short and confident',
   'Give two appointment options',
-  'Collect name + phone + address accurately',
-  'Confirm appointment before leaving',
+  'Collect name + phone + address + email accurately',
+  'Watch the customer reply YES before leaving',
+  'Use one-hour window language (no exact arrival promises)',
 ];
 
 const dontItems = [
   'Freelance or improvise',
   'Over-explain the system',
   'Argue with objections',
-  'Make guarantees (results, savings, timelines, approvals)',
+  'Make guarantees, fear tactics, or health claims',
   'Promise pricing or "free" unless official approved flyer explicitly states it',
+  'Book when spouse is not present — schedule when both homeowners can be there',
 ];
 
 export function ScriptRulesSlide() {

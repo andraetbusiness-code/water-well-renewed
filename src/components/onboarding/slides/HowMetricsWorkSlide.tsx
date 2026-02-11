@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
 import { OnboardingSlideLayout } from '../OnboardingSlideLayout';
-import { MessageSquare, Users, CalendarCheck, Award } from 'lucide-react';
+import { MessageSquare, Users, CalendarCheck, Award, CheckCircle2 } from 'lucide-react';
 
 const metrics = [
   {
     icon: MessageSquare,
     title: 'Conversations',
-    description: 'Doors knocked / interactions',
-    placeholder: '[X per day]',
+    description: 'Customer interactions in-store',
+    placeholder: '[X per shift]',
   },
   {
     icon: Users,
@@ -22,10 +22,16 @@ const metrics = [
     placeholder: '[X per week]',
   },
   {
+    icon: CheckCircle2,
+    title: 'Confirmed YES',
+    description: 'Customer replied YES on the spot',
+    placeholder: '[X per week]',
+  },
+  {
     icon: Award,
-    title: 'Show / Close Rate',
-    description: 'Appointments completed → sales',
-    placeholder: '[If tracked]',
+    title: 'Show Rate',
+    description: 'Confirmed appointments that showed up',
+    placeholder: '[Tracked]',
   },
 ];
 
@@ -53,7 +59,7 @@ export function HowMetricsWorkSlide() {
           What we track and why it matters
         </motion.p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto w-full">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto w-full">
           {metrics.map((metric, index) => (
             <motion.div
               key={metric.title}
@@ -74,6 +80,16 @@ export function HowMetricsWorkSlide() {
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          className="mt-8 max-w-lg mx-auto rounded-xl bg-accent/10 border border-accent/30 p-4 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+        >
+          <p className="text-sm font-bold text-accent">No YES confirmation = not booked</p>
+        </motion.div>
       </div>
     </OnboardingSlideLayout>
   );

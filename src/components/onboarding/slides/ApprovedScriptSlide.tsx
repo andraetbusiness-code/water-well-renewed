@@ -3,31 +3,42 @@ import { OnboardingSlideLayout } from '../OnboardingSlideLayout';
 
 const scriptSections = [
   {
-    label: 'OPENING',
-    text: `"Hey, how are you doing today? Sorry to bother you — I'll be super quick."
-
-"My name is ___, I'm with Select Source Water. We're working with homeowners in the area scheduling quick water tests and consultations — just so you can see what your water looks like and what options are available for your home."`,
+    label: 'OPENER',
+    text: `"Hey, you guys finding everything OK?"`,
   },
   {
-    label: 'QUALIFIER',
-    text: `"Quick question — do you own the home, or are you renting?"`,
+    label: 'HOOK QUESTION',
+    text: `"Real quick — what are you currently using for your whole home filtration or water treatment?"`,
   },
   {
-    label: 'POSITIONING',
-    text: `"Perfect. Just so you know, we're not selling anything right here. We're simply booking a short water test / consultation."`,
+    label: 'OFFER',
+    text: `"Super cool — Home Depot is doing complimentary in-home water tests for the next three days. Here's how it works.\n\nWe send a technician out to your home. We do a chlorine test and a basic contaminant test. We walk you through your water report."`,
   },
   {
-    label: 'TIME & PRESSURE RELEASE',
-    text: `"It takes about 15–20 minutes. There's no pressure — it's just a professional walkthrough."`,
+    label: 'PEACE OF MIND',
+    text: `"If your water is great then you know you have peace of mind.\n\nIf your water is not great, you would be open to solutions right? No one's worse off with clean water, right?"`,
   },
   {
-    label: 'APPOINTMENT CLOSE',
-    text: `"I have a spot open later today between __ and __, or tomorrow between __ and __ — which one works better?"`,
-    note: '(Always give two options. Never ask open-ended questions.)',
+    label: 'WAIVED FEE + QUALIFIERS',
+    text: `"So there is a catch — the test is $49.95. It's complimentary through Home Depot as long as:"`,
+    note: '• You own a single-family home\n• And both homeowners are present for the test.',
   },
   {
-    label: 'CONFIRMATION',
-    text: `"Perfect — what's the best number to text you the confirmation?"`,
+    label: 'CLOSE',
+    text: `"Do mornings, afternoons, or evenings work best for you guys?"`,
+  },
+  {
+    label: 'CONFIRMATION LOCK',
+    text: `"You're going to get a confirmation. If you don't respond YES, we won't dispatch the technician. Grab your phone real quick — just go ahead and click YES."`,
+  },
+  {
+    label: 'REQUIRED FIELDS',
+    text: `Collect the following before the customer leaves:`,
+    note: '☑ Full name\n☑ Address\n☑ Phone number\n☑ Email\n☑ Appointment time',
+  },
+  {
+    label: 'TIME WINDOW',
+    text: `"Give them a one-hour window. They're going to get there as close to the appointment time as possible, but they're driving all over the place doing water tests."`,
   },
 ];
 
@@ -42,7 +53,7 @@ export function ApprovedScriptSlide() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          Approved Script
+          Approved In-Store Script
         </motion.h2>
 
         <motion.p
