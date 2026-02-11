@@ -1,50 +1,50 @@
 
 
-# Fix Text & Icon Visibility on Photo Background Slides
+## Google Business Profile Executive Audit
 
-## Problem
+Create a new executive audit report for Google Business Profile (GBP) at `/gbp-audit`, following the exact same "Modern Blue" report format used by the existing GHL audit (`/audit`).
 
-Two categories of elements are hard to see on slides with teal-tinted photo backgrounds:
+### What Gets Built
 
-1. **"No YES confirmation = not booked" callout boxes** -- Use `text-accent` (deep blue) on `bg-accent/10` (nearly transparent deep blue). Against a dark teal photo overlay, this is blue-on-blue and nearly invisible.
+A single new page (`src/pages/GBPAudit.tsx`) containing the full GBP audit content provided, structured with the same shared sub-components used in the GHL audit:
 
-2. **Icon containers in cards** (e.g., the chat bubble in "Create Rapport") -- Use `text-primary` (water blue) on `bg-primary/10` (transparent blue). On a teal background, these blend in completely.
+**Reused Components (copied inline, same pattern as existing reports):**
+- `SectionTitle` -- blue heading with border
+- `SeverityBadge` -- colored grade/severity labels (repurposed for letter grades)
+- `CalloutCard` -- left-border callout cards for key observations
+- `SimpleTermsCard` -- green "In Simple Terms" cards at the end of each section
+- `DataTable` -- blue-header tables (used for the Scorecard)
 
-These issues appear on: YourOnlyJobSlide, HowMetricsWorkSlide, IncentivesSlide, and any other slide using these patterns on photo backgrounds.
+**Report Sections (matching the provided content):**
 
----
+1. **Cover Block** -- Logo, title ("Google Business Profile Executive Audit"), date (Feb 11, 2026), market focus line, Confidential badge, IP notice
+2. **Executive Summary** -- 3 callout cards (structural visibility issue, Meta dependency, ranking gap) + SimpleTermsCard
+3. **Scorecard** -- DataTable with all 8 categories and letter grades (Profile Completeness B-, Sacramento Market Alignment D, etc., Overall C)
+4. **8 Category Sections** (each with heading, observation text, impact statement, and a SimpleTermsCard):
+   - Profile Completeness (B-)
+   - Sacramento Market Alignment (D)
+   - Local Ranking Readiness (D+)
+   - Engagement & Freshness (D)
+   - Reviews & Reputation (A-)
+   - Conversion Readiness (C-)
+   - Risk / Compliance Posture (C)
+   - Hiring & Recruiting Leverage (C-)
+5. **Why You're Not Ranking** -- explanation of Relevance / Proximity / Prominence factors
+6. **Business Impact Estimate** -- conservative revenue projection table ($63,920/mo, ~$767K annualized)
+7. **What This Means Operationally** -- bullet list of operational improvements
+8. **Next Step** -- high-level recommendation bullets
+9. **Footer** -- standard confidential footer line
 
-## Changes
+**Routing:**
+- Add `/gbp-audit` route in `App.tsx` (same pattern as `/audit` and `/growth-plan`)
+- Page is noindex/nofollow (private report)
+- Uses existing `audit-print.css` for PDF export optimization
 
-### 1. YourOnlyJobSlide.tsx (photo background)
+### Technical Details
 
-- **Icon containers**: Change from `bg-primary/10` + `text-primary` to `bg-white/20` + `text-white` so icons pop against the dark overlay
-- **Step number badges**: Change from `bg-primary text-primary-foreground` to `bg-accent text-white` for contrast
-- **"No YES confirmation" callout**: Change from `bg-accent/10 border-accent/30 text-accent` to `bg-white/15 backdrop-blur-sm border-white/30 text-white font-bold` with a drop shadow
-
-### 2. IncentivesSlide.tsx (photo background)
-
-- The disclaimer text `text-white/60` is too faint -- bump to `text-white/80` with `drop-shadow-md`
-
-### 3. HowMetricsWorkSlide.tsx (cream background, no photo)
-
-- The "No YES confirmation" callout uses `text-accent` on cream -- accent is dark blue on light cream, which should be fine, but we will still strengthen it with `bg-accent text-white font-bold` to make it unmissable and consistent with the other slides
-
-### 4. ScriptRulesSlide.tsx (cream, no photo)
-
-- Already uses solid `bg-card` cards with `text-foreground` -- no changes needed, this is readable.
-
----
-
-## Technical Details
-
-| File | Element | Current | New |
-|------|---------|---------|-----|
-| `YourOnlyJobSlide.tsx` | Icon boxes | `bg-primary/10 text-primary` | `bg-white/20 text-white` |
-| `YourOnlyJobSlide.tsx` | Step badges | `bg-primary text-primary-foreground` | `bg-white text-primary font-bold` |
-| `YourOnlyJobSlide.tsx` | Callout box | `bg-accent/10 border-accent/30` + `text-accent` | `bg-white/20 backdrop-blur-sm border-white/30` + `text-white drop-shadow-md` |
-| `IncentivesSlide.tsx` | Disclaimer | `text-white/60` | `text-white/80 drop-shadow-md` |
-| `HowMetricsWorkSlide.tsx` | Callout box | `bg-accent/10 border-accent/30` + `text-accent` | `bg-accent text-white` (solid fill) |
-
-No layout or structural changes -- only color/contrast tweaks to ensure every element is clearly readable.
+- **New file:** `src/pages/GBPAudit.tsx` (~400-500 lines, single-file report matching existing pattern)
+- **Modified file:** `src/App.tsx` -- add import + route for `/gbp-audit`
+- **No new dependencies** -- uses only existing imports (react-helmet-async, lucide-react, logo asset)
+- **No new CSS** -- reuses `audit-print.css` classes (`audit-header`, `audit-body`, `audit-section`, `audit-no-break`)
+- Grade badges will use the existing `SeverityBadge` styling pattern adapted for letter grades (A- green, B- blue, C- yellow, D/D+ red)
 
