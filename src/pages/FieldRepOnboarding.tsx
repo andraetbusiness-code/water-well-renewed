@@ -25,7 +25,7 @@ import { LeadershipDirectorySlide } from '@/components/onboarding/slides/Leaders
 import { OnboardingChecklistSlide } from '@/components/onboarding/slides/OnboardingChecklistSlide';
 import { ApprovedMaterialsSlide } from '@/components/onboarding/slides/ApprovedMaterialsSlide';
 import { FieldUseRulesSlide } from '@/components/onboarding/slides/FieldUseRulesSlide';
-import { MarketingGallerySlide } from '@/components/onboarding/slides/MarketingGallerySlide';
+
 import { EnzySlide } from '@/components/onboarding/slides/EnzySlide';
 import { TrainingScheduleSlide } from '@/components/onboarding/slides/TrainingScheduleSlide';
 import { ClosingSlide } from '@/components/onboarding/slides/ClosingSlide';
@@ -80,7 +80,7 @@ export default function FieldRepOnboarding() {
         {/* Section 6: Marketing Materials */}
         <ApprovedMaterialsSlide />
         <FieldUseRulesSlide />
-        <MarketingGallerySlide />
+        
 
         {/* Section 7: Training & Tools */}
         <EnzySlide />
