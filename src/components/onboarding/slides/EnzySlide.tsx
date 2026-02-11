@@ -110,33 +110,6 @@ export function EnzySlide() {
           ))}
         </div>
 
-        {/* Access Panel */}
-        <motion.div
-          className="max-w-2xl mx-auto rounded-2xl bg-primary/5 border border-primary/20 p-6"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5, duration: 0.5 }}
-        >
-          <h3 className="font-serif text-lg text-foreground mb-4 text-center">Access Information</h3>
-          <div className="grid md:grid-cols-3 gap-4 text-sm">
-            <div className="text-center">
-              <p className="text-muted-foreground mb-1">Access Link</p>
-              <p className="font-medium text-primary flex items-center justify-center gap-1">
-                [ADD ENZY URL]
-                <ExternalLink className="w-3 h-3" />
-              </p>
-            </div>
-            <div className="text-center">
-              <p className="text-muted-foreground mb-1">Login Instructions</p>
-              <p className="font-medium text-foreground">[Placeholder]</p>
-            </div>
-            <div className="text-center">
-              <p className="text-muted-foreground mb-1">Support</p>
-              <p className="font-medium text-foreground">[Placeholder]</p>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </OnboardingSlideLayout>
   );
