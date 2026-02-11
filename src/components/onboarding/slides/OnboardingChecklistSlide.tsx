@@ -13,7 +13,7 @@ const checklistItems = [
   },
   {
     title: 'Calendar setup + scheduling rules',
-    placeholder: 'Book via GHL — one-hour windows only',
+    placeholder: 'Book via GHL — two-hour windows only',
   },
   {
     title: 'Save script + objections notes',
