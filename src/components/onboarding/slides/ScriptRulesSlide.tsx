@@ -18,6 +18,7 @@ const dontItems = [
   'Make guarantees, fear tactics, or health claims',
   'Promise pricing or "free" unless official approved flyer explicitly states it',
   'Book when spouse is not present — schedule when both homeowners can be there',
+  'Discuss the price of the product — always reference the water test',
 ];
 
 export function ScriptRulesSlide() {
