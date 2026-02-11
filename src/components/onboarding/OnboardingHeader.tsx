@@ -23,16 +23,6 @@ export function OnboardingHeader({ onPrint }: OnboardingHeaderProps) {
           </span>
         </div>
         
-        <Button
-          onClick={onPrint}
-          variant="outline"
-          size="sm"
-          className="gap-2"
-        >
-          <Download className="h-4 w-4" />
-          <span className="hidden sm:inline">Download PDF</span>
-          <span className="sm:hidden">PDF</span>
-        </Button>
       </div>
     </motion.header>
   );
