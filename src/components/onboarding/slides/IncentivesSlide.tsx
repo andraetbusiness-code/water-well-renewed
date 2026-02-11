@@ -65,7 +65,7 @@ export function IncentivesSlide() {
         </div>
 
         <motion.p
-          className="text-xs text-white/60 mt-10 text-center drop-shadow-sm"
+          className="text-xs text-white/80 mt-10 text-center drop-shadow-md"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}

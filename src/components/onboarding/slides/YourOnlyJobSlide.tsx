@@ -64,11 +64,11 @@ export function YourOnlyJobSlide() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.15, duration: 0.5 }}
             >
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white text-primary flex items-center justify-center text-sm font-bold">
                 {step.num}
               </div>
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 mt-4">
-                <step.icon className="w-7 h-7 text-primary" />
+              <div className="w-14 h-14 rounded-xl bg-white/20 flex items-center justify-center mx-auto mb-4 mt-4">
+                <step.icon className="w-7 h-7 text-white" />
               </div>
               <h3 className="font-serif text-lg text-white mb-2 drop-shadow-md">{step.title}</h3>
              <p className="text-sm text-white/80 drop-shadow-sm">{step.description}</p>
@@ -77,13 +77,13 @@ export function YourOnlyJobSlide() {
         </div>
 
         <motion.div
-          className="mt-8 max-w-md mx-auto rounded-xl bg-accent/10 border border-accent/30 p-4 text-center"
+          className="mt-8 max-w-md mx-auto rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 p-4 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.7, duration: 0.5 }}
         >
-          <p className="text-sm font-bold text-accent">No YES confirmation = not booked</p>
+          <p className="text-sm font-bold text-white drop-shadow-md">No YES confirmation = not booked</p>
         </motion.div>
       </div>
     </OnboardingSlideLayout>
