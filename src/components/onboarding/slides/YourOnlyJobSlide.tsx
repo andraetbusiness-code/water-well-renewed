@@ -24,8 +24,8 @@ const steps = [
   {
     num: '04',
     icon: Clock,
-    title: 'Lock the Time',
-    description: 'Confirm before leaving',
+    title: 'Get YES Confirmation',
+    description: 'Watch them confirm on the spot',
   },
 ];
 
@@ -70,10 +70,20 @@ export function YourOnlyJobSlide() {
                 <step.icon className="w-7 h-7 text-primary" />
               </div>
               <h3 className="font-serif text-lg text-foreground mb-2">{step.title}</h3>
-              <p className="text-sm text-muted-foreground">{step.description}</p>
+             <p className="text-sm text-muted-foreground">{step.description}</p>
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          className="mt-8 max-w-md mx-auto rounded-xl bg-accent/10 border border-accent/30 p-4 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.7, duration: 0.5 }}
+        >
+          <p className="text-sm font-bold text-accent">No YES confirmation = not booked</p>
+        </motion.div>
       </div>
     </OnboardingSlideLayout>
   );

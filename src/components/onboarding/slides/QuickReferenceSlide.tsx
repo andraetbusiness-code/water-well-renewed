@@ -4,11 +4,15 @@ import { Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 
-const quickScript = `"Hey, I'll be quick — we're with Select Source Water helping homeowners test their water quality.
+const quickScript = `"Hey, you guys finding everything OK?"
 
-We're not selling anything at the door, just booking short water tests / consultations.
+"Real quick — what are you currently using for your whole home filtration or water treatment?"
 
-I have availability later today or tomorrow — which works better?"`;
+"Super cool — Home Depot is doing complimentary in-home water tests for the next three days."
+
+"Do mornings, afternoons, or evenings work best for you guys?"
+
+"Grab your phone real quick — just go ahead and click YES."`;
 
 export function QuickReferenceSlide() {
   const handleCopy = () => {
@@ -48,7 +52,7 @@ export function QuickReferenceSlide() {
         >
           <div className="px-8 py-6 bg-primary/5 border-b border-primary/20">
             <h3 className="font-serif text-xl text-foreground text-center">
-              Book the water test. <span className="text-accent">Not the sale.</span>
+              Book + Confirm. <span className="text-accent">Not the sale.</span>
             </h3>
           </div>
           

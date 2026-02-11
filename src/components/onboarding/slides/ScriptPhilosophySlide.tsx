@@ -53,7 +53,7 @@ export function ScriptPhilosophySlide() {
           viewport={{ once: true }}
           transition={{ delay: 0.7, duration: 0.5 }}
         >
-          Same process. Every house. Every day.
+          Same process. Every customer. Every shift.
         </motion.p>
       </div>
     </OnboardingSlideLayout>

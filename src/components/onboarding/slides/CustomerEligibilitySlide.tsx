@@ -3,16 +3,20 @@ import { OnboardingSlideLayout } from '../OnboardingSlideLayout';
 import { CheckCircle2, XCircle, Home, Droplets, Clock, Wrench, ArrowRight } from 'lucide-react';
 
 const eligibleCriteria = [
-  { icon: Home, text: 'Homeowner (preferred)' },
+  { icon: Home, text: 'Owns a single-family home' },
   { icon: Droplets, text: 'Has water concerns (taste, smell, hardness, spots, appliances, skin/hair)' },
-  { icon: Clock, text: 'Available for a 15–20 minute appointment window' },
-  { icon: Wrench, text: 'Comfortable doing the test at the kitchen sink' },
+  { icon: Clock, text: 'Both homeowners present for the test' },
+  { icon: Wrench, text: 'Available for a one-hour appointment window' },
 ];
 
 const notEligible = [
   {
     scenario: 'Renter',
     action: 'Collect contact for future nurture',
+  },
+  {
+    scenario: 'Spouse not present',
+    action: 'Schedule when both can be there — do NOT book a maybe',
   },
   {
     scenario: 'Busy / Not interested',
