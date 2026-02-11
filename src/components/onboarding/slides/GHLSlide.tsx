@@ -6,7 +6,8 @@ import {
   ClipboardList, 
   Tag, 
   Bell,
-  MapPin
+  MapPin,
+  MessageSquare
 } from 'lucide-react';
 
 const features = [
@@ -39,6 +40,11 @@ const features = [
     icon: CalendarCheck,
     title: 'System of Record',
     description: 'GHL is the single source of truth for all leads',
+  },
+  {
+    icon: MessageSquare,
+    title: 'Customer Communication',
+    description: 'GHL is how we communicate with your customers — confirmations, reminders, and follow-ups',
   },
 ];
 

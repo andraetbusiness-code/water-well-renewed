@@ -7,7 +7,9 @@ import {
   MessageCircle, 
   Trophy,
   AlertCircle,
-  ExternalLink
+  ExternalLink,
+  FileText,
+  DollarSign
 } from 'lucide-react';
 
 const features = [
@@ -40,6 +42,16 @@ const features = [
     icon: AlertCircle,
     title: 'Issue Reporting',
     description: 'Field blockers',
+  },
+  {
+    icon: FileText,
+    title: 'Lead Notes',
+    description: 'Log details that help close in-home: age, kids, how long in the home, concerns mentioned during the water test pitch',
+  },
+  {
+    icon: DollarSign,
+    title: 'Deal Communication',
+    description: 'Enzy is how we communicate with you on your deals. You do not get paid until the project is installed.',
   },
 ];
 
@@ -74,7 +86,7 @@ export function EnzySlide() {
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.4 }}
         >
-          Daily execution, accountability, and performance in one place.
+          Daily execution, accountability, deal communication, and performance in one place.
         </motion.p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto mb-10">

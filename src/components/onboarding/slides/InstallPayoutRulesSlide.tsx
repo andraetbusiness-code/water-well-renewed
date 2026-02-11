@@ -6,7 +6,7 @@ const rules = [
   {
     icon: CheckCircle2,
     title: 'A job counts when:',
-    description: '[Conditions placeholder — update based on current policy]',
+    description: 'The project is fully installed. You do not get paid until installation is complete.',
     type: 'success',
   },
   {
