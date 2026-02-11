@@ -5,7 +5,7 @@ import supportPhoto from '@/assets/photos/support-lifestyle.jpg';
 
 export function SupportStatementSlide() {
   return (
-    <OnboardingSlideLayout id="support" variant="teal" backgroundImage={supportPhoto} overlayOpacity={0.75}>
+    <OnboardingSlideLayout id="support" variant="teal" backgroundImage={supportPhoto} overlayOpacity={0.8}>
       <div className="min-h-[80vh] flex flex-col items-center justify-center text-center">
         <motion.div
           className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center mb-10"
@@ -18,7 +18,7 @@ export function SupportStatementSlide() {
         </motion.div>
 
         <motion.h2
-          className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-6 max-w-3xl"
+          className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-6 max-w-3xl drop-shadow-lg"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -36,7 +36,7 @@ export function SupportStatementSlide() {
         />
 
         <motion.p
-          className="text-lg md:text-xl text-white/80 max-w-2xl"
+          className="text-lg md:text-xl text-white/90 max-w-2xl drop-shadow-md"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
