@@ -510,7 +510,7 @@ const GBPAudit = () => {
           </CalloutCard>
 
           <SimpleTermsCard>
-            You're already spending money on Meta ads at $75 per lead. If that same budget were redirected to Google Ads — after the profile is properly structured — you'd likely get higher-quality leads who are actively searching right now, which typically means better close rates and more revenue per dollar spent.
+            You're already spending money on Meta ads at $75 per lead. If a similar or slightly smaller budget were applied to Google Ads — after the profile is properly structured — you'd likely get higher-quality leads who are actively searching right now, which typically means better close rates and more revenue per dollar spent.
           </SimpleTermsCard>
         </section>
 
