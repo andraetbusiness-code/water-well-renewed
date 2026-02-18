@@ -1,50 +1,42 @@
 
 
-## Google Business Profile Executive Audit
+## Restyle GBP Audit to Match New Site Palette
 
-Create a new executive audit report for Google Business Profile (GBP) at `/gbp-audit`, following the exact same "Modern Blue" report format used by the existing GHL audit (`/audit`).
+Update the GBP audit report (`/gbp-audit`) from the old "Modern Blue" (#123B8A / #1E6FD9) color scheme to a new teal, coral, and cream palette inspired by the updated site branding.
 
-### What Gets Built
+### New Color Palette (derived from the reference image)
 
-A single new page (`src/pages/GBPAudit.tsx`) containing the full GBP audit content provided, structured with the same shared sub-components used in the GHL audit:
+| Role | Old | New |
+|------|-----|-----|
+| Primary heading / header bar | #123B8A (deep blue) | #2D4F4F (deep teal) |
+| Accent / borders / icons | #1E6FD9 (water blue) | #3D7A7A (medium teal) |
+| Table header bg | #123B8A | #2D4F4F |
+| Info callout border | blue-500 | teal-600 |
+| SimpleTermsCard | emerald-50/400/600/800/900 | teal-50/400/600/800/900 |
+| GradeBadge "B" level | blue-100/800/300 | teal-100/800/300 |
+| Callout info badge | blue-100/800/300 | teal-100/800/300 |
 
-**Reused Components (copied inline, same pattern as existing reports):**
-- `SectionTitle` -- blue heading with border
-- `SeverityBadge` -- colored grade/severity labels (repurposed for letter grades)
-- `CalloutCard` -- left-border callout cards for key observations
-- `SimpleTermsCard` -- green "In Simple Terms" cards at the end of each section
-- `DataTable` -- blue-header tables (used for the Scorecard)
+### What Changes
 
-**Report Sections (matching the provided content):**
+All changes are in a single file: `src/pages/GBPAudit.tsx`
 
-1. **Cover Block** -- Logo, title ("Google Business Profile Executive Audit"), date (Feb 11, 2026), market focus line, Confidential badge, IP notice
-2. **Executive Summary** -- 3 callout cards (structural visibility issue, Meta dependency, ranking gap) + SimpleTermsCard
-3. **Scorecard** -- DataTable with all 8 categories and letter grades (Profile Completeness B-, Sacramento Market Alignment D, etc., Overall C)
-4. **8 Category Sections** (each with heading, observation text, impact statement, and a SimpleTermsCard):
-   - Profile Completeness (B-)
-   - Sacramento Market Alignment (D)
-   - Local Ranking Readiness (D+)
-   - Engagement & Freshness (D)
-   - Reviews & Reputation (A-)
-   - Conversion Readiness (C-)
-   - Risk / Compliance Posture (C)
-   - Hiring & Recruiting Leverage (C-)
-5. **Why You're Not Ranking** -- explanation of Relevance / Proximity / Prominence factors
-6. **Business Impact Estimate** -- conservative revenue projection table ($63,920/mo, ~$767K annualized)
-7. **What This Means Operationally** -- bullet list of operational improvements
-8. **Next Step** -- high-level recommendation bullets
-9. **Footer** -- standard confidential footer line
+**Sub-components updated (color swaps only, no structural changes):**
 
-**Routing:**
-- Add `/gbp-audit` route in `App.tsx` (same pattern as `/audit` and `/growth-plan`)
-- Page is noindex/nofollow (private report)
-- Uses existing `audit-print.css` for PDF export optimization
+1. **SectionTitle** -- heading color from #123B8A to #2D4F4F, border from #1E6FD9 to #3D7A7A
+2. **GradeBadge** -- "B" grade style from blue-100/800/300 to teal-100/800/300
+3. **CalloutCard** -- info border from blue-500 to teal-600, info badge from blue-100/800/300 to teal-100/800/300
+4. **SimpleTermsCard** -- entire green/emerald palette swapped to teal (teal-50 bg, teal-400 border, teal-600 icon, teal-900 heading, teal-800 text)
+5. **DataTable** -- header bg from #123B8A to #2D4F4F, title color from #123B8A to #2D4F4F
+6. **CategorySection** -- icon color from #1E6FD9 to #3D7A7A, heading color from #123B8A to #2D4F4F
+7. **Header bar** -- bg from #123B8A to #2D4F4F
+8. **Cover block** -- h1 color from #123B8A to #2D4F4F
+9. **Inline h3/h4 subheadings** (Paid Growth section) -- from #123B8A/#1E6FD9 to #2D4F4F/#3D7A7A
 
-### Technical Details
+### What Does NOT Change
 
-- **New file:** `src/pages/GBPAudit.tsx` (~400-500 lines, single-file report matching existing pattern)
-- **Modified file:** `src/App.tsx` -- add import + route for `/gbp-audit`
-- **No new dependencies** -- uses only existing imports (react-helmet-async, lucide-react, logo asset)
-- **No new CSS** -- reuses `audit-print.css` classes (`audit-header`, `audit-body`, `audit-section`, `audit-no-break`)
-- Grade badges will use the existing `SeverityBadge` styling pattern adapted for letter grades (A- green, B- blue, C- yellow, D/D+ red)
+- All content/text stays the same
+- Layout and structure stays the same
+- Grade severity colors (red for D, yellow for C, green for A) stay the same
+- Critical/high/medium callout borders stay the same (red, amber, yellow)
+- Print CSS stays the same
 
