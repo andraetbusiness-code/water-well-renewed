@@ -1,50 +1,59 @@
 
 
-## Google Business Profile Executive Audit
+## Reimagine Infographic Images for New Blue Color Scheme
 
-Create a new executive audit report for Google Business Profile (GBP) at `/gbp-audit`, following the exact same "Modern Blue" report format used by the existing GHL audit (`/audit`).
+Replace all 9 styled infographic images with AI-generated versions that match the new Water Blue (#1E6FD9) / Deep Blue (#123B8A) / White brand palette.
 
-### What Gets Built
+### Images to Regenerate
 
-A single new page (`src/pages/GBPAudit.tsx`) containing the full GBP audit content provided, structured with the same shared sub-components used in the GHL audit:
+Each image will be regenerated using AI image generation (google/gemini-3-pro-image-preview for higher quality) with prompts tailored to match the new blue brand colors instead of the old teal/coral/cream palette.
 
-**Reused Components (copied inline, same pattern as existing reports):**
-- `SectionTitle` -- blue heading with border
-- `SeverityBadge` -- colored grade/severity labels (repurposed for letter grades)
-- `CalloutCard` -- left-border callout cards for key observations
-- `SimpleTermsCard` -- green "In Simple Terms" cards at the end of each section
-- `DataTable` -- blue-header tables (used for the Scorecard)
+| # | Current File | Content | Used In |
+|---|---|---|---|
+| 1 | better-water-hero-styled.png | "Better Water Starts Here" hero graphic with water splash | Homepage, Gallery |
+| 2 | 10-stages-filtration-styled.png | 10-stage filtration process diagram | Filtration Technology, Gallery |
+| 3 | system-diagram-styled.png | HYGIA+ system diagram showing how it works | HYGIA System, Gallery |
+| 4 | benefits-styled.png | Benefits of water filtration overview | Filtration Technology, Gallery |
+| 5 | whats-in-water-styled.png | "What's In Your Water" contaminant info | What In Water, Gallery |
+| 6 | home-needs-filtration-styled.png | "Does Your Home Need Filtration?" signs | What In Water, Gallery |
+| 7 | why-choose-us-styled.png | "Why Choose Select Source Water" | HYGIA System, Gallery |
+| 8 | customer-journey-styled.png | 5-step customer journey path | Process, Gallery |
+| 9 | maintenance-schedule-styled.png | Annual maintenance schedule | Maintenance, Gallery |
 
-**Report Sections (matching the provided content):**
+### Approach
 
-1. **Cover Block** -- Logo, title ("Google Business Profile Executive Audit"), date (Feb 11, 2026), market focus line, Confidential badge, IP notice
-2. **Executive Summary** -- 3 callout cards (structural visibility issue, Meta dependency, ranking gap) + SimpleTermsCard
-3. **Scorecard** -- DataTable with all 8 categories and letter grades (Profile Completeness B-, Sacramento Market Alignment D, etc., Overall C)
-4. **8 Category Sections** (each with heading, observation text, impact statement, and a SimpleTermsCard):
-   - Profile Completeness (B-)
-   - Sacramento Market Alignment (D)
-   - Local Ranking Readiness (D+)
-   - Engagement & Freshness (D)
-   - Reviews & Reputation (A-)
-   - Conversion Readiness (C-)
-   - Risk / Compliance Posture (C)
-   - Hiring & Recruiting Leverage (C-)
-5. **Why You're Not Ranking** -- explanation of Relevance / Proximity / Prominence factors
-6. **Business Impact Estimate** -- conservative revenue projection table ($63,920/mo, ~$767K annualized)
-7. **What This Means Operationally** -- bullet list of operational improvements
-8. **Next Step** -- high-level recommendation bullets
-9. **Footer** -- standard confidential footer line
+For each image:
+1. Generate a new infographic-style image using AI with a prompt specifying:
+   - Water Blue (#1E6FD9) and Deep Blue (#123B8A) as primary colors
+   - White and light gray backgrounds
+   - Clean, modern, professional aesthetic
+   - The specific content/topic of that infographic
+2. Save the generated image to the same file path (replacing the old one)
+3. No code changes needed since the imports already point to these files
 
-**Routing:**
-- Add `/gbp-audit` route in `App.tsx` (same pattern as `/audit` and `/growth-plan`)
-- Page is noindex/nofollow (private report)
-- Uses existing `audit-print.css` for PDF export optimization
+### Color Palette for All Images
 
-### Technical Details
+- Primary: Water Blue (#1E6FD9)
+- Accent: Deep Blue (#123B8A)
+- Background: White (#FFFFFF) and Light Gray (#F3F5F7)
+- Text: Dark (#121212)
+- No teal, no coral, no cream tones
 
-- **New file:** `src/pages/GBPAudit.tsx` (~400-500 lines, single-file report matching existing pattern)
-- **Modified file:** `src/App.tsx` -- add import + route for `/gbp-audit`
-- **No new dependencies** -- uses only existing imports (react-helmet-async, lucide-react, logo asset)
-- **No new CSS** -- reuses `audit-print.css` classes (`audit-header`, `audit-body`, `audit-section`, `audit-no-break`)
-- Grade badges will use the existing `SeverityBadge` styling pattern adapted for letter grades (A- green, B- blue, C- yellow, D/D+ red)
+### Process
+
+This will be done in batches of 2-3 images at a time to manage quality. Each generated image will be saved directly over the existing file so all page references automatically pick up the new versions with zero code changes.
+
+### Files Modified
+
+- src/assets/infographics/better-water-hero-styled.png (replaced)
+- src/assets/infographics/10-stages-filtration-styled.png (replaced)
+- src/assets/infographics/system-diagram-styled.png (replaced)
+- src/assets/infographics/benefits-styled.png (replaced)
+- src/assets/infographics/whats-in-water-styled.png (replaced)
+- src/assets/infographics/home-needs-filtration-styled.png (replaced)
+- src/assets/infographics/why-choose-us-styled.png (replaced)
+- src/assets/infographics/customer-journey-styled.png (replaced)
+- src/assets/infographics/maintenance-schedule-styled.png (replaced)
+
+No code changes required -- all imports already reference these exact file paths.
 
