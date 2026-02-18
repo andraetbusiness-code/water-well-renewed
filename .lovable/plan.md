@@ -1,50 +1,53 @@
 
 
-## Google Business Profile Executive Audit
+## Sales Rep Job Application Subdomain
 
-Create a new executive audit report for Google Business Profile (GBP) at `/gbp-audit`, following the exact same "Modern Blue" report format used by the existing GHL audit (`/audit`).
+Create a new `careers` subdomain with a polished landing page that introduces the company and collects job applications from prospective sales reps. Applications are saved to the backend database.
 
-### What Gets Built
+### What the Applicant Sees
 
-A single new page (`src/pages/GBPAudit.tsx`) containing the full GBP audit content provided, structured with the same shared sub-components used in the GHL audit:
+**Section 1 -- Hero / Company Intro**
+- SSW logo and headline: "Join Select Source Water"
+- Subheadline about the opportunity (Home Depot partnership, Sacramento market, earning potential)
+- Brief "Why Work With Us" section with 4-5 benefit cards (e.g., uncapped earnings, training provided, Home Depot foot traffic, team support, growth path)
 
-**Reused Components (copied inline, same pattern as existing reports):**
-- `SectionTitle` -- blue heading with border
-- `SeverityBadge` -- colored grade/severity labels (repurposed for letter grades)
-- `CalloutCard` -- left-border callout cards for key observations
-- `SimpleTermsCard` -- green "In Simple Terms" cards at the end of each section
-- `DataTable` -- blue-header tables (used for the Scorecard)
+**Section 2 -- Application Form**
+- Fields: First Name, Last Name, Email, Phone, City, Sales Experience (dropdown: None / 1-2 years / 3-5 years / 5+), "Why do you want to join?" (textarea)
+- Submit button with loading state
+- Success confirmation message after submission
 
-**Report Sections (matching the provided content):**
+### Backend
 
-1. **Cover Block** -- Logo, title ("Google Business Profile Executive Audit"), date (Feb 11, 2026), market focus line, Confidential badge, IP notice
-2. **Executive Summary** -- 3 callout cards (structural visibility issue, Meta dependency, ranking gap) + SimpleTermsCard
-3. **Scorecard** -- DataTable with all 8 categories and letter grades (Profile Completeness B-, Sacramento Market Alignment D, etc., Overall C)
-4. **8 Category Sections** (each with heading, observation text, impact statement, and a SimpleTermsCard):
-   - Profile Completeness (B-)
-   - Sacramento Market Alignment (D)
-   - Local Ranking Readiness (D+)
-   - Engagement & Freshness (D)
-   - Reviews & Reputation (A-)
-   - Conversion Readiness (C-)
-   - Risk / Compliance Posture (C)
-   - Hiring & Recruiting Leverage (C-)
-5. **Why You're Not Ranking** -- explanation of Relevance / Proximity / Prominence factors
-6. **Business Impact Estimate** -- conservative revenue projection table ($63,920/mo, ~$767K annualized)
-7. **What This Means Operationally** -- bullet list of operational improvements
-8. **Next Step** -- high-level recommendation bullets
-9. **Footer** -- standard confidential footer line
+**New database table: `job_applications`**
+| Column | Type | Notes |
+|--------|------|-------|
+| id | uuid | PK, auto-generated |
+| first_name | text | required |
+| last_name | text | required |
+| email | text | required |
+| phone | text | required |
+| city | text | optional |
+| experience | text | dropdown value |
+| message | text | "why join" textarea |
+| status | text | default "new" |
+| created_at | timestamptz | auto |
 
-**Routing:**
-- Add `/gbp-audit` route in `App.tsx` (same pattern as `/audit` and `/growth-plan`)
-- Page is noindex/nofollow (private report)
-- Uses existing `audit-print.css` for PDF export optimization
+**RLS Policies:**
+- Anonymous users can INSERT (public form, no auth required)
+- Admins can SELECT, UPDATE, DELETE (to review applications in the portal)
+
+### Routing
+
+- New subdomain detection: `careers` in `App.tsx`
+- New `CareersRoutes` component rendering the application page at `/`
+- New file: `src/pages/careers/ApplyPage.tsx`
 
 ### Technical Details
 
-- **New file:** `src/pages/GBPAudit.tsx` (~400-500 lines, single-file report matching existing pattern)
-- **Modified file:** `src/App.tsx` -- add import + route for `/gbp-audit`
-- **No new dependencies** -- uses only existing imports (react-helmet-async, lucide-react, logo asset)
-- **No new CSS** -- reuses `audit-print.css` classes (`audit-header`, `audit-body`, `audit-section`, `audit-no-break`)
-- Grade badges will use the existing `SeverityBadge` styling pattern adapted for letter grades (A- green, B- blue, C- yellow, D/D+ red)
+- **New file:** `src/pages/careers/ApplyPage.tsx` -- standalone page with hero + form, uses framer-motion for polish (same pattern as HygiaPlusDemo)
+- **Modified file:** `src/App.tsx` -- add `isCareersSubdomain` detection + `CareersRoutes` component
+- **Database migration:** create `job_applications` table with RLS policies allowing anonymous inserts
+- **Form validation:** zod schema for client-side validation before insert
+- **No auth required** -- this is a public-facing application form
+- Uses existing logo asset and brand colors (primary blue gradient)
 
