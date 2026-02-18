@@ -10,7 +10,7 @@ const SectionTitle = ({ children, id }: { children: React.ReactNode; id?: string
   <h2
     id={id}
     className="text-2xl font-bold tracking-tight mt-12 mb-6 pb-3 border-b-2"
-    style={{ color: "#2D4F4F", borderColor: "#3D7A7A" }}
+    style={{ color: "#123B8A", borderColor: "#1E6FD9" }}
   >
     {children}
   </h2>
@@ -20,7 +20,7 @@ const GradeBadge = ({ grade }: { grade: string }) => {
   const first = grade.charAt(0);
   const styles: Record<string, string> = {
     A: "bg-green-100 text-green-800 border-green-300",
-    B: "bg-teal-100 text-teal-800 border-teal-300",
+    B: "bg-blue-100 text-blue-800 border-blue-300",
     C: "bg-yellow-100 text-yellow-800 border-yellow-300",
     D: "bg-red-100 text-red-800 border-red-300",
   };
@@ -44,13 +44,13 @@ const CalloutCard = ({
     critical: "border-l-red-600",
     high: "border-l-amber-500",
     medium: "border-l-yellow-500",
-    info: "border-l-teal-600",
+    info: "border-l-blue-500",
   };
   const badgeStyles: Record<string, string> = {
     critical: "bg-red-100 text-red-800 border-red-300",
     high: "bg-amber-100 text-amber-800 border-amber-300",
     medium: "bg-yellow-100 text-yellow-800 border-yellow-300",
-    info: "bg-teal-100 text-teal-800 border-teal-300",
+    info: "bg-blue-100 text-blue-800 border-blue-300",
   };
   return (
     <div className={`bg-white rounded-lg border border-gray-200 shadow-sm p-5 mb-4 border-l-4 ${borderColors[severity]} audit-no-break`}>
@@ -68,12 +68,12 @@ const CalloutCard = ({
 };
 
 const SimpleTermsCard = ({ children }: { children: React.ReactNode }) => (
-  <div className="bg-teal-50 border-l-4 border-l-teal-400 rounded-lg p-5 mt-6 mb-4 audit-no-break">
+  <div className="bg-emerald-50 border-l-4 border-l-emerald-400 rounded-lg p-5 mt-6 mb-4 audit-no-break">
     <div className="flex items-start gap-3">
-      <DollarSign className="w-5 h-5 text-teal-600 flex-shrink-0 mt-0.5" />
+      <DollarSign className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
       <div>
-        <p className="font-bold text-teal-900 text-sm mb-1">In Simple Terms</p>
-        <p className="text-sm text-teal-800 leading-relaxed">{children}</p>
+        <p className="font-bold text-emerald-900 text-sm mb-1">In Simple Terms</p>
+        <p className="text-sm text-emerald-800 leading-relaxed">{children}</p>
       </div>
     </div>
   </div>
@@ -91,12 +91,12 @@ const DataTable = ({
   rows: (string | React.ReactNode)[][];
 }) => (
   <div className="mb-8 audit-no-break">
-    <h3 className="text-lg font-bold mb-1" style={{ color: "#2D4F4F" }}>{title}</h3>
+    <h3 className="text-lg font-bold mb-1" style={{ color: "#123B8A" }}>{title}</h3>
     <p className="text-xs text-gray-500 mb-3">{subtitle}</p>
     <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
       <table className="w-full text-sm">
         <thead>
-          <tr style={{ backgroundColor: "#2D4F4F" }}>
+          <tr style={{ backgroundColor: "#123B8A" }}>
             {headers.map((h, i) => (
               <th key={i} className="px-4 py-3 text-left text-white font-semibold text-xs uppercase tracking-wider">{h}</th>
             ))}
@@ -137,8 +137,8 @@ const CategorySection = ({
 }) => (
   <section className="audit-section">
     <div className="flex items-center gap-3 mt-12 mb-4">
-      <Icon className="w-6 h-6 flex-shrink-0" style={{ color: "#3D7A7A" }} />
-      <h2 className="text-xl font-bold tracking-tight" style={{ color: "#2D4F4F" }}>
+      <Icon className="w-6 h-6 flex-shrink-0" style={{ color: "#1E6FD9" }} />
+      <h2 className="text-xl font-bold tracking-tight" style={{ color: "#123B8A" }}>
         {number}) {title}
       </h2>
       <GradeBadge grade={grade} />
@@ -168,7 +168,7 @@ const GBPAudit = () => {
       {/* ── Fixed Header (hidden on print) ── */}
       <header
         className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 shadow-md audit-header"
-        style={{ backgroundColor: "#2D4F4F" }}
+        style={{ backgroundColor: "#123B8A" }}
       >
         <div className="flex items-center gap-3">
           <img src={logo} alt="Select Source Water" className="h-8 w-auto" />
@@ -184,7 +184,7 @@ const GBPAudit = () => {
         {/* ═══════════════ COVER BLOCK ═══════════════ */}
         <section className="text-center py-16 mb-8 border-b-2 border-gray-200 audit-section">
           <img src={logo} alt="Select Source Water" className="mx-auto mb-8 w-48 sm:w-64" />
-          <h1 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: "#2D4F4F" }}>
+          <h1 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: "#123B8A" }}>
             Google Business Profile Executive Audit
           </h1>
           <p className="text-gray-500 text-lg mb-2">Prepared: February 11, 2026</p>
@@ -434,7 +434,7 @@ const GBPAudit = () => {
           </SimpleTermsCard>
 
           {/* --- Paid Growth Upside Sub-section --- */}
-          <h3 className="text-lg font-bold mt-10 mb-4 audit-no-break" style={{ color: "#2D4F4F" }}>
+          <h3 className="text-lg font-bold mt-10 mb-4 audit-no-break" style={{ color: "#123B8A" }}>
             Paid Growth Upside (Future Layer): If the Same Budget Were Shifted to Properly Structured Google Ads
           </h3>
 
@@ -445,7 +445,7 @@ const GBPAudit = () => {
             Google Ads sits in a different intent category: it captures <strong>"I need this now"</strong> searches like <em>water softener installation</em>, <em>whole house water filtration</em>, <em>free water test near me</em>, and <em>water treatment company Sacramento</em>. When the Google foundation is properly structured, Google Ads performance typically improves because Google has clearer signals about what the business is, where it operates, and which searches it should match.
           </p>
 
-          <h4 className="text-sm font-bold mt-6 mb-3 audit-no-break" style={{ color: "#3D7A7A" }}>
+          <h4 className="text-sm font-bold mt-6 mb-3 audit-no-break" style={{ color: "#1E6FD9" }}>
             What this could mean financially (simple model)
           </h4>
           <p className="text-sm text-gray-700 leading-relaxed mb-4">
@@ -464,7 +464,7 @@ const GBPAudit = () => {
             <li>Better scalability (because search demand is consistent)</li>
           </ul>
 
-          <h4 className="text-sm font-bold mt-6 mb-3 audit-no-break" style={{ color: "#3D7A7A" }}>
+          <h4 className="text-sm font-bold mt-6 mb-3 audit-no-break" style={{ color: "#1E6FD9" }}>
             Range scenarios
           </h4>
           <p className="text-sm text-gray-700 leading-relaxed mb-4">
@@ -482,7 +482,7 @@ const GBPAudit = () => {
             ]}
           />
 
-          <h4 className="text-sm font-bold mt-6 mb-3 audit-no-break" style={{ color: "#3D7A7A" }}>
+          <h4 className="text-sm font-bold mt-6 mb-3 audit-no-break" style={{ color: "#1E6FD9" }}>
             Why this matters even if the focus stays organic
           </h4>
           <p className="text-sm text-gray-700 leading-relaxed mb-4">
@@ -493,7 +493,7 @@ const GBPAudit = () => {
             Meta can keep producing leads, but a properly structured Google ecosystem unlocks a second growth engine where the same spend can produce higher-intent demand, and potentially a better return per lead over time.
           </CalloutCard>
 
-          <h3 className="text-lg font-semibold mt-8 mb-3" style={{ color: "#2D4F4F" }}>
+          <h3 className="text-lg font-semibold mt-8 mb-3" style={{ color: "#123B8A" }}>
             If You've Tried Google Ads Before
           </h3>
           <p className="text-sm text-gray-700 leading-relaxed mb-4">
