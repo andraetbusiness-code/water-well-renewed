@@ -23,6 +23,7 @@ import GBPAudit from "./pages/GBPAudit";
 
 const HygiaPlusDemo = lazy(() => import("./pages/demo/HygiaPlusDemo"));
 const MarketingGallerySlide = lazy(() => import("@/components/onboarding/slides/MarketingGallerySlide").then(m => ({ default: m.MarketingGallerySlide })));
+const ApplyPage = lazy(() => import("./pages/careers/ApplyPage"));
 
 // Import print styles for onboarding and audit
 import "./styles/onboarding-print.css";
@@ -35,6 +36,7 @@ const hostname = window.location.hostname;
 const subdomain = hostname.split('.')[0];
 const isDemoSubdomain = subdomain === 'demo';
 const isMarketingSubdomain = subdomain === 'marketing';
+const isCareersSubdomain = subdomain === 'careers';
 
 const DemoRoutes = () => (
   <Routes>
@@ -51,6 +53,13 @@ const MarketingRoutes = () => (
   </Routes>
 );
 
+const CareersRoutes = () => (
+  <Routes>
+    <Route path="/" element={<Suspense fallback={null}><ApplyPage /></Suspense>} />
+    <Route path="*" element={<NotFound />} />
+  </Routes>
+);
+
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
@@ -62,6 +71,8 @@ const App = () => (
             <DemoRoutes />
           ) : isMarketingSubdomain ? (
             <MarketingRoutes />
+          ) : isCareersSubdomain ? (
+            <CareersRoutes />
           ) : (
             <Routes>
               <Route path="/" element={<Index />} />
