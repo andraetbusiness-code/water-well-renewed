@@ -17,6 +17,7 @@ import { PageLayout, PageHero } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { FloatingBubbles } from "@/components/WaterEffects";
 import { InfographicCard, InfographicGrid } from "@/components/InfographicCard";
+import { cacheBust } from "@/lib/cache-bust";
 import maintenanceScheduleImg from "@/assets/infographics/maintenance-schedule-styled.png";
 import waterSoftenerImg from "@/assets/photos/water-softener.png";
 
@@ -174,7 +175,7 @@ export default function Maintenance() {
             
             {/* Infographic */}
             <InfographicCard 
-              src={maintenanceScheduleImg} 
+              src={cacheBust(maintenanceScheduleImg)} 
               alt="Annual Water Filter Maintenance Schedule"
             />
           </div>

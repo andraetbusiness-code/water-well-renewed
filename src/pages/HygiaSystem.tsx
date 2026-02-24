@@ -17,6 +17,7 @@ import { PageLayout, PageHero } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { FloatingBubbles } from "@/components/WaterEffects";
 import { InfographicCard, InfographicGrid } from "@/components/InfographicCard";
+import { cacheBust } from "@/lib/cache-bust";
 import homeDepotAuthorized from "@/assets/home-depot-authorized.png";
 import systemDiagramImg from "@/assets/infographics/system-diagram-styled.png";
 import whyChooseUsImg from "@/assets/infographics/why-choose-us-styled.png";
@@ -169,12 +170,12 @@ export default function HygiaSystem() {
           
           <InfographicGrid columns={2}>
             <InfographicCard 
-              src={systemDiagramImg} 
+              src={cacheBust(systemDiagramImg)} 
               alt="HYGIA+ Water Filtration System Diagram"
               delay={0}
             />
             <InfographicCard 
-              src={whyChooseUsImg} 
+              src={cacheBust(whyChooseUsImg)} 
               alt="Why Choose Select Source Water"
               delay={0.15}
             />

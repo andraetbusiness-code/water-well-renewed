@@ -13,6 +13,7 @@ import { PageLayout, PageHero } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { FloatingBubbles } from "@/components/WaterEffects";
 import { InfographicCard, InfographicGrid } from "@/components/InfographicCard";
+import { cacheBust } from "@/lib/cache-bust";
 import filtrationStagesImg from "@/assets/infographics/10-stages-filtration-styled.png";
 import benefitsImg from "@/assets/infographics/benefits-styled.png";
 
@@ -184,12 +185,12 @@ export default function FiltrationTechnology() {
           
           <InfographicGrid columns={2}>
             <InfographicCard 
-              src={filtrationStagesImg} 
+              src={cacheBust(filtrationStagesImg)} 
               alt="10 Stages of Water Filtration - Visual guide showing each filtration stage"
               delay={0}
             />
             <InfographicCard 
-              src={benefitsImg} 
+              src={cacheBust(benefitsImg)} 
               alt="Benefits of Whole House Water Filtration"
               delay={0.15}
             />

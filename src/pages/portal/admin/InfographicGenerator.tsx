@@ -5,6 +5,7 @@ import { Loader2, Download, RefreshCw, ImageIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { PortalLayout } from "@/components/portal/PortalLayout";
+import { cacheBust } from "@/lib/cache-bust";
 
 // Current infographic images
 import betterWaterHero from "@/assets/infographics/better-water-hero-styled.png";
@@ -25,15 +26,15 @@ interface InfographicSlot {
 }
 
 const INFOGRAPHIC_SLOTS: InfographicSlot[] = [
-  { id: "better-water-hero", title: "Better Water Starts Here", currentImage: betterWaterHero, filename: "better-water-hero-styled.png" },
-  { id: "10-stages-filtration", title: "10-Stage Filtration Process", currentImage: tenStages, filename: "10-stages-filtration-styled.png" },
-  { id: "system-diagram", title: "How The System Works", currentImage: systemDiagram, filename: "system-diagram-styled.png" },
-  { id: "benefits", title: "Benefits of Filtration", currentImage: benefits, filename: "benefits-styled.png" },
-  { id: "whats-in-water", title: "What's In Your Water?", currentImage: whatsInWater, filename: "whats-in-water-styled.png" },
-  { id: "home-needs-filtration", title: "Does Your Home Need Filtration?", currentImage: homeNeeds, filename: "home-needs-filtration-styled.png" },
-  { id: "why-choose-us", title: "Why Choose Select Source Water", currentImage: whyChooseUs, filename: "why-choose-us-styled.png" },
-  { id: "customer-journey", title: "Your Path to Clean Water", currentImage: customerJourney, filename: "customer-journey-styled.png" },
-  { id: "maintenance-schedule", title: "Maintenance Schedule", currentImage: maintenanceSchedule, filename: "maintenance-schedule-styled.png" },
+  { id: "better-water-hero", title: "Better Water Starts Here", currentImage: cacheBust(betterWaterHero), filename: "better-water-hero-styled.png" },
+  { id: "10-stages-filtration", title: "10-Stage Filtration Process", currentImage: cacheBust(tenStages), filename: "10-stages-filtration-styled.png" },
+  { id: "system-diagram", title: "How The System Works", currentImage: cacheBust(systemDiagram), filename: "system-diagram-styled.png" },
+  { id: "benefits", title: "Benefits of Filtration", currentImage: cacheBust(benefits), filename: "benefits-styled.png" },
+  { id: "whats-in-water", title: "What's In Your Water?", currentImage: cacheBust(whatsInWater), filename: "whats-in-water-styled.png" },
+  { id: "home-needs-filtration", title: "Does Your Home Need Filtration?", currentImage: cacheBust(homeNeeds), filename: "home-needs-filtration-styled.png" },
+  { id: "why-choose-us", title: "Why Choose Select Source Water", currentImage: cacheBust(whyChooseUs), filename: "why-choose-us-styled.png" },
+  { id: "customer-journey", title: "Your Path to Clean Water", currentImage: cacheBust(customerJourney), filename: "customer-journey-styled.png" },
+  { id: "maintenance-schedule", title: "Maintenance Schedule", currentImage: cacheBust(maintenanceSchedule), filename: "maintenance-schedule-styled.png" },
 ];
 
 export default function InfographicGenerator() {
