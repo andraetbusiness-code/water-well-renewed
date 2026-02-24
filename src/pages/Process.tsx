@@ -16,6 +16,7 @@ import { PageLayout, PageHero } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { FloatingBubbles, WaveBackground } from "@/components/WaterEffects";
 import { InfographicCard, InfographicGrid } from "@/components/InfographicCard";
+import { cacheBust } from "@/lib/cache-bust";
 import customerJourneyImg from "@/assets/infographics/customer-journey-styled.png";
 import waterTestImg from "@/assets/photos/water-test.png";
 import proInstallsImg from "@/assets/photos/pro-installs.png";
@@ -227,7 +228,7 @@ export default function Process() {
         <div className="container">
           <InfographicGrid columns={1}>
             <InfographicCard 
-              src={customerJourneyImg} 
+              src={cacheBust(customerJourneyImg)} 
               alt="The Path to Cleaner Water - Customer Journey"
               className="max-w-2xl mx-auto"
             />

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { cacheBust } from "@/lib/cache-bust";
 import betterWaterHeroImg from "@/assets/infographics/better-water-hero-styled.png";
 
 export const HomeInfographic = () => {
@@ -72,7 +73,7 @@ export const HomeInfographic = () => {
               
               <div className="relative overflow-hidden rounded-3xl bg-card/80 backdrop-blur-sm border border-border/30 shadow-xl hover:shadow-2xl transition-all duration-300 group-hover:border-primary/30">
                 <img
-                  src={betterWaterHeroImg}
+                  src={cacheBust(betterWaterHeroImg)}
                   alt="Better Water Starts Here - Water Filtration Overview"
                   className="w-full h-auto"
                 />

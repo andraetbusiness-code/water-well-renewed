@@ -15,6 +15,7 @@ import { PageLayout, PageHero } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { FloatingBubbles } from "@/components/WaterEffects";
 import { InfographicCard, InfographicGrid } from "@/components/InfographicCard";
+import { cacheBust } from "@/lib/cache-bust";
 import whatsInWaterImg from "@/assets/infographics/whats-in-water-styled.png";
 import homeNeedsFiltrationImg from "@/assets/infographics/home-needs-filtration-styled.png";
 
@@ -86,12 +87,12 @@ export default function WhatInWater() {
           
           <InfographicGrid columns={2}>
             <InfographicCard 
-              src={whatsInWaterImg} 
+              src={cacheBust(whatsInWaterImg)} 
               alt="What's In Your Water - Common Contaminants"
               delay={0}
             />
             <InfographicCard 
-              src={homeNeedsFiltrationImg} 
+              src={cacheBust(homeNeedsFiltrationImg)} 
               alt="Does Your Home Need Water Filtration?"
               delay={0.15}
             />

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { PageLayout, PageHero } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { FloatingBubbles } from "@/components/WaterEffects";
+import { cacheBust } from "@/lib/cache-bust";
 
 // Import all styled infographics
 import filtrationStagesImg from "@/assets/infographics/10-stages-filtration-styled.png";
@@ -26,7 +27,7 @@ import crewImg from "@/assets/photos/crew.png";
 const infographics = [
   {
     id: 1,
-    src: betterWaterHeroImg,
+    src: cacheBust(betterWaterHeroImg),
     alt: "Better Water Starts Here",
     title: "Better Water Starts Here",
     category: "Overview",
@@ -34,7 +35,7 @@ const infographics = [
   },
   {
     id: 2,
-    src: filtrationStagesImg,
+    src: cacheBust(filtrationStagesImg),
     alt: "10 Stages of Water Filtration",
     title: "10-Stage Filtration Process",
     category: "Technology",
@@ -42,7 +43,7 @@ const infographics = [
   },
   {
     id: 3,
-    src: systemDiagramImg,
+    src: cacheBust(systemDiagramImg),
     alt: "HYGIA+ System Diagram",
     title: "How The System Works",
     category: "Technology",
@@ -50,7 +51,7 @@ const infographics = [
   },
   {
     id: 4,
-    src: benefitsImg,
+    src: cacheBust(benefitsImg),
     alt: "Benefits of Water Filtration",
     title: "Benefits of Filtration",
     category: "Benefits",
@@ -58,7 +59,7 @@ const infographics = [
   },
   {
     id: 5,
-    src: whatsInWaterImg,
+    src: cacheBust(whatsInWaterImg),
     alt: "What's In Your Water",
     title: "What's In Your Water?",
     category: "Water Quality",
@@ -66,7 +67,7 @@ const infographics = [
   },
   {
     id: 6,
-    src: homeNeedsFiltrationImg,
+    src: cacheBust(homeNeedsFiltrationImg),
     alt: "Does Your Home Need Filtration?",
     title: "Signs You Need Filtration",
     category: "Water Quality",
@@ -74,7 +75,7 @@ const infographics = [
   },
   {
     id: 7,
-    src: whyChooseUsImg,
+    src: cacheBust(whyChooseUsImg),
     alt: "Why Choose Select Source Water",
     title: "Why Choose Us",
     category: "About",
@@ -82,7 +83,7 @@ const infographics = [
   },
   {
     id: 8,
-    src: customerJourneyImg,
+    src: cacheBust(customerJourneyImg),
     alt: "Customer Journey - 5 Steps",
     title: "Your Path to Clean Water",
     category: "Process",
@@ -90,7 +91,7 @@ const infographics = [
   },
   {
     id: 9,
-    src: maintenanceScheduleImg,
+    src: cacheBust(maintenanceScheduleImg),
     alt: "Annual Maintenance Schedule",
     title: "Maintenance Schedule",
     category: "Maintenance",
@@ -99,7 +100,7 @@ const infographics = [
   // Team & Equipment Photos
   {
     id: 10,
-    src: crewImg,
+    src: cacheBust(crewImg),
     alt: "Select Source Water Team",
     title: "Our Expert Team",
     category: "Team",
@@ -107,7 +108,7 @@ const infographics = [
   },
   {
     id: 11,
-    src: proInstallsImg,
+    src: cacheBust(proInstallsImg),
     alt: "Professional Installation",
     title: "Professional Installation",
     category: "Team",
@@ -115,7 +116,7 @@ const infographics = [
   },
   {
     id: 12,
-    src: waterTestImg,
+    src: cacheBust(waterTestImg),
     alt: "Water Quality Testing",
     title: "Free Water Testing",
     category: "Process",
@@ -123,7 +124,7 @@ const infographics = [
   },
   {
     id: 13,
-    src: waterSoftenerImg,
+    src: cacheBust(waterSoftenerImg),
     alt: "HYGIA+ Water Softener Equipment",
     title: "HYGIA+ Equipment",
     category: "Technology",
