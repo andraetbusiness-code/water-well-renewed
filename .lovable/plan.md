@@ -1,53 +1,39 @@
 
+# Recolor All Infographics to Match Brand Blues
 
-## Sales Rep Job Application Subdomain
+## The Problem
+The infographic images currently have two issues:
+1. **Off-brand colors** -- pink, coral, salmon, orange, and tan/beige shapes that clash with the site's dark blue palette (Water Blue #1E6FD9 / Deep Blue #123B8A)
+2. **Corrupted text** from the previous AI recolor attempt -- garbled labels on the maintenance schedule, filtration stages, and system diagram
 
-Create a new `careers` subdomain with a polished landing page that introduces the company and collects job applications from prospective sales reps. Applications are saved to the backend database.
+## What Will Change
+All 9 styled infographic images will be re-edited one by one using AI image editing. Each image will get a precise instruction to:
+- Replace all pink, coral, salmon, orange, and tan/beige colors with shades of blue (#1E6FD9, #123B8A, and lighter blue tints)
+- Keep white backgrounds where they exist
+- **Critically preserve all text exactly** -- no distortion or corruption
+- Keep all equipment photos, icons, and partner badges (Home Depot, etc.) intact
 
-### What the Applicant Sees
+## Images to Fix
 
-**Section 1 -- Hero / Company Intro**
-- SSW logo and headline: "Join Select Source Water"
-- Subheadline about the opportunity (Home Depot partnership, Sacramento market, earning potential)
-- Brief "Why Work With Us" section with 4-5 benefit cards (e.g., uncapped earnings, training provided, Home Depot foot traffic, team support, growth path)
+| Image | Current Issues |
+|-------|---------------|
+| **Better Water Starts Here** | Pink/coral blob shapes mixed with blue |
+| **What's In Your Water** | Large coral circle, tan blobs, orange warning icon |
+| **Maintenance Schedule** | Garbled month names and task labels from previous edit |
+| **10-Stage Filtration** | Garbled text at bottom ("DI. Water Fimrange") |
+| **Does Your Home Need Filtration?** | Coral/salmon shape in bottom-right corner |
+| **System Diagram** | Garbled title text ("Waters Filtlation Wurg") |
+| **Why Choose Us** | Possible off-brand accent colors |
+| **Benefits of Filtration** | Minor off-brand accents if any |
+| **Customer Journey** | Minor off-brand accents if any |
 
-**Section 2 -- Application Form**
-- Fields: First Name, Last Name, Email, Phone, City, Sales Experience (dropdown: None / 1-2 years / 3-5 years / 5+), "Why do you want to join?" (textarea)
-- Submit button with loading state
-- Success confirmation message after submission
+## Technical Approach
+- Each image will be edited individually using the AI image generation model (google/gemini-2.5-flash-image)
+- The editing prompt will be very specific: "Change ONLY the pink/coral/salmon/orange/tan colors to shades of blue (#1E6FD9 and #123B8A). Do NOT modify any text. Keep all text exactly as it appears."
+- For images with corrupted text, the original un-styled versions (e.g., `10-stages-filtration.png`) will be used as the source instead of the already-corrupted styled versions
+- No code changes needed -- the filenames stay the same, so all existing imports continue to work
 
-### Backend
-
-**New database table: `job_applications`**
-| Column | Type | Notes |
-|--------|------|-------|
-| id | uuid | PK, auto-generated |
-| first_name | text | required |
-| last_name | text | required |
-| email | text | required |
-| phone | text | required |
-| city | text | optional |
-| experience | text | dropdown value |
-| message | text | "why join" textarea |
-| status | text | default "new" |
-| created_at | timestamptz | auto |
-
-**RLS Policies:**
-- Anonymous users can INSERT (public form, no auth required)
-- Admins can SELECT, UPDATE, DELETE (to review applications in the portal)
-
-### Routing
-
-- New subdomain detection: `careers` in `App.tsx`
-- New `CareersRoutes` component rendering the application page at `/`
-- New file: `src/pages/careers/ApplyPage.tsx`
-
-### Technical Details
-
-- **New file:** `src/pages/careers/ApplyPage.tsx` -- standalone page with hero + form, uses framer-motion for polish (same pattern as HygiaPlusDemo)
-- **Modified file:** `src/App.tsx` -- add `isCareersSubdomain` detection + `CareersRoutes` component
-- **Database migration:** create `job_applications` table with RLS policies allowing anonymous inserts
-- **Form validation:** zod schema for client-side validation before insert
-- **No auth required** -- this is a public-facing application form
-- Uses existing logo asset and brand colors (primary blue gradient)
-
+## Risk Mitigation
+- Using the original (pre-corruption) source images for the 3-4 infographics with garbled text
+- Keeping editing instructions focused purely on color replacement to minimize text distortion
+- Each image processed individually so any failures are isolated
