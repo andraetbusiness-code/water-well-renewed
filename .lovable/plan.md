@@ -1,39 +1,81 @@
 
-# Recolor All Infographics to Match Brand Blues
 
-## The Problem
-The infographic images currently have two issues:
-1. **Off-brand colors** -- pink, coral, salmon, orange, and tan/beige shapes that clash with the site's dark blue palette (Water Blue #1E6FD9 / Deep Blue #123B8A)
-2. **Corrupted text** from the previous AI recolor attempt -- garbled labels on the maintenance schedule, filtration stages, and system diagram
+# Generate Brand-New Infographics with AI
 
-## What Will Change
-All 9 styled infographic images will be re-edited one by one using AI image editing. Each image will get a precise instruction to:
-- Replace all pink, coral, salmon, orange, and tan/beige colors with shades of blue (#1E6FD9, #123B8A, and lighter blue tints)
-- Keep white backgrounds where they exist
-- **Critically preserve all text exactly** -- no distortion or corruption
-- Keep all equipment photos, icons, and partner badges (Home Depot, etc.) intact
+## Overview
+Instead of trying to recolor the existing images (which keeps producing text distortion and off-brand results), we will generate 9 completely new infographic images using AI image generation. Each will be designed from scratch to match the site's dark blue brand identity.
 
-## Images to Fix
+## Brand Specifications for Generation
+- **Primary colors**: Water Blue (#1E6FD9), Deep Blue (#123B8A), light blue tints (#E8F0FE, #B8D4F0)
+- **Backgrounds**: Clean white or very light gray
+- **Typography style**: Modern, clean sans-serif (Inter-like)
+- **Design style**: Professional, clean, minimal -- organic flowing shapes, rounded elements, consistent with the rest of the site
+- **No pink, coral, salmon, orange, or tan colors anywhere
 
-| Image | Current Issues |
-|-------|---------------|
-| **Better Water Starts Here** | Pink/coral blob shapes mixed with blue |
-| **What's In Your Water** | Large coral circle, tan blobs, orange warning icon |
-| **Maintenance Schedule** | Garbled month names and task labels from previous edit |
-| **10-Stage Filtration** | Garbled text at bottom ("DI. Water Fimrange") |
-| **Does Your Home Need Filtration?** | Coral/salmon shape in bottom-right corner |
-| **System Diagram** | Garbled title text ("Waters Filtlation Wurg") |
-| **Why Choose Us** | Possible off-brand accent colors |
-| **Benefits of Filtration** | Minor off-brand accents if any |
-| **Customer Journey** | Minor off-brand accents if any |
+## Implementation Approach
 
-## Technical Approach
-- Each image will be edited individually using the AI image generation model (google/gemini-2.5-flash-image)
-- The editing prompt will be very specific: "Change ONLY the pink/coral/salmon/orange/tan colors to shades of blue (#1E6FD9 and #123B8A). Do NOT modify any text. Keep all text exactly as it appears."
-- For images with corrupted text, the original un-styled versions (e.g., `10-stages-filtration.png`) will be used as the source instead of the already-corrupted styled versions
-- No code changes needed -- the filenames stay the same, so all existing imports continue to work
+### 1. Create an Edge Function: `generate-infographic`
+A backend function that calls Lovable AI's image generation model (`google/gemini-3-pro-image-preview` for higher quality) with a detailed prompt for each infographic. The function will:
+- Accept an infographic type/ID
+- Use a carefully crafted prompt specifying the brand colors, layout, and content
+- Return the generated image as base64
+- Upload the result to file storage for persistence
 
-## Risk Mitigation
-- Using the original (pre-corruption) source images for the 3-4 infographics with garbled text
-- Keeping editing instructions focused purely on color replacement to minimize text distortion
-- Each image processed individually so any failures are isolated
+### 2. Build an Admin Tool Page
+A simple admin page (accessible from the portal) where you can:
+- See all 9 infographic slots with their current images
+- Click "Regenerate" on any one to generate a fresh version
+- Preview the result before saving
+- Save/download the approved image
+
+### 3. Infographic Content Specifications
+
+Each image will be generated with a specific prompt describing the exact content:
+
+| # | Title | Content to Include |
+|---|-------|--------------------|
+| 1 | **Better Water Starts Here** | Hero overview graphic with HYGIA+ branding, water droplet imagery, "10-Stage Filtration" callout, clean blue gradient design |
+| 2 | **10-Stage Filtration Process** | Numbered list of 10 filtration stages (Sediment, Catalytic Carbon, KDF-55, Coconut Carbon, Ion Exchange, UV Treatment, RO Membrane, Post-Carbon, Mineral Addition, Final Polish), vertical flow diagram |
+| 3 | **How The System Works** | System diagram showing water flow from inlet through dual tanks and RO unit, labeled components, pipe connections |
+| 4 | **Benefits of Filtration** | Icon grid showing benefits: healthier drinking water, better skin/hair, longer appliance life, eco-friendly, better taste, reduced contaminants |
+| 5 | **What's In Your Water?** | Contaminant breakdown: chlorine, lead, PFAS, bacteria, sediment, hard minerals -- with warning indicators and percentage stats |
+| 6 | **Does Your Home Need Filtration?** | Checklist-style graphic: hard water signs, staining, dry skin, bad taste, cloudy water -- with a call-to-action |
+| 7 | **Why Choose Select Source Water** | Competitive advantages: Home Depot authorized, 20-year warranty, professional installation, local service, 10-stage system |
+| 8 | **Your Path to Clean Water** | 5-step customer journey: Free Water Test, Custom Recommendation, Professional Install, System Activation, Ongoing Support |
+| 9 | **Maintenance Schedule** | 12-month calendar grid showing quarterly filter changes, annual system flush, UV bulb replacement schedule |
+
+### 4. File Output
+Generated images will be saved to the same filenames so no code changes are needed:
+- `src/assets/infographics/better-water-hero-styled.png`
+- `src/assets/infographics/10-stages-filtration-styled.png`
+- `src/assets/infographics/system-diagram-styled.png`
+- `src/assets/infographics/benefits-styled.png`
+- `src/assets/infographics/whats-in-water-styled.png`
+- `src/assets/infographics/home-needs-filtration-styled.png`
+- `src/assets/infographics/why-choose-us-styled.png`
+- `src/assets/infographics/customer-journey-styled.png`
+- `src/assets/infographics/maintenance-schedule-styled.png`
+
+## Technical Steps
+
+1. **Create edge function** `supabase/functions/generate-infographic/index.ts`
+   - Uses `google/gemini-3-pro-image-preview` model via Lovable AI gateway
+   - Each infographic type has a detailed, brand-specific prompt baked in
+   - Returns base64 image data
+
+2. **Create admin page** `src/pages/portal/admin/InfographicGenerator.tsx`
+   - Grid of 9 cards showing current images
+   - "Generate New" button on each card
+   - Shows loading state during generation
+   - Preview + download/save workflow
+
+3. **Add route** in `PortalRoutes.tsx` for the admin generator page
+
+4. **Generate all 9 images** using the tool, then save them as the styled PNG files
+
+## Why This Approach
+- AI-generated graphics will be designed from the ground up with the brand palette -- no color mismatches
+- No text distortion risk since the text is part of the original generation prompt
+- The admin tool lets you regenerate any image that doesn't look right without needing to come back here
+- Same filenames mean zero code changes to Gallery, FiltrationTechnology, HygiaSystem, and other pages
+
