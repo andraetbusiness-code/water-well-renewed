@@ -1,81 +1,63 @@
 
 
-# Generate Brand-New Infographics with AI
+# Add Cache-Busting to Infographic Images
 
-## Overview
-Instead of trying to recolor the existing images (which keeps producing text distortion and off-brand results), we will generate 9 completely new infographic images using AI image generation. Each will be designed from scratch to match the site's dark blue brand identity.
+## Problem
+After updating infographic images, browsers and external tools (like Pomelli) continue serving old cached versions because Vite's content-hash alone may not bust intermediate CDN or aggressive browser caches.
 
-## Brand Specifications for Generation
-- **Primary colors**: Water Blue (#1E6FD9), Deep Blue (#123B8A), light blue tints (#E8F0FE, #B8D4F0)
-- **Backgrounds**: Clean white or very light gray
-- **Typography style**: Modern, clean sans-serif (Inter-like)
-- **Design style**: Professional, clean, minimal -- organic flowing shapes, rounded elements, consistent with the rest of the site
-- **No pink, coral, salmon, orange, or tan colors anywhere
+## Solution
+Create a small utility that appends a version query parameter to image URLs, and apply it to all infographic `img` tags across the site.
 
-## Implementation Approach
+## Implementation
 
-### 1. Create an Edge Function: `generate-infographic`
-A backend function that calls Lovable AI's image generation model (`google/gemini-3-pro-image-preview` for higher quality) with a detailed prompt for each infographic. The function will:
-- Accept an infographic type/ID
-- Use a carefully crafted prompt specifying the brand colors, layout, and content
-- Return the generated image as base64
-- Upload the result to file storage for persistence
+### 1. Create a cache-busting utility
 
-### 2. Build an Admin Tool Page
-A simple admin page (accessible from the portal) where you can:
-- See all 9 infographic slots with their current images
-- Click "Regenerate" on any one to generate a fresh version
-- Preview the result before saving
-- Save/download the approved image
+Create `src/lib/cache-bust.ts` with a simple function:
 
-### 3. Infographic Content Specifications
+```typescript
+const ASSET_VERSION = "20260224";
 
-Each image will be generated with a specific prompt describing the exact content:
+export function cacheBust(url: string): string {
+  const separator = url.includes("?") ? "&" : "?";
+  return `${url}${separator}v=${ASSET_VERSION}`;
+}
+```
 
-| # | Title | Content to Include |
-|---|-------|--------------------|
-| 1 | **Better Water Starts Here** | Hero overview graphic with HYGIA+ branding, water droplet imagery, "10-Stage Filtration" callout, clean blue gradient design |
-| 2 | **10-Stage Filtration Process** | Numbered list of 10 filtration stages (Sediment, Catalytic Carbon, KDF-55, Coconut Carbon, Ion Exchange, UV Treatment, RO Membrane, Post-Carbon, Mineral Addition, Final Polish), vertical flow diagram |
-| 3 | **How The System Works** | System diagram showing water flow from inlet through dual tanks and RO unit, labeled components, pipe connections |
-| 4 | **Benefits of Filtration** | Icon grid showing benefits: healthier drinking water, better skin/hair, longer appliance life, eco-friendly, better taste, reduced contaminants |
-| 5 | **What's In Your Water?** | Contaminant breakdown: chlorine, lead, PFAS, bacteria, sediment, hard minerals -- with warning indicators and percentage stats |
-| 6 | **Does Your Home Need Filtration?** | Checklist-style graphic: hard water signs, staining, dry skin, bad taste, cloudy water -- with a call-to-action |
-| 7 | **Why Choose Select Source Water** | Competitive advantages: Home Depot authorized, 20-year warranty, professional installation, local service, 10-stage system |
-| 8 | **Your Path to Clean Water** | 5-step customer journey: Free Water Test, Custom Recommendation, Professional Install, System Activation, Ongoing Support |
-| 9 | **Maintenance Schedule** | 12-month calendar grid showing quarterly filter changes, annual system flush, UV bulb replacement schedule |
+When you update infographics in the future, just bump the `ASSET_VERSION` string.
 
-### 4. File Output
-Generated images will be saved to the same filenames so no code changes are needed:
-- `src/assets/infographics/better-water-hero-styled.png`
-- `src/assets/infographics/10-stages-filtration-styled.png`
-- `src/assets/infographics/system-diagram-styled.png`
-- `src/assets/infographics/benefits-styled.png`
-- `src/assets/infographics/whats-in-water-styled.png`
-- `src/assets/infographics/home-needs-filtration-styled.png`
-- `src/assets/infographics/why-choose-us-styled.png`
-- `src/assets/infographics/customer-journey-styled.png`
-- `src/assets/infographics/maintenance-schedule-styled.png`
+### 2. Apply to all infographic image usages
 
-## Technical Steps
+Update `img` tags in these 8 files to wrap the `src` with `cacheBust()`:
 
-1. **Create edge function** `supabase/functions/generate-infographic/index.ts`
-   - Uses `google/gemini-3-pro-image-preview` model via Lovable AI gateway
-   - Each infographic type has a detailed, brand-specific prompt baked in
-   - Returns base64 image data
+| File | Images affected |
+|------|----------------|
+| `src/components/HomeInfographic.tsx` | 1 (better-water-hero) |
+| `src/pages/Gallery.tsx` | 9 infographics + 4 photos in the data array |
+| `src/pages/FiltrationTechnology.tsx` | 2 (filtration-stages, benefits) |
+| `src/pages/HygiaSystem.tsx` | 2 (system-diagram, why-choose-us) |
+| `src/pages/WhatInWater.tsx` | 2 (whats-in-water, home-needs) |
+| `src/pages/Process.tsx` | 1 (customer-journey) |
+| `src/pages/Maintenance.tsx` | 1 (maintenance-schedule) |
+| `src/pages/portal/admin/InfographicGenerator.tsx` | 9 (all slots) |
 
-2. **Create admin page** `src/pages/portal/admin/InfographicGenerator.tsx`
-   - Grid of 9 cards showing current images
-   - "Generate New" button on each card
-   - Shows loading state during generation
-   - Preview + download/save workflow
+Each change is minimal -- just wrapping the imported variable in `cacheBust()` where it's used as an `src` prop or in a data array.
 
-3. **Add route** in `PortalRoutes.tsx` for the admin generator page
+### Example change
 
-4. **Generate all 9 images** using the tool, then save them as the styled PNG files
+Before:
+```tsx
+<img src={betterWaterHeroImg} alt="..." />
+```
 
-## Why This Approach
-- AI-generated graphics will be designed from the ground up with the brand palette -- no color mismatches
-- No text distortion risk since the text is part of the original generation prompt
-- The admin tool lets you regenerate any image that doesn't look right without needing to come back here
-- Same filenames mean zero code changes to Gallery, FiltrationTechnology, HygiaSystem, and other pages
+After:
+```tsx
+import { cacheBust } from "@/lib/cache-bust";
+// ...
+<img src={cacheBust(betterWaterHeroImg)} alt="..." />
+```
+
+### 3. No other changes needed
+- Same filenames, same imports
+- The query param (`?v=20260224`) forces browsers and CDNs to treat the URL as new
+- Bumping the version string in one file busts cache for all images site-wide
 
