@@ -4,24 +4,36 @@ import { OnboardingSlideLayout } from '../OnboardingSlideLayout';
 const scriptSections = [
   {
     label: 'OPENER',
-    text: `"Hey, you guys finding everything OK?"`,
+    text: `"Finding everything ok?"`,
+  },
+  {
+    label: 'PERMISSION',
+    text: `"Can I ask you a quick question?"`,
   },
   {
     label: 'HOOK QUESTION',
-    text: `"Real quick — what are you currently using for your whole home filtration or water treatment?"`,
+    text: `"Who does your water filter at home?"`,
+  },
+  {
+    label: 'BRIDGE',
+    text: `"Super cool!"`,
   },
   {
     label: 'OFFER',
-    text: `"Super cool — Home Depot is doing complimentary in-home water tests for the next three days. Here's how it works.\n\nWe send a technician out to your home. We do a chlorine test and a basic contaminant test. We walk you through your water report."`,
+    text: `"For the next 2 days, Home Depot is offering complimentary water test.\n\nWe will have a technician go to your home and test your water for chlorine and other contaminants and walk you through the water waste treatment report."`,
   },
   {
     label: 'PEACE OF MIND',
-    text: `"If your water is great then you know you have peace of mind.\n\nIf your water is not great, you would be open to solutions right? No one's worse off with clean water, right?"`,
+    text: `"If your water's great we'll be the first to tell you. If it's not great we'll show you some solutions... you're open to solutions for clean water right?"`,
+  },
+  {
+    label: 'PAUSE',
+    text: ``,
+    note: '(Silent, Listen)',
   },
   {
     label: 'WAIVED FEE + QUALIFIERS',
-    text: `"So there is a catch — the test is $49.95. It's complimentary through Home Depot as long as:"`,
-    note: '• You own a single-family home\n• And both homeowners are present for the test.',
+    text: `"So there's a catch — the test is $49.95.\n\nHowever, it is complimentary if you own a single family home and all home owners are present for the test."`,
   },
   {
     label: 'CLOSE',

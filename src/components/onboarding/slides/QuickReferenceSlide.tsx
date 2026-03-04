@@ -4,11 +4,17 @@ import { Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 
-const quickScript = `"Hey, you guys finding everything OK?"
+const quickScript = `"Finding everything ok?"
 
-"Real quick — what are you currently using for your whole home filtration or water treatment?"
+"Can I ask you a quick question?"
 
-"Super cool — Home Depot is doing complimentary in-home water tests for the next three days."
+"Who does your water filter at home?"
+
+"Super cool!"
+
+"For the next 2 days, Home Depot is offering complimentary water test."
+
+"If your water's great we'll be the first to tell you..."
 
 "Do mornings, afternoons, or evenings work best for you guys?"
 
