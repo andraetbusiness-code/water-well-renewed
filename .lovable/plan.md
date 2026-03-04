@@ -1,63 +1,31 @@
 
 
-# Add Cache-Busting to Infographic Images
+# Update Onboarding Script
 
-## Problem
-After updating infographic images, browsers and external tools (like Pomelli) continue serving old cached versions because Vite's content-hash alone may not bust intermediate CDN or aggressive browser caches.
+## Changes
 
-## Solution
-Create a small utility that appends a version query parameter to image URLs, and apply it to all infographic `img` tags across the site.
+Update the script text in **two files** to match the new wording provided:
 
-## Implementation
+### 1. `src/components/onboarding/slides/ApprovedScriptSlide.tsx`
 
-### 1. Create a cache-busting utility
+Replace the `scriptSections` array with the new script flow:
 
-Create `src/lib/cache-bust.ts` with a simple function:
+| Label | New Text |
+|-------|----------|
+| OPENER | "Finding everything ok?" |
+| PERMISSION | "Can I ask you a quick question?" |
+| HOOK QUESTION | "Who does your water filter at home?" |
+| BRIDGE | "Super cool!" |
+| OFFER | "For the next 2 days, Home Depot is offering complimentary water test.\n\nWe will have a technician go to your home and test your water for chlorine and other contaminants and walk you through the water waste treatment report." |
+| PEACE OF MIND | "If your water's great we'll be the first to tell you. If it's not great we'll show you some solutions... you're open to solutions for clean water right?" |
+| PAUSE | *(Silent, Listen)* — displayed as instructional note |
+| WAIVED FEE + QUALIFIERS | "So there's a catch — the test is $49.95.\n\nHowever, it is complimentary if you own a single family home and all home owners are present for the test." |
+| CLOSE | Same as before (mornings/afternoons/evenings) |
+| CONFIRMATION LOCK | Same as before |
+| REQUIRED FIELDS | Same as before |
+| TIME WINDOW | Same as before |
 
-```typescript
-const ASSET_VERSION = "20260224";
+### 2. `src/components/onboarding/slides/QuickReferenceSlide.tsx`
 
-export function cacheBust(url: string): string {
-  const separator = url.includes("?") ? "&" : "?";
-  return `${url}${separator}v=${ASSET_VERSION}`;
-}
-```
-
-When you update infographics in the future, just bump the `ASSET_VERSION` string.
-
-### 2. Apply to all infographic image usages
-
-Update `img` tags in these 8 files to wrap the `src` with `cacheBust()`:
-
-| File | Images affected |
-|------|----------------|
-| `src/components/HomeInfographic.tsx` | 1 (better-water-hero) |
-| `src/pages/Gallery.tsx` | 9 infographics + 4 photos in the data array |
-| `src/pages/FiltrationTechnology.tsx` | 2 (filtration-stages, benefits) |
-| `src/pages/HygiaSystem.tsx` | 2 (system-diagram, why-choose-us) |
-| `src/pages/WhatInWater.tsx` | 2 (whats-in-water, home-needs) |
-| `src/pages/Process.tsx` | 1 (customer-journey) |
-| `src/pages/Maintenance.tsx` | 1 (maintenance-schedule) |
-| `src/pages/portal/admin/InfographicGenerator.tsx` | 9 (all slots) |
-
-Each change is minimal -- just wrapping the imported variable in `cacheBust()` where it's used as an `src` prop or in a data array.
-
-### Example change
-
-Before:
-```tsx
-<img src={betterWaterHeroImg} alt="..." />
-```
-
-After:
-```tsx
-import { cacheBust } from "@/lib/cache-bust";
-// ...
-<img src={cacheBust(betterWaterHeroImg)} alt="..." />
-```
-
-### 3. No other changes needed
-- Same filenames, same imports
-- The query param (`?v=20260224`) forces browsers and CDNs to treat the URL as new
-- Bumping the version string in one file busts cache for all images site-wide
+Update the `quickScript` string to match the new condensed version of the updated script (the "field card" summary).
 
