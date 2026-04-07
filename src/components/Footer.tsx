@@ -1,26 +1,28 @@
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Facebook, Instagram, Youtube, Droplets } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram, Droplets } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
-const footerLinks = {
-  company: [
-    { label: "About Us", href: "#about" },
-    { label: "Our Process", href: "#how-it-works" },
-    { label: "Service Areas", href: "#contact" },
-  ],
-  services: [
-    { label: "Water Testing", href: "#services" },
-    { label: "Water Softening", href: "#services" },
-    { label: "Filtration Systems", href: "#services" },
-  ],
-  legal: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
-    { label: "Warranty Info", href: "#faq" },
-    { label: "Staff Login", href: "/portal", isInternal: true },
-  ],
-};
+const quickLinks = [
+  { label: "Home", href: "/", isInternal: true },
+  { label: "HYGIA+ System", href: "/hygia-system", isInternal: true },
+  { label: "Filtration Technology", href: "/filtration-technology", isInternal: true },
+  { label: "Process", href: "/process", isInternal: true },
+  { label: "Gallery", href: "/gallery", isInternal: true },
+  { label: "About", href: "/about", isInternal: true },
+  { label: "Blog", href: "/blog", isInternal: true },
+  { label: "Contact", href: "/#contact" },
+];
+
+const serviceAreas = [
+  { label: "Beaumont", href: "/service-areas/beaumont" },
+  { label: "Banning", href: "/service-areas/banning" },
+  { label: "Hemet", href: "/service-areas/hemet" },
+  { label: "Moreno Valley", href: "/service-areas/moreno-valley" },
+  { label: "Riverside", href: "/service-areas/riverside" },
+  { label: "San Jacinto", href: "/service-areas/san-jacinto" },
+  { label: "View All Cities", href: "/service-areas" },
+];
 
 export const Footer = () => {
   return (
@@ -36,138 +38,98 @@ export const Footer = () => {
           <path d="M0,40 C360,100 1080,0 1440,60 L1440,100 L0,100 Z" opacity="0.3" fill="currentColor" />
         </svg>
       </div>
-      
+
       {/* Floating droplets decoration */}
-      <motion.div 
+      <motion.div
         className="absolute top-32 right-[10%] w-3 h-4 bg-primary-foreground/5 rounded-full"
         animate={{ y: [-10, 10, -10] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div 
-        className="absolute top-48 right-[20%] w-2 h-3 bg-primary-foreground/5 rounded-full"
-        animate={{ y: [10, -10, 10] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div 
+      <motion.div
         className="absolute bottom-32 left-[15%] w-4 h-5 bg-primary-foreground/5 rounded-full"
         animate={{ y: [-5, 15, -5] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />
 
       <div className="container relative pt-20 pb-12">
-        {/* Main footer content - flowing layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
-          {/* Brand section - takes more space */}
-          <div className="lg:col-span-5">
-            <a href="#" className="inline-block mb-6">
-              <img 
-                src={logo} 
-                alt="Select Source Water" 
+        {/* 4-column grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
+          {/* Column 1 — Brand */}
+          <div className="sm:col-span-2 lg:col-span-1">
+            <Link to="/" className="inline-block mb-6">
+              <img
+                src={logo}
+                alt="Select Source Water"
                 className="h-14 w-auto brightness-0 invert opacity-90"
               />
-            </a>
-            <p className="text-primary-foreground/60 mb-8 max-w-md leading-relaxed">
-              Bringing pure, soft water to California and Arizona homes since 1998. 
-              Experience the difference with our lifetime warranty and dedicated service.
+            </Link>
+            <p className="text-primary-foreground/60 mb-6 leading-relaxed text-sm">
+              Serving the Inland Empire since 1998. Experience the difference with our Lifetime Warranty and dedicated service.
             </p>
-            
-            {/* Contact info - horizontal on larger screens */}
-            <div className="flex flex-wrap gap-6">
-              <a href="tel:1-800-555-0123" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors group">
-                <div className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+
+            <div className="space-y-3">
+              <a href="tel:+19516124094" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors group text-sm">
+                <div className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
                   <Phone className="h-4 w-4" />
                 </div>
-                <span>(800) 555-0123</span>
+                <span>(951) 612-4094</span>
               </a>
-              <a href="mailto:info@selectsourcewater.com" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors group">
-                <div className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+              <a href="mailto:info@selectsourcewatercalifornia.com" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors group text-sm">
+                <div className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
                   <Mail className="h-4 w-4" />
                 </div>
-                <span className="hidden sm:inline">info@selectsourcewater.com</span>
-                <span className="sm:hidden">Email</span>
+                <span className="break-all">info@selectsourcewatercalifornia.com</span>
               </a>
-            </div>
-          </div>
-
-          {/* Links - flowing columns */}
-          <div className="lg:col-span-7">
-            <div className="grid grid-cols-3 gap-8">
-              <div>
-                <h4 className="font-medium text-primary-foreground mb-5 text-sm uppercase tracking-wider">Company</h4>
-                <ul className="space-y-3">
-                  {footerLinks.company.map((link) => (
-                    <li key={link.label}>
-                      <a
-                        href={link.href}
-                        className="text-primary-foreground/50 hover:text-accent transition-colors inline-block"
-                      >
-                        {link.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="font-medium text-primary-foreground mb-5 text-sm uppercase tracking-wider">Services</h4>
-                <ul className="space-y-3">
-                  {footerLinks.services.map((link) => (
-                    <li key={link.label}>
-                      <a
-                        href={link.href}
-                        className="text-primary-foreground/50 hover:text-accent transition-colors inline-block"
-                      >
-                        {link.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="font-medium text-primary-foreground mb-5 text-sm uppercase tracking-wider">Legal</h4>
-                <ul className="space-y-3">
-                  {footerLinks.legal.map((link) => (
-                    <li key={link.label}>
-                      {(link as any).isInternal ? (
-                        <Link
-                          to={link.href}
-                          className="text-primary-foreground/50 hover:text-accent transition-colors inline-block"
-                        >
-                          {link.label}
-                        </Link>
-                      ) : (
-                        <a
-                          href={link.href}
-                          className="text-primary-foreground/50 hover:text-accent transition-colors inline-block"
-                        >
-                          {link.label}
-                        </a>
-                      )}
-                    </li>
-                  ))}
-                </ul>
+              <div className="flex items-center gap-3 text-primary-foreground/70 text-sm">
+                <div className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center">
+                  <MapPin className="h-4 w-4" />
+                </div>
+                <span>790 Beaumont Ave Ste 124<br />Beaumont, CA 92223</span>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Bottom bar - organic divider */}
-        <div className="relative pt-8">
-          {/* Gradient divider instead of solid line */}
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-foreground/20 to-transparent" />
-          
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <p className="text-primary-foreground/40 text-sm">
-              © {new Date().getFullYear()} Select Source Water. All rights reserved.
-            </p>
-            
-            {/* Social links with organic styling */}
-            <div className="flex items-center gap-3">
+          {/* Column 2 — Quick Links */}
+          <div>
+            <h4 className="font-medium text-primary-foreground mb-5 text-sm uppercase tracking-wider">Quick Links</h4>
+            <ul className="space-y-3">
+              {quickLinks.map((link) => (
+                <li key={link.label}>
+                  {link.isInternal ? (
+                    <Link to={link.href} className="text-primary-foreground/50 hover:text-accent transition-colors inline-block text-sm">
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a href={link.href} className="text-primary-foreground/50 hover:text-accent transition-colors inline-block text-sm">
+                      {link.label}
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3 — Service Areas */}
+          <div>
+            <h4 className="font-medium text-primary-foreground mb-5 text-sm uppercase tracking-wider">Service Areas</h4>
+            <ul className="space-y-3">
+              {serviceAreas.map((link) => (
+                <li key={link.label}>
+                  <Link to={link.href} className="text-primary-foreground/50 hover:text-accent transition-colors inline-block text-sm">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4 — Connect */}
+          <div>
+            <h4 className="font-medium text-primary-foreground mb-5 text-sm uppercase tracking-wider">Connect</h4>
+            <div className="flex items-center gap-3 mb-6">
               {[
                 { icon: Facebook, label: "Facebook" },
                 { icon: Instagram, label: "Instagram" },
-                { icon: Youtube, label: "YouTube" },
               ].map((social) => (
                 <a
                   key={social.label}
@@ -179,10 +141,32 @@ export const Footer = () => {
                 </a>
               ))}
             </div>
+            <a
+              href="https://g.page/selectsourcewater"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-sm text-primary-foreground/50 hover:text-accent transition-colors"
+            >
+              ⭐ Google Reviews
+            </a>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="relative pt-8">
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-foreground/20 to-transparent" />
+
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-primary-foreground/40 text-xs text-center md:text-left">
+              © {new Date().getFullYear()} Select Source Water LLC | Est. 1998 | Licensed & Insured |{" "}
+              <Link to="/privacy-policy" className="hover:text-accent transition-colors">Privacy Policy</Link> |{" "}
+              <Link to="/terms-of-service" className="hover:text-accent transition-colors">Terms</Link> |{" "}
+              <Link to="/portal" className="hover:text-accent transition-colors">Staff Login</Link>
+            </p>
           </div>
         </div>
       </div>
-      
+
       {/* Large decorative element */}
       <div className="absolute bottom-0 right-0 opacity-[0.02] pointer-events-none">
         <Droplets className="w-80 h-80" />
