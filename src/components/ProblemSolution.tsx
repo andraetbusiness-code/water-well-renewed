@@ -145,7 +145,7 @@ export const ProblemSolution = () => {
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-foreground/80 to-transparent p-6 text-center">
               <p className="text-primary-foreground font-serif text-lg">Our Expert Team</p>
-              <p className="text-primary-foreground/70 text-sm">Serving Florida since 1998</p>
+              <p className="text-primary-foreground/70 text-sm">Serving Southern California since 1998</p>
             </div>
           </div>
         </motion.div>

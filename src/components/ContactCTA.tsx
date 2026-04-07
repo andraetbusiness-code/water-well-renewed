@@ -72,7 +72,7 @@ export const ContactCTA = () => {
             >
               {/* Contact methods - organic layout */}
               <div className="space-y-6">
-                <a href="tel:1-800-555-0123" className="flex items-center gap-5 group">
+                <a href="tel:+19516124094" className="flex items-center gap-5 group">
                   <div className="relative">
                     <div className="absolute inset-0 bg-accent/20 rounded-full blur-lg group-hover:blur-xl transition-all" />
                     <div className="relative w-14 h-14 rounded-full bg-primary-foreground/10 flex items-center justify-center group-hover:bg-primary-foreground/20 transition-colors">
@@ -81,11 +81,11 @@ export const ContactCTA = () => {
                   </div>
                   <div>
                     <span className="text-sm text-primary-foreground/50 block">Call Us</span>
-                    <span className="text-xl text-primary-foreground font-medium group-hover:text-accent transition-colors">(800) 555-0123</span>
+                    <span className="text-xl text-primary-foreground font-medium group-hover:text-accent transition-colors">(951) 612-4094</span>
                   </div>
                 </a>
                 
-                <a href="mailto:info@selectsourcewater.com" className="flex items-center gap-5 group">
+                <a href="mailto:info@selectsourcewatercalifornia.com" className="flex items-center gap-5 group">
                   <div className="relative">
                     <div className="absolute inset-0 bg-primary/20 rounded-full blur-lg group-hover:blur-xl transition-all" />
                     <div className="relative w-14 h-14 rounded-full bg-primary-foreground/10 flex items-center justify-center group-hover:bg-primary-foreground/20 transition-colors">
@@ -94,7 +94,7 @@ export const ContactCTA = () => {
                   </div>
                   <div>
                     <span className="text-sm text-primary-foreground/50 block">Email Us</span>
-                    <span className="text-lg text-primary-foreground font-medium group-hover:text-accent transition-colors">info@selectsourcewater.com</span>
+                    <span className="text-lg text-primary-foreground font-medium group-hover:text-accent transition-colors">info@selectsourcewatercalifornia.com</span>
                   </div>
                 </a>
                 
@@ -107,7 +107,7 @@ export const ContactCTA = () => {
                   </div>
                   <div>
                     <span className="text-sm text-primary-foreground/50 block">Service Areas</span>
-                    <span className="text-lg text-primary-foreground font-medium">California & Arizona</span>
+                    <span className="text-lg text-primary-foreground font-medium">Inland Empire, Southern California</span>
                   </div>
                 </div>
               </div>

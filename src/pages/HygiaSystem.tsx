@@ -61,7 +61,7 @@ const benefits = [
   "Cleaner, great-tasting water",
   "Removes contaminants, odors & spots",
   "Installed by professionals you can trust",
-  "20-year full warranty",
+  "Lifetime Warranty",
   "Customized solutions for your home"
 ];
 
@@ -227,9 +227,9 @@ export default function HygiaSystem() {
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <a href="tel:8334227765" className="gap-2">
+                  <a href="tel:+19516124094" className="gap-2">
                     <Phone className="h-4 w-4" />
-                    833.422.7765
+                    (951) 612-4094
                   </a>
                 </Button>
               </div>
@@ -244,9 +244,9 @@ export default function HygiaSystem() {
             >
               <div className="p-8 rounded-3xl bg-card border border-border/50 text-center">
                 <div className="mb-6">
-                  <span className="text-6xl md:text-7xl font-serif text-primary">20</span>
-                  <span className="text-2xl font-serif text-foreground ml-2">Year</span>
-                  <p className="text-xl font-medium text-foreground">Full Warranty</p>
+                  <span className="text-5xl md:text-6xl font-serif text-primary">Lifetime</span>
+                  <span className="text-2xl font-serif text-foreground ml-2"></span>
+                  <p className="text-xl font-medium text-foreground">Warranty</p>
                 </div>
                 
                 <div className="w-full h-px bg-border my-6" />

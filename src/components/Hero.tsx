@@ -46,7 +46,7 @@ export const Hero = () => {
           >
             <span className="inline-flex items-center gap-2 text-water-light font-medium text-sm md:text-base mb-6">
               <Droplets className="h-4 w-4" />
-              Trusted Since 1998 • California & Arizona
+              Trusted Since 1998 • Inland Empire, California
             </span>
           </motion.div>
 
