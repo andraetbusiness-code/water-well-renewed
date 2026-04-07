@@ -168,8 +168,8 @@ export const Hero = () => {
       </motion.div>
     </section>
   );
-};
-  return (
+
+
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background Image with warm overlay */}
       <div className="absolute inset-0">
