@@ -12,7 +12,7 @@ import {
   AlertTriangle,
   Shield,
   MapPin,
-  Beaker,
+  
   Users,
   Home,
   HelpCircle
