@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { 
   Droplets, 
   Shield, 
@@ -11,7 +12,8 @@ import {
   Leaf,
   Zap,
   Home,
-  Phone
+  Phone,
+  Store
 } from "lucide-react";
 import { PageLayout, PageHero } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
@@ -73,6 +75,12 @@ export default function HygiaSystem() {
 
   return (
     <PageLayout>
+      <Helmet>
+        <title>HYGIA+ Whole House Water Filtration System | Select Source Water — Inland Empire</title>
+        <meta name="description" content="The HYGIA+ system removes hard water, chlorine, and contaminants from every tap. Home Depot Authorized installation. Lifetime warranty. Free test: (951) 612-4094." />
+        <link rel="canonical" href="https://selectsourcewatercalifornia.com/hygia-system" />
+      </Helmet>
+
       <PageHero 
         badge="HYGIA+ System"
         title="Whole House Water"
@@ -99,7 +107,6 @@ export default function HygiaSystem() {
             </p>
           </motion.div>
 
-          {/* Filtration stages - vertical flow on mobile, grid on desktop */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {systemFeatures.map((feature, index) => (
               <motion.div
@@ -110,7 +117,6 @@ export default function HygiaSystem() {
                 className="group relative"
               >
                 <div className="p-6 rounded-2xl bg-card border border-border/50 hover:border-primary/30 hover:shadow-lg transition-all duration-300 h-full">
-                  {/* Step number */}
                   <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">
                     {index + 1}
                   </div>
@@ -147,7 +153,6 @@ export default function HygiaSystem() {
             </h2>
           </motion.div>
           
-          {/* Equipment Photo */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -192,7 +197,6 @@ export default function HygiaSystem() {
         
         <div className="container relative" ref={benefitsRef}>
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            {/* Benefits list */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={benefitsInView ? { opacity: 1, x: 0 } : {}}
@@ -218,11 +222,16 @@ export default function HygiaSystem() {
                   </motion.div>
                 ))}
               </div>
+
+              {/* SoCal relevance paragraph */}
+              <p className="mt-8 text-muted-foreground text-base leading-relaxed">
+                Beaumont's water tests at 177 PPM hardness — hard enough to damage appliances and dry out your skin. The HYGIA+ system is designed for exactly this type of water.
+              </p>
               
-              <div className="mt-10 flex flex-col sm:flex-row gap-4">
+              <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg">
-                  <Link to="/#contact" className="gap-2">
-                    Get Free Water Test
+                  <Link to="/free-water-test" className="gap-2">
+                    Schedule Your Free Water Test in the Inland Empire
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
@@ -235,7 +244,6 @@ export default function HygiaSystem() {
               </div>
             </motion.div>
             
-            {/* Trust badges */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={benefitsInView ? { opacity: 1, x: 0 } : {}}
@@ -245,7 +253,6 @@ export default function HygiaSystem() {
               <div className="p-8 rounded-3xl bg-card border border-border/50 text-center">
                 <div className="mb-6">
                   <span className="text-5xl md:text-6xl font-serif text-primary">Lifetime</span>
-                  <span className="text-2xl font-serif text-foreground ml-2"></span>
                   <p className="text-xl font-medium text-foreground">Warranty</p>
                 </div>
                 
@@ -263,6 +270,45 @@ export default function HygiaSystem() {
                   Treatment Service Provider.
                 </p>
               </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Home Depot Authorized Section */}
+      <section className="py-20 md:py-28 relative overflow-hidden bg-[hsl(var(--light-blue-bg,210_100%_97%))]">
+        <div className="container">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4">
+                HOME DEPOT AUTHORIZED PROVIDER
+              </span>
+              <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-6">
+                Installed by an Authorized <span className="text-primary">Home Depot Partner</span>
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
+                Select Source Water is an Authorized Independent Provider for Home Depot Home Services. That means you get the HYGIA+ system installed by factory-trained technicians — backed by Home Depot's customer satisfaction guarantee and SSW's Lifetime Warranty.
+              </p>
+
+              <div className="flex justify-center mb-8">
+                <img 
+                  src={homeDepotAuthorized} 
+                  alt="Home Depot Authorized Independent Provider" 
+                  className="h-20 md:h-24 w-auto drop-shadow-lg"
+                />
+              </div>
+              
+              <Button asChild size="lg">
+                <Link to="/home-depot-authorized-provider" className="gap-2">
+                  <Store className="h-4 w-4" />
+                  Learn About Our HD Partnership
+                </Link>
+              </Button>
             </motion.div>
           </div>
         </div>
