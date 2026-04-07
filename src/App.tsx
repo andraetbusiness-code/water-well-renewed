@@ -90,6 +90,7 @@ const App = () => (
               <Route path="/audit" element={<ExecutiveAudit />} />
               <Route path="/growth-plan" element={<GrowthExecutionPlan />} />
               <Route path="/gbp-audit" element={<GBPAudit />} />
+              <Route path="/service-areas" element={<ServiceAreas />} />
               <Route path="/demo/hygia-plus" element={<Suspense fallback={null}><HygiaPlusDemo /></Suspense>} />
               <Route path="/careers" element={<Suspense fallback={null}><ApplyPage /></Suspense>} />
               <Route path="*" element={<NotFound />} />

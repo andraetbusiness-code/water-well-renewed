@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { MapPin, Droplets, Star, Clock, ArrowRight, Phone } from "lucide-react";
+import { MapPin, Droplets, Star, ArrowRight, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
