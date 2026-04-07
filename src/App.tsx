@@ -20,6 +20,7 @@ import FieldRepOnboarding from "./pages/FieldRepOnboarding";
 import ExecutiveAudit from "./pages/ExecutiveAudit";
 import GrowthExecutionPlan from "./pages/GrowthExecutionPlan";
 import GBPAudit from "./pages/GBPAudit";
+import ServiceAreas from "./pages/ServiceAreas";
 
 const HygiaPlusDemo = lazy(() => import("./pages/demo/HygiaPlusDemo"));
 const MarketingGallerySlide = lazy(() => import("@/components/onboarding/slides/MarketingGallerySlide").then(m => ({ default: m.MarketingGallerySlide })));
@@ -89,6 +90,7 @@ const App = () => (
               <Route path="/audit" element={<ExecutiveAudit />} />
               <Route path="/growth-plan" element={<GrowthExecutionPlan />} />
               <Route path="/gbp-audit" element={<GBPAudit />} />
+              <Route path="/service-areas" element={<ServiceAreas />} />
               <Route path="/demo/hygia-plus" element={<Suspense fallback={null}><HygiaPlusDemo /></Suspense>} />
               <Route path="/careers" element={<Suspense fallback={null}><ApplyPage /></Suspense>} />
               <Route path="*" element={<NotFound />} />
