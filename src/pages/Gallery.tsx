@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ZoomIn, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { PageLayout, PageHero } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { FloatingBubbles } from "@/components/WaterEffects";
@@ -129,10 +130,28 @@ const infographics = [
     title: "HYGIA+ Equipment",
     category: "Technology",
     link: "/hygia-system"
+  },
+  {
+    id: 14,
+    src: "",
+    alt: "Map showing water hardness levels across Beaumont, Banning, Hemet, Moreno Valley, and Riverside",
+    title: "Inland Empire Water Hardness Map",
+    category: "Water Quality Data",
+    link: "/what-in-water",
+    caption: "Cities across the Inland Empire range from 155 to 249 PPM hardness"
+  },
+  {
+    id: 15,
+    src: "",
+    alt: "Infographic showing Beaumont CA water quality data including 177 PPM hardness and EPA contaminant levels",
+    title: "What's In Beaumont's Water?",
+    category: "Water Quality Data",
+    link: "/what-in-water",
+    caption: "Beaumont tap water: 177 PPM / 10.4 GPG, 2 contaminants above EPA MCLGs"
   }
 ];
 
-const categories = ["All", "Technology", "Water Quality", "Benefits", "Process", "Maintenance", "Team", "About", "Overview"];
+const categories = ["All", "Technology", "Water Quality", "Water Quality Data", "Benefits", "Process", "Maintenance", "Team", "About", "Overview"];
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<typeof infographics[0] | null>(null);
@@ -144,6 +163,10 @@ export default function Gallery() {
 
   return (
     <PageLayout>
+      <Helmet>
+        <title>Infographic Gallery | Select Source Water — Inland Empire</title>
+        <meta name="description" content="Browse visual guides to water filtration technology, system benefits, maintenance schedules, and Inland Empire water quality data." />
+      </Helmet>
       <PageHero 
         badge="Resource Library"
         title="Infographic"
@@ -302,10 +325,10 @@ export default function Gallery() {
                 Ready to Get Started?
               </h2>
               <p className="text-muted-foreground mb-8">
-                Schedule your free in-home water test and discover the right solution for your home.
+                Schedule your free in-home water test and discover the right solution for your Inland Empire home.
               </p>
               <Button asChild size="lg">
-                <Link to="/#contact">
+                <Link to="/free-water-test">
                   Schedule Free Water Test
                 </Link>
               </Button>

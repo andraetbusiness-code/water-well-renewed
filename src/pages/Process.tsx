@@ -12,6 +12,7 @@ import {
   Droplets,
   Calendar
 } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { PageLayout, PageHero } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { FloatingBubbles, WaveBackground } from "@/components/WaterEffects";
@@ -25,7 +26,7 @@ const processSteps = [
   {
     icon: Calendar,
     title: "Schedule Free Water Test",
-    description: "Call us or fill out our contact form to schedule a free in-home water quality assessment. Our certified technicians will come to your home at a time that works for you.",
+    description: "Call us or fill out our contact form to schedule a free in-home water quality assessment. We serve Beaumont, Banning, Hemet, Moreno Valley, Riverside, and all of the Inland Empire. Available 7 days a week.",
     details: [
       "No-obligation consultation",
       "Flexible scheduling",
@@ -80,6 +81,11 @@ export default function Process() {
 
   return (
     <PageLayout>
+      <Helmet>
+        <title>How It Works — Free Water Test to Installation | Select Source Water SoCal</title>
+        <meta name="description" content="5 simple steps: free water test → custom solution → same-day installation → lifetime warranty. Serving the Inland Empire. Call (951) 612-4094 to get started." />
+        <link rel="canonical" href="https://selectsourcewatercalifornia.com/process" />
+      </Helmet>
       <PageHero 
         badge="5 Simple Steps"
         title="Your Path to"
@@ -260,7 +266,7 @@ export default function Process() {
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg">
-                  <Link to="/#contact" className="gap-2">
+                  <Link to="/free-water-test" className="gap-2">
                     Schedule Free Test
                     <ArrowRight className="h-4 w-4" />
                   </Link>
@@ -275,7 +281,7 @@ export default function Process() {
               
               <p className="mt-8 text-sm text-muted-foreground">
                 Select Source Water, LLC — Est. 1998<br />
-                Home Depot Authorized Water Treatment Service Provider
+                Home Depot Authorized Independent Provider | Serving the Inland Empire
               </p>
             </motion.div>
           </div>
