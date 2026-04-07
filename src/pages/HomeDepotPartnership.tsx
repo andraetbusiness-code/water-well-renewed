@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { Shield, CheckCircle, Clock, Phone, Star, Home, Award, Users, ArrowRight, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TrustBar } from "@/components/TrustBar";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { ContactCTA } from "@/components/ContactCTA";
 
 const benefits = [
