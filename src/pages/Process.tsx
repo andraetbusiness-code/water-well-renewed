@@ -65,9 +65,9 @@ const processSteps = [
   {
     icon: ThumbsUp,
     title: "Enjoy Pure Water",
-    description: "Start enjoying clean, soft, great-tasting water from every tap in your home. We back everything with a 20-year warranty and lifetime support.",
+    description: "Start enjoying clean, soft, great-tasting water from every tap in your home. We back everything with a Lifetime Warranty and lifetime support.",
     details: [
-      "20-year full warranty",
+      "Lifetime Warranty",
       "Lifetime customer support",
       "Satisfaction guaranteed"
     ]
@@ -266,9 +266,9 @@ export default function Process() {
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <a href="tel:8334227765" className="gap-2">
+                  <a href="tel:+19516124094" className="gap-2">
                     <Phone className="h-4 w-4" />
-                    Call 833.422.7765
+                    Call (951) 612-4094
                   </a>
                 </Button>
               </div>

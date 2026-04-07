@@ -216,9 +216,9 @@ export default function WhatInWater() {
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <a href="tel:8334227765" className="gap-2">
+                  <a href="tel:+19516124094" className="gap-2">
                     <Phone className="h-4 w-4" />
-                    833.422.7765
+                    (951) 612-4094
                   </a>
                 </Button>
               </div>

@@ -72,7 +72,7 @@ export default function SettingsPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="supportEmail">Support Email</Label>
-                  <Input id="supportEmail" type="email" defaultValue="support@selectsourcewater.com" />
+                  <Input id="supportEmail" type="email" defaultValue="info@selectsourcewatercalifornia.com" />
                 </div>
               </CardContent>
             </Card>
