@@ -169,11 +169,31 @@ export const HowItWorks = () => {
           </div>
         </div>
 
+        {/* Stats Row */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.8 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-3xl mx-auto"
+        >
+          {[
+            { value: "25+", label: "Years in California" },
+            { value: "461+", label: "Google Reviews" },
+            { value: "5-Day", label: "Risk-Free Trial" },
+            { value: "Lifetime", label: "Warranty" },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center">
+              <div className="text-2xl md:text-3xl font-serif text-primary font-bold">{stat.value}</div>
+              <div className="text-sm text-muted-foreground">{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 1 }}
-          className="text-center mt-16"
+          className="text-center mt-10"
         >
           <Button size="lg" variant="default" asChild>
             <a href="#contact">
