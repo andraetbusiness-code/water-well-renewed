@@ -248,7 +248,7 @@ export default function ServiceAreas() {
                 </p>
 
                 <Button asChild variant="outline" size="sm" className="w-full">
-                  <Link to="/free-water-test">
+                  <Link to={`/service-areas/${city.slug}`}>
                     Get Free Water Test in {city.name}
                     <ArrowRight className="ml-1 h-4 w-4" />
                   </Link>
