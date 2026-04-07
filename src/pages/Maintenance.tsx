@@ -13,6 +13,7 @@ import {
   Droplets,
   Settings
 } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { PageLayout, PageHero } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { FloatingBubbles } from "@/components/WaterEffects";
@@ -84,6 +85,11 @@ export default function Maintenance() {
 
   return (
     <PageLayout>
+      <Helmet>
+        <title>HYGIA+ System Maintenance Schedule | Select Source Water — Inland Empire</title>
+        <meta name="description" content="Keep your HYGIA+ system running at peak performance. Salt checks, annual inspections, UV bulb replacement. Inland Empire hard water requires specific care. Call (951) 612-4094." />
+        <link rel="canonical" href="https://selectsourcewatercalifornia.com/maintenance" />
+      </Helmet>
       <PageHero 
         badge="System Care"
         title="Maintenance"
@@ -276,18 +282,68 @@ export default function Maintenance() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg">
-                <Link to="/#contact" className="gap-2">
+                <Link to="/free-water-test" className="gap-2">
                   Schedule Service
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <a href="tel:8334227765" className="gap-2">
+                <a href="tel:+19516124094" className="gap-2">
                   <Phone className="h-4 w-4" />
-                  833.422.7765
+                  (951) 612-4094
                 </a>
               </Button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SoCal Context Section */}
+      <section className="py-16 md:py-20 bg-[hsl(210,100%,97%)]">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4">
+                INLAND EMPIRE SPECIFIC
+              </span>
+              <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-6">
+                Why Maintenance Matters More in <span className="text-primary">Hard Water Areas</span>
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                At 177 PPM (Beaumont) to 249 PPM (Banning), Inland Empire water is among the hardest in California. Hard water accelerates resin depletion, increases salt consumption, and requires more frequent brine tank checks. Here's what that means for your HYGIA+ system:
+              </p>
+              
+              <div className="space-y-4 mb-8">
+                {[
+                  "Salt check frequency: Every 4–6 weeks (rather than the standard 6–8 weeks for softer water areas)",
+                  "Annual inspection: Critical — high-mineral water stresses system components faster",
+                  "UV bulb replacement: Annually without exception — Inland Empire water sources have a higher bacterial load from agricultural runoff"
+                ].map((item, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="h-3 w-3 text-primary" />
+                    </div>
+                    <span className="text-foreground">{item}</span>
+                  </div>
+                ))}
+              </div>
+              
+              <p className="text-muted-foreground mb-8">
+                Our annual maintenance service covers all of this for less than $6/month. One call, we do the rest.
+              </p>
+              
+              <Button asChild size="lg">
+                <Link to="/free-water-test" className="gap-2">
+                  Schedule Your Annual Maintenance
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            </motion.div>
           </div>
         </div>
       </section>
