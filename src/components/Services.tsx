@@ -83,8 +83,7 @@ export const Services = () => {
             Complete Water Solutions
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            From testing to installation to ongoing maintenance, we handle everything 
-            so you can enjoy pure water worry-free.
+            Trusted by Inland Empire families since 1998. Home Depot Authorized. Locally operated.
           </p>
         </motion.div>
 
