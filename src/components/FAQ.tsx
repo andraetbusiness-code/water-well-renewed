@@ -5,36 +5,40 @@ import { ChevronDown, MessageCircle, Droplets } from "lucide-react";
 
 const faqs = [
   {
-    question: "How long does installation take?",
+    question: "What is the process for getting a water filtration system installed?",
+    answer: "It starts with a free in-home water test — we come to your home, test your water right in the kitchen, and show you exactly what's in it. From there, we design a custom system for your home and install it in just one day.",
+  },
+  {
+    question: "How long does the installation take?",
     answer: "Our professional installation is completed in just one day. Our licensed technicians handle everything, leaving your home clean and your system ready to use immediately.",
   },
   {
-    question: "What's included in the lifetime warranty?",
-    answer: "Our comprehensive lifetime warranty covers all parts and labor. Any issues you encounter will be promptly resolved at no additional cost to you. It's our commitment to your complete satisfaction.",
+    question: "What types of water filtration systems do you offer?",
+    answer: "We offer the HYGIA+ whole-house water filtration and softening system, which includes up to 10 stages of filtration. We also offer an optional point-of-use reverse osmosis (RO) system for drinking water.",
   },
   {
-    question: "How does the 5-day risk-free trial work?",
-    answer: "We install the system in your home for you to experience firsthand. Use it as you would if you owned it. After 5 days, if you love it, keep it! If not, we remove it promptly with no hassle or obligation.",
+    question: "Are your systems easy to maintain?",
+    answer: "Yes! On average, homeowners spend less than $6 per month for maintenance. We also offer affordable annual maintenance plans to keep your system running at peak efficiency.",
   },
   {
-    question: "How much does annual maintenance cost?",
-    answer: "On average, homeowners spend less than $6 per month for maintenance. This ensures your system operates at peak efficiency, providing consistently pure and soft water year-round.",
+    question: "Do you offer warranties on your products?",
+    answer: "Yes — every HYGIA+ system comes with a Lifetime Warranty covering all parts and labor. Any issues you encounter will be promptly resolved at no additional cost to you.",
   },
   {
-    question: "How long do the systems last?",
-    answer: "Our carbon filtration systems last approximately 10 years, while the resin in our softening systems is designed to last a lifetime. We use dual-tank systems specifically for this longevity.",
+    question: "Can I schedule a consultation?",
+    answer: "Absolutely. Call us at (951) 612-4094 or fill out our Free Water Test form. We'll schedule a convenient time to come to your home — no obligation, no pressure.",
   },
   {
-    question: "Will the system reduce my water pressure?",
-    answer: "No. Unlike piston-driven systems, our non-piston head design maintains your standard home pressure of 60-75 psi with no reduction at all.",
-  },
-  {
-    question: "Do you service both city and well water?",
-    answer: "Yes! Our systems are versatile and can be customized for different water sources. We adjust the filtration and softening process to effectively treat the specific contaminants and conditions of your water.",
+    question: "What payment options do you accept?",
+    answer: "We offer flexible financing options in addition to standard payment methods. Ask your technician for details during your free water test.",
   },
   {
     question: "What areas do you serve?",
-    answer: "We primarily serve Southern California (Orange County, Los Angeles, Riverside, Beaumont, Palm Desert) and the Sacramento area. We're also licensed in Arizona.",
+    answer: "We serve the Inland Empire and surrounding Southern California communities, including Beaumont, Banning, Hemet, San Jacinto, Moreno Valley, Riverside, Yucaipa, Calimesa, Cherry Valley, Redlands, and Highland. Our office is located at 790 Beaumont Ave Ste 124, Beaumont, CA 92223. Call (951) 612-4094 to schedule your free water test.",
+  },
+  {
+    question: "How hard is the water in Beaumont, CA?",
+    answer: "Beaumont tap water measures approximately 177 PPM (10.4 GPG) — well into the 'hard' category. The EPA and water quality experts recommend treatment for anything above 120 PPM. Beaumont's water also has 2 detected contaminants above EPA Maximum Contaminant Level Goals (MCLGs). A free water test from our team will show you exactly what's in your water.",
   },
 ];
 

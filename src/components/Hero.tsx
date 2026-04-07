@@ -1,9 +1,16 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Shield, Clock, Award, Droplets } from "lucide-react";
+import { ArrowRight, Shield, Clock, Award, Droplets, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { WaveDividerLayered } from "@/components/WaveDivider";
 import heroImage from "@/assets/hero-water.jpg";
+
+const stats = [
+  { value: "4.7 ⭐", label: "Google Rating" },
+  { value: "461+", label: "Verified Reviews" },
+  { value: "25+ Years", label: "California Experience" },
+  { value: "100–150", label: "Monthly Installs" },
+];
 
 export const Hero = () => {
   return (
@@ -17,7 +24,6 @@ export const Hero = () => {
         />
         <div className="absolute inset-0 hero-overlay" />
         
-        {/* Floating decorative droplets */}
         <motion.div 
           className="absolute top-1/4 right-[15%] w-4 h-6 bg-water-light/30 rounded-full blur-sm hidden md:block"
           animate={{ y: [-10, 10, -10] }}
@@ -38,7 +44,6 @@ export const Hero = () => {
       {/* Content */}
       <div className="container relative z-10 pt-28 pb-32 md:pt-36 md:pb-40">
         <div className="max-w-3xl">
-          {/* Handwritten-style accent */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -59,7 +64,6 @@ export const Hero = () => {
             Pure Water,{" "}
             <span className="relative">
               <span className="relative z-10">Naturally</span>
-              {/* Organic underline accent */}
               <motion.span 
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
@@ -75,8 +79,9 @@ export const Hero = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-lg md:text-xl text-primary-foreground/85 mb-10 max-w-xl leading-relaxed"
           >
-            Custom water softening and filtration designed for your home. 
-            Experience the difference with our 5-day risk-free trial and lifetime guarantee.
+            Custom water softening and filtration designed for Inland Empire homes. 
+            Beaumont's tap water runs at 177 PPM — that's hard. We fix it. 5-day risk-free trial, 
+            lifetime warranty, and a free water test right in your kitchen.
           </motion.p>
 
           <motion.div
@@ -86,7 +91,7 @@ export const Hero = () => {
             className="flex flex-col sm:flex-row gap-4 mb-14"
           >
             <Button size="lg" variant="hero" asChild>
-              <Link to="/process">
+              <Link to="/free-water-test">
                 Get Your Free Water Test
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -96,25 +101,21 @@ export const Hero = () => {
             </Button>
           </motion.div>
 
-          {/* Trust Indicators - Organic blob-backed badges */}
+          {/* Trust Indicators */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="flex flex-wrap gap-4"
+            className="flex flex-wrap gap-4 mb-12"
           >
             {[
               { icon: Shield, label: "Lifetime Warranty" },
               { icon: Clock, label: "5-Day Risk-Free Trial" },
-              { icon: Award, label: "25+ Years Experience" },
+              { icon: Award, label: "25+ Years in California" },
+              { icon: Star, label: "4.7 ⭐ Google Rating" },
             ].map((item) => (
-              <div
-                key={item.label}
-                className="relative group"
-              >
-                {/* Organic blob background */}
+              <div key={item.label} className="relative group">
                 <div className="absolute inset-0 bg-primary-foreground/15 backdrop-blur-sm blob-shape transition-all duration-500 group-hover:bg-primary-foreground/25" />
-                
                 <div className="relative flex items-center gap-3 px-5 py-3">
                   <div className="w-9 h-9 rounded-full bg-accent/90 flex items-center justify-center flex-shrink-0">
                     <item.icon className="h-4 w-4 text-accent-foreground" />
@@ -126,13 +127,26 @@ export const Hero = () => {
               </div>
             ))}
           </motion.div>
+
+          {/* Stats Row */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-6"
+          >
+            {stats.map((stat) => (
+              <div key={stat.label} className="text-center">
+                <div className="text-2xl md:text-3xl font-serif text-primary-foreground font-bold">{stat.value}</div>
+                <div className="text-sm text-primary-foreground/60">{stat.label}</div>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </div>
 
-      {/* Wave divider at bottom */}
       <WaveDividerLayered position="bottom" className="z-20" />
 
-      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
