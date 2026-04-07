@@ -3,20 +3,23 @@ import { motion } from "framer-motion";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ContactCTA } from "@/components/ContactCTA";
+import { TrustBar } from "@/components/TrustBar";
 import { FloatingBubbles, WaveBackground } from "@/components/WaterEffects";
 
 interface PageLayoutProps {
   children: ReactNode;
   showContactCTA?: boolean;
+  showTrustBar?: boolean;
 }
 
-export const PageLayout = ({ children, showContactCTA = true }: PageLayoutProps) => {
+export const PageLayout = ({ children, showContactCTA = true, showTrustBar = true }: PageLayoutProps) => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1">
         {children}
       </main>
+      {showTrustBar && <TrustBar />}
       {showContactCTA && <ContactCTA />}
       <Footer />
     </div>
