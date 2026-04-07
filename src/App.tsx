@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { lazy, Suspense } from "react";
 import Index from "./pages/Index";
+import CityPage from "./pages/CityPage";
 import NotFound from "./pages/NotFound";
 import HygiaSystem from "./pages/HygiaSystem";
 import FiltrationTechnology from "./pages/FiltrationTechnology";
