@@ -20,6 +20,7 @@ import FieldRepOnboarding from "./pages/FieldRepOnboarding";
 import ExecutiveAudit from "./pages/ExecutiveAudit";
 import GrowthExecutionPlan from "./pages/GrowthExecutionPlan";
 import GBPAudit from "./pages/GBPAudit";
+import ServiceAreas from "./pages/ServiceAreas";
 
 const HygiaPlusDemo = lazy(() => import("./pages/demo/HygiaPlusDemo"));
 const MarketingGallerySlide = lazy(() => import("@/components/onboarding/slides/MarketingGallerySlide").then(m => ({ default: m.MarketingGallerySlide })));
