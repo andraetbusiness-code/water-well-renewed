@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { Clock, ArrowRight, Tag } from 'lucide-react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import TrustBar from '@/components/TrustBar';
-import ContactCTA from '@/components/ContactCTA';
+import { Clock, ArrowRight } from 'lucide-react';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
+import { TrustBar } from '@/components/TrustBar';
+import { ContactCTA } from '@/components/ContactCTA';
 import { blogArticles, blogCategories } from '@/data/blogData';
 import { cn } from '@/lib/utils';
 

@@ -23,6 +23,8 @@ import GrowthExecutionPlan from "./pages/GrowthExecutionPlan";
 import GBPAudit from "./pages/GBPAudit";
 import ServiceAreas from "./pages/ServiceAreas";
 import HomeDepotPartnership from "./pages/HomeDepotPartnership";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 
 const HygiaPlusDemo = lazy(() => import("./pages/demo/HygiaPlusDemo"));
 const MarketingGallerySlide = lazy(() => import("@/components/onboarding/slides/MarketingGallerySlide").then(m => ({ default: m.MarketingGallerySlide })));
@@ -94,6 +96,8 @@ const App = () => (
               <Route path="/gbp-audit" element={<GBPAudit />} />
               <Route path="/service-areas" element={<ServiceAreas />} />
               <Route path="/home-depot-authorized-provider" element={<HomeDepotPartnership />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/service-areas/:citySlug" element={<CityPage />} />
               <Route path="/demo/hygia-plus" element={<Suspense fallback={null}><HygiaPlusDemo /></Suspense>} />
               <Route path="/careers" element={<Suspense fallback={null}><ApplyPage /></Suspense>} />

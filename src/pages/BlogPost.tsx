@@ -1,10 +1,10 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Clock, Calendar, Tag } from 'lucide-react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import TrustBar from '@/components/TrustBar';
-import ContactCTA from '@/components/ContactCTA';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
+import { TrustBar } from '@/components/TrustBar';
+import { ContactCTA } from '@/components/ContactCTA';
 import { blogArticles } from '@/data/blogData';
 import { format, parseISO } from 'date-fns';
 
