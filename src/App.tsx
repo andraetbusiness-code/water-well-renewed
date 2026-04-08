@@ -25,6 +25,7 @@ import ServiceAreas from "./pages/ServiceAreas";
 import HomeDepotPartnership from "./pages/HomeDepotPartnership";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import About from "./pages/About";
 
 const HygiaPlusDemo = lazy(() => import("./pages/demo/HygiaPlusDemo"));
 const MarketingGallerySlide = lazy(() => import("@/components/onboarding/slides/MarketingGallerySlide").then(m => ({ default: m.MarketingGallerySlide })));
@@ -99,6 +100,7 @@ const App = () => (
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/service-areas/:citySlug" element={<CityPage />} />
+              <Route path="/about" element={<About />} />
               <Route path="/demo/hygia-plus" element={<Suspense fallback={null}><HygiaPlusDemo /></Suspense>} />
               <Route path="/careers" element={<Suspense fallback={null}><ApplyPage /></Suspense>} />
               <Route path="*" element={<NotFound />} />
