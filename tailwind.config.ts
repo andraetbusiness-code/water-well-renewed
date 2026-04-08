@@ -3,6 +3,16 @@ import type { Config } from "tailwindcss";
 export default {
   darkMode: ["class"],
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  safelist: [
+    // WaterHardnessData card backgrounds — returned dynamically, must not be purged
+    'bg-gradient-to-br',
+    'from-red-50/80', 'via-orange-50/60', 'to-secondary/50',
+    'dark:from-red-950/30', 'dark:via-orange-950/20', 'dark:to-secondary/40',
+    'from-orange-50/70', 'via-amber-50/50',
+    'dark:from-orange-950/25', 'dark:via-amber-950/15',
+    'from-yellow-50/60', 'via-lime-50/40',
+    'dark:from-yellow-950/20', 'dark:via-lime-950/10',
+  ],
   prefix: "",
   theme: {
     container: {

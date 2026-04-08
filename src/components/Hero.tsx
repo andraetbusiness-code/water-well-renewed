@@ -1,40 +1,91 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowRight, Shield, Clock, Award, Droplets, Star } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { WaveDividerLayered } from "@/components/WaveDivider";
+import { WaterParticleField } from "@/components/WaterEffects";
+import { AnimatedCounterHero } from "@/components/AnimatedCounter";
 import heroImage from "@/assets/hero-water.jpg";
 
+// Stats for the hero row — numeric values animate, strings just display
 const stats = [
-  { value: "4.7 ⭐", label: "Google Rating" },
-  { value: "461+", label: "Verified Reviews" },
-  { value: "25+ Years", label: "California Experience" },
+  { value: 4.7, label: "Google Rating", suffix: " ⭐" },
+  { value: 461, label: "Verified Reviews", suffix: "+" },
+  { value: "25+", label: "California Experience", prefix: "", suffix: " Years" },
   { value: "100–150", label: "Monthly Installs" },
 ];
 
+// Word-by-word stagger animation variants
+const headlineContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
+};
+
+const wordVariant = {
+  hidden: { opacity: 0, y: 28, rotateX: -20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
 export const Hero = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Parallax for the hero background image
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const rawY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const smoothY = useSpring(rawY, { stiffness: 80, damping: 20 });
+
+  const words = ["Pure", "Water,", "Naturally"];
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Image with warm overlay */}
-      <div className="absolute inset-0">
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center overflow-hidden"
+    >
+      {/* Background Image with parallax */}
+      <motion.div
+        className="absolute inset-0"
+        style={{ y: smoothY }}
+        // Extend vertically so parallax doesn't show gaps
+      >
         <img
           src={heroImage}
           alt="Pure water flowing"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover scale-110"
+          style={{ transformOrigin: "center center" }}
         />
-        <div className="absolute inset-0 hero-overlay" />
-        
-        <motion.div 
+      </motion.div>
+
+      {/* Hero overlay — fixed (no parallax) */}
+      <div className="absolute inset-0 hero-overlay" />
+
+      {/* Water particle field — behind content, above overlay */}
+      <WaterParticleField count={24} className="z-[1]" />
+
+      {/* Existing decorative bubbles */}
+      <div className="absolute inset-0 z-[1]">
+        <motion.div
           className="absolute top-1/4 right-[15%] w-4 h-6 bg-water-light/30 rounded-full blur-sm hidden md:block"
           animate={{ y: [-10, 10, -10] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div 
+        <motion.div
           className="absolute top-1/3 right-[25%] w-3 h-4 bg-water-medium/20 rounded-full blur-sm hidden md:block"
           animate={{ y: [10, -10, 10] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         />
-        <motion.div 
+        <motion.div
           className="absolute bottom-1/3 right-[10%] w-5 h-7 bg-primary-foreground/10 rounded-full blur-sm hidden md:block"
           animate={{ y: [-15, 15, -15] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
@@ -55,22 +106,31 @@ export const Hero = () => {
             </span>
           </motion.div>
 
+          {/* Word-by-word animated headline */}
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif text-primary-foreground leading-[1.1] mb-6"
+            variants={headlineContainer}
+            initial="hidden"
+            animate="visible"
+            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif text-primary-foreground leading-[1.1] mb-6 flex flex-wrap gap-x-4 overflow-hidden"
+            style={{ perspective: 600 }}
           >
-            Pure Water,{" "}
-            <span className="relative">
-              <span className="relative z-10">Naturally</span>
-              <motion.span 
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-                className="absolute -bottom-2 left-0 right-0 h-3 bg-accent/40 -rotate-1 origin-left rounded-full"
-              />
-            </span>
+            {words.map((word, i) =>
+              word === "Naturally" ? (
+                <motion.span key={word} variants={wordVariant} className="relative inline-block">
+                  <span className="relative z-10">{word}</span>
+                  <motion.span
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 0.8, delay: 0.9 }}
+                    className="absolute -bottom-2 left-0 right-0 h-3 bg-accent/40 -rotate-1 origin-left rounded-full"
+                  />
+                </motion.span>
+              ) : (
+                <motion.span key={`${word}-${i}`} variants={wordVariant} className="inline-block">
+                  {word}
+                </motion.span>
+              )
+            )}
           </motion.h1>
 
           <motion.p
@@ -79,8 +139,8 @@ export const Hero = () => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-lg md:text-xl text-primary-foreground/85 mb-10 max-w-xl leading-relaxed"
           >
-            Custom water softening and filtration designed for Inland Empire homes. 
-            Beaumont's tap water runs at 177 PPM — that's hard. We fix it. 5-day risk-free trial, 
+            Custom water softening and filtration designed for Inland Empire homes.
+            Beaumont's tap water runs at 177 PPM — that's hard. We fix it. 5-day risk-free trial,
             lifetime warranty, and a free water test right in your kitchen.
           </motion.p>
 
@@ -128,7 +188,7 @@ export const Hero = () => {
             ))}
           </motion.div>
 
-          {/* Stats Row */}
+          {/* Stats Row — animated counters */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -136,10 +196,13 @@ export const Hero = () => {
             className="grid grid-cols-2 md:grid-cols-4 gap-6"
           >
             {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-2xl md:text-3xl font-serif text-primary-foreground font-bold">{stat.value}</div>
-                <div className="text-sm text-primary-foreground/60">{stat.label}</div>
-              </div>
+              <AnimatedCounterHero
+                key={stat.label}
+                value={stat.value}
+                label={stat.label}
+                prefix={stat.prefix}
+                suffix={stat.suffix}
+              />
             ))}
           </motion.div>
         </div>

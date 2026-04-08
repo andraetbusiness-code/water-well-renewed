@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useMemo } from "react";
 
 interface BubbleProps {
   size?: "sm" | "md" | "lg";
@@ -165,6 +166,100 @@ export const FlowingWater = ({ className = "" }: { className?: string }) => {
             delay: i * 0.8,
             repeat: Infinity,
             ease: "linear"
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+// ─── NEW: WaterParticleField ──────────────────────────────────────────────────
+
+interface Particle {
+  id: number;
+  top: string;
+  left: string;
+  size: number;
+  opacity: number;
+  duration: number;
+  delay: number;
+  color: string;
+}
+
+// Generate particles deterministically to avoid hydration mismatches and
+// avoid recreating on every render.
+function generateParticles(count: number): Particle[] {
+  // Simple seeded pseudo-random using index so it's stable
+  const particles: Particle[] = [];
+  for (let i = 0; i < count; i++) {
+    const seed = i * 137.508; // golden angle
+    const rand1 = ((Math.sin(seed) * 43758.5453) % 1 + 1) % 1;
+    const rand2 = ((Math.sin(seed + 1) * 43758.5453) % 1 + 1) % 1;
+    const rand3 = ((Math.sin(seed + 2) * 43758.5453) % 1 + 1) % 1;
+    const rand4 = ((Math.sin(seed + 3) * 43758.5453) % 1 + 1) % 1;
+    const rand5 = ((Math.sin(seed + 4) * 43758.5453) % 1 + 1) % 1;
+    const rand6 = ((Math.sin(seed + 5) * 43758.5453) % 1 + 1) % 1;
+
+    const colors = [
+      "hsl(214 75% 48%)",   // primary blue
+      "hsl(210 70% 60%)",   // lighter blue
+      "hsl(185 70% 55%)",   // cyan-blue
+      "hsl(200 80% 65%)",   // sky blue
+    ];
+
+    particles.push({
+      id: i,
+      top: `${10 + rand1 * 80}%`,
+      left: `${rand2 * 100}%`,
+      size: 4 + rand3 * 8,             // 4-12px
+      opacity: 0.1 + rand4 * 0.2,     // 0.1-0.3
+      duration: 5 + rand5 * 8,        // 5-13s
+      delay: rand6 * 6,               // 0-6s delay
+      color: colors[Math.floor(rand3 * colors.length)],
+    });
+  }
+  return particles;
+}
+
+export const WaterParticleField = ({
+  count = 25,
+  className = "",
+}: {
+  count?: number;
+  className?: string;
+}) => {
+  // useMemo keeps particle config stable across renders
+  const particles = useMemo(() => generateParticles(count), [count]);
+
+  return (
+    <div
+      className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}
+      aria-hidden="true"
+    >
+      {particles.map((p) => (
+        <motion.div
+          key={p.id}
+          className="absolute rounded-full"
+          style={{
+            top: p.top,
+            left: p.left,
+            width: p.size,
+            height: p.size,
+            backgroundColor: p.color,
+            opacity: p.opacity,
+            willChange: "transform",
+          }}
+          animate={{
+            y: [0, -120, -240],
+            opacity: [0, p.opacity, 0],
+            scale: [0.6, 1, 0.4],
+          }}
+          transition={{
+            duration: p.duration,
+            delay: p.delay,
+            repeat: Infinity,
+            ease: "easeInOut",
+            repeatDelay: 0.5,
           }}
         />
       ))}

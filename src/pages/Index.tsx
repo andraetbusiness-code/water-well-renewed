@@ -18,6 +18,60 @@ const Index = () => {
         <title>Water Softener &amp; Filtration — Beaumont &amp; Inland Empire | Select Source Water</title>
         <meta name="description" content="Home Depot Authorized water softener installation in Beaumont, Banning, Hemet & the Inland Empire. Free in-home water test. Lifetime warranty. Call (951) 612-4094." />
         <link rel="canonical" href="https://selectsourcewatercalifornia.com/" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Select Source Water",
+            "image": "https://selectsourcewatercalifornia.com/og-image.png",
+            "@id": "https://selectsourcewatercalifornia.com",
+            "url": "https://selectsourcewatercalifornia.com",
+            "telephone": "+19516124094",
+            "priceRange": "$$",
+            "description": "Home Depot Authorized water softener and filtration installation serving the Inland Empire. Free in-home water test, lifetime warranty, same-day installation.",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "790 Beaumont Ave Ste 124",
+              "addressLocality": "Beaumont",
+              "addressRegion": "CA",
+              "postalCode": "92223",
+              "addressCountry": "US"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 33.9294,
+              "longitude": -116.9776
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+                "opens": "08:00",
+                "closes": "18:00"
+              }
+            ],
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.7",
+              "reviewCount": "461"
+            },
+            "areaServed": [
+              "Beaumont, CA","Banning, CA","Hemet, CA","San Jacinto, CA",
+              "Moreno Valley, CA","Riverside, CA","Yucaipa, CA","Calimesa, CA",
+              "Cherry Valley, CA","Redlands, CA","Highland, CA"
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Water Treatment Services",
+              "itemListElement": [
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Free In-Home Water Test"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "HYGIA+ Whole-House Water Softener Installation"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Whole-House Water Filtration"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Reverse Osmosis Drinking Water System"}}
+              ]
+            }
+          })}
+        </script>
       </Helmet>
       <Header />
       <main>

@@ -274,4 +274,102 @@
       transform: translateY(0);
     }
   }
+
+  /* ── Water shimmer: light sweep across elements ── */
+  .animate-shimmer {
+    animation: shimmer 2.5s ease-in-out infinite;
+    background-size: 200% 100%;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* ── Ripple: expanding circle for button clicks / CTA ── */
+  .animate-ripple {
+    animation: ripple 1.8s ease-out infinite;
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: scale(0.8);
+      opacity: 1;
+    }
+    70% {
+      transform: scale(2);
+      opacity: 0.3;
+    }
+    100% {
+      transform: scale(2.4);
+      opacity: 0;
+    }
+  }
+
+  /* ── Glow pulse: for stat numbers ── */
+  .animate-glow-pulse {
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% {
+      text-shadow: 0 0 0px hsla(214, 75%, 48%, 0);
+    }
+    50% {
+      text-shadow: 0 0 14px hsla(214, 75%, 48%, 0.35);
+    }
+  }
+
+  /* ── Water flow: animated droplet travelling along step connector ── */
+  .animate-water-flow {
+    animation: waterFlow 3s linear infinite;
+  }
+
+  @keyframes waterFlow {
+    0% {
+      left: 0%;
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      left: 100%;
+      opacity: 0;
+    }
+  }
+
+  /* ── Wave sway: gently rocks the wave SVGs ── */
+  .animate-wave-sway {
+    animation: waveSway 10s ease-in-out infinite;
+  }
+
+  .animate-wave-sway-reverse {
+    animation: waveSway 8s ease-in-out infinite reverse;
+  }
+
+  @keyframes waveSway {
+    0%, 100% {
+      transform: translateX(0) scaleY(1);
+    }
+    33% {
+      transform: translateX(-18px) scaleY(1.03);
+    }
+    66% {
+      transform: translateX(12px) scaleY(0.97);
+    }
+  }
+
+  /* ── Hardness bar fill (used in WaterHardnessData) ── */
+  @keyframes fillBar {
+    from { width: 0%; }
+    to   { width: var(--bar-width, 100%); }
+  }
 }
