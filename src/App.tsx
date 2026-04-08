@@ -104,6 +104,9 @@ const App = () => (
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/service-areas/:citySlug" element={<CityPage />} />
               <Route path="/about" element={<About />} />
+              <Route path="/free-water-test" element={<FreeWaterTest />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms-of-service" element={<TermsOfService />} />
               <Route path="/demo/hygia-plus" element={<Suspense fallback={null}><HygiaPlusDemo /></Suspense>} />
               <Route path="/careers" element={<Suspense fallback={null}><ApplyPage /></Suspense>} />
               <Route path="*" element={<NotFound />} />
