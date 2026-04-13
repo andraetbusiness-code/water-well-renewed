@@ -26,7 +26,6 @@ import { OnboardingChecklistSlide } from '@/components/onboarding/slides/Onboard
 import { ApprovedMaterialsSlide } from '@/components/onboarding/slides/ApprovedMaterialsSlide';
 import { FieldUseRulesSlide } from '@/components/onboarding/slides/FieldUseRulesSlide';
 
-import { EnzySlide } from '@/components/onboarding/slides/EnzySlide';
 import { GHLSlide } from '@/components/onboarding/slides/GHLSlide';
 import { TrainingScheduleSlide } from '@/components/onboarding/slides/TrainingScheduleSlide';
 import { ClosingSlide } from '@/components/onboarding/slides/ClosingSlide';
@@ -84,7 +83,6 @@ export default function FieldRepOnboarding() {
         
 
         {/* Section 7: Training & Tools */}
-        <EnzySlide />
         <GHLSlide />
         <TrainingScheduleSlide />
         <ClosingSlide />

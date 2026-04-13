@@ -9,7 +9,7 @@ import { toast } from '@/hooks/use-toast';
 import { formatDistanceToNow } from 'date-fns';
 
 interface IntegrationCardProps {
-  system: 'housecall_pro' | 'enzy' | 'ghl';
+  system: 'ghl';
   name: string;
   description: string;
   icon: React.ReactNode;

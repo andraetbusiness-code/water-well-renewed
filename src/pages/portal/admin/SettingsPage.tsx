@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Settings, Save, Building, Users, Bell, Shield, Palette, Mail, Link2, Briefcase, Trophy, Target } from 'lucide-react';
+import { Settings, Save, Building, Users, Bell, Shield, Palette, Mail, Link2, Target } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -128,22 +128,18 @@ export default function SettingsPage() {
               </Card>
 
               {isLoadingIntegrations ? (
-                <div className="space-y-4">
-                  {[1, 2, 3].map((i) => (
-                    <Card key={i}>
-                      <CardContent className="p-6">
-                        <div className="flex items-center gap-4">
-                          <Skeleton className="h-10 w-10 rounded-lg" />
-                          <div className="flex-1 space-y-2">
-                            <Skeleton className="h-5 w-40" />
-                            <Skeleton className="h-4 w-64" />
-                          </div>
-                          <Skeleton className="h-9 w-24" />
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4">
+                      <Skeleton className="h-10 w-10 rounded-lg" />
+                      <div className="flex-1 space-y-2">
+                        <Skeleton className="h-5 w-40" />
+                        <Skeleton className="h-4 w-64" />
+                      </div>
+                      <Skeleton className="h-9 w-24" />
+                    </div>
+                  </CardContent>
+                </Card>
               ) : integrationError ? (
                 <Card className="border-destructive/50 bg-destructive/5">
                   <CardContent className="py-6 text-center">
@@ -153,33 +149,9 @@ export default function SettingsPage() {
               ) : (
                 <div className="space-y-4">
                   <IntegrationCard
-                    system="housecall_pro"
-                    name="Housecall Pro"
-                    description="Sync job scheduling, customer records, and revenue data"
-                    icon={<Briefcase className="h-5 w-5" />}
-                    configured={integrationStatus?.housecall_pro.configured ?? false}
-                    active={integrationStatus?.housecall_pro.active ?? false}
-                    lastSync={integrationStatus?.housecall_pro.lastSync ?? null}
-                    error={integrationStatus?.housecall_pro.error ?? null}
-                    onConnect={() => handleConnectIntegration('Housecall Pro')}
-                  />
-
-                  <IntegrationCard
-                    system="enzy"
-                    name="Enzy"
-                    description="Sync leaderboard rankings, badges, and gamification data"
-                    icon={<Trophy className="h-5 w-5" />}
-                    configured={integrationStatus?.enzy.configured ?? false}
-                    active={integrationStatus?.enzy.active ?? false}
-                    lastSync={integrationStatus?.enzy.lastSync ?? null}
-                    error={integrationStatus?.enzy.error ?? null}
-                    onConnect={() => handleConnectIntegration('Enzy')}
-                  />
-
-                  <IntegrationCard
                     system="ghl"
                     name="GoHighLevel"
-                    description="Sync CRM contacts, deal pipeline, and lead tracking"
+                    description="Push D2D, Home Depot, and website leads into CRM automatically. Syncs contacts, pipeline stages, and deal updates."
                     icon={<Target className="h-5 w-5" />}
                     configured={integrationStatus?.ghl.configured ?? false}
                     active={integrationStatus?.ghl.active ?? false}
@@ -193,19 +165,18 @@ export default function SettingsPage() {
               {/* API Key Instructions */}
               <Card className="mt-6 border-dashed border-2 border-muted-foreground/30">
                 <CardContent className="py-6">
-                  <h4 className="font-medium mb-2">How to Connect Integrations</h4>
+                  <h4 className="font-medium mb-2">How to Connect GoHighLevel</h4>
                   <ol className="text-sm text-muted-foreground space-y-2 list-decimal list-inside">
-                    <li>Obtain your API key from the external service (Housecall Pro, Enzy, or GoHighLevel)</li>
-                    <li>Add the API key as a secret in your backend configuration</li>
-                    <li>The integration will automatically activate once the key is detected</li>
-                    <li>Use "Sync Now" to manually pull data or wait for automatic syncing</li>
+                    <li>Create a Private Integration in GHL with <code className="bg-background px-1 rounded">contacts.write</code> scope</li>
+                    <li>Copy the token and your Location ID</li>
+                    <li>Add both as Supabase edge function secrets</li>
+                    <li>The integration activates automatically once secrets are detected</li>
                   </ol>
                   <div className="mt-4 p-3 bg-muted rounded-lg">
                     <p className="text-xs text-muted-foreground">
-                      <strong>Secret Names:</strong><br />
-                      Housecall Pro: <code className="bg-background px-1 rounded">HOUSECALL_PRO_API_KEY</code><br />
-                      Enzy: <code className="bg-background px-1 rounded">ENZY_API_KEY</code><br />
-                      GoHighLevel: <code className="bg-background px-1 rounded">GHL_API_KEY</code>
+                      <strong>Required Secrets:</strong><br />
+                      API Key: <code className="bg-background px-1 rounded">GHL_API_KEY</code><br />
+                      Location ID: <code className="bg-background px-1 rounded">GHL_LOCATION_ID</code>
                     </p>
                   </div>
                 </CardContent>

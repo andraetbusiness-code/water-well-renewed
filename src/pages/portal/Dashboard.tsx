@@ -1,17 +1,15 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  BookOpen, 
-  ClipboardCheck, 
-  TrendingUp, 
+import {
+  BookOpen,
+  ClipboardCheck,
+  TrendingUp,
   Clock,
   AlertTriangle,
   CheckCircle2,
   Users,
   FileEdit,
-  UserPlus,
-  Trophy,
-  Calendar
+  UserPlus
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -20,13 +18,9 @@ import { Progress } from '@/components/ui/progress';
 import { PortalLayout } from '@/components/portal/PortalLayout';
 import { useAuthContext } from '@/components/portal/AuthProvider';
 import { IntegrationBanner } from '@/components/portal/widgets/IntegrationBanner';
-import { EnzyWidget } from '@/components/portal/widgets/EnzyWidget';
 import { GHLWidget } from '@/components/portal/widgets/GHLWidget';
-import { HousecallWidget } from '@/components/portal/widgets/HousecallWidget';
 import { useIntegrationStatus } from '@/hooks/useIntegrations';
 import { AddLeadModal } from '@/components/portal/modals/AddLeadModal';
-import { LogActivityModal } from '@/components/portal/modals/LogActivityModal';
-import { CreateJobModal } from '@/components/portal/modals/CreateJobModal';
 import { cn } from '@/lib/utils';
 
 // Placeholder data - will be replaced with real data from DB
@@ -54,19 +48,14 @@ function DashboardContent() {
   
   // Modal states
   const [showAddLead, setShowAddLead] = useState(false);
-  const [showLogActivity, setShowLogActivity] = useState(false);
-  const [showCreateJob, setShowCreateJob] = useState(false);
-  
+
   const firstName = user?.user_metadata?.first_name || user?.email?.split('@')[0] || 'there';
 
   const progressPercent = (learnerStats.coursesCompleted / learnerStats.totalCourses) * 100;
   const salesProgress = (learnerStats.currentSales / learnerStats.salesGoal) * 100;
 
-  // Check which integrations are connected
-  const hasHousecall = integrationStatus?.housecall_pro.configured && integrationStatus?.housecall_pro.active;
-  const hasEnzy = integrationStatus?.enzy.configured && integrationStatus?.enzy.active;
+  // GoHighLevel is the only integration we sync with.
   const hasGHL = integrationStatus?.ghl.configured && integrationStatus?.ghl.active;
-  const hasAnyIntegration = hasHousecall || hasEnzy || hasGHL;
 
   return (
     <div className="space-y-6">
@@ -88,13 +77,9 @@ function DashboardContent() {
         </p>
       </motion.div>
 
-      {/* Integration Banner (for admins when not all integrations connected) */}
+      {/* Integration Banner (for admins when GHL isn't connected yet) */}
       {isAdmin() && !isLoadingIntegrations && (
-        <IntegrationBanner 
-          hasHousecall={!!hasHousecall} 
-          hasEnzy={!!hasEnzy} 
-          hasGHL={!!hasGHL} 
-        />
+        <IntegrationBanner hasGHL={!!hasGHL} />
       )}
 
       {/* Manager/Admin Quick Stats */}
@@ -156,16 +141,14 @@ function DashboardContent() {
       )}
 
       {/* Integration Widgets Row */}
-      {hasAnyIntegration && (
+      {hasGHL && (
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.15 }}
           className="grid grid-cols-1 lg:grid-cols-3 gap-6"
         >
-          {hasEnzy && <EnzyWidget />}
-          {hasGHL && <GHLWidget />}
-          {hasHousecall && <HousecallWidget />}
+          <GHLWidget />
         </motion.div>
       )}
 
@@ -293,33 +276,17 @@ function DashboardContent() {
           </CardHeader>
           <CardContent className="space-y-4">
             {/* Integration Quick Actions */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <Button 
-                variant="default" 
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Button
+                variant="default"
                 className="h-auto py-4 flex-col gap-2"
                 onClick={() => setShowAddLead(true)}
               >
                 <UserPlus className="h-5 w-5" />
-                <span>Add Lead</span>
-              </Button>
-              <Button 
-                variant="default" 
-                className="h-auto py-4 flex-col gap-2 bg-orange-500 hover:bg-orange-600"
-                onClick={() => setShowLogActivity(true)}
-              >
-                <Trophy className="h-5 w-5" />
-                <span>Log Activity</span>
-              </Button>
-              <Button 
-                variant="default" 
-                className="h-auto py-4 flex-col gap-2 bg-green-600 hover:bg-green-700"
-                onClick={() => setShowCreateJob(true)}
-              >
-                <Calendar className="h-5 w-5" />
-                <span>Schedule Job</span>
+                <span>Add Lead (D2D / Home Depot)</span>
               </Button>
             </div>
-            
+
             {/* Navigation Quick Actions */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <Button asChild variant="outline" className="h-auto py-4 flex-col gap-2">
@@ -353,8 +320,6 @@ function DashboardContent() {
 
       {/* Modals */}
       <AddLeadModal open={showAddLead} onOpenChange={setShowAddLead} />
-      <LogActivityModal open={showLogActivity} onOpenChange={setShowLogActivity} />
-      <CreateJobModal open={showCreateJob} onOpenChange={setShowCreateJob} />
     </div>
   );
 }

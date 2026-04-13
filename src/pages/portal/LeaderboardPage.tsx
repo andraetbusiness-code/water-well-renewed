@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Trophy, Medal, Award, TrendingUp, Crown, Star, Flame, Target, Plus } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Trophy, Medal, Award, Crown, Star, Flame, Target } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { PortalLayout } from '@/components/portal/PortalLayout';
-import { LogActivityModal } from '@/components/portal/modals/LogActivityModal';
 
 // Placeholder leaderboard data
 const leaderboardData = [
@@ -107,7 +105,6 @@ function LeaderboardRow({ entry, isCurrentUser = false }: { entry: typeof leader
 
 export default function LeaderboardPage() {
   const [period, setPeriod] = useState<'weekly' | 'monthly' | 'all_time'>('weekly');
-  const [showLogActivity, setShowLogActivity] = useState(false);
 
   return (
     <PortalLayout title="Leaderboard">
@@ -127,11 +124,6 @@ export default function LeaderboardPage() {
               Compete with your team and climb the rankings
             </p>
           </div>
-          
-          <Button onClick={() => setShowLogActivity(true)} className="bg-orange-500 hover:bg-orange-600">
-            <Plus className="h-4 w-4 mr-2" />
-            Log Activity
-          </Button>
         </motion.div>
 
         {/* Current User Stats */}
@@ -265,13 +257,10 @@ export default function LeaderboardPage() {
           <CardContent className="py-6 text-center">
             <Trophy className="h-8 w-8 mx-auto text-primary mb-2" />
             <p className="text-sm text-muted-foreground">
-              Showing placeholder data. Connect Enzy to sync real leaderboard rankings.
+              Showing placeholder data. Rankings will populate from portal activity.
             </p>
           </CardContent>
         </Card>
-
-        {/* Log Activity Modal */}
-        <LogActivityModal open={showLogActivity} onOpenChange={setShowLogActivity} />
       </div>
     </PortalLayout>
   );
