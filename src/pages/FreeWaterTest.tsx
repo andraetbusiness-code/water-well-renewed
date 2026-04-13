@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const benefits = [
   "Complete TDS & hardness analysis",
@@ -24,18 +25,68 @@ const FreeWaterTest = () => {
     email: "",
     address: "",
     message: "",
+    // Honeypot: hidden from real users via CSS; bots fill it and get silently dropped server-side.
+    website: "",
   });
   const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    // Simulate submission
-    setTimeout(() => {
-      toast.success("Thank you! We'll contact you within 24 hours to schedule your free water test.");
-      setFormData({ name: "", phone: "", email: "", address: "", message: "" });
+
+    try {
+      const { data, error } = await supabase.functions.invoke(
+        "free-water-test-lead",
+        {
+          body: {
+            name: formData.name,
+            phone: formData.phone,
+            email: formData.email,
+            address: formData.address,
+            message: formData.message,
+            website: formData.website,
+          },
+        }
+      );
+
+      if (error) {
+        console.error("free-water-test-lead invoke error:", error);
+        toast.error("We couldn't submit your request.", {
+          description:
+            "Please call (951) 612-4094 and we'll schedule your test right away.",
+        });
+        return;
+      }
+
+      if (data && typeof data === "object" && "error" in data) {
+        toast.error("We couldn't submit your request.", {
+          description:
+            (data as { error?: string }).error ||
+            "Please call (951) 612-4094 and we'll schedule your test right away.",
+        });
+        return;
+      }
+
+      toast.success(
+        "Thank you! We'll contact you within 24 hours to schedule your free water test."
+      );
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        address: "",
+        message: "",
+        website: "",
+      });
+    } catch (err) {
+      console.error("free-water-test-lead unexpected error:", err);
+      toast.error("We couldn't submit your request.", {
+        description:
+          "Please call (951) 612-4094 and we'll schedule your test right away.",
+      });
+    } finally {
       setSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -66,6 +117,31 @@ const FreeWaterTest = () => {
               <p className="text-muted-foreground mb-6">Fill out the form below and we'll contact you within 24 hours.</p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot field — hidden from real users, bots fill it and get dropped server-side. */}
+                <div
+                  aria-hidden="true"
+                  style={{
+                    position: "absolute",
+                    left: "-10000px",
+                    top: "auto",
+                    width: "1px",
+                    height: "1px",
+                    overflow: "hidden",
+                  }}
+                >
+                  <label htmlFor="website">Website</label>
+                  <input
+                    id="website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={formData.website}
+                    onChange={(e) =>
+                      setFormData({ ...formData, website: e.target.value })
+                    }
+                  />
+                </div>
                 <Input
                   placeholder="Full Name *"
                   required

@@ -1,1 +1,4 @@
 project_id = "hmkuohrgblvoznbxbtpl"
+
+[functions.free-water-test-lead]
+verify_jwt = false
