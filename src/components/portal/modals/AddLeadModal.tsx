@@ -34,7 +34,11 @@ const leadSchema = z.object({
   firstName: z.string().min(1, 'First name is required').max(50),
   lastName: z.string().min(1, 'Last name is required').max(50),
   email: z.string().email('Invalid email').optional().or(z.literal('')),
-  phone: z.string().regex(/^[\d\s\-\(\)\+]*$/, 'Invalid phone number').optional().or(z.literal('')),
+  phone: z
+    .string()
+    .regex(/^[\d\s\-\(\)\+]+$/, 'Invalid phone number')
+    .min(10, 'Phone number is required'),
+  address: z.string().min(3, 'Address is required').max(250),
   leadSource: z.string().min(1, 'Lead source is required'),
   notes: z.string().max(500).optional(),
 });
@@ -65,23 +69,35 @@ export function AddLeadModal({ open, onOpenChange }: AddLeadModalProps) {
       lastName: '',
       email: '',
       phone: '',
+      address: '',
       leadSource: '',
       notes: '',
     },
   });
 
   const onSubmit = async (data: LeadFormData) => {
-    await createLead.mutateAsync({
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email || undefined,
-      phone: data.phone || undefined,
-      leadSource: data.leadSource,
-      notes: data.notes,
-    });
-    
-    form.reset();
-    onOpenChange(false);
+    try {
+      const result = await createLead.mutateAsync({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email || undefined,
+        phone: data.phone,
+        address: data.address,
+        leadSource: data.leadSource,
+        notes: data.notes,
+      });
+
+      // Only close the modal on real success. If GHL isn't configured the
+      // hook shows a warning toast — keep the modal open so the rep knows.
+      if (result && typeof result === 'object' && 'configured' in result && result.configured === false) {
+        return;
+      }
+
+      form.reset();
+      onOpenChange(false);
+    } catch {
+      // Hook's onError already toasted; leave the modal open for retry.
+    }
   };
 
   return (
@@ -134,9 +150,23 @@ export function AddLeadModal({ open, onOpenChange }: AddLeadModalProps) {
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Phone</FormLabel>
+                  <FormLabel>Phone *</FormLabel>
                   <FormControl>
                     <Input placeholder="(555) 123-4567" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="address"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Home Address *</FormLabel>
+                  <FormControl>
+                    <Input placeholder="123 Main St, Beaumont, CA" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

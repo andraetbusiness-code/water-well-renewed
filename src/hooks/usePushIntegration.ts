@@ -7,6 +7,7 @@ interface LeadPayload {
   lastName: string;
   email?: string;
   phone?: string;
+  address?: string;
   leadSource?: string;
   notes?: string;
 }
@@ -35,20 +36,38 @@ interface DealUpdatePayload {
 
 async function callPushFunction(functionName: string, action: string, payload: any) {
   const { data: { session } } = await supabase.auth.getSession();
-  
+
   if (!session) {
     throw new Error('Not authenticated');
   }
 
+  // IMPORTANT: include `action` in the body — supabase.functions.invoke does
+  // not support appending subpaths, so the edge function reads action from
+  // the body to dispatch between create-lead / update-deal / add-note.
   const response = await supabase.functions.invoke(functionName, {
-    body: payload,
+    body: { action, ...payload },
     headers: {
       'Content-Type': 'application/json',
     },
   });
 
   if (response.error) {
-    throw new Error(response.error.message);
+    // supabase-js wraps non-2xx in FunctionsHttpError and hides the JSON body.
+    // Try to pull the real error message out of the attached Response.
+    let detail = response.error.message;
+    try {
+      const ctx: any = (response.error as any).context;
+      if (ctx && typeof ctx.json === 'function') {
+        const parsed = await ctx.json();
+        if (parsed?.error) detail = parsed.error;
+      } else if (ctx && typeof ctx.text === 'function') {
+        const text = await ctx.text();
+        if (text) detail = text;
+      }
+    } catch {
+      // fall through with the original message
+    }
+    throw new Error(detail);
   }
 
   // Check if integration is not configured
