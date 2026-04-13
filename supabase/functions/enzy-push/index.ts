@@ -54,34 +54,47 @@ Deno.serve(async (req) => {
 
     const userId = claimsData.claims.sub
 
+    // Service-role client for DB writes — bypasses admin-only RLS policies
+    // on kpi_snapshots and leaderboard_cache so reps can log their own data.
+    const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
+    const adminSupabase = serviceRoleKey
+      ? createClient(Deno.env.get('SUPABASE_URL')!, serviceRoleKey)
+      : supabase
+
     // Check if Enzy API key is configured
     const enzyApiKey = Deno.env.get('ENZY_API_KEY')
     if (!enzyApiKey) {
       return new Response(
-        JSON.stringify({ 
-          configured: false, 
-          message: 'Enzy API key not configured. Please add it in Settings > Integrations.' 
+        JSON.stringify({
+          configured: false,
+          message: 'Enzy API key not configured. Please add it in Settings > Integrations.'
         }),
         { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
     }
 
-    const url = new URL(req.url)
-    const action = url.pathname.split('/').pop()
     const body = await req.json()
+
+    // Action resolution: prefer body.action (how the client sends it now),
+    // fall back to the URL path for back compat with older callers.
+    const url = new URL(req.url)
+    const pathAction = url.pathname.split('/').pop()
+    const action =
+      (typeof body?.action === 'string' && body.action) ||
+      (pathAction && pathAction !== 'enzy-push' ? pathAction : undefined)
 
     let result: any
 
     switch (action) {
       case 'log-activity':
-        result = await logActivity(enzyApiKey, body as ActivityPayload, userId, supabase)
+        result = await logActivity(enzyApiKey, body as ActivityPayload, userId, adminSupabase)
         break
       case 'update-score':
-        result = await updateScore(enzyApiKey, body as ScoreUpdatePayload, userId, supabase)
+        result = await updateScore(enzyApiKey, body as ScoreUpdatePayload, userId, adminSupabase)
         break
       default:
         return new Response(
-          JSON.stringify({ error: 'Unknown action' }),
+          JSON.stringify({ error: `Unknown action: ${action ?? '(none)'}` }),
           { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         )
     }

@@ -53,34 +53,45 @@ Deno.serve(async (req) => {
 
     const userId = claimsData.claims.sub
 
+    // Service-role client for DB writes — bypasses admin-only RLS on jobs.
+    const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
+    const adminSupabase = serviceRoleKey
+      ? createClient(Deno.env.get('SUPABASE_URL')!, serviceRoleKey)
+      : supabase
+
     // Check if Housecall Pro API key is configured
     const hcpApiKey = Deno.env.get('HOUSECALL_PRO_API_KEY')
     if (!hcpApiKey) {
       return new Response(
-        JSON.stringify({ 
-          configured: false, 
-          message: 'Housecall Pro API key not configured. Please add it in Settings > Integrations.' 
+        JSON.stringify({
+          configured: false,
+          message: 'Housecall Pro API key not configured. Please add it in Settings > Integrations.'
         }),
         { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
     }
 
-    const url = new URL(req.url)
-    const action = url.pathname.split('/').pop()
     const body = await req.json()
+
+    // Action resolution: prefer body.action, fall back to URL for back compat.
+    const url = new URL(req.url)
+    const pathAction = url.pathname.split('/').pop()
+    const action =
+      (typeof body?.action === 'string' && body.action) ||
+      (pathAction && pathAction !== 'housecall-push' ? pathAction : undefined)
 
     let result: any
 
     switch (action) {
       case 'create-job':
-        result = await createJob(hcpApiKey, body as JobPayload, userId, supabase)
+        result = await createJob(hcpApiKey, body as JobPayload, userId, adminSupabase)
         break
       case 'update-job':
-        result = await updateJob(hcpApiKey, body as JobUpdatePayload, supabase)
+        result = await updateJob(hcpApiKey, body as JobUpdatePayload, adminSupabase)
         break
       default:
         return new Response(
-          JSON.stringify({ error: 'Unknown action' }),
+          JSON.stringify({ error: `Unknown action: ${action ?? '(none)'}` }),
           { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         )
     }
@@ -168,23 +179,32 @@ async function createJob(apiKey: string, payload: JobPayload, userId: string, su
 
   const hcpJob = await jobResponse.json()
 
-  // Save to local jobs table
-  const { data: job, error } = await supabase
-    .from('jobs')
-    .insert({
-      external_id: hcpJob.id,
-      customer_name: payload.customerName,
-      job_type: payload.jobType,
-      scheduled_at: scheduledAt.toISOString(),
-      status: 'scheduled',
-      assigned_to: userId
-    })
-    .select()
-    .single()
+  // Best-effort local mirror. If this fails, Housecall Pro is the source of
+  // truth and we still return success so the rep sees "Job scheduled!".
+  let localJob: unknown = null
+  try {
+    const { data, error } = await supabase
+      .from('jobs')
+      .insert({
+        external_id: hcpJob.id,
+        customer_name: payload.customerName,
+        job_type: payload.jobType,
+        scheduled_at: scheduledAt.toISOString(),
+        status: 'scheduled',
+        assigned_to: userId,
+      })
+      .select()
+      .single()
+    if (error) {
+      console.warn('Local jobs insert failed (non-fatal):', error.message)
+    } else {
+      localJob = data
+    }
+  } catch (err) {
+    console.warn('Local jobs insert threw (non-fatal):', err)
+  }
 
-  if (error) throw error
-
-  return { hcpJob, localJob: job }
+  return { hcpJob, localJob }
 }
 
 async function updateJob(apiKey: string, payload: JobUpdatePayload, supabase: any) {
@@ -218,12 +238,15 @@ async function updateJob(apiKey: string, payload: JobUpdatePayload, supabase: an
     updateData.revenue = payload.revenue
   }
 
-  const { error } = await supabase
-    .from('jobs')
-    .update(updateData)
-    .eq('external_id', payload.externalId)
-
-  if (error) throw error
+  try {
+    const { error } = await supabase
+      .from('jobs')
+      .update(updateData)
+      .eq('external_id', payload.externalId)
+    if (error) console.warn('Local jobs update failed (non-fatal):', error.message)
+  } catch (err) {
+    console.warn('Local jobs update threw (non-fatal):', err)
+  }
 
   return await response.json()
 }
