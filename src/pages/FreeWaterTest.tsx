@@ -42,7 +42,7 @@ const FreeWaterTest = () => {
     <PageLayout>
       <Helmet>
         <title>Free Water Test | Inland Empire Home Water Analysis | Select Source Water</title>
-        <meta name="description" content="Schedule a free in-home water test in the Inland Empire. We test for hardness, TDS, Chromium-6, and more. No cost, no obligation. Call (951) 612-4094." />
+        <meta name="description" content="Schedule a free in-home water test in the Inland Empire. We test for hardness, TDS, Chromium-6, and more. No cost, no obligation. Call (951) 499-5136." />
         <link rel="canonical" href="https://selectsourcewatercalifornia.com/free-water-test" />
       </Helmet>
 
@@ -132,9 +132,9 @@ const FreeWaterTest = () => {
 
               <div className="bg-primary/5 rounded-2xl p-6 space-y-4">
                 <h3 className="text-lg font-semibold text-foreground">Prefer to Call?</h3>
-                <a href="tel:+19516124094" className="flex items-center gap-3 text-primary font-semibold text-lg hover:underline">
+                <a href="tel:+19514995136" className="flex items-center gap-3 text-primary font-semibold text-lg hover:underline">
                   <Phone className="w-5 h-5" />
-                  (951) 612-4094
+                  (951) 499-5136
                 </a>
                 <div className="flex items-start gap-3 text-muted-foreground text-sm">
                   <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />

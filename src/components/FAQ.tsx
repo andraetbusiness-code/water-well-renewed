@@ -31,7 +31,7 @@ const faqs = [
   },
   {
     question: "Do you serve areas outside Beaumont and Banning?",
-    answer: "Yes — we serve all of the Inland Empire including Hemet, San Jacinto, Moreno Valley, Riverside, Yucaipa, Calimesa, Cherry Valley, Redlands, and Highland. Our service area is expanding. If your city isn't listed, call us at (951) 612-4094 — we likely serve your area or can arrange a visit.",
+    answer: "Yes — we serve all of the Inland Empire including Hemet, San Jacinto, Moreno Valley, Riverside, Yucaipa, Calimesa, Cherry Valley, Redlands, and Highland. Our service area is expanding. If your city isn't listed, call us at (951) 499-5136 — we likely serve your area or can arrange a visit.",
   },
   {
     question: "What are your maintenance costs?",
@@ -176,8 +176,8 @@ export const FAQ = () => {
                 <Droplets className="h-5 w-5 text-primary" />
                 <span className="text-foreground">
                   Still have questions?{" "}
-                  <a href="tel:+19516124094" className="text-primary font-medium hover:underline">
-                    Call (951) 612-4094
+                  <a href="tel:+19514995136" className="text-primary font-medium hover:underline">
+                    Call (951) 499-5136
                   </a>
                   {" "}or{" "}
                   <a href="#contact" className="text-primary font-medium hover:underline">contact us online</a>

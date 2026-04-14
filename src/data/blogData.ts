@@ -71,8 +71,8 @@ export const blogArticles: BlogArticle[] = [
 
       '## How to Schedule Your Free Water Test',
 
-      'Booking is simple. Call Select Source Water at (951) 612-4094 to schedule a free in-home water test at a time that works for you. We serve Beaumont, Banning, Hemet, San Jacinto, Moreno Valley, Riverside, Yucaipa, Calimesa, Cherry Valley, Redlands, and Highland — most appointments are available within 24–48 hours. You can also visit any participating Home Depot location in the Inland Empire and ask about water treatment services through Select Source Water, their authorized provider.',
-      'The test is free. The results are real. The decision is always yours. Call (951) 612-4094 today and find out exactly what\'s in your water.',
+      'Booking is simple. Call Select Source Water at (951) 499-5136 to schedule a free in-home water test at a time that works for you. We serve Beaumont, Banning, Hemet, San Jacinto, Moreno Valley, Riverside, Yucaipa, Calimesa, Cherry Valley, Redlands, and Highland — most appointments are available within 24–48 hours. You can also visit any participating Home Depot location in the Inland Empire and ask about water treatment services through Select Source Water, their authorized provider.',
+      'The test is free. The results are real. The decision is always yours. Call (951) 499-5136 today and find out exactly what\'s in your water.',
     ],
     faqSchema: [
       {
@@ -89,7 +89,7 @@ export const blogArticles: BlogArticle[] = [
       },
       {
         question: 'How do I schedule a free water test in Beaumont or Riverside County?',
-        answer: 'Call Select Source Water at (951) 612-4094 to schedule your free in-home water test. We serve Beaumont, Banning, Hemet, Moreno Valley, Riverside, San Jacinto, Yucaipa, Calimesa, Cherry Valley, Redlands, and Highland. Most appointments are available within 24–48 hours.',
+        answer: 'Call Select Source Water at (951) 499-5136 to schedule your free in-home water test. We serve Beaumont, Banning, Hemet, Moreno Valley, Riverside, San Jacinto, Yucaipa, Calimesa, Cherry Valley, Redlands, and Highland. Most appointments are available within 24–48 hours.',
       },
     ],
   },
@@ -144,7 +144,7 @@ export const blogArticles: BlogArticle[] = [
       '## Get a Real Quote for Your Home',
 
       'The only way to get an accurate water softener cost for your specific Inland Empire home is to start with a free water test. Once we know your hardness level, TDS, and any contaminant concerns, we can recommend the right system and give you a precise price with no hidden fees.',
-      'Learn more about our service in Beaumont, Banning, Hemet, Riverside, and all surrounding Inland Empire cities. Call (951) 612-4094 to schedule your free in-home water test and get a transparent, no-pressure quote. You\'ll know exactly what you\'re getting, what it costs, and why — before you make any decision.',
+      'Learn more about our service in Beaumont, Banning, Hemet, Riverside, and all surrounding Inland Empire cities. Call (951) 499-5136 to schedule your free in-home water test and get a transparent, no-pressure quote. You\'ll know exactly what you\'re getting, what it costs, and why — before you make any decision.',
     ],
     faqSchema: [
       {
@@ -217,7 +217,7 @@ export const blogArticles: BlogArticle[] = [
 
       'The most important first step for any Hemet resident concerned about water quality is to get a free in-home water test. While EWG data provides city-level averages, actual contaminant levels at your tap depend on which part of Hemet\'s distribution system your home is connected to, the age of your pipes, and seasonal variations in source water.',
       'A professional water test from Select Source Water covers hardness, TDS, pH, chlorine, iron, and flags contaminant concerns specific to your area — including arsenic and chromium-6 screening. The test is free, takes about 30 minutes, and gives you real data about your specific water, not a city average.',
-      'If you\'re a Hemet resident and you\'re ready to stop wondering what\'s in your water, call Select Source Water at (951) 612-4094. We serve Hemet, San Jacinto, and all surrounding Inland Empire communities. The test is free, the results are real, and the decision is always yours.',
+      'If you\'re a Hemet resident and you\'re ready to stop wondering what\'s in your water, call Select Source Water at (951) 499-5136. We serve Hemet, San Jacinto, and all surrounding Inland Empire communities. The test is free, the results are real, and the decision is always yours.',
     ],
     faqSchema: [
       {
@@ -290,7 +290,7 @@ export const blogArticles: BlogArticle[] = [
       '## Protect Your Investment Before the Next Repair Bill',
 
       'The average Inland Empire home that comes to us already has visible scale on faucets, reduced hot water pressure, and a water heater working overtime. A free in-home water test tells you exactly how hard your water is and what it\'s costing you. Then you can make an informed decision about treatment.',
-      'Call Select Source Water at (951) 612-4094 to schedule your free in-home water test. We\'ll show you what\'s in your water, what it\'s doing to your home, and what it would cost to stop it. The test is free. The decision is yours.',
+      'Call Select Source Water at (951) 499-5136 to schedule your free in-home water test. We\'ll show you what\'s in your water, what it\'s doing to your home, and what it would cost to stop it. The test is free. The decision is yours.',
     ],
     faqSchema: [
       {
@@ -363,7 +363,7 @@ export const blogArticles: BlogArticle[] = [
       '## Getting Your Specific Water Tested',
 
       'City-level data gives you averages, but your individual home\'s water quality depends on which of Banning\'s 19 wells is currently serving your area, the age and condition of pipes between the municipal main and your tap, and seasonal variations in source water. A free in-home water test from Select Source Water will show you the actual numbers at your tap — not a district average.',
-      'Call Select Source Water at (951) 612-4094 to schedule a free in-home water test in Banning or anywhere in the San Gorgonio Pass and Inland Empire. We\'ll test your hardness, TDS, pH, chlorine, iron, and flag chromium-6 and other contaminant concerns specific to your address. Same-day results, no obligation, no pressure.',
+      'Call Select Source Water at (951) 499-5136 to schedule a free in-home water test in Banning or anywhere in the San Gorgonio Pass and Inland Empire. We\'ll test your hardness, TDS, pH, chlorine, iron, and flag chromium-6 and other contaminant concerns specific to your address. Same-day results, no obligation, no pressure.',
     ],
     faqSchema: [
       {
@@ -437,7 +437,7 @@ export const blogArticles: BlogArticle[] = [
 
       '## Schedule Your Free Water Test in Beaumont Today',
 
-      'Whether you\'re a new homeowner in a Beaumont subdivision or a long-time resident who has noticed scale buildup, spotty dishes, or dry skin, the first step is knowing what\'s in your water. Call Select Source Water at (951) 612-4094 to schedule a free in-home water test. We serve Beaumont and all surrounding Inland Empire communities. Same-day results, no sales pressure, and no obligation — just the facts about your water.',
+      'Whether you\'re a new homeowner in a Beaumont subdivision or a long-time resident who has noticed scale buildup, spotty dishes, or dry skin, the first step is knowing what\'s in your water. Call Select Source Water at (951) 499-5136 to schedule a free in-home water test. We serve Beaumont and all surrounding Inland Empire communities. Same-day results, no sales pressure, and no obligation — just the facts about your water.',
     ],
     faqSchema: [
       {
@@ -512,7 +512,7 @@ export const blogArticles: BlogArticle[] = [
       '## The First Step: Know Your Number',
 
       'Hard water effects vary based on your specific hardness level, your home\'s age, and which city you\'re in. A free in-home water test from Select Source Water tells you exactly what you\'re dealing with — your precise PPM reading, TDS, pH, and any contaminant flags specific to your city and neighborhood.',
-      'Learn more about our service in Beaumont, Banning, Hemet, Moreno Valley, Riverside, San Jacinto, Yucaipa, Calimesa, Cherry Valley, Redlands, and Highland. Call Select Source Water at (951) 612-4094 to schedule your free in-home water test. No obligation, no pressure — just the facts about your water and your options.',
+      'Learn more about our service in Beaumont, Banning, Hemet, Moreno Valley, Riverside, San Jacinto, Yucaipa, Calimesa, Cherry Valley, Redlands, and Highland. Call Select Source Water at (951) 499-5136 to schedule your free in-home water test. No obligation, no pressure — just the facts about your water and your options.',
     ],
     faqSchema: [
       {
@@ -585,7 +585,7 @@ export const blogArticles: BlogArticle[] = [
 
       'The evidence on chromium-6 at low concentrations is evolving, and scientists continue to debate the precise dose-response relationship. What is clear is that California\'s public health community, after reviewing the best available science, set a PHG of 0.02 ppb — and that detections above this level are worth addressing if you can do so effectively and affordably.',
       'Many Inland Empire families choose to use reverse osmosis drinking water filtration not because their water is dangerously contaminated, but because the science is uncertain enough that reducing exposure through affordable, available technology is a sensible precautionary choice. An under-sink RO system that provides chromium-6-free drinking water typically costs $500–$1,500 installed, depending on the system configuration.',
-      'Learn more about our service in Banning, Hemet, Riverside, and throughout the Inland Empire. Call Select Source Water at (951) 612-4094 to schedule a free in-home water test. We\'ll test your water, show you the results in real time, and explain exactly what\'s in your water and what your options are — with no pressure and no obligation.',
+      'Learn more about our service in Banning, Hemet, Riverside, and throughout the Inland Empire. Call Select Source Water at (951) 499-5136 to schedule a free in-home water test. We\'ll test your water, show you the results in real time, and explain exactly what\'s in your water and what your options are — with no pressure and no obligation.',
     ],
     faqSchema: [
       {
@@ -662,7 +662,7 @@ export const blogArticles: BlogArticle[] = [
 
       'If two or more of these signs are present in your home, hard water is almost certainly the cause — and at Inland Empire hardness levels, waiting compounds the damage. The good news is that a properly sized, professionally installed whole-home water softener eliminates all five problems simultaneously.',
       'Dishes come out spotless. Skin feels noticeably softer within days. Scale stops accumulating on fixtures. Laundry lasts longer and comes clean with less detergent. Your water heater stops fighting a mineral layer it can\'t overcome.',
-      'Select Source Water offers a free in-home water test throughout the Inland Empire that shows you your exact hardness number, TDS, and any contaminant concerns. Learn more about our service in Beaumont, Banning, Hemet, Moreno Valley, Riverside, and across the IE. Call (951) 612-4094 to schedule your free water test. You\'ll have same-day results, no sales pressure, and no obligation — just answers.',
+      'Select Source Water offers a free in-home water test throughout the Inland Empire that shows you your exact hardness number, TDS, and any contaminant concerns. Learn more about our service in Beaumont, Banning, Hemet, Moreno Valley, Riverside, and across the IE. Call (951) 499-5136 to schedule your free water test. You\'ll have same-day results, no sales pressure, and no obligation — just answers.',
     ],
     faqSchema: [
       {
@@ -731,7 +731,7 @@ export const blogArticles: BlogArticle[] = [
       '## Get Started with a Free In-Home Water Test',
 
       'The first step toward cleaner, softer water in your Inland Empire home is understanding exactly what\'s in your water today. Select Source Water offers free in-home water testing — no obligation, same-day results, and no sales pressure. Learn more about our service in Beaumont, Banning, Hemet, Moreno Valley, Riverside, and throughout the IE.',
-      'Call (951) 612-4094 to schedule your free water test or to ask about our HYGIA+ system. You can also visit your local Inland Empire Home Depot and inquire about Select Source Water through the home services desk. We\'re the authorized water treatment provider because we\'ve earned it — and because every installation we do has to meet a standard we\'re proud to stand behind.',
+      'Call (951) 499-5136 to schedule your free water test or to ask about our HYGIA+ system. You can also visit your local Inland Empire Home Depot and inquire about Select Source Water through the home services desk. We\'re the authorized water treatment provider because we\'ve earned it — and because every installation we do has to meet a standard we\'re proud to stand behind.',
     ],
     faqSchema: [
       {
@@ -748,7 +748,7 @@ export const blogArticles: BlogArticle[] = [
       },
       {
         question: 'How do I find a Home Depot water softener installer in the Inland Empire?',
-        answer: 'You can reach Select Source Water — the Home Depot authorized water treatment provider for the Inland Empire — by calling (951) 612-4094, or by visiting your local Inland Empire Home Depot and asking about water treatment services through the home services desk.',
+        answer: 'You can reach Select Source Water — the Home Depot authorized water treatment provider for the Inland Empire — by calling (951) 499-5136, or by visiting your local Inland Empire Home Depot and asking about water treatment services through the home services desk.',
       },
     ],
   },
@@ -801,7 +801,7 @@ export const blogArticles: BlogArticle[] = [
       'Whether you\'re on city water or well water, the right treatment system depends on what\'s in your specific water. For hardness — which affects virtually all Inland Empire homes on both city and well water — a whole-home water softener addresses the core problem of scale, appliance damage, and daily quality-of-life impacts.',
       'For contaminants like chromium-6, arsenic, or nitrates, an under-sink reverse osmosis system adds a second layer of protection at the drinking water tap, removing 90–99% of these contaminants regardless of their source or concentration. Well water with bacterial concerns may require UV disinfection or additional filtration as part of the treatment design.',
       'The HYGIA+ system from Select Source Water can be configured for both city and well water applications and is sized and calibrated based on your specific water test results.',
-      'Learn more about our service in Beaumont, Banning, Hemet, Cherry Valley, Calimesa, Yucaipa, and throughout the Inland Empire. Call Select Source Water at (951) 612-4094 to schedule a free in-home water test — for city water or well water. Same-day results, no obligation, and the only testing in the IE that\'s completely free.',
+      'Learn more about our service in Beaumont, Banning, Hemet, Cherry Valley, Calimesa, Yucaipa, and throughout the Inland Empire. Call Select Source Water at (951) 499-5136 to schedule a free in-home water test — for city water or well water. Same-day results, no obligation, and the only testing in the IE that\'s completely free.',
     ],
     faqSchema: [
       {
@@ -871,7 +871,7 @@ export const blogArticles: BlogArticle[] = [
 
       'Your softener\'s control valve manages regeneration frequency and timing. Most systems are programmed at installation based on your household\'s water usage and incoming hardness level. But water usage patterns change — seasonal changes in the IE bring different water demands, family size changes, and sometimes water district blending shifts that alter incoming hardness.',
       'Twice a year, check that your regeneration settings still match your current usage. A system programmed for two people that now serves five will run low on capacity between regenerations, letting some hardness through. A system programmed for five people that now serves two will waste salt on unnecessary regeneration cycles.',
-      'Your Select Source Water technician will set the control valve correctly at installation. If your household situation has changed significantly, call us at (951) 612-4094 and we\'ll walk you through adjusting the settings.',
+      'Your Select Source Water technician will set the control valve correctly at installation. If your household situation has changed significantly, call us at (951) 499-5136 and we\'ll walk you through adjusting the settings.',
 
       '## Tip 6: Test Your Water Periodically',
 
@@ -883,7 +883,7 @@ export const blogArticles: BlogArticle[] = [
 
       'Even well-maintained systems benefit from annual professional inspection. A trained technician can check components that aren\'t accessible to homeowners — the control valve internals, brine valve assembly, bypass valve seals, and resin distributor. Small issues caught at annual service rarely become expensive repairs; ignored, they compound.',
       'Select Source Water provides maintenance service for all HYGIA+ systems we install, and our lifetime warranty covers parts and labor for covered failures. Annual service keeps that warranty fully in force and gives you a documented service history that\'s valuable if you ever sell your home — a properly maintained whole-home water treatment system is a recognized home value addition in the Inland Empire.',
-      'Learn more about our service in Beaumont, Banning, Hemet, Moreno Valley, Riverside, and throughout the IE. For service, maintenance questions, or to schedule a water quality check, call Select Source Water at (951) 612-4094. Your water softener is protecting your home — these seven maintenance steps protect your water softener.',
+      'Learn more about our service in Beaumont, Banning, Hemet, Moreno Valley, Riverside, and throughout the IE. For service, maintenance questions, or to schedule a water quality check, call Select Source Water at (951) 499-5136. Your water softener is protecting your home — these seven maintenance steps protect your water softener.',
     ],
     faqSchema: [
       {

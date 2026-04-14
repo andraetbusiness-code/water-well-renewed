@@ -83,7 +83,7 @@ export default function Process() {
     <PageLayout>
       <Helmet>
         <title>How It Works — Free Water Test to Installation | Select Source Water SoCal</title>
-        <meta name="description" content="5 simple steps: free water test → custom solution → same-day installation → lifetime warranty. Serving the Inland Empire. Call (951) 612-4094 to get started." />
+        <meta name="description" content="5 simple steps: free water test → custom solution → same-day installation → lifetime warranty. Serving the Inland Empire. Call (951) 499-5136 to get started." />
         <link rel="canonical" href="https://selectsourcewatercalifornia.com/process" />
       </Helmet>
       <PageHero 
@@ -272,9 +272,9 @@ export default function Process() {
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <a href="tel:+19516124094" className="gap-2">
+                  <a href="tel:+19514995136" className="gap-2">
                     <Phone className="h-4 w-4" />
-                    Call (951) 612-4094
+                    Call (951) 499-5136
                   </a>
                 </Button>
               </div>

@@ -339,11 +339,11 @@ const HygiaPlusDemo = () => {
             >
               <p className="text-muted-foreground text-sm mb-3 uppercase tracking-wider font-medium">Professionally Installed</p>
               <a
-                href="tel:+19516124094"
+                href="tel:+19514995136"
                 className="inline-flex items-center gap-3 bg-primary text-primary-foreground text-2xl md:text-3xl font-bold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:scale-105"
               >
                 <Phone className="w-7 h-7" />
-                (951) 612-4094
+                (951) 499-5136
               </a>
             </motion.div>
           </div>
@@ -356,9 +356,9 @@ const HygiaPlusDemo = () => {
               <img src={logo} alt="Select Source Water" className="h-8" />
             </div>
             <div className="flex items-center gap-6 text-sm text-accent-foreground/70">
-              <a href="tel:+19516124094" className="hover:text-accent-foreground transition-colors flex items-center gap-1.5">
+              <a href="tel:+19514995136" className="hover:text-accent-foreground transition-colors flex items-center gap-1.5">
                 <Phone className="w-4 h-4" />
-                (951) 612-4094
+                (951) 499-5136
               </a>
               <span>selectsourcewatercalifornia.com</span>
             </div>
