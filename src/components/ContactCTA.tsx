@@ -220,6 +220,12 @@ export const ContactCTA = () => {
                       </Select>
                     </div>
 
+                    <p className="text-xs text-muted-foreground/70 text-center leading-relaxed">
+                      By submitting this form, you consent to receive text messages (SMS/MMS) from Select Source Water at the phone number provided. Message frequency varies. Message & data rates may apply. Reply STOP to opt out. See our{" "}
+                      <a href="/privacy-policy.html" className="underline hover:text-accent transition-colors">Privacy Policy</a>{" "}and{" "}
+                      <a href="/sms-terms.html" className="underline hover:text-accent transition-colors">SMS Terms</a>.
+                    </p>
+
                     <Button
                       type="submit"
                       size="lg"
