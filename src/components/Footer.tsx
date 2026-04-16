@@ -161,6 +161,7 @@ export const Footer = () => {
               © {new Date().getFullYear()} Select Source Water LLC | Est. 1998 | Licensed & Insured |{" "}
               <Link to="/privacy-policy" className="hover:text-accent transition-colors">Privacy Policy</Link> |{" "}
               <Link to="/terms-of-service" className="hover:text-accent transition-colors">Terms</Link> |{" "}
+              <Link to="/sms-terms.html" className="hover:text-accent transition-colors">SMS Terms</Link> |{" "}
               <Link to="/portal" className="hover:text-accent transition-colors">Staff Login</Link>
             </p>
           </div>
