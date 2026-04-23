@@ -68,9 +68,9 @@ export default function CityPage() {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="heroOutline" className="border-primary/30 text-foreground hover:bg-primary/10 hover:border-primary/50">
-                <a href="tel:+19516124094">
+                <a href="tel:+19514995136">
                   <Phone className="mr-2 h-5 w-5" />
-                  Call (951) 612-4094
+                  Call (951) 499-5136
                 </a>
               </Button>
             </div>
@@ -182,7 +182,7 @@ export default function CityPage() {
               </h2>
             </div>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Select Source Water is an Authorized Independent Provider for Home Depot Home Services. Visit any Home Depot in the {city.name} area and ask for a free water test kit — or call us directly at (951) 612-4094 to schedule an in-home visit.
+              Select Source Water is an Authorized Independent Provider for Home Depot Home Services. Visit any Home Depot in the {city.name} area and ask for a free water test kit — or call us directly at (951) 499-5136 to schedule an in-home visit.
             </p>
             <p className="text-xs text-muted-foreground mb-6 italic">
               Your nearest Home Depot — ask associates for the Select Source Water station.
@@ -260,7 +260,7 @@ export default function CityPage() {
                   Does Home Depot install water softeners in {city.name}?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
-                  Yes — through authorized partners like Select Source Water. We're a Home Depot Authorized Independent Provider. You can pick up a free water test kit at your local Home Depot or schedule directly with us at (951) 612-4094.
+                  Yes — through authorized partners like Select Source Water. We're a Home Depot Authorized Independent Provider. You can pick up a free water test kit at your local Home Depot or schedule directly with us at (951) 499-5136.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="contaminants" className="bg-card rounded-xl border border-border px-6">
@@ -276,7 +276,7 @@ export default function CityPage() {
                   How much does a water softener cost in {city.name}?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
-                  Every home is different — water hardness, household size, and water usage all factor into the right system size. That's why we start with a free in-home water test. After testing, we'll give you a transparent quote with no pressure. Call (951) 612-4094 or schedule online.
+                  Every home is different — water hardness, household size, and water usage all factor into the right system size. That's why we start with a free in-home water test. After testing, we'll give you a transparent quote with no pressure. Call (951) 499-5136 or schedule online.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="install" className="bg-card rounded-xl border border-border px-6">
@@ -316,7 +316,7 @@ export default function CityPage() {
               </Button>
             </div>
             <p className="text-sm text-muted-foreground mt-4">
-              <a href="tel:+19516124094" className="text-primary hover:underline font-medium">(951) 612-4094</a> — Available 7 days a week
+              <a href="tel:+19514995136" className="text-primary hover:underline font-medium">(951) 499-5136</a> — Available 7 days a week
             </p>
           </motion.div>
         </div>

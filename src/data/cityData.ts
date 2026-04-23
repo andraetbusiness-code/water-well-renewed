@@ -48,7 +48,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Beaumont, CA | Select Source Water",
     seoDescription:
-      "Free water test in Beaumont, CA. 177 PPM hardness, 2 contaminants above EPA goals. HYGIA+ whole-house system, same-day install, lifetime warranty. Call (951) 612-4094.",
+      "Free water test in Beaumont, CA. 177 PPM hardness, 2 contaminants above EPA goals. HYGIA+ whole-house system, same-day install, lifetime warranty. Call (951) 499-5136.",
   },
   "banning-ca": {
     name: "Banning",
@@ -82,7 +82,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Banning, CA | Select Source Water",
     seoDescription:
-      "Free water test in Banning, CA. 249 PPM — hardest water in the Pass. Chromium-6 detected. HYGIA+ system removes it all. Call (951) 612-4094.",
+      "Free water test in Banning, CA. 249 PPM — hardest water in the Pass. Chromium-6 detected. HYGIA+ system removes it all. Call (951) 499-5136.",
   },
   "hemet-ca": {
     name: "Hemet",
@@ -116,7 +116,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Hemet, CA | Select Source Water",
     seoDescription:
-      "Free water test in Hemet, CA. Arsenic + chromium-6 detected, 10 contaminants of concern. HYGIA+ whole-house filtration. Call (951) 612-4094.",
+      "Free water test in Hemet, CA. Arsenic + chromium-6 detected, 10 contaminants of concern. HYGIA+ whole-house filtration. Call (951) 499-5136.",
   },
   "san-jacinto-ca": {
     name: "San Jacinto",
@@ -149,7 +149,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in San Jacinto, CA | Select Source Water",
     seoDescription:
-      "Free water test in San Jacinto, CA. 155 PPM hardness, shared contamination with Hemet. HYGIA+ system, same-day install. Call (951) 612-4094.",
+      "Free water test in San Jacinto, CA. 155 PPM hardness, shared contamination with Hemet. HYGIA+ system, same-day install. Call (951) 499-5136.",
   },
   "moreno-valley-ca": {
     name: "Moreno Valley",
@@ -182,7 +182,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Moreno Valley, CA | Select Source Water",
     seoDescription:
-      "Free water test in Moreno Valley, CA. 197 PPM hardness — very hard. HYGIA+ whole-house filtration, same-day install, lifetime warranty. Call (951) 612-4094.",
+      "Free water test in Moreno Valley, CA. 197 PPM hardness — very hard. HYGIA+ whole-house filtration, same-day install, lifetime warranty. Call (951) 499-5136.",
   },
   "riverside-ca": {
     name: "Riverside",
@@ -215,7 +215,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Riverside, CA | Select Source Water",
     seoDescription:
-      "Free water test in Riverside, CA. 202 PPM hardness — very hard. Oldest infrastructure in IE. HYGIA+ filtration, lifetime warranty. Call (951) 612-4094.",
+      "Free water test in Riverside, CA. 202 PPM hardness — very hard. Oldest infrastructure in IE. HYGIA+ filtration, lifetime warranty. Call (951) 499-5136.",
   },
   "yucaipa-ca": {
     name: "Yucaipa",
@@ -248,7 +248,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Yucaipa, CA | Select Source Water",
     seoDescription:
-      "Free water test in Yucaipa, CA. ~180 PPM hardness, agricultural water history. HYGIA+ whole-house system, same-day install. Call (951) 612-4094.",
+      "Free water test in Yucaipa, CA. ~180 PPM hardness, agricultural water history. HYGIA+ whole-house system, same-day install. Call (951) 499-5136.",
   },
   "calimesa-ca": {
     name: "Calimesa",
@@ -281,7 +281,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Calimesa, CA | Select Source Water",
     seoDescription:
-      "Free water test in Calimesa, CA. ~170 PPM hardness, new construction without filtration. HYGIA+ system, lifetime warranty. Call (951) 612-4094.",
+      "Free water test in Calimesa, CA. ~170 PPM hardness, new construction without filtration. HYGIA+ system, lifetime warranty. Call (951) 499-5136.",
   },
   "cherry-valley-ca": {
     name: "Cherry Valley",
@@ -314,7 +314,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Cherry Valley, CA | Select Source Water",
     seoDescription:
-      "Free water test in Cherry Valley, CA. ~180 PPM, many private wells without testing. HYGIA+ whole-house filtration. Call (951) 612-4094.",
+      "Free water test in Cherry Valley, CA. ~180 PPM, many private wells without testing. HYGIA+ whole-house filtration. Call (951) 499-5136.",
   },
   "redlands-ca": {
     name: "Redlands",
@@ -347,7 +347,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Redlands, CA | Select Source Water",
     seoDescription:
-      "Free water test in Redlands, CA. ~175 PPM hardness, mix of older & newer homes. HYGIA+ system, same-day install, lifetime warranty. Call (951) 612-4094.",
+      "Free water test in Redlands, CA. ~175 PPM hardness, mix of older & newer homes. HYGIA+ system, same-day install, lifetime warranty. Call (951) 499-5136.",
   },
   "highland-ca": {
     name: "Highland",
@@ -380,7 +380,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Highland, CA | Select Source Water",
     seoDescription:
-      "Free water test in Highland, CA. ~190 PPM hardness, SB County hard water. HYGIA+ whole-house filtration, lifetime warranty. Call (951) 612-4094.",
+      "Free water test in Highland, CA. ~190 PPM hardness, SB County hard water. HYGIA+ whole-house filtration, lifetime warranty. Call (951) 499-5136.",
   },
   "inland-empire": {
     name: "Inland Empire",
@@ -414,7 +414,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Treatment in the Inland Empire, California | Select Source Water",
     seoDescription:
-      "Select Source Water serves the entire Inland Empire — 155 to 249 PPM hardness. Free water tests, HYGIA+ systems, same-day install. Call (951) 612-4094.",
+      "Select Source Water serves the entire Inland Empire — 155 to 249 PPM hardness. Free water tests, HYGIA+ systems, same-day install. Call (951) 499-5136.",
   },
 };
 

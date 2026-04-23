@@ -131,7 +131,7 @@ export default function WhatInWater() {
     <PageLayout>
       <Helmet>
         <title>What's In Inland Empire Water? Contaminants, Hardness & Solutions | SSW SoCal</title>
-        <meta name="description" content="Chromium-6 in Banning, arsenic in Hemet, 177 PPM hardness in Beaumont. Learn what's in your water and how we fix it. Free test: (951) 612-4094." />
+        <meta name="description" content="Chromium-6 in Banning, arsenic in Hemet, 177 PPM hardness in Beaumont. Learn what's in your water and how we fix it. Free test: (951) 499-5136." />
         <link rel="canonical" href="https://selectsourcewatercalifornia.com/what-in-water" />
       </Helmet>
 
@@ -420,9 +420,9 @@ export default function WhatInWater() {
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <a href="tel:+19516124094" className="gap-2">
+                  <a href="tel:+19514995136" className="gap-2">
                     <Phone className="h-4 w-4" />
-                    (951) 612-4094
+                    (951) 499-5136
                   </a>
                 </Button>
               </div>

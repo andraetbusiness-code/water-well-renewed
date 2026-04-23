@@ -68,11 +68,11 @@ export const Footer = () => {
             </p>
 
             <div className="space-y-3">
-              <a href="tel:+19516124094" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors group text-sm">
+              <a href="tel:+19514995136" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors group text-sm">
                 <div className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
                   <Phone className="h-4 w-4" />
                 </div>
-                <span>(951) 612-4094</span>
+                <span>(951) 499-5136</span>
               </a>
               <a href="mailto:info@selectsourcewatercalifornia.com" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors group text-sm">
                 <div className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
