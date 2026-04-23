@@ -163,15 +163,9 @@ export const ContactCTA = () => {
                       </div>
                     </div>
                     
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="email">Email *</Label>
-                        <Input id="email" type="email" placeholder="Email" required className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors" />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="phone">Phone *</Label>
-                        <Input id="phone" type="tel" placeholder="Phone" required className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors" />
-                      </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="email">Email *</Label>
+                      <Input id="email" type="email" placeholder="Email" required className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors" />
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-4">
@@ -221,9 +215,10 @@ export const ContactCTA = () => {
                     </div>
 
                     <p className="text-xs text-muted-foreground/70 text-center leading-relaxed">
-                      By submitting this form, you consent to receive text messages (SMS/MMS) from Select Source Water at the phone number provided. Message frequency varies. Message & data rates may apply. Reply STOP to opt out. See our{" "}
+                      By submitting this form, you agree to our{" "}
                       <a href="/privacy-policy.html" className="underline hover:text-accent transition-colors">Privacy Policy</a>{" "}and{" "}
-                      <a href="/sms-terms.html" className="underline hover:text-accent transition-colors">SMS Terms</a>.
+                      <a href="/terms-of-service.html" className="underline hover:text-accent transition-colors">Terms of Service</a>.
+                      {" "}For SMS opt-in, use the chat widget below.
                     </p>
 
                     <Button
@@ -244,7 +239,7 @@ export const ContactCTA = () => {
                     </Button>
                     
                     <p className="text-xs text-center text-muted-foreground">
-                      We'll contact you within 24 hours. No obligation • No credit card • 100% free.
+                      We'll contact you within 24 hours. No obligation â¢ No credit card â¢ 100% free.
                     </p>
                   </div>
                 </form>
