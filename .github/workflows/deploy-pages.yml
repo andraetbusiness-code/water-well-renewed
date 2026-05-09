@@ -28,6 +28,8 @@ jobs:
       - run: npm ci
 
       - run: npm run build
+        env:
+          VITE_GHL_RECRUITING_WEBHOOK_URL: ${{ secrets.VITE_GHL_RECRUITING_WEBHOOK_URL }}
 
       - name: Copy index.html to 404.html for SPA routing
         run: cp dist/index.html dist/404.html
