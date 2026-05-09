@@ -42,7 +42,7 @@ import { toast } from "@/hooks/use-toast";
 import {
   readRecruitingParams,
   submitRecruitingApplication,
-  type RecruitingPayload,
+  type RecruitingFormInput,
 } from "@/lib/recruitingSubmit";
 
 /* ============================================================================
@@ -273,20 +273,13 @@ export default function ApplyPage() {
   const onSubmit = async (data: ApplicationForm) => {
     setLoading(true);
 
-    const payload: RecruitingPayload = {
+    const input: RecruitingFormInput = {
       first_name: data.first_name,
       last_name: data.last_name,
       email: data.email,
       phone: data.phone,
       city: data.city,
       postal_code: data.postal_code,
-
-      candidate_source: tracking.source,
-      source_detail: tracking.source,
-      recruiting_market: tracking.market,
-      recruiting_campaign: tracking.campaign,
-      candidate_city: data.city,
-      candidate_zip: data.postal_code,
 
       in_orange_county: data.in_orange_county,
       commission_only_ok: data.commission_only_ok,
@@ -304,19 +297,13 @@ export default function ApplyPage() {
       consent_contact: data.consent_contact,
       consent_compliance: !!data.consent_compliance,
 
+      source: tracking.source,
+      market: tracking.market,
+      campaign: tracking.campaign,
       page_url: typeof window !== "undefined" ? window.location.href : "",
-      submitted_at: new Date().toISOString(),
-      tags: [
-        "recruiting",
-        "recruiting_new_applicant",
-        `recruiting_market_${tracking.market}`,
-        tracking.source.startsWith("recruiting_source_")
-          ? tracking.source
-          : `recruiting_source_${tracking.source}`,
-      ],
     };
 
-    const result = await submitRecruitingApplication(payload);
+    const result = await submitRecruitingApplication(input);
     setLoading(false);
 
     if (!result.ok) {

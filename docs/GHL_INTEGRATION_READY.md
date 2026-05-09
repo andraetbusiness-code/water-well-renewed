@@ -1,8 +1,13 @@
 # SSW Recruiting Apply Page — GHL Integration Ready Doc
 
-**Status:** Page built on feature branch `recruiting-apply-page`. **NOT live yet.** Awaiting GHL webhook URL before merge.
+**Status:** Page built on feature branch `recruiting-apply-page`. **NOT live yet.** Webhook URL connected and stored as GitHub secret. Awaiting merge approval and GHL workflow Publish.
 
 **Apply URL (after merge):** https://selectsourcewaterusa.com/apply
+
+**GHL Webhook URL (live, in GHL Draft mode):**
+```
+https://services.leadconnectorhq.com/hooks/MHBfuP1d3M2C7IssHXZD/webhook-trigger/4be33df8-be38-44c8-a1dd-9c27cb098a15
+```
 
 **Tracking link template:**
 ```
@@ -127,7 +132,7 @@ The page sends a single JSON POST to `VITE_GHL_RECRUITING_WEBHOOK_URL` with this
 
 ## 3. Tags Applied on Every Submission
 
-The `tags` array in the payload contains exactly these tags (always 4):
+The `tags_to_apply` array in the payload contains exactly these tags (always 5):
 
 | Tag                                         | Source                                              |
 | ------------------------------------------- | --------------------------------------------------- |
@@ -135,6 +140,7 @@ The `tags` array in the payload contains exactly these tags (always 4):
 | `recruiting_new_applicant`                  | Hardcoded on every submission                       |
 | `recruiting_market_orange_county`           | Built from URL `market` param (default `orange_county`) |
 | `recruiting_source_<source_tag>`            | Built from URL `source` param                       |
+| `recruiting_legal_review_required`          | Hardcoded on every submission                       |
 
 **Source tag normalization:**
 - If URL has `?source=recruiting_source_indeed_free` → tag is `recruiting_source_indeed_free`
