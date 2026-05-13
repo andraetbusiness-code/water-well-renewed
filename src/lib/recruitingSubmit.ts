@@ -15,6 +15,8 @@
  * See docs/GHL_INTEGRATION_READY.md for the full field mapping table.
  */
 import { supabase } from "@/integrations/supabase/client";
+import type { MarketId } from "@/lib/recruitingMarkets";
+import { MARKETS, resolvePrimaryMarketId } from "@/lib/recruitingMarkets";
 
 /* ---------------------------------------------------------------------------
    Internal answer type — what the form collects (yes / no / maybe)
@@ -33,8 +35,12 @@ export interface RecruitingFormInput {
   city: string;
   postal_code: string;
 
+  // NEW: which SoCal regions the candidate is willing to work
+  // (multi-select on the form: orange_county, inland_empire, coachella_valley)
+  selected_markets: MarketId[];
+
   // Qualification answers (raw form values: yes / no / maybe)
-  in_orange_county: YesNoMaybe;
+  in_socal: YesNoMaybe;
   commission_only_ok: YesNoMaybe;
   contractor_1099_ok: YesNoMaybe;
   homeowner_conversation_ok: YesNoMaybe;
@@ -54,7 +60,7 @@ export interface RecruitingFormInput {
 
   // Tracking (from URL)
   source: string; // e.g. "recruiting_source_indeed_free"
-  market: string; // "orange_county"
+  market: string; // "orange_county" | "inland_empire" | "coachella_valley" | etc. — URL-supplied
   campaign: string; // e.g. "day1_indeed_oc"
   page_url: string;
 }
@@ -84,7 +90,10 @@ export interface GhlWebhookPayload {
   candidate_zip: string;
 
   // Qualification answers — capitalized "Yes" / "No" / "Maybe" for GHL
-  in_orange_county: "Yes" | "No" | "Maybe";
+  in_orange_county: "Yes" | "No" | "Maybe"; // legacy field kept for GHL mapping back-compat
+  in_socal: "Yes" | "No" | "Maybe";
+  selected_markets: string; // comma-separated market ids for GHL field display
+  selected_markets_labels: string; // comma-separated human-readable labels
   commission_only_ok: "Yes" | "No" | "Maybe";
   contractor_1099_ok: "Yes" | "No" | "Maybe";
   door_knocking_ok: "Yes" | "No" | "Maybe"; // derived: field+homeowner combined
@@ -148,14 +157,33 @@ export function buildSourceTag(rawSource: string): string {
   return `recruiting_source_${trimmed}`;
 }
 
-function buildTags(source: string, market: string): string[] {
-  return [
+function buildTags(
+  source: string,
+  primaryMarket: string,
+  selectedMarkets: MarketId[]
+): string[] {
+  // Always-present primary market tag (back-compat with existing GHL pipeline)
+  const tags: string[] = [
     "recruiting",
     "recruiting_new_applicant",
-    `recruiting_market_${market}`,
+    `recruiting_market_${primaryMarket}`,
     buildSourceTag(source),
     "recruiting_legal_review_required",
   ];
+
+  // Add a `recruiting_works_<market>` tag for every region the candidate selected.
+  // Additive: existing GHL filters/automations are untouched.
+  for (const m of selectedMarkets) {
+    const t = `recruiting_works_${m}`;
+    if (!tags.includes(t)) tags.push(t);
+  }
+  return tags;
+}
+
+function marketLabels(ids: MarketId[]): string {
+  return ids
+    .map((id) => MARKETS.find((m) => m.id === id)?.label ?? id)
+    .join(", ");
 }
 
 /* ---------------------------------------------------------------------------
@@ -171,6 +199,20 @@ export async function submitRecruitingApplication(
   const submittedAt = new Date().toISOString();
   const consentTimestamp = input.consent_contact ? submittedAt : "";
 
+  // Primary market = URL ?market= if recognized, else first selected, else orange_county
+  const primaryMarket = resolvePrimaryMarketId(
+    input.market,
+    input.selected_markets
+  );
+
+  // Back-compat: if candidate selected Orange County (in any combination), surface
+  // a Yes for the legacy `in_orange_county` GHL field. Otherwise No.
+  const inOrangeCountyForGhl: "Yes" | "No" | "Maybe" =
+    input.selected_markets.includes("orange_county") ? "Yes" : "No";
+
+  const selectedMarketsCsv = input.selected_markets.join(",");
+  const selectedMarketsLabelsCsv = marketLabels(input.selected_markets);
+
   const payload: GhlWebhookPayload = {
     // Standard contact
     first_name: input.first_name,
@@ -182,17 +224,20 @@ export async function submitRecruitingApplication(
 
     // Tracking
     source: input.source,
-    market: input.market,
+    market: primaryMarket,
     campaign: input.campaign,
     candidate_source: input.source,
     source_detail: input.source,
-    recruiting_market: input.market,
+    recruiting_market: primaryMarket,
     recruiting_campaign: input.campaign,
     candidate_city: input.city,
     candidate_zip: input.postal_code,
 
     // Qualification — capitalized for GHL
-    in_orange_county: capitalize(input.in_orange_county),
+    in_orange_county: inOrangeCountyForGhl,
+    in_socal: capitalize(input.in_socal),
+    selected_markets: selectedMarketsCsv,
+    selected_markets_labels: selectedMarketsLabelsCsv,
     commission_only_ok: capitalize(input.commission_only_ok),
     contractor_1099_ok: capitalize(input.contractor_1099_ok),
     door_knocking_ok: deriveDoorKnockingOk(
@@ -220,7 +265,11 @@ export async function submitRecruitingApplication(
     submitted_at: submittedAt,
 
     // Tags
-    tags_to_apply: buildTags(input.source, input.market),
+    tags_to_apply: buildTags(
+      input.source,
+      primaryMarket,
+      input.selected_markets
+    ),
   };
 
   let webhookOk = false;
@@ -290,7 +339,10 @@ export async function submitRecruitingApplication(
  */
 export function readRecruitingParams(searchParams: URLSearchParams) {
   const source = searchParams.get("source") || "recruiting_source_other";
-  const market = searchParams.get("market") || "orange_county";
+  // No longer default market to orange_county — leave empty so the form prompts
+  // the candidate to pick one or more. If a known market id is in the URL, it
+  // pre-selects that market in the form and drives the hero copy.
+  const market = searchParams.get("market") || "";
   const campaign = searchParams.get("campaign") || "direct_unknown";
   return { source, market, campaign };
 }
