@@ -44,6 +44,12 @@ import {
   submitRecruitingApplication,
   type RecruitingFormInput,
 } from "@/lib/recruitingSubmit";
+import {
+  DEFAULT_HERO,
+  MARKETS,
+  resolveMarketFromUrl,
+  type MarketId,
+} from "@/lib/recruitingMarkets";
 
 /* ============================================================================
    Validation schema — mirrors the form field set, with required vs optional
@@ -52,6 +58,12 @@ import {
 const yesNoMaybe = z.enum(["yes", "no", "maybe"], {
   errorMap: () => ({ message: "Please select an option" }),
 });
+
+const marketIdEnum = z.enum([
+  "orange_county",
+  "inland_empire",
+  "coachella_valley",
+]);
 
 const applicationSchema = z.object({
   first_name: z.string().trim().min(1, "First name is required").max(80),
@@ -69,7 +81,12 @@ const applicationSchema = z.object({
     .min(3, "ZIP is required")
     .max(15, "ZIP is too long"),
 
-  in_orange_county: yesNoMaybe,
+  // NEW: multi-region selector — candidate must pick at least one
+  selected_markets: z
+    .array(marketIdEnum)
+    .min(1, "Select at least one location you can work"),
+
+  in_socal: yesNoMaybe,
   commission_only_ok: yesNoMaybe,
   contractor_1099_ok: yesNoMaybe,
   homeowner_conversation_ok: yesNoMaybe,
@@ -120,7 +137,7 @@ const whoThisIsFor = [
 ];
 
 const roleOverview = [
-  "Represent Select Source Water in the Orange County market",
+  "Represent Select Source Water in your local Southern California market",
   "Speak with homeowners about complimentary water testing",
   "Help generate qualified appointments for our water specialists",
   "Work in approved retail / in-store environments and local field markets",
@@ -231,8 +248,28 @@ export default function ApplyPage() {
     [searchParams]
   );
 
+  // Resolve hero copy: rotate based on ?market=<known-id>, else generic SoCal
+  const urlMarket = useMemo(
+    () => resolveMarketFromUrl(tracking.market),
+    [tracking.market]
+  );
+  const hero = useMemo(
+    () =>
+      urlMarket
+        ? {
+            badge: urlMarket.heroBadge,
+            heading: urlMarket.heroHeading,
+            blurb: urlMarket.blurb,
+          }
+        : DEFAULT_HERO,
+    [urlMarket]
+  );
+
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // Pre-select the URL market if present
+  const initialMarkets: MarketId[] = urlMarket ? [urlMarket.id] : [];
 
   const form = useForm<ApplicationForm>({
     resolver: zodResolver(applicationSchema),
@@ -243,7 +280,8 @@ export default function ApplyPage() {
       email: "",
       city: "",
       postal_code: "",
-      in_orange_county: undefined as unknown as "yes",
+      selected_markets: initialMarkets,
+      in_socal: undefined as unknown as "yes",
       commission_only_ok: undefined as unknown as "yes",
       contractor_1099_ok: undefined as unknown as "yes",
       homeowner_conversation_ok: undefined as unknown as "yes",
@@ -281,7 +319,8 @@ export default function ApplyPage() {
       city: data.city,
       postal_code: data.postal_code,
 
-      in_orange_county: data.in_orange_county,
+      selected_markets: data.selected_markets,
+      in_socal: data.in_socal,
       commission_only_ok: data.commission_only_ok,
       contractor_1099_ok: data.contractor_1099_ok,
       homeowner_conversation_ok: data.homeowner_conversation_ok,
@@ -322,10 +361,13 @@ export default function ApplyPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>Apply — Sales Career with Select Source Water | Orange County</title>
+        <title>
+          Apply — Sales Career with Select Source Water | Orange County,
+          Inland Empire &amp; Coachella Valley
+        </title>
         <meta
           name="description"
-          content="Apply for a performance-based field sales opportunity with Select Source Water in Orange County. Commission-based, 1099 independent contractor role."
+          content="Apply for a performance-based field sales opportunity with Select Source Water across Orange County, the Inland Empire (Beaumont and surrounding cities) and the Coachella Valley / Palm Springs area. Commission-based, 1099 independent contractor role."
         />
         <meta name="robots" content="index, follow" />
       </Helmet>
@@ -403,15 +445,13 @@ export default function ApplyPage() {
               >
                 <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide mb-5 backdrop-blur-sm">
                   <MapPin className="h-3.5 w-3.5" />
-                  Now Hiring · Orange County, CA
+                  {hero.badge}
                 </div>
                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-5">
-                  Build a Sales Career With Select Source Water
+                  {hero.heading}
                 </h1>
                 <p className="text-base sm:text-lg md:text-xl opacity-90 mb-8 max-w-2xl">
-                  We're looking for motivated, people-first sales reps in
-                  Orange County who are ready to learn, compete, and grow in a
-                  performance-based field sales environment.
+                  {hero.blurb}
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <Button
@@ -501,7 +541,8 @@ export default function ApplyPage() {
                   Select Source Water is a Home Depot authorized independent
                   provider. As part of our in-store lead generation and field
                   sales program, you'll represent SSW in approved Home Depot
-                  locations and local territories across Orange County.
+                  locations and local territories across Orange County, the
+                  Inland Empire, and the Coachella Valley.
                 </p>
               </motion.div>
 
@@ -771,6 +812,77 @@ export default function ApplyPage() {
                     </CardContent>
                   </Card>
 
+                  {/* Location selector — multi-select region picker */}
+                  <Card>
+                    <CardContent className="p-5 sm:p-6 space-y-4">
+                      <div>
+                        <h3 className="font-semibold text-lg">
+                          Where can you work? *
+                        </h3>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          Pick every region you'd be willing to work in. You
+                          can choose more than one.
+                        </p>
+                      </div>
+                      <FormField
+                        control={form.control}
+                        name="selected_markets"
+                        render={({ field }) => {
+                          const selected: string[] = field.value || [];
+                          const toggle = (id: MarketId) => {
+                            const next = selected.includes(id)
+                              ? selected.filter((x) => x !== id)
+                              : [...selected, id];
+                            field.onChange(next);
+                          };
+                          return (
+                            <FormItem>
+                              <div className="grid sm:grid-cols-3 gap-3">
+                                {MARKETS.map((m) => {
+                                  const isSel = selected.includes(m.id);
+                                  return (
+                                    <button
+                                      key={m.id}
+                                      type="button"
+                                      role="checkbox"
+                                      aria-checked={isSel}
+                                      onClick={() => toggle(m.id)}
+                                      className={`text-left rounded-lg border p-4 transition-colors focus:outline-none focus:ring-2 focus:ring-primary ${
+                                        isSel
+                                          ? "border-primary bg-primary/10"
+                                          : "border-border bg-background hover:bg-muted"
+                                      }`}
+                                    >
+                                      <div className="flex items-start gap-2 mb-1.5">
+                                        <MapPin
+                                          className={`h-4 w-4 mt-0.5 flex-shrink-0 ${
+                                            isSel
+                                              ? "text-primary"
+                                              : "text-muted-foreground"
+                                          }`}
+                                        />
+                                        <div className="font-semibold text-sm leading-snug">
+                                          {m.label}
+                                        </div>
+                                      </div>
+                                      <p className="text-xs text-muted-foreground leading-relaxed">
+                                        {m.cities.slice(0, 5).join(", ")}
+                                        {m.cities.length > 5
+                                          ? ", and surrounding cities"
+                                          : ""}
+                                      </p>
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                              <FormMessage />
+                            </FormItem>
+                          );
+                        }}
+                      />
+                    </CardContent>
+                  </Card>
+
                   {/* Qualification questions */}
                   <Card>
                     <CardContent className="p-5 sm:p-6 space-y-6">
@@ -778,8 +890,8 @@ export default function ApplyPage() {
 
                       {[
                         {
-                          name: "in_orange_county" as const,
-                          q: "Are you located in or near Orange County, CA?",
+                          name: "in_socal" as const,
+                          q: "Are you located in Southern California (within reasonable driving distance of your selected location(s))?",
                         },
                         {
                           name: "commission_only_ok" as const,
