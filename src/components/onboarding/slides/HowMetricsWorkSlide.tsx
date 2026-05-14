@@ -7,19 +7,19 @@ const metrics = [
     icon: MessageSquare,
     title: 'Appointments',
     description: 'Water tests / consultations booked',
-    placeholder: '25 per week',
+    placeholder: 'Set with your manager',
   },
   {
     icon: CalendarCheck,
     title: 'Sits',
     description: 'In-home consultations completed',
-    placeholder: '10 per week',
+    placeholder: 'Set with your manager',
   },
   {
     icon: CheckCircle2,
     title: 'Closes',
     description: 'Confirmed sales closed',
-    placeholder: '3 per week',
+    placeholder: 'Set with your manager',
   },
 ];
 
@@ -34,7 +34,7 @@ export function HowMetricsWorkSlide() {
           viewport={{ once: true }}
           transition={{ duration: 0.3 }}
         >
-          New Rep Minimums (Per Week)
+          New Rep Targets
         </motion.span>
 
         <motion.h2

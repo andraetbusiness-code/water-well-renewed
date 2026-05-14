@@ -23,8 +23,8 @@ const features = [
   },
   {
     icon: MapPin,
-    title: 'Lead Source = Home Depot',
-    description: 'Correct attribution on every lead',
+    title: 'Lead Source Matches Channel',
+    description: 'In-store leads = Home Depot. Door-to-door leads = market (e.g. Inland Empire, Coachella Valley). Correct attribution on every lead.',
   },
   {
     icon: Tag,
