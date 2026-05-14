@@ -30,11 +30,11 @@ const HygiaPlusDemo = () => {
         <meta name="robots" content="noindex, nofollow" />
         <meta property="og:title" content="Dual Tank HYGIA+ | Select Source Water" />
         <meta property="og:description" content="Premium water softening and filtration. Free in-home water testing with exclusive in-home deal." />
-        <meta property="og:image" content="https://water-well-renewed.lovable.app/og-image.png" />
-        <meta property="og:url" content="https://water-well-renewed.lovable.app/demo/hygia-plus" />
+        <meta property="og:image" content="https://selectsourcewaterusa.com/og-image.png" />
+        <meta property="og:url" content="https://selectsourcewaterusa.com/demo/hygia-plus" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://water-well-renewed.lovable.app/og-image.png" />
+        <meta name="twitter:image" content="https://selectsourcewaterusa.com/og-image.png" />
       </Helmet>
 
       <div className="min-h-screen bg-background text-foreground font-sans">

@@ -1,73 +1,58 @@
-# Welcome to your Lovable project
+# Select Source Water — Web App
 
-## Project info
+Marketing site, recruiting portal, and internal admin portal for Select Source Water (SSW).
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+**Live:** [selectsourcewaterusa.com](https://selectsourcewaterusa.com)
 
-## How can I edit this code?
+## What's in here
 
-There are several ways of editing your application.
+- Marketing site (home, about, services, city pages, blog)
+- `/apply` recruiting form (multi-region; routes to GHL workflow + Resend email alert)
+- `/onboarding` field rep welcome guide
+- `/portal/*` admin portal (Supabase Auth)
+- Supabase Edge Functions (recruiting alert, infographic generator, etc.)
 
-**Use Lovable**
+## Tech stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+- Vite + React + TypeScript
+- Tailwind CSS + shadcn-ui
+- Supabase (Auth + Postgres + Edge Functions)
+- GHL (CRM + recruiting workflow)
+- Resend (transactional email)
+- Deployed via GitHub Pages
 
-Changes made via Lovable will be committed automatically to this repo.
+## Local development
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Requires Node.js and npm. Install [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) if needed.
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+git clone https://github.com/andraetbusiness-code/water-well-renewed.git
+cd water-well-renewed
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The dev server runs on port 8080.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Deployment
 
-**Use GitHub Codespaces**
+Pushes to `main` trigger the GitHub Actions workflow at `.github/workflows/deploy-pages.yml` which builds and deploys to GitHub Pages. The `apply` and `careers` routes are prerendered for HTTP 200 on direct page loads.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Environment / secrets
 
-## What technologies are used for this project?
+GitHub Actions secrets used at build time:
 
-This project is built with:
+- `VITE_GHL_RECRUITING_WEBHOOK_URL` — inbound webhook for the recruiting workflow
+- `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` — set in `src/integrations/supabase/client.ts`
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Supabase Edge Function secrets:
 
-## How can I deploy this project?
+- `RESEND_API_KEY`
+- `RECRUITING_ALERT_FROM_EMAIL`
+- `RECRUITING_ALERT_TO_EMAIL` (comma-separated)
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## Branch conventions
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- `main` is always deployable
+- Feature work happens on short-lived branches merged via PR
+- Squash or standard merge; delete branch after merge
