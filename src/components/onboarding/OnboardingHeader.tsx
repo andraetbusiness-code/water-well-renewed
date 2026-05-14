@@ -22,7 +22,11 @@ export function OnboardingHeader({ onPrint }: OnboardingHeaderProps) {
             Field Rep Onboarding
           </span>
         </div>
-        
+
+        <Button onClick={onPrint} size="sm" className="gap-2">
+          <Download className="w-4 h-4" />
+          <span className="hidden sm:inline">Download PDF</span>
+        </Button>
       </div>
     </motion.header>
   );

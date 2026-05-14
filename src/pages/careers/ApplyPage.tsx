@@ -186,12 +186,12 @@ const expectSteps = [
   },
 ];
 
-const fadeUp = {
+const fadeUp: import("framer-motion").Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.06, duration: 0.45, ease: "easeOut" },
+    transition: { delay: i * 0.06, duration: 0.45, ease: "easeOut" as const },
   }),
 };
 
