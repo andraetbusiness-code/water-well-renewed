@@ -5,7 +5,7 @@ import { CheckSquare } from 'lucide-react';
 const checklistItems = [
   {
     title: 'Join team communication channel',
-    placeholder: 'Chat in Enzy.co app',
+    placeholder: 'Chat in Service Matrix',
   },
   {
     title: 'Access CRM / lead form',
@@ -17,7 +17,7 @@ const checklistItems = [
   },
   {
     title: 'Save script + objections notes',
-    placeholder: 'Saved in Enzy.co SOPs section',
+    placeholder: 'Saved in Service Matrix SOPs section',
   },
   {
     title: 'Uniform / appearance expectations',
@@ -25,7 +25,7 @@ const checklistItems = [
   },
   {
     title: 'Reporting settings + daily submission routine',
-    placeholder: 'End-of-day: log all leads in GHL, submit Enzy scorecard',
+    placeholder: 'End-of-day: log all leads in GHL, submit Service Matrix scorecard',
   },
   {
     title: 'Optional (In-Store only): Download the Home Depot App',
