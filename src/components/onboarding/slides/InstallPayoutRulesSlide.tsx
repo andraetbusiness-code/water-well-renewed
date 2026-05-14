@@ -50,7 +50,7 @@ export function InstallPayoutRulesSlide() {
           viewport={{ once: true }}
           transition={{ delay: 0.1, duration: 0.4 }}
         >
-          Editable policy — update as needed
+          How and when you get paid
         </motion.p>
 
         <div className="space-y-4 max-w-3xl mx-auto w-full">

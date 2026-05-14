@@ -1,31 +1,35 @@
 import { motion } from 'framer-motion';
 import { OnboardingSlideLayout } from '../OnboardingSlideLayout';
-import { BookOpen, Target, Video, Calendar, ExternalLink } from 'lucide-react';
+import { Calendar, Video, BookOpen, Target } from 'lucide-react';
 
 const trainingItems = [
+  {
+    icon: Calendar,
+    title: 'Team Training',
+    description: 'Live training & coaching with your team',
+    placeholder: 'Every Tuesday',
+    highlight: true,
+  },
+  {
+    icon: Video,
+    title: 'Team Google Meet',
+    description: 'Weekly team call — wins, blockers, and what\u2019s next',
+    placeholder: 'Every Thursday',
+    highlight: true,
+  },
   {
     icon: BookOpen,
     title: 'Core Training Path',
     description: 'Essential modules for new reps',
-    placeholder: '[Access link]',
+    placeholder: 'Coming Soon',
+    highlight: false,
   },
   {
     icon: Target,
     title: 'Objection Handling Drills',
     description: 'Practice common scenarios',
-    placeholder: '[Access link]',
-  },
-  {
-    icon: Video,
-    title: 'Field Standards',
-    description: 'Professional conduct guidelines',
-    placeholder: '[Access link]',
-  },
-  {
-    icon: Calendar,
-    title: 'Weekly Calls',
-    description: 'Live training sessions',
-    placeholder: '[Day/Time placeholder]',
+    placeholder: 'Coming Soon',
+    highlight: false,
   },
 ];
 
@@ -40,7 +44,7 @@ export function TrainingScheduleSlide() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          Training Schedule / Access — Coming Soon
+          Training Schedule
         </motion.h2>
 
         <motion.p
@@ -50,7 +54,7 @@ export function TrainingScheduleSlide() {
           viewport={{ once: true }}
           transition={{ delay: 0.1, duration: 0.4 }}
         >
-          Your learning resources and schedule
+          Two team meetings every week. Be there, ready to work.
         </motion.p>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto w-full">
@@ -70,9 +74,14 @@ export function TrainingScheduleSlide() {
                 <div className="flex-1">
                   <h3 className="font-serif text-lg text-foreground mb-1">{item.title}</h3>
                   <p className="text-sm text-muted-foreground mb-3">{item.description}</p>
-                  <span className="inline-flex items-center gap-1 text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">
+                  <span
+                    className={`inline-flex items-center gap-1 text-xs font-medium px-3 py-1 rounded-full ${
+                      item.highlight
+                        ? 'text-primary bg-primary/10'
+                        : 'text-muted-foreground bg-muted'
+                    }`}
+                  >
                     {item.placeholder}
-                    <ExternalLink className="w-3 h-3" />
                   </span>
                 </div>
               </div>
@@ -88,7 +97,7 @@ export function TrainingScheduleSlide() {
           transition={{ delay: 0.5, duration: 0.4 }}
         >
           <p className="text-sm text-muted-foreground">
-            <span className="font-medium text-foreground">Recordings:</span> Coming soon
+            <span className="font-medium text-foreground">Times &amp; meeting links:</span> Sent each week by your manager.
           </p>
         </motion.div>
       </div>

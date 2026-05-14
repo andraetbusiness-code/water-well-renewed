@@ -28,8 +28,8 @@ const checklistItems = [
     placeholder: 'End-of-day: log all leads in GHL, submit Enzy scorecard',
   },
   {
-    title: 'Required: Download the Home Depot App',
-    placeholder: 'Use it to help customers find items/aisles — pitch while you walk them there',
+    title: 'Optional (In-Store only): Download the Home Depot App',
+    placeholder: 'If you’re working in-store, use it to help customers find items/aisles — pitch while you walk them there. Door-to-door reps can skip.',
   },
 ];
 

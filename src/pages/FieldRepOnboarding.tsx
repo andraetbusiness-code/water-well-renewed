@@ -21,7 +21,6 @@ import { HowTopRepsWinSlide } from '@/components/onboarding/slides/HowTopRepsWin
 import { IncentivesSlide } from '@/components/onboarding/slides/IncentivesSlide';
 import { InstallPayoutRulesSlide } from '@/components/onboarding/slides/InstallPayoutRulesSlide';
 import { SupportStatementSlide } from '@/components/onboarding/slides/SupportStatementSlide';
-import { LeadershipDirectorySlide } from '@/components/onboarding/slides/LeadershipDirectorySlide';
 import { OnboardingChecklistSlide } from '@/components/onboarding/slides/OnboardingChecklistSlide';
 import { ApprovedMaterialsSlide } from '@/components/onboarding/slides/ApprovedMaterialsSlide';
 import { FieldUseRulesSlide } from '@/components/onboarding/slides/FieldUseRulesSlide';
@@ -75,7 +74,6 @@ export default function FieldRepOnboarding() {
 
         {/* Section 5: Support & Leadership */}
         <SupportStatementSlide />
-        <LeadershipDirectorySlide />
         <OnboardingChecklistSlide />
 
         {/* Section 6: Marketing Materials */}

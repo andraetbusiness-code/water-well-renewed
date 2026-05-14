@@ -7,19 +7,19 @@ const expectations = [
     icon: Target,
     title: 'Appointments',
     description: 'Water tests / consultations booked weekly',
-    placeholder: '25 appointments per week',
+    placeholder: 'Set with your manager',
   },
   {
     icon: Calendar,
     title: 'Sits',
     description: 'In-home consultations completed weekly',
-    placeholder: '10 sits per week',
+    placeholder: 'Set with your manager',
   },
   {
     icon: PhoneCall,
     title: 'Closes',
     description: 'Confirmed sales closed weekly',
-    placeholder: '3 closes per week',
+    placeholder: 'Set with your manager',
   },
 ];
 
