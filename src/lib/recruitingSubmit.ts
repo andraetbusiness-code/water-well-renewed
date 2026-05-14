@@ -272,32 +272,66 @@ export async function submitRecruitingApplication(
     ),
   };
 
-  let webhookOk = false;
-  let webhookError: string | undefined;
+  // Fire GHL webhook and the independent email alert IN PARALLEL.
+  // Each one is best-effort; failures are recorded for the Supabase audit row
+  // but do not block the candidate's success state.
 
-  // 1. POST to GHL webhook if configured
-  if (WEBHOOK_URL) {
+  const ghlPromise: Promise<{ ok: boolean; error?: string }> = (async () => {
+    if (!WEBHOOK_URL) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        "[recruiting] VITE_GHL_RECRUITING_WEBHOOK_URL not configured. Submission saved to Supabase only."
+      );
+      return { ok: false, error: "GHL webhook URL not configured" };
+    }
     try {
       const res = await fetch(WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      webhookOk = res.ok;
-      if (!res.ok) {
-        webhookError = `GHL webhook returned ${res.status}`;
-      }
+      if (res.ok) return { ok: true };
+      return { ok: false, error: `GHL webhook returned ${res.status}` };
     } catch (err) {
-      webhookError = err instanceof Error ? err.message : "Webhook failed";
+      return {
+        ok: false,
+        error: err instanceof Error ? err.message : "Webhook failed",
+      };
     }
-  } else {
-    // eslint-disable-next-line no-console
-    console.warn(
-      "[recruiting] VITE_GHL_RECRUITING_WEBHOOK_URL not configured. Submission saved to Supabase only."
-    );
-  }
+  })();
 
-  // 2. Always store in Supabase as a backup / audit trail
+  // Independent backup alert via Supabase Edge Function -> Resend -> Gmail.
+  // Runs whether or not GHL succeeds; uses its own test-safety gate.
+  const alertPromise: Promise<{ ok: boolean; error?: string }> = (async () => {
+    try {
+      const { data, error } = await supabase.functions.invoke(
+        "recruiting-alert",
+        { body: payload }
+      );
+      if (error) return { ok: false, error: error.message };
+      // Edge function may return ok=true with skipped="test_submission" — still ok.
+      if (data && typeof data === "object" && "ok" in data && !data.ok) {
+        return {
+          ok: false,
+          error: "alert function returned ok:false",
+        };
+      }
+      return { ok: true };
+    } catch (err) {
+      return {
+        ok: false,
+        error: err instanceof Error ? err.message : "alert invoke failed",
+      };
+    }
+  })();
+
+  const [ghlResult, alertResult] = await Promise.all([ghlPromise, alertPromise]);
+  const webhookOk = ghlResult.ok;
+  const webhookError = ghlResult.error;
+  const alertOk = alertResult.ok;
+  const alertError = alertResult.error;
+
+  // Always store in Supabase as the authoritative audit trail.
   let supabaseOk = false;
   let supabaseError: string | undefined;
   try {
@@ -312,6 +346,8 @@ export async function submitRecruitingApplication(
         ...payload,
         webhook_delivered: webhookOk,
         webhook_error: webhookError ?? null,
+        alert_delivered: alertOk,
+        alert_error: alertError ?? null,
       }),
     });
     if (error) {
@@ -324,12 +360,12 @@ export async function submitRecruitingApplication(
       err instanceof Error ? err.message : "Supabase insert failed";
   }
 
-  if (webhookOk || supabaseOk) {
+  if (webhookOk || supabaseOk || alertOk) {
     return { ok: true };
   }
   return {
     ok: false,
-    error: webhookError || supabaseError || "Submission failed",
+    error: webhookError || alertError || supabaseError || "Submission failed",
   };
 }
 
