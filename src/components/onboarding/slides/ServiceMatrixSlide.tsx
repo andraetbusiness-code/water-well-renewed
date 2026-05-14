@@ -51,11 +51,11 @@ const features = [
   {
     icon: DollarSign,
     title: 'Deal Communication',
-    description: 'Enzy is how we communicate with you on your deals. You do not get paid until the project is installed.',
+    description: 'Service Matrix is how we communicate with you on your deals. You do not get paid until the project is installed.',
   },
 ];
 
-export function EnzySlide() {
+export function ServiceMatrixSlide() {
   return (
     <OnboardingSlideLayout id="training" variant="light">
       <div className="py-8">
@@ -76,7 +76,7 @@ export function EnzySlide() {
           viewport={{ once: true }}
           transition={{ delay: 0.1, duration: 0.5 }}
         >
-          Enzy.co
+          Service Matrix
         </motion.h2>
 
         <motion.p

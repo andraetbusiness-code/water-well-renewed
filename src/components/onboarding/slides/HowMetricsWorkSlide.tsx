@@ -97,7 +97,7 @@ export function HowMetricsWorkSlide() {
           transition={{ delay: 0.7, duration: 0.5 }}
         >
           <p className="text-xs text-muted-foreground">
-            Targets are minimums for new reps. Track in Enzy daily and log every appointment in GHL same-day.
+            Targets are minimums for new reps. Track in Service Matrix daily and log every appointment in GHL same-day.
           </p>
         </motion.div>
       </div>
