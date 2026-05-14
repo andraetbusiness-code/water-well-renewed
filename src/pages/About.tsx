@@ -26,7 +26,7 @@ const About = () => {
       <Helmet>
         <title>About Select Source Water | Inland Empire Water Treatment Since 1998</title>
         <meta name="description" content="Family-owned water treatment company serving the Inland Empire since 1998. Home Depot Authorized Provider with 461+ five-star reviews. Learn our story." />
-        <link rel="canonical" href="https://water-well-renewed.lovable.app/about" />
+        <link rel="canonical" href="https://selectsourcewaterusa.com/about" />
       </Helmet>
 
       <PageHero

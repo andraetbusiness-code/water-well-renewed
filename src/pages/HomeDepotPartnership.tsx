@@ -72,7 +72,7 @@ const HomeDepotPartnership = () => {
           name="description"
           content="Select Source Water is a Home Depot Authorized Independent Provider for water treatment in the Inland Empire. Lifetime Warranty, 5-day trial, same-week install."
         />
-        <link rel="canonical" href="https://water-well-renewed.lovable.app/home-depot-authorized-provider" />
+        <link rel="canonical" href="https://selectsourcewaterusa.com/home-depot-authorized-provider" />
       </Helmet>
 
       <Header />
