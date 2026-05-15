@@ -22,6 +22,7 @@ const ReviewsPage = lazy(() => import('./manager/ReviewsPage'));
 const UsersPage = lazy(() => import('./admin/UsersPage'));
 const ContentPage = lazy(() => import('./admin/ContentPage'));
 const SettingsPage = lazy(() => import('./admin/SettingsPage'));
+const InfographicGenerator = lazy(() => import('./admin/InfographicGenerator'));
 
 // Loading fallback
 const PageLoader = () => (
@@ -107,7 +108,7 @@ export default function PortalRoutes() {
           } />
           <Route path="/admin/infographics" element={
             <ProtectedRoute requiredRoles={['admin']}>
-              <div className="p-8 text-muted-foreground">Infographic generator is temporarily disabled.</div>
+              <InfographicGenerator />
             </ProtectedRoute>
           } />
           
