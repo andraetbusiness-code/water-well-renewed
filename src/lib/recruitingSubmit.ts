@@ -41,8 +41,7 @@ export interface RecruitingFormInput {
 
   // Qualification answers (raw form values: yes / no / maybe)
   in_socal: YesNoMaybe;
-  commission_only_ok: YesNoMaybe;
-  contractor_1099_ok: YesNoMaybe;
+  w2_pay_ok: YesNoMaybe;
   homeowner_conversation_ok: YesNoMaybe;
   field_or_instore_ok: YesNoMaybe;
   transportation_ok: YesNoMaybe;
@@ -56,7 +55,7 @@ export interface RecruitingFormInput {
 
   // Consent
   consent_contact: boolean; // required TCPA-style consent
-  consent_compliance: boolean; // optional 1099/commission acknowledgment
+  consent_compliance: boolean; // optional W2 pay-range acknowledgment
 
   // Tracking (from URL)
   source: string; // e.g. "recruiting_source_indeed_free"
@@ -94,8 +93,7 @@ export interface GhlWebhookPayload {
   in_socal: "Yes" | "No" | "Maybe";
   selected_markets: string; // comma-separated market ids for GHL field display
   selected_markets_labels: string; // comma-separated human-readable labels
-  commission_only_ok: "Yes" | "No" | "Maybe";
-  contractor_1099_ok: "Yes" | "No" | "Maybe";
+  w2_pay_ok: "Yes" | "No" | "Maybe";
   door_knocking_ok: "Yes" | "No" | "Maybe"; // derived: field+homeowner combined
   homeowner_conversation_ok: "Yes" | "No" | "Maybe";
   field_or_instore_ok: "Yes" | "No" | "Maybe";
@@ -238,8 +236,7 @@ export async function submitRecruitingApplication(
     in_socal: capitalize(input.in_socal),
     selected_markets: selectedMarketsCsv,
     selected_markets_labels: selectedMarketsLabelsCsv,
-    commission_only_ok: capitalize(input.commission_only_ok),
-    contractor_1099_ok: capitalize(input.contractor_1099_ok),
+    w2_pay_ok: capitalize(input.w2_pay_ok),
     door_knocking_ok: deriveDoorKnockingOk(
       input.homeowner_conversation_ok,
       input.field_or_instore_ok
