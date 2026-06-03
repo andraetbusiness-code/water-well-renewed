@@ -43,8 +43,7 @@ interface ApplicantPayload {
   selected_markets_labels?: string; // csv human-readable
   in_socal?: string;
   in_orange_county?: string;
-  commission_only_ok?: string;
-  contractor_1099_ok?: string;
+  w2_pay_ok?: string;
   door_knocking_ok?: string;
   homeowner_conversation_ok?: string;
   field_or_instore_ok?: string;
@@ -100,8 +99,7 @@ function buildPlainText(p: ApplicantPayload): string {
   lines.push("");
   lines.push("=== QUALIFICATION ===");
   lines.push(row("In SoCal:", p.in_socal));
-  lines.push(row("Commission-only OK:", p.commission_only_ok));
-  lines.push(row("1099 OK:", p.contractor_1099_ok));
+  lines.push(row("W2 pay OK:", p.w2_pay_ok));
   lines.push(row("Door-knocking OK:", p.door_knocking_ok));
   lines.push(row("Homeowner convos OK:", p.homeowner_conversation_ok));
   lines.push(row("Field/in-store OK:", p.field_or_instore_ok));
@@ -117,7 +115,7 @@ function buildPlainText(p: ApplicantPayload): string {
   lines.push("=== CONSENT ===");
   lines.push(row("TCPA:", p.tcpa_consent ? "Yes" : "No"));
   lines.push(row("TCPA timestamp:", p.tcpa_consent_timestamp));
-  lines.push(row("1099 ack:", p.consent_compliance ? "Yes" : "No"));
+  lines.push(row("Pay ack:", p.consent_compliance ? "Yes" : "No"));
   lines.push("");
   lines.push("=== META ===");
   lines.push(row("Submitted:", p.submitted_at));
@@ -177,8 +175,7 @@ function buildHtml(p: ApplicantPayload): string {
         ])}
         ${section("Qualification", [
           ["In SoCal", p.in_socal],
-          ["Commission-only OK", p.commission_only_ok],
-          ["1099 OK", p.contractor_1099_ok],
+          ["W2 pay OK", p.w2_pay_ok],
           ["Door-knocking OK", p.door_knocking_ok],
           ["Homeowner convos OK", p.homeowner_conversation_ok],
           ["Field/in-store OK", p.field_or_instore_ok],
@@ -194,7 +191,7 @@ function buildHtml(p: ApplicantPayload): string {
         ${section("Consent & Meta", [
           ["TCPA consent", p.tcpa_consent ? "Yes" : "No"],
           ["TCPA timestamp", p.tcpa_consent_timestamp],
-          ["1099 acknowledgment", p.consent_compliance ? "Yes" : "No"],
+          ["Pay acknowledgment", p.consent_compliance ? "Yes" : "No"],
           ["Submitted", p.submitted_at],
           ["Page URL", p.page_url],
         ])}

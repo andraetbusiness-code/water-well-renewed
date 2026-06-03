@@ -87,8 +87,7 @@ const applicationSchema = z.object({
     .min(1, "Select at least one location you can work"),
 
   in_socal: yesNoMaybe,
-  commission_only_ok: yesNoMaybe,
-  contractor_1099_ok: yesNoMaybe,
+  w2_pay_ok: yesNoMaybe,
   homeowner_conversation_ok: yesNoMaybe,
   field_or_instore_ok: yesNoMaybe,
   transportation_ok: yesNoMaybe,
@@ -129,7 +128,7 @@ type ApplicationForm = z.infer<typeof applicationSchema>;
    ========================================================================== */
 const whoThisIsFor = [
   "You're comfortable talking to new people",
-  "You want performance-based income",
+  "You want a steady hourly base with performance-based upside",
   "You're coachable and competitive",
   "You can work in person",
   "You're open to field sales, in-store lead generation, and homeowner conversations",
@@ -142,7 +141,7 @@ const roleOverview = [
   "Help generate qualified appointments for our water specialists",
   "Work in approved retail / in-store environments and local field markets",
   "Learn the SSW sales process from the ground up",
-  "Commission-based, 1099 independent contractor opportunity",
+  "W2 position — starts at $20/hour, with the ability to earn up to $50/hour based on performance",
 ];
 
 const lookingFor = [
@@ -282,8 +281,7 @@ export default function ApplyPage() {
       postal_code: "",
       selected_markets: initialMarkets,
       in_socal: undefined as unknown as "yes",
-      commission_only_ok: undefined as unknown as "yes",
-      contractor_1099_ok: undefined as unknown as "yes",
+      w2_pay_ok: undefined as unknown as "yes",
       homeowner_conversation_ok: undefined as unknown as "yes",
       field_or_instore_ok: undefined as unknown as "yes",
       transportation_ok: undefined as unknown as "yes",
@@ -321,8 +319,7 @@ export default function ApplyPage() {
 
       selected_markets: data.selected_markets,
       in_socal: data.in_socal,
-      commission_only_ok: data.commission_only_ok,
-      contractor_1099_ok: data.contractor_1099_ok,
+      w2_pay_ok: data.w2_pay_ok,
       homeowner_conversation_ok: data.homeowner_conversation_ok,
       field_or_instore_ok: data.field_or_instore_ok,
       transportation_ok: data.transportation_ok,
@@ -367,7 +364,7 @@ export default function ApplyPage() {
         </title>
         <meta
           name="description"
-          content="Apply for a performance-based field sales opportunity with Select Source Water across Orange County, the Inland Empire (Beaumont and surrounding cities) and the Coachella Valley / Palm Springs area. Commission-based, 1099 independent contractor role."
+          content="Apply for a W2 field sales position with Select Source Water across Orange County, the Inland Empire (Beaumont and surrounding cities) and the Coachella Valley / Palm Springs area. Starts at $20/hour, with the ability to earn up to $50/hour based on performance."
         />
         <meta name="robots" content="index, follow" />
       </Helmet>
@@ -470,9 +467,9 @@ export default function ApplyPage() {
                   </a>
                 </div>
                 <p className="mt-6 text-xs opacity-80 max-w-xl">
-                  Commission-based, 1099 independent contractor opportunity.
-                  Pay structure and classification details reviewed during the
-                  interview process.
+                  W2 position starting at $20/hour, with the ability to earn up
+                  to $50/hour based on performance. Full details reviewed during
+                  the interview process.
                 </p>
               </motion.div>
             </div>
@@ -894,12 +891,8 @@ export default function ApplyPage() {
                           q: "Are you located in Southern California (within reasonable driving distance of your selected location(s))?",
                         },
                         {
-                          name: "commission_only_ok" as const,
-                          q: "Are you comfortable with commission-based pay?",
-                        },
-                        {
-                          name: "contractor_1099_ok" as const,
-                          q: "Are you comfortable with a 1099 independent contractor opportunity?",
+                          name: "w2_pay_ok" as const,
+                          q: "This is a W2 position starting at $20/hour with the ability to earn up to $50/hour based on performance. Does that work for you?",
                         },
                         {
                           name: "homeowner_conversation_ok" as const,
@@ -1087,10 +1080,11 @@ export default function ApplyPage() {
                                 />
                               </FormControl>
                               <FormLabel className="font-normal text-sm leading-relaxed">
-                                I understand this opportunity may be
-                                commission-based and structured as a 1099
-                                independent contractor role, with final details
-                                reviewed during the hiring process.
+                                I understand this is a W2 position starting at
+                                $20/hour, with the ability to earn up to
+                                $50/hour based on performance, and that final
+                                pay details are reviewed during the hiring
+                                process.
                               </FormLabel>
                             </div>
                             <FormMessage />
@@ -1111,8 +1105,10 @@ export default function ApplyPage() {
 
                   <p className="text-xs text-center text-muted-foreground">
                     By submitting, you confirm the information above is
-                    accurate. Pay structure and classification details will be
-                    reviewed during the interview process.
+                    accurate. This is a W2 position. Starting pay is $20/hour,
+                    with the ability to earn up to $50/hour based on
+                    performance. Final details are reviewed during the
+                    interview process.
                   </p>
                 </form>
               </Form>
