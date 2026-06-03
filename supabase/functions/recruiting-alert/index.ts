@@ -44,7 +44,7 @@ interface ApplicantPayload {
   in_socal?: string;
   in_orange_county?: string;
   w2_pay_ok?: string;
-  door_knocking_ok?: string;
+  
   homeowner_conversation_ok?: string;
   field_or_instore_ok?: string;
   transportation_ok?: string;
@@ -100,7 +100,7 @@ function buildPlainText(p: ApplicantPayload): string {
   lines.push("=== QUALIFICATION ===");
   lines.push(row("In SoCal:", p.in_socal));
   lines.push(row("W2 pay OK:", p.w2_pay_ok));
-  lines.push(row("Door-knocking OK:", p.door_knocking_ok));
+  
   lines.push(row("Homeowner convos OK:", p.homeowner_conversation_ok));
   lines.push(row("Field/in-store OK:", p.field_or_instore_ok));
   lines.push(row("Transportation:", p.transportation_ok));
@@ -176,7 +176,7 @@ function buildHtml(p: ApplicantPayload): string {
         ${section("Qualification", [
           ["In SoCal", p.in_socal],
           ["W2 pay OK", p.w2_pay_ok],
-          ["Door-knocking OK", p.door_knocking_ok],
+          
           ["Homeowner convos OK", p.homeowner_conversation_ok],
           ["Field/in-store OK", p.field_or_instore_ok],
           ["Transportation", p.transportation_ok],
