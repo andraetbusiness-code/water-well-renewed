@@ -221,10 +221,6 @@ export async function submitRecruitingApplication(
     selected_markets: selectedMarketsCsv,
     selected_markets_labels: selectedMarketsLabelsCsv,
     w2_pay_ok: capitalize(input.w2_pay_ok),
-    door_knocking_ok: deriveDoorKnockingOk(
-      input.homeowner_conversation_ok,
-      input.field_or_instore_ok
-    ),
     homeowner_conversation_ok: capitalize(input.homeowner_conversation_ok),
     field_or_instore_ok: capitalize(input.field_or_instore_ok),
     transportation_ok: capitalize(input.transportation_ok),
