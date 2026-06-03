@@ -128,21 +128,6 @@ function capitalize(v: YesNoMaybe): "Yes" | "No" | "Maybe" {
 }
 
 /**
- * Derive `door_knocking_ok` from the two related form questions:
- * "homeowner_conversation_ok" AND "field_or_instore_ok".
- * The candidate is "OK with door knocking" only if BOTH are yes.
- * Most-negative wins: any "no" → No. Otherwise "Maybe".
- */
-function deriveDoorKnockingOk(
-  homeowner: YesNoMaybe,
-  field: YesNoMaybe
-): "Yes" | "No" | "Maybe" {
-  if (homeowner === "no" || field === "no") return "No";
-  if (homeowner === "yes" && field === "yes") return "Yes";
-  return "Maybe";
-}
-
-/**
  * Normalize the URL `source` value to a tag-safe slug, then build the dynamic
  * source tag. If the URL value already starts with `recruiting_source_`, use
  * it as-is. Otherwise, prefix it. If empty, fall back to `recruiting_source_other`.
