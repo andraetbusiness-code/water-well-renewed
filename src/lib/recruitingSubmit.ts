@@ -94,7 +94,6 @@ export interface GhlWebhookPayload {
   selected_markets: string; // comma-separated market ids for GHL field display
   selected_markets_labels: string; // comma-separated human-readable labels
   w2_pay_ok: "Yes" | "No" | "Maybe";
-  door_knocking_ok: "Yes" | "No" | "Maybe"; // derived: field+homeowner combined
   homeowner_conversation_ok: "Yes" | "No" | "Maybe";
   field_or_instore_ok: "Yes" | "No" | "Maybe";
   transportation_ok: "Yes" | "No" | "Maybe";
@@ -125,21 +124,6 @@ export interface GhlWebhookPayload {
 function capitalize(v: YesNoMaybe): "Yes" | "No" | "Maybe" {
   if (v === "yes") return "Yes";
   if (v === "no") return "No";
-  return "Maybe";
-}
-
-/**
- * Derive `door_knocking_ok` from the two related form questions:
- * "homeowner_conversation_ok" AND "field_or_instore_ok".
- * The candidate is "OK with door knocking" only if BOTH are yes.
- * Most-negative wins: any "no" → No. Otherwise "Maybe".
- */
-function deriveDoorKnockingOk(
-  homeowner: YesNoMaybe,
-  field: YesNoMaybe
-): "Yes" | "No" | "Maybe" {
-  if (homeowner === "no" || field === "no") return "No";
-  if (homeowner === "yes" && field === "yes") return "Yes";
   return "Maybe";
 }
 
@@ -237,10 +221,6 @@ export async function submitRecruitingApplication(
     selected_markets: selectedMarketsCsv,
     selected_markets_labels: selectedMarketsLabelsCsv,
     w2_pay_ok: capitalize(input.w2_pay_ok),
-    door_knocking_ok: deriveDoorKnockingOk(
-      input.homeowner_conversation_ok,
-      input.field_or_instore_ok
-    ),
     homeowner_conversation_ok: capitalize(input.homeowner_conversation_ok),
     field_or_instore_ok: capitalize(input.field_or_instore_ok),
     transportation_ok: capitalize(input.transportation_ok),
