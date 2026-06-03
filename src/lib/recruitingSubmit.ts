@@ -94,7 +94,6 @@ export interface GhlWebhookPayload {
   selected_markets: string; // comma-separated market ids for GHL field display
   selected_markets_labels: string; // comma-separated human-readable labels
   w2_pay_ok: "Yes" | "No" | "Maybe";
-  door_knocking_ok: "Yes" | "No" | "Maybe"; // derived: field+homeowner combined
   homeowner_conversation_ok: "Yes" | "No" | "Maybe";
   field_or_instore_ok: "Yes" | "No" | "Maybe";
   transportation_ok: "Yes" | "No" | "Maybe";
