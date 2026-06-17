@@ -1,34 +1,6 @@
-User-agent: Googlebot
-Allow: /
-Disallow: /onboarding
-Disallow: /audit
-Disallow: /growth-plan
-Disallow: /gbp-audit
-
-User-agent: Bingbot
-Allow: /
-Disallow: /onboarding
-Disallow: /audit
-Disallow: /growth-plan
-Disallow: /gbp-audit
-
-User-agent: Twitterbot
-Allow: /
-Disallow: /onboarding
-Disallow: /audit
-Disallow: /growth-plan
-Disallow: /gbp-audit
-
-User-agent: facebookexternalhit
-Allow: /
-Disallow: /onboarding
-Disallow: /audit
-Disallow: /growth-plan
-Disallow: /gbp-audit
+# selectsourcewaterusa.com is an internal/private deployment.
+# The public, customer-facing site is https://selectsourcewater.com
+# All search engine crawlers are blocked from indexing this domain.
 
 User-agent: *
-Allow: /
-Disallow: /onboarding
-Disallow: /audit
-Disallow: /growth-plan
-Disallow: /gbp-audit
+Disallow: /
