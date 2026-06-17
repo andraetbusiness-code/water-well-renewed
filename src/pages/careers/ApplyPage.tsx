@@ -366,7 +366,7 @@ export default function ApplyPage() {
           name="description"
           content="Apply for a W2 field sales position with Select Source Water across Orange County, the Inland Empire (Beaumont and surrounding cities) and the Coachella Valley / Palm Springs area. Starts at $20/hour, with the ability to earn up to $50/hour based on performance."
         />
-        <meta name="robots" content="index, follow" />
+        <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
       {/* Top bar */}
