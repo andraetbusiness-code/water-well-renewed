@@ -39,7 +39,11 @@ jobs:
           # GitHub Pages serves /path/ from /path/index.html with a 200 status.
           # For each SPA route we want to be SEO/preview-friendly, create a folder
           # with a copy of index.html so the React app still mounts via client-side routing.
-          for route in apply careers; do
+          for route in apply careers \
+                       careers/customer-engagement-representative \
+                       careers/water-testing-specialist \
+                       careers/water-treatment-installer \
+                       careers/sales-market-manager; do
             mkdir -p "dist/$route"
             cp dist/index.html "dist/$route/index.html"
           done

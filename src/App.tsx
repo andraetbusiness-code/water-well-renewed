@@ -33,6 +33,8 @@ import TermsOfService from "./pages/TermsOfService";
 const HygiaPlusDemo = lazy(() => import("./pages/demo/HygiaPlusDemo"));
 const MarketingGallerySlide = lazy(() => import("@/components/onboarding/slides/MarketingGallerySlide").then(m => ({ default: m.MarketingGallerySlide })));
 const ApplyPage = lazy(() => import("./pages/careers/ApplyPage"));
+const CareersPage = lazy(() => import("./pages/careers/CareersPage"));
+const JobDetailPage = lazy(() => import("./pages/careers/JobDetailPage"));
 
 // Import print styles for onboarding and audit
 import "./styles/onboarding-print.css";
@@ -64,7 +66,9 @@ const MarketingRoutes = () => (
 
 const CareersRoutes = () => (
   <Routes>
-    <Route path="/" element={<Suspense fallback={null}><ApplyPage /></Suspense>} />
+    <Route path="/" element={<Suspense fallback={null}><CareersPage /></Suspense>} />
+    <Route path="/apply" element={<Suspense fallback={null}><ApplyPage /></Suspense>} />
+    <Route path="/:slug" element={<Suspense fallback={null}><JobDetailPage /></Suspense>} />
     <Route path="*" element={<NotFound />} />
   </Routes>
 );
@@ -108,7 +112,8 @@ const App = () => (
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms-of-service" element={<TermsOfService />} />
               <Route path="/demo/hygia-plus" element={<Suspense fallback={null}><HygiaPlusDemo /></Suspense>} />
-              <Route path="/careers" element={<Suspense fallback={null}><ApplyPage /></Suspense>} />
+              <Route path="/careers" element={<Suspense fallback={null}><CareersPage /></Suspense>} />
+              <Route path="/careers/:slug" element={<Suspense fallback={null}><JobDetailPage /></Suspense>} />
               <Route path="/apply" element={<Suspense fallback={null}><ApplyPage /></Suspense>} />
               <Route path="*" element={<NotFound />} />
             </Routes>

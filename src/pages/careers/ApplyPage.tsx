@@ -42,6 +42,7 @@ import { toast } from "@/hooks/use-toast";
 import {
   readRecruitingParams,
   submitRecruitingApplication,
+  uploadResume,
   type RecruitingFormInput,
 } from "@/lib/recruitingSubmit";
 import {
@@ -50,6 +51,12 @@ import {
   resolveMarketFromUrl,
   type MarketId,
 } from "@/lib/recruitingMarkets";
+import {
+  ROLE_OPTIONS,
+  compensationQuestionForRole,
+  getJobBySlug,
+  payStatementForRole,
+} from "@/data/careers";
 
 /* ============================================================================
    Validation schema — mirrors the form field set, with required vs optional
@@ -86,10 +93,14 @@ const applicationSchema = z.object({
     .array(marketIdEnum)
     .min(1, "Select at least one location you can work"),
 
+  // Which posting the candidate is applying to. Drives the compensation
+  // question, because pay differs by role and a single W2 $20-$50 statement is
+  // only true for the Customer Engagement Representative.
+  role: z.string().min(1, "Please choose the role you're applying for"),
+
   in_socal: yesNoMaybe,
   w2_pay_ok: yesNoMaybe,
   homeowner_conversation_ok: yesNoMaybe,
-  field_or_instore_ok: yesNoMaybe,
   transportation_ok: yesNoMaybe,
   valid_license_ok: yesNoMaybe,
 
@@ -97,31 +108,52 @@ const applicationSchema = z.object({
     ["none", "less_than_1", "1_to_2", "3_to_5", "5_plus"],
     { errorMap: () => ({ message: "Please select an option" }) }
   ),
-  experience_detail: z
-    .string()
-    .trim()
-    .max(2000, "Please keep this under 2000 characters")
-    .optional()
-    .or(z.literal("")),
+  // Optional resume upload. Stored as the Supabase Storage path once uploaded.
+  resume_url: z.string().optional().or(z.literal("")),
   start_date_answer: z.enum(
     ["immediately", "within_week", "within_2_weeks", "within_month", "later"],
     { errorMap: () => ({ message: "Please select an option" }) }
   ),
-  motivation_answer: z
+  motivation_answer: z.enum(
+    [
+      "long_term_career",
+      "performance_earnings",
+      "flexible_work",
+      "gain_experience",
+      "other",
+    ],
+    { errorMap: () => ({ message: "Please select an option" }) }
+  ),
+  motivation_other: z
     .string()
     .trim()
-    .min(1, "Please share what motivates you")
-    .max(2000, "Please keep this under 2000 characters"),
+    .max(500, "Please keep this under 500 characters")
+    .optional()
+    .or(z.literal("")),
 
   consent_contact: z.literal(true, {
     errorMap: () => ({
       message: "You must agree to be contacted in order to apply",
     }),
   }),
-  consent_compliance: z.boolean().optional(),
 });
 
 type ApplicationForm = z.infer<typeof applicationSchema>;
+
+/** Human-readable text sent to GHL for the motivation question. */
+const MOTIVATION_OPTIONS: { value: ApplicationForm["motivation_answer"]; label: string }[] = [
+  { value: "long_term_career", label: "Building a long-term career" },
+  {
+    value: "performance_earnings",
+    label: "The opportunity to earn more based on my performance",
+  },
+  { value: "flexible_work", label: "Flexible work" },
+  {
+    value: "gain_experience",
+    label: "Gaining sales / customer service experience",
+  },
+  { value: "other", label: "Other" },
+];
 
 /* ============================================================================
    Static content
@@ -141,7 +173,7 @@ const roleOverview = [
   "Help generate qualified appointments for our water specialists",
   "Work in approved retail / in-store environments and local field markets",
   "Learn the SSW sales process from the ground up",
-  "W2 position — starts at $20/hour, with the ability to earn up to $50/hour based on performance",
+  "W2 employment — hourly, salary, and commission-based roles available depending on the position",
 ];
 
 const lookingFor = [
@@ -185,6 +217,9 @@ const expectSteps = [
   },
 ];
 
+/** 5 MB. Big enough for any real resume, small enough to keep uploads instant. */
+const MAX_RESUME_BYTES = 5 * 1024 * 1024;
+
 const fadeUp: import("framer-motion").Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
@@ -201,15 +236,18 @@ function YesNoMaybe({
   value,
   onChange,
   name,
+  maybeLabel = "Not sure",
 }: {
   value: string;
   onChange: (v: string) => void;
   name: string;
+  /** The third option's label. Location asks about relocating, not certainty. */
+  maybeLabel?: string;
 }) {
   const opts: { v: string; label: string }[] = [
     { v: "yes", label: "Yes" },
     { v: "no", label: "No" },
-    { v: "maybe", label: "Not sure" },
+    { v: "maybe", label: maybeLabel },
   ];
   return (
     <div className="grid grid-cols-3 gap-2" role="radiogroup">
@@ -270,6 +308,17 @@ export default function ApplyPage() {
   // Pre-select the URL market if present
   const initialMarkets: MarketId[] = urlMarket ? [urlMarket.id] : [];
 
+  // Careers cards link through as /apply?role=<slug>. Unknown slugs fall back to
+  // an empty selection so the candidate is asked rather than mis-assigned.
+  const initialRole = useMemo(() => {
+    const raw = searchParams.get("role") || "";
+    return getJobBySlug(raw) ? raw : "";
+  }, [searchParams]);
+
+  // Resume upload state
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [resumeError, setResumeError] = useState<string | null>(null);
+
   const form = useForm<ApplicationForm>({
     resolver: zodResolver(applicationSchema),
     defaultValues: {
@@ -280,20 +329,23 @@ export default function ApplyPage() {
       city: "",
       postal_code: "",
       selected_markets: initialMarkets,
+      role: initialRole,
       in_socal: undefined as unknown as "yes",
       w2_pay_ok: undefined as unknown as "yes",
       homeowner_conversation_ok: undefined as unknown as "yes",
-      field_or_instore_ok: undefined as unknown as "yes",
       transportation_ok: undefined as unknown as "yes",
       valid_license_ok: undefined as unknown as "yes",
       sales_experience: undefined as unknown as "none",
-      experience_detail: "",
+      resume_url: "",
       start_date_answer: undefined as unknown as "immediately",
-      motivation_answer: "",
+      motivation_answer: undefined as unknown as "long_term_career",
+      motivation_other: "",
       consent_contact: false as unknown as true,
-      consent_compliance: false,
     },
   });
+
+  // Watch the role so the compensation question reflects the actual pay model.
+  const selectedRole = form.watch("role");
 
   // Scroll to top after submit
   useEffect(() => {
@@ -309,6 +361,24 @@ export default function ApplyPage() {
   const onSubmit = async (data: ApplicationForm) => {
     setLoading(true);
 
+    // Upload the resume first, if one was attached. Best-effort: a storage
+    // failure must never cost us the application, so we log it and continue.
+    let resumeUrl = "";
+    if (resumeFile) {
+      const uploaded = await uploadResume(resumeFile, data.email);
+      if (uploaded.ok === true) {
+        resumeUrl = uploaded.path;
+      } else {
+        // Non-fatal: the application still submits, just without the file.
+        // eslint-disable-next-line no-console
+        console.warn("[recruiting] resume upload failed:", uploaded.error);
+      }
+    }
+
+    const motivationLabel =
+      MOTIVATION_OPTIONS.find((o) => o.value === data.motivation_answer)?.label ??
+      data.motivation_answer;
+
     const input: RecruitingFormInput = {
       first_name: data.first_name,
       last_name: data.last_name,
@@ -318,20 +388,26 @@ export default function ApplyPage() {
       postal_code: data.postal_code,
 
       selected_markets: data.selected_markets,
+      role: data.role,
+
       in_socal: data.in_socal,
       w2_pay_ok: data.w2_pay_ok,
       homeowner_conversation_ok: data.homeowner_conversation_ok,
-      field_or_instore_ok: data.field_or_instore_ok,
+      // The merged question covers homeowners AND retail customers, which is
+      // exactly what the retired field_or_instore_ok question asked. Mirroring
+      // it keeps the existing GHL field mapping intact without inventing data.
+      field_or_instore_ok: data.homeowner_conversation_ok,
       transportation_ok: data.transportation_ok,
       valid_license_ok: data.valid_license_ok,
 
       sales_experience: data.sales_experience,
-      experience_detail: data.experience_detail || "",
+      experience_detail: "",
+      resume_url: resumeUrl,
       start_date_answer: data.start_date_answer,
-      motivation_answer: data.motivation_answer,
+      motivation_answer: motivationLabel,
+      motivation_other: data.motivation_other || "",
 
       consent_contact: data.consent_contact,
-      consent_compliance: !!data.consent_compliance,
 
       source: tracking.source,
       market: tracking.market,
@@ -467,9 +543,8 @@ export default function ApplyPage() {
                   </a>
                 </div>
                 <p className="mt-6 text-xs opacity-80 max-w-xl">
-                  W2 position starting at $20/hour, with the ability to earn up
-                  to $50/hour based on performance. Full details reviewed during
-                  the interview process.
+                  {payStatementForRole(selectedRole)} Full details reviewed
+                  during the interview process.
                 </p>
               </motion.div>
             </div>
@@ -885,22 +960,47 @@ export default function ApplyPage() {
                     <CardContent className="p-5 sm:p-6 space-y-6">
                       <h3 className="font-semibold text-lg">Quick qualification</h3>
 
+                      <FormField
+                        control={form.control}
+                        name="role"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Which role are you applying for? *</FormLabel>
+                            <Select
+                              onValueChange={field.onChange}
+                              value={field.value as string}
+                            >
+                              <FormControl>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select a role" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                {ROLE_OPTIONS.map((r) => (
+                                  <SelectItem key={r.value} value={r.value}>
+                                    {r.label}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
                       {[
                         {
                           name: "in_socal" as const,
                           q: "Are you located in Southern California (within reasonable driving distance of your selected location(s))?",
+                          maybeLabel: "Planning to relocate",
                         },
                         {
                           name: "w2_pay_ok" as const,
-                          q: "This is a W2 position starting at $20/hour with the ability to earn up to $50/hour based on performance. Does that work for you?",
+                          q: compensationQuestionForRole(selectedRole),
                         },
                         {
                           name: "homeowner_conversation_ok" as const,
-                          q: "Are you comfortable talking to homeowners and approaching new people?",
-                        },
-                        {
-                          name: "field_or_instore_ok" as const,
-                          q: "Are you open to in-person field sales or in-store lead generation?",
+                          q: "Are you comfortable initiating conversations with new people in person, including homeowners and retail customers?",
                         },
                         {
                           name: "transportation_ok" as const,
@@ -910,7 +1010,7 @@ export default function ApplyPage() {
                           name: "valid_license_ok" as const,
                           q: "Do you have a valid driver's license?",
                         },
-                      ].map(({ name, q }) => (
+                      ].map(({ name, q, maybeLabel }) => (
                         <FormField
                           key={name}
                           control={form.control}
@@ -921,6 +1021,7 @@ export default function ApplyPage() {
                               <FormControl>
                                 <YesNoMaybe
                                   name={name}
+                                  maybeLabel={maybeLabel}
                                   value={field.value as string}
                                   onChange={field.onChange}
                                 />
@@ -943,7 +1044,7 @@ export default function ApplyPage() {
                         name="sales_experience"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Do you have sales experience? *</FormLabel>
+                            <FormLabel>Which best describes your experience? *</FormLabel>
                             <Select
                               onValueChange={field.onChange}
                               value={field.value as string}
@@ -954,7 +1055,9 @@ export default function ApplyPage() {
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
-                                <SelectItem value="none">No formal sales experience</SelectItem>
+                                <SelectItem value="none">
+                                  No sales experience (No problem — we provide paid training.)
+                                </SelectItem>
                                 <SelectItem value="less_than_1">Less than 1 year</SelectItem>
                                 <SelectItem value="1_to_2">1–2 years</SelectItem>
                                 <SelectItem value="3_to_5">3–5 years</SelectItem>
@@ -966,25 +1069,35 @@ export default function ApplyPage() {
                         )}
                       />
 
-                      <FormField
-                        control={form.control}
-                        name="experience_detail"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>
-                              What type of sales or customer-facing experience do you have?
-                            </FormLabel>
-                            <FormControl>
-                              <Textarea
-                                rows={3}
-                                placeholder="D2D, retail, restaurant, athletics, etc. Be specific."
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
+                      <FormItem>
+                        <FormLabel>Resume (optional)</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="file"
+                            accept=".pdf,.doc,.docx"
+                            className="cursor-pointer file:mr-3 file:cursor-pointer file:rounded file:border-0 file:bg-muted file:px-3 file:py-1.5 file:text-sm"
+                            onChange={(e) => {
+                              const f = e.target.files?.[0] ?? null;
+                              setResumeError(null);
+                              if (f && f.size > MAX_RESUME_BYTES) {
+                                setResumeError(
+                                  "That file is larger than 5 MB. Please upload a smaller file, or skip it — a resume is not required."
+                                );
+                                setResumeFile(null);
+                                e.target.value = "";
+                                return;
+                              }
+                              setResumeFile(f);
+                            }}
+                          />
+                        </FormControl>
+                        <p className="text-xs text-muted-foreground">
+                          PDF, DOC, or DOCX up to 5 MB. Not required — you can apply without one.
+                        </p>
+                        {resumeError && (
+                          <p className="text-xs font-medium text-destructive">{resumeError}</p>
                         )}
-                      />
+                      </FormItem>
 
                       <FormField
                         control={form.control}
@@ -1020,19 +1133,49 @@ export default function ApplyPage() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>
-                              Why are you interested in this opportunity? *
+                              What interests you most about this opportunity? *
                             </FormLabel>
-                            <FormControl>
-                              <Textarea
-                                rows={4}
-                                placeholder="What drew you to sales, why SSW, what are you trying to build?"
-                                {...field}
-                              />
-                            </FormControl>
+                            <Select
+                              onValueChange={field.onChange}
+                              value={field.value as string}
+                            >
+                              <FormControl>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Pick the closest match" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                {MOTIVATION_OPTIONS.map((o) => (
+                                  <SelectItem key={o.value} value={o.value}>
+                                    {o.label}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
                             <FormMessage />
                           </FormItem>
                         )}
                       />
+
+                      {form.watch("motivation_answer") === "other" && (
+                        <FormField
+                          control={form.control}
+                          name="motivation_other"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Tell us more (optional)</FormLabel>
+                              <FormControl>
+                                <Textarea
+                                  rows={3}
+                                  placeholder="What drew you to this role?"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      )}
                     </CardContent>
                   </Card>
 
@@ -1066,31 +1209,6 @@ export default function ApplyPage() {
                         )}
                       />
 
-                      <FormField
-                        control={form.control}
-                        name="consent_compliance"
-                        render={({ field }) => (
-                          <FormItem>
-                            <div className="flex items-start gap-3">
-                              <FormControl>
-                                <Checkbox
-                                  checked={!!field.value}
-                                  onCheckedChange={field.onChange}
-                                  className="mt-0.5"
-                                />
-                              </FormControl>
-                              <FormLabel className="font-normal text-sm leading-relaxed">
-                                I understand this is a W2 position starting at
-                                $20/hour, with the ability to earn up to
-                                $50/hour based on performance, and that final
-                                pay details are reviewed during the hiring
-                                process.
-                              </FormLabel>
-                            </div>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
                     </CardContent>
                   </Card>
 
@@ -1105,10 +1223,8 @@ export default function ApplyPage() {
 
                   <p className="text-xs text-center text-muted-foreground">
                     By submitting, you confirm the information above is
-                    accurate. This is a W2 position. Starting pay is $20/hour,
-                    with the ability to earn up to $50/hour based on
-                    performance. Final details are reviewed during the
-                    interview process.
+                    accurate. {payStatementForRole(selectedRole)} Final details
+                    are reviewed during the interview process.
                   </p>
                 </form>
               </Form>

@@ -17,6 +17,7 @@
 import { supabase } from "@/integrations/supabase/client";
 import type { MarketId } from "@/lib/recruitingMarkets";
 import { MARKETS, resolvePrimaryMarketId } from "@/lib/recruitingMarkets";
+import { JOB_LISTINGS } from "@/data/careers";
 
 /* ---------------------------------------------------------------------------
    Internal answer type — what the form collects (yes / no / maybe)
@@ -39,6 +40,9 @@ export interface RecruitingFormInput {
   // (multi-select on the form: orange_county, inland_empire, coachella_valley)
   selected_markets: MarketId[];
 
+  // Which posting they applied to (careers slug, e.g. "water-testing-specialist")
+  role: string;
+
   // Qualification answers (raw form values: yes / no / maybe)
   in_socal: YesNoMaybe;
   w2_pay_ok: YesNoMaybe;
@@ -49,13 +53,16 @@ export interface RecruitingFormInput {
 
   // Experience / motivation
   sales_experience: string;
+  /** Retired free-text field. Always "" now — kept so the GHL mapping is stable. */
   experience_detail: string;
+  /** Supabase Storage path of the uploaded resume, or "" if none. */
+  resume_url: string;
   start_date_answer: string;
   motivation_answer: string;
+  motivation_other: string;
 
   // Consent
   consent_contact: boolean; // required TCPA-style consent
-  consent_compliance: boolean; // optional W2 pay-range acknowledgment
 
   // Tracking (from URL)
   source: string; // e.g. "recruiting_source_indeed_free"
@@ -99,15 +106,28 @@ export interface GhlWebhookPayload {
   transportation_ok: "Yes" | "No" | "Maybe";
   valid_license_ok: "Yes" | "No" | "Maybe";
 
+  // Role applied for
+  role: string;
+  role_label: string;
+
   // Experience
   sales_experience: string;
   experience_detail: string;
+  resume_url: string;
   start_date_answer: string;
   motivation_answer: string;
+  motivation_other: string;
 
   // TCPA consent
   tcpa_consent: boolean;
   tcpa_consent_timestamp: string; // ISO 8601 — when the user actually submitted with box checked
+  /**
+   * Retired. The standalone "I understand this is a W2 position at $20-$50/hour"
+   * checkbox was removed because the compensation question in the qualification
+   * section now states the pay for the selected role and captures the answer in
+   * `w2_pay_ok`. This is always false and is kept only so the existing GHL field
+   * mapping does not break. `w2_pay_ok` is the acknowledgment signal now.
+   */
   consent_compliance: boolean;
 
   // Metadata
@@ -139,10 +159,15 @@ export function buildSourceTag(rawSource: string): string {
   return `recruiting_source_${trimmed}`;
 }
 
+function roleLabel(slug: string): string {
+  return JOB_LISTINGS.find((j) => j.slug === slug)?.title ?? slug;
+}
+
 function buildTags(
   source: string,
   primaryMarket: string,
-  selectedMarkets: MarketId[]
+  selectedMarkets: MarketId[],
+  role: string
 ): string[] {
   // Always-present primary market tag (back-compat with existing GHL pipeline)
   const tags: string[] = [
@@ -159,6 +184,10 @@ function buildTags(
     const t = `recruiting_works_${m}`;
     if (!tags.includes(t)) tags.push(t);
   }
+
+  // Role tag so Sierra can filter the pipeline by posting.
+  if (role) tags.push(`recruiting_role_${role.replace(/-/g, "_")}`);
+
   return tags;
 }
 
@@ -226,16 +255,22 @@ export async function submitRecruitingApplication(
     transportation_ok: capitalize(input.transportation_ok),
     valid_license_ok: capitalize(input.valid_license_ok),
 
+    // Role
+    role: input.role,
+    role_label: roleLabel(input.role),
+
     // Experience
     sales_experience: input.sales_experience,
     experience_detail: input.experience_detail,
+    resume_url: input.resume_url,
     start_date_answer: input.start_date_answer,
     motivation_answer: input.motivation_answer,
+    motivation_other: input.motivation_other,
 
     // Consent
     tcpa_consent: input.consent_contact === true,
     tcpa_consent_timestamp: consentTimestamp,
-    consent_compliance: input.consent_compliance === true,
+    consent_compliance: false,
 
     // Metadata
     page_url: input.page_url,
@@ -245,7 +280,8 @@ export async function submitRecruitingApplication(
     tags_to_apply: buildTags(
       input.source,
       primaryMarket,
-      input.selected_markets
+      input.selected_markets,
+      input.role
     ),
   };
 
@@ -319,6 +355,7 @@ export async function submitRecruitingApplication(
       phone: payload.phone,
       city: payload.city || null,
       experience: payload.sales_experience || null,
+      position: payload.role_label || null,
       message: JSON.stringify({
         ...payload,
         webhook_delivered: webhookOk,
@@ -344,6 +381,44 @@ export async function submitRecruitingApplication(
     ok: false,
     error: webhookError || alertError || supabaseError || "Submission failed",
   };
+}
+
+/**
+ * Upload an applicant's resume to Supabase Storage.
+ *
+ * ⚠️ PREREQUISITE — NOT DONE YET: a public-insert Storage bucket named
+ * `resumes` must exist in the Supabase project (hmkuohrgblvoznbxbtpl), which is
+ * a Lovable Cloud project reachable only via Lovable -> More -> Cloud.
+ * Until that bucket exists this call fails and returns ok:false. The apply flow
+ * treats that as non-fatal: the application still submits, just without a file.
+ *
+ * Bucket policy required: anon INSERT allowed, anon SELECT denied. Resumes carry
+ * names, addresses, and phone numbers — a public-read bucket would expose every
+ * applicant's resume to anyone who can guess a path.
+ */
+export async function uploadResume(
+  file: File,
+  email: string
+): Promise<{ ok: true; path: string } | { ok: false; error: string }> {
+  try {
+    const ext = (file.name.split(".").pop() || "pdf").toLowerCase();
+    const safeEmail = email.replace(/[^a-z0-9]/gi, "_").slice(0, 60);
+    const stamp = Date.now();
+    const path = `applications/${stamp}_${safeEmail}.${ext}`;
+
+    const { error } = await supabase.storage.from("resumes").upload(path, file, {
+      cacheControl: "3600",
+      upsert: false,
+      contentType: file.type || undefined,
+    });
+    if (error) return { ok: false, error: error.message };
+    return { ok: true, path };
+  } catch (err) {
+    return {
+      ok: false,
+      error: err instanceof Error ? err.message : "Resume upload failed",
+    };
+  }
 }
 
 /**
