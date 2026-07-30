@@ -10,9 +10,14 @@
  *    tier "1 Install: $20/hour". Andrae directed starting pay to be $20.
  *    Raising the floor to $20 makes the "1 Install: $20" tier identical to the
  *    starting rate, so that row is removed rather than a new number invented.
- *    Result: Starting $20 → 2 installs $30 → 3 installs $40 → 4+ installs $50.
- *    NO new earnings figure has been created. Nothing was added that the PDF
- *    did not already promise.
+ *    Per Andrae (2026-07-30): the public post carries the RANGE and the job
+ *    details only — $20 start, up to $50 based on performance. The per-install
+ *    tier ladder is deliberately NOT published; the recruiter walks through how
+ *    each level is earned during the interview. Less to get wrong in writing,
+ *    and the tier mechanics are a conversation, not a listing.
+ *
+ *    NO new earnings figure has been created anywhere. Nothing is promised that
+ *    the PDF did not already promise.
  *
  * 2. Home Depot language.
  *    The PDFs say "Authorized Home Depot Provider". The locked, non-paraphrasable
@@ -23,6 +28,12 @@
  *    Home Depot endorsement and is the exact thing that rule exists to prevent.
  *
  * ── UNRESOLVED, FLAGGED, NOT DECIDED HERE ────────────────────────────────────
+ *
+ * Also removed from the public Water Testing Specialist post: "Average customer
+ * purchase: approximately $7,000-$8,000+". That is a sales-volume figure a
+ * reader will read as an earnings signal on a commission role, with no
+ * substantiation file behind it. Same principle as the pay tiers - the recruiter
+ * covers it in conversation.
  *
  * Water Testing Specialist is commission-only. docs/legal_review_brief.md was
  * submitted specifically to get commission-only pay language approved under
@@ -108,15 +119,14 @@ export const JOB_LISTINGS: JobListing[] = [
     ],
     compensation: {
       heading: "Performance-Based Hourly Pay",
-      lead: "Your hourly pay increases based on the number of installations generated from the appointments you schedule.",
+      lead: "Your hourly pay increases with your results. The more installations that come from the appointments you schedule, the higher your rate.",
       bullets: [
         "Starting pay: $20/hour",
-        "2 installs: $30/hour",
-        "3 installs: $40/hour",
-        "4+ installs: $50/hour",
+        "Up to $50/hour based on performance",
+        "Part-time, up to 25 hours per week",
       ],
       footnote:
-        "Maximum schedule: 25 hours per week. Pay tiers are based on installations completed from appointments you schedule. Final pay details are confirmed during the hiring process.",
+        "Your recruiter walks through the full pay tier structure and how each level is earned during the interview.",
     },
     rightForYouIf: [
       "You enjoy talking with people and building relationships.",
@@ -183,7 +193,6 @@ export const JOB_LISTINGS: JobListing[] = [
       bullets: [
         "Commission-based earnings",
         "Tiered commission structure based on sale value",
-        "Average customer purchase: approximately $7,000–$8,000",
         "Full-time W-2 employment",
       ],
       benefitsHeading: "Benefits",
@@ -193,7 +202,7 @@ export const JOB_LISTINGS: JobListing[] = [
         "One week of paid time off annually",
       ],
       footnote:
-        "This is a commission-based role. Earnings depend on individual performance and are not guaranteed. Your written commission agreement governs actual pay and is reviewed with you before hire.",
+        "This is a commission-based role. Earnings depend on individual performance and are not guaranteed. Your recruiter reviews the full commission structure with you, and your written commission agreement governs actual pay.",
     },
     rightForYouIf: [
       "You enjoy meeting new people and building trust.",
