@@ -18,8 +18,22 @@ import { useLocation } from "react-router-dom";
  * customer widget. Someone chatting from the apply page is a candidate;
  * someone chatting from the homepage is a customer.
  *
- * This lives in React rather than index.html because index.html is static and
- * cannot branch on route.
+ * WHY IT IS SPLIT BETWEEN index.html AND HERE:
+ *
+ * The RECRUITING tag is hardcoded in index.html and must stay there. GHL's A2P
+ * compliance checker fetches the raw HTML and greps for the script — a tag
+ * injected by React is invisible to it, and the check fails even though the
+ * widget works perfectly for real visitors. We learned that the hard way.
+ *
+ * This component then takes over at runtime. On a recruiting route it finds the
+ * static tag already correct and does nothing. On any other route it removes
+ * the recruiting widget and mounts the customer one, so only one bubble is ever
+ * on the page.
+ *
+ * Tradeoff, accepted deliberately: only the recruiting id is greppable in raw
+ * HTML, so a compliance check run against the CUSTOMER program on this domain
+ * would fail. SoCal's A2P is already registered; recruiting is the one under
+ * review. If that ever changes, this is the file to revisit.
  */
 
 const CUSTOMER_WIDGET_ID = "69dc8296d0d6ea566ec47460";
