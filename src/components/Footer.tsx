@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Facebook, Instagram, Droplets } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram, Droplets, Briefcase, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
+import { JOB_LISTINGS } from "@/data/careers";
 
 const quickLinks = [
   { label: "Home", href: "/", isInternal: true },
@@ -11,6 +12,7 @@ const quickLinks = [
   { label: "Gallery", href: "/gallery", isInternal: true },
   { label: "About", href: "/about", isInternal: true },
   { label: "Blog", href: "/blog", isInternal: true },
+  { label: "Careers", href: "/careers", isInternal: true },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -51,7 +53,55 @@ export const Footer = () => {
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="container relative pt-20 pb-12">
+      <div className="container relative pt-20">
+        {/* ── Careers band ──────────────────────────────────────────────────── */}
+        <div className="mb-16 rounded-2xl border border-primary-foreground/10 bg-primary-foreground/[0.03] p-7 sm:p-9">
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+            <div className="max-w-md">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-accent/15 px-3 py-1 text-xs font-medium uppercase tracking-wider text-accent">
+                <Briefcase className="h-3.5 w-3.5" />
+                We're hiring
+              </div>
+              <h3 className="mb-3 font-serif text-2xl text-primary-foreground sm:text-3xl">
+                Join the Select Source Water team
+              </h3>
+              <p className="text-sm leading-relaxed text-primary-foreground/60">
+                Paid training, performance-based pay, and a clear path into leadership —
+                across Orange County, the Inland Empire, and the Coachella Valley.
+              </p>
+              <Link
+                to="/careers"
+                className="mt-5 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90"
+              >
+                View all openings
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+
+            <div className="w-full lg:max-w-md">
+              <h4 className="mb-4 text-xs font-medium uppercase tracking-wider text-primary-foreground">
+                Open roles
+              </h4>
+              <ul className="space-y-2.5">
+                {JOB_LISTINGS.map((job) => (
+                  <li key={job.slug}>
+                    <Link
+                      to={`/careers/${job.slug}`}
+                      className="group flex items-baseline justify-between gap-4 border-b border-primary-foreground/10 pb-2.5 text-sm text-primary-foreground/70 transition-colors hover:text-accent"
+                    >
+                      <span className="font-medium">{job.title}</span>
+                      <span className="shrink-0 text-xs text-primary-foreground/40 group-hover:text-accent/70">
+                        {job.employmentType} · {job.paySummary}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="pb-12">
         {/* 4-column grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
           {/* Column 1 — Brand */}
@@ -165,6 +215,7 @@ export const Footer = () => {
               <Link to="/portal" className="hover:text-accent transition-colors">Staff Login</Link>
             </p>
           </div>
+        </div>
         </div>
       </div>
 
