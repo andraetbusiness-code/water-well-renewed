@@ -1,6 +1,16 @@
 # selectsourcewaterusa.com is an internal/private deployment.
 # The public, customer-facing site is https://selectsourcewater.com
-# All search engine crawlers are blocked from indexing this domain.
+#
+# This domain is kept OUT OF SEARCH RESULTS by the noindex meta tag in
+# index.html — not by blocking crawlers here.
+#
+# Disallow      -> "do not FETCH this page"
+# noindex meta  -> "you may fetch it, but do not LIST it in results"
+#
+# A blanket "Disallow: /" is counterproductive: a crawler forbidden from
+# fetching the page can never read the noindex tag inside it. Allowing the
+# fetch is what lets noindex do its job. It also unblocks the GHL / A2P
+# 10DLC chat-widget compliance checker.
 
 User-agent: *
-Disallow: /
+Allow: /
