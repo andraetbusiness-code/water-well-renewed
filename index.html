@@ -35,20 +35,13 @@
     <script type="module" src="/src/main.tsx"></script>
 
         <!-- GHL Lead Connector chat widget — RECRUITING program (A2P 10DLC).
-             This tag is STATIC and must stay static. GHL's compliance checker
-             fetches the raw HTML and greps for the script; a tag injected by
-             React is invisible to it, and the check fails even though the
-             widget works fine for real visitors.
+             STATIC on purpose: the compliance checker reads raw HTML, so a
+             React-injected tag is invisible to it.
 
-             src/components/ChatWidget.tsx takes over at runtime: on non-
-             recruiting routes it removes this widget and mounts the CUSTOMER
-             one (69dc8296d0d6ea566ec47460) instead, so only one bubble is ever
-             on the page.
-
-             Known tradeoff: only the recruiting id is greppable in raw HTML, so
-             a compliance check run against the CUSTOMER program on this domain
-             would fail. Accepted deliberately — SoCal's A2P is already
-             registered; the recruiting program is the one being reviewed. -->
+             This domain is the registered Business Website for the SSW
+             Recruiting A2P brand, so the recruiting widget is the ONLY widget
+             served here. ChatWidget.tsx no longer swaps in a second one.
+             The public site is https://selectsourcewater.com and has its own. -->
         <script src="https://widgets.leadconnectorhq.com/loader.js"
                 data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
                 data-widget-id="6a74af1597ea74e60a4c73c6"
