@@ -18,9 +18,9 @@
     page-break-inside: avoid;
     break-after: page;
     break-inside: avoid;
-    min-height: 1040px !important;
-    height: 1040px !important;
-    max-height: 1040px !important;
+    min-height: 1000px !important;
+    height: 1000px !important;
+    max-height: 1000px !important;
     width: 100% !important;
     overflow: hidden !important;
 
