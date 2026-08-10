@@ -53,6 +53,14 @@
     display: none !important;
   }
 
+  /* Hide the floating chat widget in print/PDF output */
+  chat-widget,
+  [id^='lc_text-widget'],
+  [class*='lc_text-widget'] {
+    display: none !important;
+  }
+
+
   /* Remove padding from main */
   main {
     padding-top: 0 !important;
