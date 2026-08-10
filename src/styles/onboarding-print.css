@@ -18,9 +18,9 @@
     page-break-inside: avoid;
     break-after: page;
     break-inside: avoid;
-    min-height: 1050px !important;
-    height: 1050px !important;
-    max-height: 1050px !important;
+    min-height: 816px !important;
+    height: 816px !important;
+    max-height: 816px !important;
     width: 100% !important;
     overflow: hidden !important;
 
@@ -71,7 +71,7 @@
 
   /* Optimize for A4/Letter */
   @page {
-    size: letter landscape;
+    size: letter portrait;
     margin: 0;
   }
 }
