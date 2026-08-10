@@ -18,10 +18,11 @@
     page-break-inside: avoid;
     break-after: page;
     break-inside: avoid;
-    min-height: 10.4in;
-    height: 10.4in;
-    width: 100%;
-    overflow: hidden;
+    min-height: 1050px !important;
+    height: 1050px !important;
+    max-height: 1050px !important;
+    width: 100% !important;
+    overflow: hidden !important;
 
   }
 
