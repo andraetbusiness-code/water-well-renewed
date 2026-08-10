@@ -18,12 +18,9 @@
     page-break-inside: avoid;
     break-after: page;
     break-inside: avoid;
-    min-height: 816px !important;
-    height: 816px !important;
-    max-height: 816px !important;
-    width: 100% !important;
-    overflow: hidden !important;
-
+    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
   }
 
   /* Last slide shouldn't have page break after */
@@ -71,7 +68,7 @@
 
   /* Optimize for A4/Letter */
   @page {
-    size: 8.5in 8.5in;
+    size: letter landscape;
     margin: 0;
   }
 }
