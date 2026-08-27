@@ -150,11 +150,14 @@ export const Hero = () => {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 mb-14"
           >
+            {/* Primary CTA — anchor to the inline GHL booking calendar.
+                Using a plain anchor (not Link) so the browser handles the
+                smooth scroll natively, no client-side route change. */}
             <Button size="lg" variant="hero" asChild>
-              <Link to="/free-water-test">
-                Get Your Free Water Test
+              <a href="#book">
+                Book Your Free Water Test
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
+              </a>
             </Button>
             <Button size="lg" variant="heroOutline" asChild>
               <Link to="/hygia-system">See How It Works</Link>
