@@ -16,7 +16,7 @@ const Index = () => {
     <div className="min-h-screen">
       <Helmet>
         <title>Water Softener &amp; Filtration — Beaumont &amp; Inland Empire | Select Source Water</title>
-        <meta name="description" content="Home Depot Authorized water softener installation in Beaumont, Banning, Hemet & the Inland Empire. Free in-home water test. Lifetime warranty. Call (951) 612-4094." />
+        <meta name="description" content="Home Depot Authorized water softener installation in Beaumont, Banning, Hemet & the Inland Empire. Free in-home water test. Lifetime warranty. Call (951) 499-5136." />
         <link rel="canonical" href="https://selectsourcewatercalifornia.com/" />
         <script type="application/ld+json">
           {JSON.stringify({
@@ -26,7 +26,7 @@ const Index = () => {
             "image": "https://selectsourcewatercalifornia.com/og-image.png",
             "@id": "https://selectsourcewatercalifornia.com",
             "url": "https://selectsourcewatercalifornia.com",
-            "telephone": "+19516124094",
+            "telephone": "+19514995136",
             "priceRange": "$$",
             "description": "Home Depot Authorized water softener and filtration installation serving the Inland Empire. Free in-home water test, lifetime warranty, same-day installation.",
             "address": {

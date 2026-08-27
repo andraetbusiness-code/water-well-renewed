@@ -106,9 +106,9 @@ const HomeDepotPartnership = () => {
                 </Link>
               </Button>
               <Button variant="heroOutline" size="lg" asChild>
-                <a href="tel:+19516124094">
+                <a href="tel:+19514995136">
                   <Phone className="mr-1 h-5 w-5" />
-                  (951) 612-4094
+                  (951) 499-5136
                 </a>
               </Button>
             </div>

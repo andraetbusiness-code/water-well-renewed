@@ -146,11 +146,11 @@ const About = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:+19516124094"
+              href="tel:+19514995136"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition"
             >
               <Phone className="w-5 h-5" />
-              (951) 612-4094
+              (951) 499-5136
             </a>
             <Link
               to="/service-areas"

@@ -594,10 +594,10 @@ export default function BlogPost() {
                   Find out exactly what's in your Inland Empire water supply — completely free, no obligation.
                 </p>
                 <a
-                  href="tel:+19516124094"
+                  href="tel:+19514995136"
                   className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full font-semibold hover:bg-primary/90 transition-colors"
                 >
-                  Call (951) 612-4094
+                  Call (951) 499-5136
                 </a>
               </div>
             </article>

@@ -153,9 +153,9 @@ export default function ServiceAreas() {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="heroOutline" className="border-primary/30 text-foreground hover:bg-primary/10 hover:border-primary/50">
-                <a href="tel:+19516124094">
+                <a href="tel:+19514995136">
                   <Phone className="mr-2 h-5 w-5" />
-                  (951) 612-4094
+                  (951) 499-5136
                 </a>
               </Button>
             </div>
@@ -302,13 +302,13 @@ export default function ServiceAreas() {
             <h3 className="text-xl font-serif text-foreground mb-3">Don't See Your City?</h3>
             <p className="text-muted-foreground mb-4">
               Our service area is expanding. If you're in SoCal and don't see your city listed, call us at{" "}
-              <a href="tel:+19516124094" className="text-primary font-medium hover:underline">(951) 612-4094</a>.
+              <a href="tel:+19514995136" className="text-primary font-medium hover:underline">(951) 499-5136</a>.
               We may already serve your area or can arrange a visit.
             </p>
             <Button asChild variant="hero" size="lg">
-              <a href="tel:+19516124094">
+              <a href="tel:+19514995136">
                 <Phone className="mr-2 h-5 w-5" />
-                Call (951) 612-4094
+                Call (951) 499-5136
               </a>
             </Button>
           </motion.div>

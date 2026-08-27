@@ -7,8 +7,8 @@ This is the foundation for all subsequent changes. It updates contact info, navi
 ## Summary of Changes
 
 ### 1. Replace All Contact Info Site-Wide
-- Replace **(800) 555-0123** and **833.422.7765** with **(951) 612-4094** everywhere
-- Update all `tel:` links to `tel:+19516124094`
+- Replace **(800) 555-0123** and **833.422.7765** with **(951) 499-5136** everywhere
+- Update all `tel:` links to `tel:+19514995136`
 - Replace **info@selectsourcewater.com** with **info@selectsourcewatercalifornia.com**
 - Add physical address: **790 Beaumont Ave Ste 124, Beaumont, CA 92223**
 
@@ -27,7 +27,7 @@ Replace the flat nav with a new structure including dropdowns:
 - **Process** → /process
 - **About** → /about
 - **Blog** → /blog
-- **Phone**: (951) 612-4094
+- **Phone**: (951) 499-5136
 - **Free Water Test** → /free-water-test (styled as CTA button)
 
 Mobile: hamburger menu with accordion-style dropdown expansion, phone number and "Free Water Test" button pinned at bottom.
@@ -54,7 +54,7 @@ Create a new `TrustBar.tsx` component that appears below the hero on every page:
 - 🏠 HD Authorized Provider
 - ✅ Lifetime Warranty
 - 📅 5-Day Risk-Free Trial
-- 📞 (951) 612-4094
+- 📞 (951) 499-5136
 
 Background: light blue (#f0f6ff). Horizontally scrollable on mobile.
 

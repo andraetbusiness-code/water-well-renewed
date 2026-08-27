@@ -8,7 +8,7 @@ const trustItems = [
   { icon: Calendar, label: "5-Day Risk-Free Trial" },
   { icon: CheckCircle, label: "Licensed & Insured" },
   { icon: Droplets, label: "Same-Day Installation" },
-  { icon: Phone, label: "(951) 612-4094", href: "tel:+19516124094" },
+  { icon: Phone, label: "(951) 499-5136", href: "tel:+19514995136" },
 ];
 
 // Duplicate for seamless loop
