@@ -14,7 +14,13 @@
 export type MarketId =
   | "orange_county"
   | "inland_empire"
-  | "coachella_valley";
+  | "coachella_valley"
+  | "sacramento_norcal"
+  | "north_la"
+  | "south_la"
+  | "central_valley_fresno"
+  | "phoenix_metro"
+  | "arizona_other";
 
 export interface Market {
   id: MarketId;
@@ -99,6 +105,84 @@ export const MARKETS: Market[] = [
 ];
 
 /**
+ * Markets used by the 2026 California / Arizona candidate-outreach campaign.
+ * These mirror the candidate-list market groups used for the first outreach
+ * wave. The legacy careers form continues to display MARKETS above.
+ */
+export const CANDIDATE_OUTREACH_MARKETS: Market[] = [
+  MARKETS[0],
+  {
+    id: "sacramento_norcal",
+    label: "Sacramento / Northern California",
+    heroBadge: "Recruiting · Sacramento & Northern California",
+    heroHeading: "Explore a Sales Opportunity With Select Source Water",
+    blurb: "Recruiting conversations for experienced sales professionals and team leaders across Sacramento and Northern California.",
+    cities: ["Sacramento", "Roseville", "Elk Grove", "Stockton", "Northern California"],
+  },
+  {
+    id: "north_la",
+    label: "North Los Angeles",
+    heroBadge: "Recruiting · North Los Angeles",
+    heroHeading: "Explore a Sales Opportunity With Select Source Water",
+    blurb: "Recruiting conversations for experienced sales professionals and team leaders across North Los Angeles and nearby communities.",
+    cities: ["San Fernando Valley", "Santa Clarita", "Burbank", "Glendale", "North Los Angeles"],
+  },
+  {
+    id: "south_la",
+    label: "South Los Angeles",
+    heroBadge: "Recruiting · South Los Angeles",
+    heroHeading: "Explore a Sales Opportunity With Select Source Water",
+    blurb: "Recruiting conversations for experienced sales professionals and team leaders across South Los Angeles and nearby communities.",
+    cities: ["Long Beach", "Torrance", "Downey", "Norwalk", "South Los Angeles"],
+  },
+  {
+    id: "central_valley_fresno",
+    label: "Central Valley / Fresno",
+    heroBadge: "Recruiting · Central Valley & Fresno",
+    heroHeading: "Explore a Sales Opportunity With Select Source Water",
+    blurb: "Recruiting conversations for experienced sales professionals and team leaders across Fresno and the Central Valley.",
+    cities: ["Fresno", "Clovis", "Visalia", "Bakersfield", "Central Valley"],
+  },
+  MARKETS[1],
+  MARKETS[2],
+  {
+    id: "phoenix_metro",
+    label: "Phoenix Metro",
+    heroBadge: "Recruiting · Phoenix Metro, AZ",
+    heroHeading: "Explore a Sales Opportunity With Select Source Water",
+    blurb: "Recruiting conversations for experienced sales professionals and team leaders across the Phoenix metropolitan area.",
+    cities: ["Phoenix", "Mesa", "Scottsdale", "Tempe", "Glendale"],
+  },
+  {
+    id: "arizona_other",
+    label: "Other Arizona market",
+    heroBadge: "Recruiting · Arizona",
+    heroHeading: "Explore a Sales Opportunity With Select Source Water",
+    blurb: "Recruiting conversations for experienced sales professionals and team leaders in Arizona markets outside the Phoenix metro area.",
+    cities: ["Tucson", "Flagstaff", "Prescott", "Yuma", "Other Arizona communities"],
+  },
+];
+
+const ALL_MARKETS = [
+  ...MARKETS,
+  ...CANDIDATE_OUTREACH_MARKETS.filter(
+    (candidate) => !MARKETS.some((market) => market.id === candidate.id)
+  ),
+];
+
+export function resolveCandidateMarketFromUrl(
+  raw: string | null | undefined
+): Market | null {
+  if (!raw) return null;
+  const value = raw.trim().toLowerCase();
+  return CANDIDATE_OUTREACH_MARKETS.find((market) => market.id === value) ?? null;
+}
+
+export function getRecruitingMarketLabel(id: MarketId): string {
+  return ALL_MARKETS.find((market) => market.id === id)?.label ?? id;
+}
+
+/**
  * Default hero used when URL `?market=` is missing or unrecognized.
  * Generic SoCal language so the page works for organic / cross-region traffic.
  */
@@ -130,7 +214,8 @@ export function resolvePrimaryMarketId(
   urlMarket: string | null | undefined,
   selectedMarkets: MarketId[]
 ): string {
-  const fromUrl = resolveMarketFromUrl(urlMarket);
+  const fromUrl =
+    resolveMarketFromUrl(urlMarket) ?? resolveCandidateMarketFromUrl(urlMarket);
   if (fromUrl) return fromUrl.id;
   if (selectedMarkets.length > 0) return selectedMarkets[0];
   return "orange_county";

@@ -67,6 +67,8 @@ interface ApplicantPayload {
   field_or_instore_ok?: string;
   transportation_ok?: string;
   valid_license_ok?: string;
+  employment_classification?: string;
+  opportunity_terms_ok?: string;
   sales_experience?: string;
   experience_detail?: string;
   /** Storage path in the private `resumes` bucket, or "" when none uploaded. */
@@ -180,12 +182,26 @@ function buildPlainText(p: ApplicantPayload, resumeNote: string): string {
   lines.push("");
   lines.push("=== QUALIFICATION ===");
   lines.push(row("In SoCal:", p.in_socal));
-  lines.push(row("W2 pay OK:", p.w2_pay_ok));
+  lines.push(
+    row(
+      p.employment_classification ? "Opportunity terms OK:" : "Pay terms OK:",
+      p.opportunity_terms_ok || p.w2_pay_ok
+    )
+  );
   
   lines.push(row("Homeowner convos OK:", p.homeowner_conversation_ok));
   lines.push(row("Field/in-store OK:", p.field_or_instore_ok));
   lines.push(row("Transportation:", p.transportation_ok));
   lines.push(row("Valid license:", p.valid_license_ok));
+  if (p.employment_classification) {
+    lines.push(row("Classification:", p.employment_classification));
+  }
+  if (p.opportunity_terms_ok) {
+    lines.push(row("1099 terms OK:", p.opportunity_terms_ok));
+  }
+  if (p.experience_detail) {
+    lines.push(row("Candidate details:", p.experience_detail));
+  }
   lines.push("");
   lines.push("=== EXPERIENCE ===");
   lines.push(row("Sales experience:", p.sales_experience));
@@ -258,24 +274,42 @@ function buildHtml(p: ApplicantPayload, resumeNote: string): string {
         ])}
         ${section("Qualification", [
           ["In SoCal", p.in_socal],
-          ["W2 pay OK", p.w2_pay_ok],
+          [
+            p.employment_classification ? "Opportunity terms OK" : "Pay terms OK",
+            p.opportunity_terms_ok || p.w2_pay_ok,
+          ],
           
           ["Homeowner convos OK", p.homeowner_conversation_ok],
           ["Field/in-store OK", p.field_or_instore_ok],
           ["Transportation", p.transportation_ok],
           ["Valid license", p.valid_license_ok],
+          ...(p.employment_classification
+            ? ([
+                ["Classification", p.employment_classification],
+              ] as Array<[string, unknown]>)
+            : []),
         ])}
         ${section("Experience", [
           ["Sales experience", p.sales_experience],
           ["Can start", p.start_date_answer],
           ["Interested in", p.motivation_answer],
+          ...(p.experience_detail
+            ? ([
+                ["Candidate details", p.experience_detail],
+              ] as Array<[string, unknown]>)
+            : []),
           ...(p.motivation_other ? ([["Their words", p.motivation_other]] as Array<[string, unknown]>) : []),
           ["Resume", resumeNote],
         ])}
         ${section("Consent & Meta", [
           ["TCPA consent", p.tcpa_consent ? "Yes" : "No"],
           ["TCPA timestamp", p.tcpa_consent_timestamp],
-          ["Pay acknowledgment", p.w2_pay_ok === "Yes" ? "Yes (via pay question)" : p.w2_pay_ok],
+          [
+            p.employment_classification
+              ? "1099 opportunity acknowledgment"
+              : "Pay acknowledgment",
+            p.opportunity_terms_ok || p.w2_pay_ok,
+          ],
           ["Submitted", p.submitted_at],
           ["Page URL", p.page_url],
         ])}

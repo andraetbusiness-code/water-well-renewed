@@ -16,7 +16,7 @@
  */
 import { supabase } from "@/integrations/supabase/client";
 import type { MarketId } from "@/lib/recruitingMarkets";
-import { MARKETS, resolvePrimaryMarketId } from "@/lib/recruitingMarkets";
+import { getRecruitingMarketLabel, resolvePrimaryMarketId } from "@/lib/recruitingMarkets";
 import { JOB_LISTINGS } from "@/data/careers";
 
 /* ---------------------------------------------------------------------------
@@ -50,6 +50,11 @@ export interface RecruitingFormInput {
   field_or_instore_ok: YesNoMaybe;
   transportation_ok: YesNoMaybe;
   valid_license_ok: YesNoMaybe;
+
+  // Campaign-specific opportunity details. Optional so established careers
+  // applications keep their existing payload and GHL mappings.
+  employment_classification?: string;
+  opportunity_terms_ok?: YesNoMaybe;
 
   // Experience / motivation
   sales_experience: string;
@@ -105,6 +110,8 @@ export interface GhlWebhookPayload {
   field_or_instore_ok: "Yes" | "No" | "Maybe";
   transportation_ok: "Yes" | "No" | "Maybe";
   valid_license_ok: "Yes" | "No" | "Maybe";
+  employment_classification?: string;
+  opportunity_terms_ok?: "Yes" | "No" | "Maybe";
 
   // Role applied for
   role: string;
@@ -160,6 +167,13 @@ export function buildSourceTag(rawSource: string): string {
 }
 
 function roleLabel(slug: string): string {
+  const outreachRoles: Record<string, string> = {
+    "team-leader": "Team Leader With an Existing Sales Network",
+    closer: "Experienced Closer / Independent Sales Representative",
+    setter: "Appointment Setter / Developing Sales Candidate",
+    unsure: "Open to the Best-Fit Opportunity",
+  };
+  if (outreachRoles[slug]) return outreachRoles[slug];
   return JOB_LISTINGS.find((j) => j.slug === slug)?.title ?? slug;
 }
 
@@ -192,9 +206,7 @@ function buildTags(
 }
 
 function marketLabels(ids: MarketId[]): string {
-  return ids
-    .map((id) => MARKETS.find((m) => m.id === id)?.label ?? id)
-    .join(", ");
+  return ids.map(getRecruitingMarketLabel).join(", ");
 }
 
 /* ---------------------------------------------------------------------------
@@ -254,6 +266,10 @@ export async function submitRecruitingApplication(
     field_or_instore_ok: capitalize(input.field_or_instore_ok),
     transportation_ok: capitalize(input.transportation_ok),
     valid_license_ok: capitalize(input.valid_license_ok),
+    employment_classification: input.employment_classification,
+    opportunity_terms_ok: input.opportunity_terms_ok
+      ? capitalize(input.opportunity_terms_ok)
+      : undefined,
 
     // Role
     role: input.role,
@@ -291,7 +307,6 @@ export async function submitRecruitingApplication(
 
   const ghlPromise: Promise<{ ok: boolean; error?: string }> = (async () => {
     if (!WEBHOOK_URL) {
-      // eslint-disable-next-line no-console
       console.warn(
         "[recruiting] VITE_GHL_RECRUITING_WEBHOOK_URL not configured. Submission saved to Supabase only."
       );
@@ -348,6 +363,8 @@ export async function submitRecruitingApplication(
   let supabaseOk = false;
   let supabaseError: string | undefined;
   try {
+    // The generated client predates this table; runtime schema accepts it.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { error } = await supabase.from("job_applications" as any).insert({
       first_name: payload.first_name,
       last_name: payload.last_name,

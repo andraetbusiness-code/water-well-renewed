@@ -57,6 +57,7 @@ import {
   getJobBySlug,
   payStatementForRole,
 } from "@/data/careers";
+import CandidateOutreachApplyPage from "@/pages/careers/CandidateOutreachApplyPage";
 
 /* ============================================================================
    Validation schema — mirrors the form field set, with required vs optional
@@ -93,9 +94,8 @@ const applicationSchema = z.object({
     .array(marketIdEnum)
     .min(1, "Select at least one location you can work"),
 
-  // Which posting the candidate is applying to. Drives the compensation
-  // question, because pay differs by role and a single W2 $20-$50 statement is
-  // only true for the Customer Engagement Representative.
+  // Which posting the candidate is applying to. Drives the role-specific
+  // independent-contractor compensation acknowledgment.
   role: z.string().min(1, "Please choose the role you're applying for"),
 
   in_socal: yesNoMaybe,
@@ -160,10 +160,10 @@ const MOTIVATION_OPTIONS: { value: ApplicationForm["motivation_answer"]; label: 
    ========================================================================== */
 const whoThisIsFor = [
   "You're comfortable talking to new people",
-  "You want a steady hourly base with performance-based upside",
+  "You're motivated by performance-based earnings",
   "You're coachable and competitive",
   "You can work in person",
-  "You're open to field sales, in-store lead generation, and homeowner conversations",
+  "You're open to field sales and homeowner conversations",
   "You want a real growth path in sales",
 ];
 
@@ -171,9 +171,9 @@ const roleOverview = [
   "Represent Select Source Water in your local Southern California market",
   "Speak with homeowners about complimentary water testing",
   "Help generate qualified appointments for our water specialists",
-  "Work in approved retail / in-store environments and local field markets",
+  "Build relationships in local field markets",
   "Learn the SSW sales process from the ground up",
-  "W2 employment — hourly, salary, and commission-based roles available depending on the position",
+  "1099 independent-contractor opportunities with compensation that varies by role and written agreement",
 ];
 
 const lookingFor = [
@@ -278,7 +278,7 @@ function YesNoMaybe({
 /* ============================================================================
    Apply Page
    ========================================================================== */
-export default function ApplyPage() {
+function StandardApplyPage() {
   const [searchParams] = useSearchParams();
   const tracking = useMemo(
     () => readRecruitingParams(searchParams),
@@ -370,7 +370,6 @@ export default function ApplyPage() {
         resumeUrl = uploaded.path;
       } else {
         // Non-fatal: the application still submits, just without the file.
-        // eslint-disable-next-line no-console
         console.warn("[recruiting] resume upload failed:", uploaded.error);
       }
     }
@@ -392,6 +391,8 @@ export default function ApplyPage() {
 
       in_socal: data.in_socal,
       w2_pay_ok: data.w2_pay_ok,
+      employment_classification: "1099 independent contractor",
+      opportunity_terms_ok: data.w2_pay_ok,
       homeowner_conversation_ok: data.homeowner_conversation_ok,
       // The merged question covers homeowners AND retail customers, which is
       // exactly what the retired field_or_instore_ok question asked. Mirroring
@@ -440,7 +441,7 @@ export default function ApplyPage() {
         </title>
         <meta
           name="description"
-          content="Apply for a W2 field sales position with Select Source Water across Orange County, the Inland Empire (Beaumont and surrounding cities) and the Coachella Valley / Palm Springs area. Starts at $20/hour, with the ability to earn up to $50/hour based on performance."
+          content="Apply for a 1099 independent-contractor sales opportunity with Select Source Water across Orange County, the Inland Empire and the Coachella Valley / Palm Springs area. Compensation varies by role and written agreement."
         />
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
@@ -610,11 +611,10 @@ export default function ApplyPage() {
                   What you'll actually do day-to-day
                 </h2>
                 <p className="text-muted-foreground">
-                  Select Source Water is a Home Depot authorized independent
-                  provider. As part of our in-store lead generation and field
-                  sales program, you'll represent SSW in approved Home Depot
-                  locations and local territories across Orange County, the
-                  Inland Empire, and the Coachella Valley.
+                  Select Source Water is growing its independent sales network.
+                  Opportunities may include field prospecting, appointment
+                  setting, in-home water education, closing, and market
+                  leadership depending on your background and local needs.
                 </p>
               </motion.div>
 
@@ -642,10 +642,9 @@ export default function ApplyPage() {
                 ))}
               </div>
               <p className="mt-6 text-xs text-muted-foreground max-w-3xl">
-                Select Source Water is the company hiring you. You may work
-                inside Home Depot locations as part of SSW's authorized
-                in-store lead generation program. This role is not employment
-                with The Home Depot.
+                These are 1099 independent-contractor opportunities, not W-2
+                employment. Specific territory, duties, compensation, and
+                availability are confirmed in writing before any agreement.
               </p>
             </div>
           </section>
@@ -1264,5 +1263,20 @@ export default function ApplyPage() {
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function ApplyPage() {
+  const [searchParams] = useSearchParams();
+  const isCandidateOutreach =
+    searchParams.get("campaign") === "candidate_outreach_2026" ||
+    ["dealer", "closer", "setter", "unsure"].includes(
+      searchParams.get("path") || ""
+    );
+
+  return isCandidateOutreach ? (
+    <CandidateOutreachApplyPage />
+  ) : (
+    <StandardApplyPage />
   );
 }

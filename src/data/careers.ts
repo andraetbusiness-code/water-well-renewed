@@ -1,48 +1,15 @@
 /**
  * Career listings — single source of truth for the public /careers section.
  *
- * Source: the four role PDFs supplied by Andrae (2026-07-30).
- *
- * ── DELIBERATE DEVIATIONS FROM THE PDFs ──────────────────────────────────────
- *
- * 1. Customer Engagement Representative starting pay.
- *    PDF says "$16.90–$50/hour" and lists "Starting pay: $16.90/hour" plus a
- *    tier "1 Install: $20/hour". Andrae directed starting pay to be $20.
- *    Raising the floor to $20 makes the "1 Install: $20" tier identical to the
- *    starting rate, so that row is removed rather than a new number invented.
- *    Per Andrae (2026-07-30): the public post carries the RANGE and the job
- *    details only — $20 start, up to $50 based on performance. The per-install
- *    tier ladder is deliberately NOT published; the recruiter walks through how
- *    each level is earned during the interview. Less to get wrong in writing,
- *    and the tier mechanics are a conversation, not a listing.
- *
- *    NO new earnings figure has been created anywhere. Nothing is promised that
- *    the PDF did not already promise.
- *
- * 2. Home Depot language.
- *    The PDFs say "Authorized Home Depot Provider". The locked, non-paraphrasable
- *    line in docs/outbound_agent_v1_job_post_drafts.md is:
- *      "Select Source Water is an authorized independent provider of water
- *       filtration services available through The Home Depot."
- *    Public-facing copy uses the locked line. Dropping "independent" reads as a
- *    Home Depot endorsement and is the exact thing that rule exists to prevent.
- *
- * ── UNRESOLVED, FLAGGED, NOT DECIDED HERE ────────────────────────────────────
- *
- * Also removed from the public Water Testing Specialist post: "Average customer
- * purchase: approximately $7,000-$8,000+". That is a sales-volume figure a
- * reader will read as an earnings signal on a commission role, with no
- * substantiation file behind it. Same principle as the pay tiers - the recruiter
- * covers it in conversation.
- *
- * Water Testing Specialist is commission-only. docs/legal_review_brief.md was
- * submitted specifically to get commission-only pay language approved under
- * CA Labor Code §§2751/226.2/1182.12, and its Reviewer and Decision fields are
- * still blank. `legalReviewRequired: true` marks every role whose pay copy is
- * publishing ahead of that sign-off.
+ * The original role descriptions came from SSW's July 2026 recruiting PDFs.
+ * Andrae updated the classification on 2026-09-16: every current application
+ * path is a 1099 independent-contractor opportunity. Older hourly, salary,
+ * benefits, and W-2 claims are intentionally removed. Exact compensation,
+ * territory, support, and duties must be confirmed in a written contractor
+ * agreement. `legalReviewRequired` remains visible for final business review.
  */
 
-export type PayModel = "hourly_tiered" | "commission" | "salary" | "salary_plus_bonus";
+export type PayModel = "performance" | "commission" | "project" | "leadership_override";
 
 export interface JobListing {
   slug: string;
@@ -88,51 +55,51 @@ export const JOB_LISTINGS: JobListing[] = [
   {
     slug: "customer-engagement-representative",
     title: "Customer Engagement Representative",
-    tagline: "Start conversations, book water tests, and grow your hourly rate with your results.",
-    employmentType: "Part-Time",
-    paySummary: "$20–$50/hour",
-    payModel: "hourly_tiered",
-    highlights: ["Paid training", "No experience required", "Up to 25 hrs/week"],
+    tagline: "Start conversations, book water tests, and grow through performance.",
+    employmentType: "1099 Independent Contractor",
+    paySummary: "Performance-based compensation",
+    payModel: "performance",
+    highlights: ["Training resources", "No experience required", "Flexible opportunity"],
     intro: [
-      "Looking for more than just another hourly job?",
-      "At Select Source Water, we provide the training, coaching, and support to help you succeed while giving you the opportunity to earn up to $50 per hour through hourly performance-based pay.",
+      "Looking for a performance-based sales opportunity?",
+      "At Select Source Water, we provide training, coaching, and support while giving independent representatives the opportunity to earn based on results.",
       "Select Source Water is an authorized independent provider of water filtration services available through The Home Depot. We've helped thousands of families improve the quality of their water through industry-leading filtration and water treatment systems. Now we're looking for motivated individuals who want to be part of that mission while building a rewarding career of their own.",
     ],
     whatYoullDo: {
-      lead: "As a Customer Engagement Representative, you'll be the first friendly face customers meet. Working inside Home Depot stores or in assigned neighborhoods, you'll create meaningful conversations, generate interest, and connect homeowners with the next step toward cleaner, healthier water.",
+      lead: "As a Customer Engagement Representative, you'll create meaningful conversations, generate interest, and connect homeowners with the next step toward cleaner, healthier water in approved local field markets.",
       bullets: [
-        "Start conversations with customers in-store and in assigned neighborhoods",
+        "Start conversations with homeowners in approved local field markets",
         "Educate people about common water quality concerns",
         "Answer questions about filtration and water treatment",
         "Schedule complimentary in-home water quality tests with a Water Testing Specialist",
       ],
     },
     whyYoullLoveIt: [
-      "Earn $20–$50/hour through our performance-based pay structure",
-      "Part-time schedule (up to 25 hours per week)",
-      "Paid training — no experience necessary",
-      "Performance-based raises built into the compensation plan",
+      "Performance-based compensation governed by a written agreement",
+      "Flexible schedule based on market needs",
+      "Training resources — no experience necessary",
+      "Clear performance milestones",
       "Supportive team environment with ongoing coaching",
       "Build valuable communication and sales skills",
       "Clear opportunities for advancement into leadership",
       "Represent an established company with a strong local reputation",
     ],
     compensation: {
-      heading: "Performance-Based Hourly Pay",
-      lead: "Your hourly pay increases with your results. The more installations that come from the appointments you schedule, the higher your rate.",
+      heading: "Performance-Based Compensation",
+      lead: "This is a 1099 independent-contractor opportunity. Compensation is based on results and governed by a written agreement.",
       bullets: [
-        "Starting pay: $20/hour",
-        "Up to $50/hour based on performance",
-        "Part-time, up to 25 hours per week",
+        "1099 independent-contractor classification",
+        "Performance-based earning opportunity",
+        "Terms confirmed in a written agreement before work begins",
       ],
       footnote:
-        "Your recruiter walks through the full pay tier structure and how each level is earned during the interview.",
+        "Your recruiter reviews the compensation structure and contractor agreement before any commitment.",
     },
     rightForYouIf: [
       "You enjoy talking with people and building relationships.",
       "You're energetic and don't enjoy sitting behind a desk all day.",
       "You're motivated by performance and want your income to reflect your effort.",
-      "You're looking for a part-time position with real earning potential.",
+      "You're looking for a flexible opportunity with performance-based earning potential.",
       "You're coachable, dependable, and eager to learn.",
       "You're interested in building a long-term career with opportunities for advancement.",
     ],
@@ -159,17 +126,17 @@ export const JOB_LISTINGS: JobListing[] = [
     slug: "water-testing-specialist",
     title: "Water Testing Specialist",
     tagline: "Run in-home water quality demonstrations on appointments we book for you.",
-    employmentType: "Full-Time",
+    employmentType: "1099 Independent Contractor",
     paySummary: "Commission-based",
     payModel: "commission",
-    highlights: ["Company vehicle after 60 days", "Health insurance after 90 days", "Paid training"],
+    highlights: ["Commission-based", "Training resources", "Independent field work"],
     intro: [
       "If you're driven by results, enjoy helping people, and want your income to reflect your performance, this could be the opportunity you've been looking for.",
       "As a Water Testing Specialist, you'll meet with homeowners who have already expressed interest in learning more about their home's water quality. Through professional in-home water testing and education, you'll help families understand what's in their water and recommend solutions that fit their needs.",
       "We'll provide the training, proven systems, and support you need to build a rewarding career.",
     ],
     whatYoullDo: {
-      lead: "You'll travel to customers' homes to perform professional water quality demonstrations and educate homeowners about water treatment systems. Appointments are generated by our Customer Engagement Representatives, so you can focus on building relationships and helping customers make informed decisions.",
+      lead: "You'll travel to customers' homes to perform professional water quality demonstrations and educate homeowners about water treatment systems. Opportunities may come from company marketing, independent prospecting, or customer-engagement activity depending on the market.",
       bullets: [
         "Perform live water quality demonstrations",
         "Educate homeowners on water filtration and softening solutions",
@@ -179,12 +146,12 @@ export const JOB_LISTINGS: JobListing[] = [
       ],
     },
     whyYoullLoveIt: [
-      "Qualified appointments provided by our marketing and customer engagement teams",
+      "Marketing and customer-engagement support may be available by market",
       "Comprehensive training and ongoing coaching",
       "A proven sales process that sets you up for success",
-      "Company vehicle provided after 60 days",
-      "Health insurance available after 90 days",
-      "One week of paid time off annually",
+      "Independent field opportunity",
+      "Market support and sales resources",
+      "Flexible performance-based growth path",
       "Represent an established company trusted by thousands of homeowners",
     ],
     compensation: {
@@ -193,13 +160,13 @@ export const JOB_LISTINGS: JobListing[] = [
       bullets: [
         "Commission-based earnings",
         "Tiered commission structure based on sale value",
-        "Full-time W-2 employment",
+        "1099 independent-contractor opportunity",
       ],
-      benefitsHeading: "Benefits",
+      benefitsHeading: "Support",
       benefits: [
-        "Company vehicle after 60 days",
-        "Health insurance after 90 days (company pays 50% of the premium)",
-        "One week of paid time off annually",
+        "Training resources",
+        "Sales-process support",
+        "Market-specific onboarding",
       ],
       footnote:
         "This is a commission-based role. Earnings depend on individual performance and are not guaranteed. Your recruiter reviews the full commission structure with you, and your written commission agreement governs actual pay.",
@@ -235,10 +202,10 @@ export const JOB_LISTINGS: JobListing[] = [
     slug: "water-treatment-installer",
     title: "Water Treatment Installer",
     tagline: "Install whole-home softeners, filtration, and RO systems on a consistent schedule.",
-    employmentType: "Full-Time",
-    paySummary: "$65,000–$72,000/year",
-    payModel: "salary",
-    highlights: ["Year-round work", "Professional training", "Advancement path"],
+    employmentType: "1099 Independent Contractor",
+    paySummary: "Project-based compensation",
+    payModel: "project",
+    highlights: ["Project-based work", "Training resources", "Growth path"],
     intro: [
       "At Select Source Water, we believe every installation is an opportunity to improve a family's daily life.",
       "As a Water Treatment Installer, you'll professionally install whole-home water softeners, filtration systems, and reverse osmosis systems, helping homeowners enjoy cleaner, healthier water for years to come.",
@@ -256,8 +223,8 @@ export const JOB_LISTINGS: JobListing[] = [
       ],
     },
     whyYoullLoveIt: [
-      "Competitive annual salary of $65,000–$72,000",
-      "Full-time, year-round employment",
+      "Project-based compensation governed by a written agreement",
+      "Consistent work may be available based on market demand",
       "Consistent installation schedule",
       "Professional training and ongoing support",
       "Opportunity to develop specialized technical skills",
@@ -266,13 +233,12 @@ export const JOB_LISTINGS: JobListing[] = [
     ],
     compensation: {
       heading: "Compensation",
-      bullets: ["$65,000–$72,000 annual salary", "Full-time W-2 employment"],
-      benefitsHeading: "Benefits",
+      bullets: ["1099 independent-contractor classification", "Project-based compensation"],
+      benefitsHeading: "Support",
       benefits: [
-        "Comprehensive benefits package",
-        "Professional training",
-        "Career advancement opportunities",
-        "Additional benefits provided based on company policy",
+        "Professional training resources",
+        "Installation standards and process support",
+        "Additional terms provided in the contractor agreement",
       ],
       footnote: "Specific benefit details are discussed during the interview process.",
     },
@@ -281,7 +247,7 @@ export const JOB_LISTINGS: JobListing[] = [
       "You take pride in producing quality work.",
       "You value craftsmanship and attention to detail.",
       "You enjoy working independently while serving customers.",
-      "You want a stable, full-time career with opportunities to grow.",
+      "You want an independent opportunity with room to grow.",
       "You're dependable, professional, and committed to doing the job right the first time.",
     ],
     rightForYouClosing:
@@ -307,10 +273,10 @@ export const JOB_LISTINGS: JobListing[] = [
     slug: "sales-market-manager",
     title: "Sales Market Manager",
     tagline: "Recruit, coach, and lead your own market — with real ownership of the results.",
-    employmentType: "Full-Time",
-    paySummary: "Base salary + performance bonuses",
-    payModel: "salary_plus_bonus",
-    highlights: ["Company vehicle after 60 days", "Health insurance after 90 days", "Leadership track"],
+    employmentType: "1099 Independent Contractor",
+    paySummary: "Performance-based leadership compensation",
+    payModel: "leadership_override",
+    highlights: ["Build an existing network", "Performance overrides", "Leadership path"],
     intro: [
       "Are you a leader who thrives on developing people, building high-performing teams, and driving results?",
       "At Select Source Water, our Sales Market Managers don't just manage a territory — they build it. From recruiting and coaching top talent to overseeing daily operations and achieving market growth goals, you'll play a key role in expanding our business while helping others build successful careers.",
@@ -319,10 +285,10 @@ export const JOB_LISTINGS: JobListing[] = [
     whatYoullDo: {
       lead: "You'll be responsible for the success of your assigned market — recruiting, developing, and leading a team of Customer Engagement Representatives and Water Testing Specialists while ensuring your market consistently delivers an exceptional customer experience.",
       bullets: [
-        "Recruit and hire top talent",
+        "Identify and onboard independent sales representatives",
         "Coach and develop your team for long-term success",
         "Lead daily sales and performance activities",
-        "Conduct interviews and make hiring decisions",
+        "Conduct candidate conversations and recommend qualified representatives",
         "Monitor key performance metrics and market goals",
         "Create a positive, high-performance team culture",
         "Drive revenue growth while supporting your team's professional development",
@@ -330,10 +296,10 @@ export const JOB_LISTINGS: JobListing[] = [
     },
     whyYoullLoveIt: [
       "Lead your own market with real ownership and autonomy",
-      "Competitive base salary plus performance-based override earnings",
-      "Company vehicle provided after 60 days",
-      "Health insurance available after 90 days",
-      "One week of paid time off annually",
+      "Performance-based leadership compensation",
+      "Market support and sales resources",
+      "Flexibility to organize an existing sales network",
+      "Growth tied to market and team performance",
       "Build and mentor your own team",
       "Join a growing company with expansion opportunities",
       "Direct path into regional leadership as the company continues to grow",
@@ -342,19 +308,18 @@ export const JOB_LISTINGS: JobListing[] = [
       heading: "Compensation",
       lead: "Your success is measured by the success of your team. As your market grows, so does your earning potential.",
       bullets: [
-        "Competitive annual base salary",
         "Performance-based override commissions",
-        "Salary range based on market size and maturity",
-        "Full-time W-2 employment",
+        "Compensation varies with market size and maturity",
+        "1099 independent-contractor opportunity",
       ],
-      benefitsHeading: "Benefits",
+      benefitsHeading: "Support",
       benefits: [
-        "Company vehicle after 60 days",
-        "Health insurance after 90 days (company pays 50% of the premium)",
-        "One week of paid time off annually",
+        "Market-specific onboarding",
+        "Sales-process resources",
+        "Leadership and performance support",
       ],
       footnote:
-        "Base salary and override structure are set by market and confirmed in writing during the hiring process.",
+        "The compensation and override structure are set by market and confirmed in a written contractor agreement.",
     },
     rightForYouIf: [
       "You're passionate about developing people and helping others succeed.",
@@ -397,45 +362,39 @@ export const ROLE_OPTIONS = JOB_LISTINGS.map((j) => ({
 /**
  * Role-specific compensation question for the apply form.
  *
- * The form previously asked every applicant a single W2 $20–$50/hour question.
- * That statement is only true for the Customer Engagement Representative. Asking
- * an Installer or a Water Testing Specialist to confirm a pay rate that does not
- * apply to their role puts a false pay statement in front of them and stores a
- * meaningless answer in GHL.
+ * All current opportunities are presented as 1099 independent-contractor
+ * opportunities. Exact compensation remains role- and agreement-specific.
  */
 export function compensationQuestionForRole(slug: string | undefined): string {
   switch (slug) {
     case "water-testing-specialist":
-      return "This is a full-time, commission-based W2 position with a tiered commission structure based on sale value. Does this align with your compensation goals?";
+      return "This is a 1099 independent-contractor opportunity with commission-based compensation governed by a written agreement. Does this align with what you are seeking?";
     case "water-treatment-installer":
-      return "This is a full-time W2 position with an annual salary of $65,000–$72,000. Does this align with your compensation goals?";
+      return "This is a 1099 independent-contractor opportunity with project-based compensation governed by a written agreement. Does this align with what you are seeking?";
     case "sales-market-manager":
-      return "This is a full-time W2 position with a competitive base salary plus performance-based override commissions. Does this align with your compensation goals?";
+      return "This is a 1099 independent-contractor leadership opportunity with performance-based compensation governed by a written agreement. Does this align with what you are seeking?";
     case "customer-engagement-representative":
     default:
-      return "This is a W2 position starting at $20/hour with the ability to earn up to $50/hour based on performance. Does this align with your compensation goals?";
+      return "This is a 1099 independent-contractor opportunity with performance-based compensation governed by a written agreement. Does this align with what you are seeking?";
   }
 }
 
 /**
  * Short pay statement used in the apply-page hero and the pre-submit disclaimer.
  *
- * The apply page previously stated the Customer Engagement Representative's
- * $20-$50/hour rate to every applicant, including Installers on a $65k-$72k
- * salary and Water Testing Specialists on commission. That is a false pay
- * statement to three quarters of the pipeline. This keeps it role-accurate.
+ * Short classification and compensation statement used on the apply page.
  */
 export function payStatementForRole(slug: string | undefined): string {
   switch (slug) {
     case "water-testing-specialist":
-      return "Full-time, commission-based W2 position with a tiered commission structure based on sale value. Earnings depend on performance and are not guaranteed.";
+      return "1099 independent-contractor opportunity with commission-based compensation. Earnings depend on performance and are not guaranteed.";
     case "water-treatment-installer":
-      return "Full-time W2 position with an annual salary of $65,000\u2013$72,000.";
+      return "1099 independent-contractor opportunity with project-based compensation.";
     case "sales-market-manager":
-      return "Full-time W2 position with a competitive base salary plus performance-based override commissions.";
+      return "1099 independent-contractor leadership opportunity with performance-based compensation.";
     case "customer-engagement-representative":
-      return "W2 position starting at $20/hour, with the ability to earn up to $50/hour based on performance.";
+      return "1099 independent-contractor opportunity with performance-based compensation.";
     default:
-      return "W2 positions with hourly, salary, and commission-based roles available. Pay varies by role \u2014 see the role description for details.";
+      return "1099 independent-contractor opportunities. Compensation varies by role and written agreement.";
   }
 }

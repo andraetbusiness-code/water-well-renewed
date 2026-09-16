@@ -156,8 +156,8 @@ export default function CareersPage() {
           </div>
 
           <p className="mt-10 text-xs leading-relaxed text-muted-foreground">
-            Select Source Water is an equal opportunity employer. All qualified applicants
-            will receive consideration for employment without regard to race, color,
+            Select Source Water welcomes qualified applicants for independent-contractor
+            opportunities without regard to race, color,
             religion, sex, sexual orientation, gender identity, national origin, disability,
             veteran status, or any other characteristic protected by law.
           </p>
