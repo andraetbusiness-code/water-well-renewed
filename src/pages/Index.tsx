@@ -19,15 +19,15 @@ const Index = () => {
         <title>Whole-Home Water Filtration &amp; Softening | Select Source Water</title>
         <meta name="description" content="Water testing, whole-home filtration, water softening, and reverse osmosis solutions designed around your household and water source." />
         <meta name="robots" content="index, follow, max-image-preview:large" />
-        <link rel="canonical" href="https://selectsourcewater.com/" />
+        <link rel="canonical" href="https://selectsourcewaterusa.com/" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             "name": "Select Source Water",
-            "image": "https://selectsourcewater.com/og-image.png",
-            "@id": "https://selectsourcewater.com/#organization",
-            "url": "https://selectsourcewater.com/",
+            "image": "https://selectsourcewaterusa.com/og-image.png",
+            "@id": "https://selectsourcewaterusa.com/#organization",
+            "url": "https://selectsourcewaterusa.com/",
             "telephone": "+19516124094",
             "description": "Select Source Water provides water testing, whole-home water filtration, water softening, and reverse osmosis solutions.",
             "hasOfferCatalog": {

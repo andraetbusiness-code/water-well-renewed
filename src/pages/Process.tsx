@@ -84,7 +84,7 @@ export default function Process() {
       <Helmet>
         <title>How It Works — Free Water Test to Installation | Select Source Water SoCal</title>
         <meta name="description" content="5 simple steps: free water test → custom solution → same-day installation → lifetime warranty. Serving the Inland Empire. Call (951) 612-4094 to get started." />
-        <link rel="canonical" href="https://selectsourcewater.com/process" />
+        <link rel="canonical" href="https://selectsourcewaterusa.com/process" />
       </Helmet>
       <PageHero 
         badge="5 Simple Steps"

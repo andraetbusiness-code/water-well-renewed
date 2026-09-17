@@ -35,7 +35,7 @@ export default function CityPage() {
       <Helmet>
         <title>{city.seoTitle}</title>
         <meta name="description" content={city.seoDescription} />
-        <link rel="canonical" href={`https://selectsourcewater.com/service-areas/${city.slug}`} />
+        <link rel="canonical" href={`https://selectsourcewaterusa.com/service-areas/${city.slug}`} />
       </Helmet>
 
       <Header />

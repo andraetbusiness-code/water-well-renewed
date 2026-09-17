@@ -88,7 +88,7 @@ export default function Maintenance() {
       <Helmet>
         <title>HYGIA+ System Maintenance Schedule | Select Source Water — Inland Empire</title>
         <meta name="description" content="Keep your HYGIA+ system running at peak performance. Salt checks, annual inspections, UV bulb replacement. Inland Empire hard water requires specific care. Call (951) 612-4094." />
-        <link rel="canonical" href="https://selectsourcewater.com/maintenance" />
+        <link rel="canonical" href="https://selectsourcewaterusa.com/maintenance" />
       </Helmet>
       <PageHero 
         badge="System Care"

@@ -4,7 +4,7 @@ import { dirname, join } from "node:path";
 const root = process.cwd();
 const dist = join(root, "dist");
 const source = await readFile(join(dist, "index.html"), "utf8");
-const site = "https://selectsourcewater.com";
+const site = "https://selectsourcewaterusa.com";
 
 const citySource = await readFile(join(root, "src/data/cityData.ts"), "utf8");
 const blogSource = await readFile(join(root, "src/data/blogData.ts"), "utf8");

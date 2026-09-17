@@ -40,7 +40,7 @@ export default function Blog() {
       <Helmet>
         <title>Water Quality Blog | Select Source Water California</title>
         <meta name="description" content="Expert articles on water quality, hard water solutions, and home water treatment for the Inland Empire. Tips from Select Source Water." />
-        <link rel="canonical" href="https://selectsourcewater.com/blog" />
+        <link rel="canonical" href="https://selectsourcewaterusa.com/blog" />
       </Helmet>
 
       <Header />
