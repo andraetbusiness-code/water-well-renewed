@@ -34,12 +34,12 @@ export const Hero = () => {
       <motion.div className="absolute -inset-x-8 -inset-y-20 z-0" style={reduceMotion ? undefined : { y: smoothY }}>
         <img src={heroImage} alt="Clear water flowing over smooth stones" className="h-full w-full scale-105 object-cover object-center" />
       </motion.div>
-      <div className="absolute inset-0 z-[1] bg-[#021628]/75" />
       <div
         className="absolute inset-0 z-[1]"
-        style={{ background: "linear-gradient(90deg, rgba(2,22,40,.96) 0%, rgba(3,34,59,.86) 45%, rgba(3,42,70,.56) 72%, rgba(1,20,37,.74) 100%)" }}
+        style={{ background: "linear-gradient(90deg, rgba(2,22,40,.94) 0%, rgba(3,34,59,.78) 42%, rgba(3,42,70,.38) 68%, rgba(1,20,37,.18) 100%)" }}
       />
-      <div className="absolute inset-0 z-[1] bg-[radial-gradient(circle_at_78%_39%,rgba(72,208,255,.24),transparent_30%)]" />
+      <div className="absolute inset-0 z-[1] bg-[linear-gradient(180deg,rgba(1,20,37,.12),transparent_48%,rgba(1,20,37,.32))]" />
+      <div className="absolute inset-0 z-[1] bg-[radial-gradient(circle_at_78%_39%,rgba(72,208,255,.12),transparent_34%)]" />
       <WaterParticleField count={18} className="z-[2] opacity-70" />
 
       <div className="relative z-10 mx-auto grid w-full min-w-0 max-w-[1280px] box-border items-center gap-10 px-6 pb-36 pt-32 lg:grid-cols-[1.04fr_.96fr] lg:gap-6 lg:pb-40 lg:pt-36">
