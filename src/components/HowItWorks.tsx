@@ -9,7 +9,6 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { AnimatedCounter } from "@/components/AnimatedCounter";
 
 const steps = [
   {
@@ -30,14 +29,14 @@ const steps = [
     number: "03",
     icon: Hammer,
     title: "Professional Installation",
-    description: "Our licensed technicians install your system in just one day—mess-free.",
+    description: "We coordinate professional installation and walk you through how the system works.",
     color: "from-accent/20 to-primary/25",
   },
   {
     number: "04",
     icon: ThumbsUp,
-    title: "Enjoy Pure Water",
-    description: "Experience the difference with our 5-day risk-free trial and lifetime warranty.",
+    title: "Use and Maintain Your System",
+    description: "Get clear guidance on operation, routine care, and the support available after installation.",
     color: "from-primary/25 to-water-light/40",
   },
 ];
@@ -95,10 +94,10 @@ export const HowItWorks = () => {
             Your Journey
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground mb-5">
-            Four Simple Steps to Pure Water
+            Four Simple Steps to Better Water
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Getting pure, soft water in your home is easier than you think.
+            Start with your water, understand the options, and choose the right fit for your home.
           </p>
         </motion.div>
 
@@ -210,19 +209,6 @@ export const HowItWorks = () => {
             ))}
           </div>
         </div>
-
-        {/* Stats Row — animated counters */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.8 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-3xl mx-auto"
-        >
-          <AnimatedCounter value={25} label="Years in California" suffix="+" />
-          <AnimatedCounter value={461} label="Google Reviews" suffix="+" />
-          <AnimatedCounter value="5-Day" label="Risk-Free Trial" />
-          <AnimatedCounter value="Lifetime" label="Warranty" />
-        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}

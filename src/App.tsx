@@ -74,6 +74,10 @@ const CareersRoutes = () => (
   </Routes>
 );
 
+const showRecruitingWidget =
+  window.location.pathname.startsWith("/careers") ||
+  window.location.pathname.startsWith("/apply");
+
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
@@ -81,7 +85,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter basename={import.meta.env.BASE_URL}>
-          <ChatWidget />
+          {showRecruitingWidget && <ChatWidget />}
           {isDemoSubdomain ? (
             <DemoRoutes />
           ) : isMarketingSubdomain ? (

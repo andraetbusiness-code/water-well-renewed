@@ -122,7 +122,7 @@ export default function ServiceAreas() {
           name="description"
           content="Select Source Water serves all of the Inland Empire and greater SoCal. Find your city: Beaumont, Banning, Hemet, Moreno Valley, Riverside, and more. Free water test."
         />
-        <link rel="canonical" href="https://selectsourcewatercalifornia.com/service-areas" />
+        <link rel="canonical" href="https://selectsourcewater.com/service-areas" />
       </Helmet>
 
       <Header />

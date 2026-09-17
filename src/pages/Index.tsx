@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { WaterHardnessData } from "@/components/WaterHardnessData";
+import { WaterAnswers } from "@/components/WaterAnswers";
 import { ProblemSolution } from "@/components/ProblemSolution";
 import { Services } from "@/components/Services";
 import { HowItWorks } from "@/components/HowItWorks";
@@ -15,51 +16,20 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Water Softener &amp; Filtration — Beaumont &amp; Inland Empire | Select Source Water</title>
-        <meta name="description" content="Home Depot Authorized water softener installation in Beaumont, Banning, Hemet & the Inland Empire. Free in-home water test. Lifetime warranty. Call (951) 612-4094." />
-        <link rel="canonical" href="https://selectsourcewatercalifornia.com/" />
+        <title>Whole-Home Water Filtration &amp; Softening | Select Source Water</title>
+        <meta name="description" content="Water testing, whole-home filtration, water softening, and reverse osmosis solutions designed around your household and water source." />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <link rel="canonical" href="https://selectsourcewater.com/" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             "name": "Select Source Water",
-            "image": "https://selectsourcewatercalifornia.com/og-image.png",
-            "@id": "https://selectsourcewatercalifornia.com",
-            "url": "https://selectsourcewatercalifornia.com",
+            "image": "https://selectsourcewater.com/og-image.png",
+            "@id": "https://selectsourcewater.com/#organization",
+            "url": "https://selectsourcewater.com/",
             "telephone": "+19516124094",
-            "priceRange": "$$",
-            "description": "Home Depot Authorized water softener and filtration installation serving the Inland Empire. Free in-home water test, lifetime warranty, same-day installation.",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "790 Beaumont Ave Ste 124",
-              "addressLocality": "Beaumont",
-              "addressRegion": "CA",
-              "postalCode": "92223",
-              "addressCountry": "US"
-            },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": 33.9294,
-              "longitude": -116.9776
-            },
-            "openingHoursSpecification": [
-              {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-                "opens": "08:00",
-                "closes": "18:00"
-              }
-            ],
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.7",
-              "reviewCount": "461"
-            },
-            "areaServed": [
-              "Beaumont, CA","Banning, CA","Hemet, CA","San Jacinto, CA",
-              "Moreno Valley, CA","Riverside, CA","Yucaipa, CA","Calimesa, CA",
-              "Cherry Valley, CA","Redlands, CA","Highland, CA"
-            ],
+            "description": "Select Source Water provides water testing, whole-home water filtration, water softening, and reverse osmosis solutions.",
             "hasOfferCatalog": {
               "@type": "OfferCatalog",
               "name": "Water Treatment Services",
@@ -76,6 +46,7 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
+        <WaterAnswers />
         <WaterHardnessData />
         <ProblemSolution />
         <Services />

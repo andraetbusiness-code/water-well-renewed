@@ -50,7 +50,7 @@ export default function FiltrationTechnology() {
       <Helmet>
         <title>10-Stage Water Filtration Technology | Select Source Water — Southern California</title>
         <meta name="description" content="Our 10-stage whole house system removes hard water, chlorine, chromium-6, arsenic, and more. Built for Inland Empire water conditions. Free test: (951) 612-4094." />
-        <link rel="canonical" href="https://selectsourcewatercalifornia.com/filtration-technology" />
+        <link rel="canonical" href="https://selectsourcewater.com/filtration-technology" />
       </Helmet>
 
       <PageHero 

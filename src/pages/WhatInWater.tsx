@@ -132,7 +132,7 @@ export default function WhatInWater() {
       <Helmet>
         <title>What's In Inland Empire Water? Contaminants, Hardness & Solutions | SSW SoCal</title>
         <meta name="description" content="Chromium-6 in Banning, arsenic in Hemet, 177 PPM hardness in Beaumont. Learn what's in your water and how we fix it. Free test: (951) 612-4094." />
-        <link rel="canonical" href="https://selectsourcewatercalifornia.com/what-in-water" />
+        <link rel="canonical" href="https://selectsourcewater.com/what-in-water" />
       </Helmet>
 
       <PageHero 

@@ -1,16 +1,8 @@
 /**
  * GHL Lead Connector chat widget — A2P 10DLC compliance surface.
  *
- * This domain (selectsourcewaterusa.com) serves the RECRUITING widget on every
- * page, deliberately. It is the registered Business Website for the SSW
- * Recruiting A2P brand, so GHL's compliance checker fetches it looking for THIS
- * sub-account's widget. Previously this component swapped in the customer
- * widget on non-recruiting routes, which meant a checker that executes
- * JavaScript would land on "/" and see the wrong widget.
- *
- * There are no customers to protect here: this is an internal, noindex
- * deployment. The public customer-facing site is https://selectsourcewater.com
- * and carries its own separate widget.
+ * This is the recruiting-specific widget and is mounted only on careers and
+ * application routes. Customer-facing pages must not load the recruiting chat.
  */
 
 import { useEffect } from "react";

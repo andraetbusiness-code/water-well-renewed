@@ -1,230 +1,66 @@
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { ArrowRight, Shield, Clock, Award, Droplets, Star } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, Droplets, House, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { WaveDividerLayered } from "@/components/WaveDivider";
-import { WaterParticleField } from "@/components/WaterEffects";
-import { AnimatedCounterHero } from "@/components/AnimatedCounter";
-import heroImage from "@/assets/hero-water.jpg";
+import waterSystem from "@/assets/photos/water-softener.png";
 
-// Stats for the hero row — numeric values animate, strings just display
-const stats = [
-  { value: 4.7, label: "Google Rating", suffix: " ⭐" },
-  { value: 461, label: "Verified Reviews", suffix: "+" },
-  { value: "25+", label: "California Experience", prefix: "", suffix: " Years" },
-  { value: "100–150", label: "Monthly Installs" },
-];
-
-// Word-by-word stagger animation variants
-const headlineContainer = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
-  },
-};
-
-const wordVariant = {
-  hidden: { opacity: 0, y: 28, rotateX: -20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    rotateX: 0,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-  },
+const reveal = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
 };
 
 export const Hero = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  // Parallax for the hero background image
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-
-  const rawY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const smoothY = useSpring(rawY, { stiffness: 80, damping: 20 });
-
-  const words = ["Pure", "Water,", "Naturally"];
+  const reduceMotion = useReducedMotion();
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-screen flex items-center overflow-hidden"
-    >
-      {/* Background Image with parallax */}
-      <motion.div
-        className="absolute inset-0"
-        style={{ y: smoothY }}
-        // Extend vertically so parallax doesn't show gaps
-      >
-        <img
-          src={heroImage}
-          alt="Pure water flowing"
-          className="w-full h-full object-cover scale-110"
-          style={{ transformOrigin: "center center" }}
-        />
-      </motion.div>
+    <section className="relative min-h-[92vh] overflow-hidden bg-[#061424] text-white">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_42%,rgba(39,173,255,0.22),transparent_34%),linear-gradient(135deg,#020914_0%,#071c31_52%,#082d4b_100%)]" />
+      <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.035)_1px,transparent_1px)] [background-size:54px_54px]" />
 
-      {/* Hero overlay — fixed (no parallax) */}
-      <div className="absolute inset-0 hero-overlay" />
-
-      {/* Water particle field — behind content, above overlay */}
-      <WaterParticleField count={24} className="z-[1]" />
-
-      {/* Existing decorative bubbles */}
-      <div className="absolute inset-0 z-[1]">
-        <motion.div
-          className="absolute top-1/4 right-[15%] w-4 h-6 bg-water-light/30 rounded-full blur-sm hidden md:block"
-          animate={{ y: [-10, 10, -10] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute top-1/3 right-[25%] w-3 h-4 bg-water-medium/20 rounded-full blur-sm hidden md:block"
-          animate={{ y: [10, -10, 10] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        />
-        <motion.div
-          className="absolute bottom-1/3 right-[10%] w-5 h-7 bg-primary-foreground/10 rounded-full blur-sm hidden md:block"
-          animate={{ y: [-15, 15, -15] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        />
-      </div>
-
-      {/* Content */}
-      <div className="container relative z-10 pt-28 pb-32 md:pt-36 md:pb-40">
+      <div className="container relative z-10 grid min-h-[92vh] items-center gap-12 pb-32 pt-32 lg:grid-cols-[1.05fr_.95fr] lg:pb-36 lg:pt-36">
         <div className="max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <span className="inline-flex items-center gap-2 text-water-light font-medium text-sm md:text-base mb-6">
-              <Droplets className="h-4 w-4" />
-              Trusted Since 1998 • Inland Empire, California
-            </span>
-          </motion.div>
-
-          {/* Word-by-word animated headline */}
-          <motion.h1
-            variants={headlineContainer}
-            initial="hidden"
-            animate="visible"
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif text-primary-foreground leading-[1.1] mb-6 flex flex-wrap gap-x-4 overflow-hidden"
-            style={{ perspective: 600 }}
-          >
-            {words.map((word, i) =>
-              word === "Naturally" ? (
-                <motion.span key={word} variants={wordVariant} className="relative inline-block">
-                  <span className="relative z-10">{word}</span>
-                  <motion.span
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: 0.8, delay: 0.9 }}
-                    className="absolute -bottom-2 left-0 right-0 h-3 bg-accent/40 -rotate-1 origin-left rounded-full"
-                  />
-                </motion.span>
-              ) : (
-                <motion.span key={`${word}-${i}`} variants={wordVariant} className="inline-block">
-                  {word}
-                </motion.span>
-              )
-            )}
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-lg md:text-xl text-primary-foreground/85 mb-10 max-w-xl leading-relaxed"
-          >
-            Custom water softening and filtration designed for Inland Empire homes.
-            Beaumont's tap water runs at 177 PPM — that's hard. We fix it. 5-day risk-free trial,
-            lifetime warranty, and a free water test right in your kitchen.
+          <motion.p initial="hidden" animate="visible" variants={reveal} transition={{ duration: reduceMotion ? 0 : 0.55 }} className="mb-7 inline-flex items-center gap-2 rounded-full border border-sky-300/25 bg-sky-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-sky-100">
+            <Droplets className="h-4 w-4" aria-hidden="true" />
+            Whole-home water treatment
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 mb-14"
-          >
+          <motion.h1 initial="hidden" animate="visible" variants={reveal} transition={{ duration: reduceMotion ? 0 : 0.65, delay: reduceMotion ? 0 : 0.08 }} className="max-w-4xl font-serif text-5xl leading-[0.97] tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl xl:text-[5.6rem]">
+            Better water,
+            <span className="block bg-gradient-to-r from-sky-200 via-cyan-300 to-blue-400 bg-clip-text text-transparent">designed for your home.</span>
+          </motion.h1>
+
+          <motion.p initial="hidden" animate="visible" variants={reveal} transition={{ duration: reduceMotion ? 0 : 0.6, delay: reduceMotion ? 0 : 0.16 }} className="mt-7 max-w-2xl text-lg leading-relaxed text-slate-200 md:text-xl">
+            We test your water, explain what we find, and help you choose a whole-home softening and filtration system matched to your household and water source.
+          </motion.p>
+
+          <motion.div initial="hidden" animate="visible" variants={reveal} transition={{ duration: reduceMotion ? 0 : 0.6, delay: reduceMotion ? 0 : 0.24 }} className="mt-9 flex flex-col gap-4 sm:flex-row">
             <Button size="lg" variant="hero" asChild>
-              <Link to="/free-water-test">
-                Get Your Free Water Test
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
+              <Link to="/free-water-test">Schedule a water test<ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" /></Link>
             </Button>
-            <Button size="lg" variant="heroOutline" asChild>
-              <Link to="/hygia-system">See How It Works</Link>
-            </Button>
+            <Button size="lg" variant="heroOutline" asChild><Link to="/hygia-system">Explore the HYGIA+ system</Link></Button>
           </motion.div>
 
-          {/* Trust Indicators */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="flex flex-wrap gap-4 mb-12"
-          >
-            {[
-              { icon: Shield, label: "Lifetime Warranty" },
-              { icon: Clock, label: "5-Day Risk-Free Trial" },
-              { icon: Award, label: "25+ Years in California" },
-              { icon: Star, label: "4.7 ⭐ Google Rating" },
-            ].map((item) => (
-              <div key={item.label} className="relative group">
-                <div className="absolute inset-0 bg-primary-foreground/15 backdrop-blur-sm blob-shape transition-all duration-500 group-hover:bg-primary-foreground/25" />
-                <div className="relative flex items-center gap-3 px-5 py-3">
-                  <div className="w-9 h-9 rounded-full bg-accent/90 flex items-center justify-center flex-shrink-0">
-                    <item.icon className="h-4 w-4 text-accent-foreground" />
-                  </div>
-                  <span className="font-medium text-primary-foreground text-sm whitespace-nowrap">
-                    {item.label}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </motion.div>
-
-          {/* Stats Row — animated counters */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.5 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6"
-          >
-            {stats.map((stat) => (
-              <AnimatedCounterHero
-                key={stat.label}
-                value={stat.value}
-                label={stat.label}
-                prefix={stat.prefix}
-                suffix={stat.suffix}
-              />
-            ))}
+          <motion.div initial="hidden" animate="visible" variants={reveal} transition={{ duration: reduceMotion ? 0 : 0.6, delay: reduceMotion ? 0 : 0.32 }} className="mt-10 flex flex-wrap gap-x-7 gap-y-4 border-t border-white/15 pt-6 text-sm text-slate-200">
+            <span className="flex items-center gap-2"><House className="h-4 w-4 text-cyan-300" aria-hidden="true" />Whole-home solutions</span>
+            <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-cyan-300" aria-hidden="true" />Professional installation</span>
+            <span className="flex items-center gap-2"><Droplets className="h-4 w-4 text-cyan-300" aria-hidden="true" />Water-specific recommendations</span>
           </motion.div>
         </div>
+
+        <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: reduceMotion ? 0 : 0.8, delay: reduceMotion ? 0 : 0.15 }} className="relative mx-auto w-full max-w-[580px]">
+          <motion.div aria-hidden="true" className="absolute inset-[8%] rounded-full border border-cyan-200/30 shadow-[0_0_90px_rgba(24,181,255,.22)]" animate={reduceMotion ? undefined : { rotate: 360 }} transition={{ duration: 28, repeat: Infinity, ease: "linear" }}>
+            <span className="absolute -top-1 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full bg-cyan-200 shadow-[0_0_24px_rgba(103,232,249,.9)]" />
+          </motion.div>
+          <motion.div aria-hidden="true" className="absolute inset-[15%] rounded-full border border-dashed border-sky-300/20" animate={reduceMotion ? undefined : { rotate: -360 }} transition={{ duration: 36, repeat: Infinity, ease: "linear" }} />
+          <div className="absolute inset-x-[15%] bottom-[8%] h-16 rounded-full bg-sky-400/25 blur-3xl" />
+          <motion.img src={waterSystem} alt="Select Source Water whole-home filtration and softening systems" className="relative z-10 mx-auto w-full object-contain drop-shadow-[0_32px_55px_rgba(0,0,0,.45)]" animate={reduceMotion ? undefined : { y: [0, -10, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} />
+          <div className="absolute right-[2%] top-[12%] z-20 max-w-[220px] rounded-2xl border border-white/15 bg-slate-950/65 p-4 backdrop-blur-xl">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-300">A clearer starting point</p>
+            <p className="mt-1 text-sm leading-snug text-slate-100">Test first. Then choose the treatment that fits your water.</p>
+          </div>
+        </motion.div>
       </div>
 
-      <WaveDividerLayered position="bottom" className="z-20" />
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-32 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 z-10"
-      >
-        <span className="text-xs text-primary-foreground/60 uppercase tracking-widest">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-5 h-8 rounded-full border-2 border-primary-foreground/30 flex items-start justify-center p-1.5"
-        >
-          <motion.div className="w-1 h-1.5 rounded-full bg-primary-foreground/60" />
-        </motion.div>
-      </motion.div>
     </section>
   );
 };

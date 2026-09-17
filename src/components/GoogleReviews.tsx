@@ -48,7 +48,7 @@ export const GoogleReviews = () => {
             What Our Customers Say
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground mb-3">
-            4.7 Stars Across 461+ Google Reviews
+            Experiences shared by our customers
           </h2>
           <div className="flex items-center justify-center gap-1 mb-2">
             {[...Array(5)].map((_, i) => (
@@ -79,7 +79,7 @@ export const GoogleReviews = () => {
                   <div className="font-medium text-foreground">{review.reviewer}</div>
                   <div className="text-sm text-muted-foreground">{review.date}</div>
                 </div>
-                <span className="text-xs text-muted-foreground">Verified Google Review</span>
+                <span className="text-xs text-muted-foreground">Google review</span>
               </div>
             </motion.div>
           ))}
@@ -92,12 +92,12 @@ export const GoogleReviews = () => {
           className="text-center mt-10"
         >
           <a
-            href="https://www.google.com/maps"
+            href="https://g.page/selectsourcewater"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
           >
-            Read All Reviews on Google
+            View our Google Business Profile
             <ExternalLink className="h-4 w-4" />
           </a>
         </motion.div>

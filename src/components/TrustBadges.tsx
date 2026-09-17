@@ -4,13 +4,6 @@ import { useRef } from "react";
 import homeDepotAuthorized from "@/assets/home-depot-authorized.png";
 import { WaveDivider } from "@/components/WaveDivider";
 
-const stats = [
-  { value: "25+", label: "Years of Excellence" },
-  { value: "10K+", label: "Happy Families" },
-  { value: "5-Day", label: "Risk-Free Trial" },
-  { value: "Lifetime", label: "Warranty" },
-];
-
 export const TrustBadges = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -44,40 +37,11 @@ export const TrustBadges = () => {
       <WaveDivider position="bottom" fillColor="hsl(var(--secondary) / 0.2)" variant="gentle" />
 
       <div className="container relative z-10" ref={ref}>
-        {/* Stats - flowing horizontal layout */}
-        <div className="flex flex-wrap justify-center gap-8 md:gap-16 lg:gap-24 mb-16">
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 30, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="text-center group"
-            >
-              {/* Organic underline on hover */}
-              <div className="relative inline-block">
-                <span className="block text-5xl md:text-6xl lg:text-7xl font-serif text-primary-foreground mb-2 group-hover:scale-105 transition-transform">
-                  {stat.value}
-                </span>
-                <motion.span 
-                  className="absolute -bottom-1 left-0 right-0 h-1 bg-accent/60 rounded-full origin-left"
-                  initial={{ scaleX: 0 }}
-                  animate={isInView ? { scaleX: 1 } : {}}
-                  transition={{ duration: 0.8, delay: 0.5 + index * 0.1 }}
-                />
-              </div>
-              <span className="text-sm md:text-base text-primary-foreground/70 font-medium tracking-wide">
-                {stat.label}
-              </span>
-            </motion.div>
-          ))}
-        </div>
-
         {/* Partner section - organic presentation */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           className="text-center"
         >
           <div className="inline-flex flex-col items-center">
