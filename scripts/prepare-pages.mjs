@@ -7,8 +7,12 @@ const source = await readFile(join(dist, "index.html"), "utf8");
 const site = "https://selectsourcewaterusa.com";
 
 const citySource = await readFile(join(root, "src/data/cityData.ts"), "utf8");
+const storeAreaSource = await readFile(join(root, "src/data/storeServiceAreas.ts"), "utf8");
 const blogSource = await readFile(join(root, "src/data/blogData.ts"), "utf8");
-const citySlugs = [...citySource.matchAll(/slug:\s*["']([^"']+)["']/g)].map((match) => match[1]);
+const citySlugs = [...new Set([
+  ...[...citySource.matchAll(/slug:\s*["']([^"']+)["']/g)].map((match) => match[1]),
+  ...[...storeAreaSource.matchAll(/marketSlug:\s*["']([^"']+)["']/g)].map((match) => match[1]),
+])];
 const blogSlugs = [...blogSource.matchAll(/slug:\s*["']([^"']+)["']/g)].map((match) => match[1]);
 
 const publicRoutes = [

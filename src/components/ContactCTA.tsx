@@ -9,12 +9,9 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { WaveDivider } from "@/components/WaveDivider";
+import { storeMarkets } from "@/data/storeServiceAreas";
 
-const cities = [
-  "Beaumont", "Banning", "Hemet", "San Jacinto", "Moreno Valley",
-  "Riverside", "Yucaipa", "Calimesa", "Cherry Valley", "Redlands",
-  "Highland", "Other",
-];
+const cities = [...storeMarkets.map((market) => `${market.name}, ${market.state}`), "Other"];
 
 export const ContactCTA = () => {
   const ref = useRef(null);
@@ -111,13 +108,13 @@ export const ContactCTA = () => {
                   </div>
                   <div>
                     <span className="text-sm text-primary-foreground/50 block">Service Areas</span>
-                    <span className="text-lg text-primary-foreground font-medium">Inland Empire, Southern California</span>
+                    <span className="text-lg text-primary-foreground font-medium">California & Arizona</span>
                   </div>
                 </div>
               </div>
 
               <p className="text-primary-foreground/60 text-sm">
-                Serving Beaumont, Banning, Hemet, Moreno Valley, Riverside, and all of the Inland Empire.
+                Serving 54 city markets across Southern California, Northern California, the Central Valley, and Arizona.
               </p>
 
               <div className="flex flex-wrap gap-3 pt-4">
@@ -239,7 +236,7 @@ export const ContactCTA = () => {
                     </Button>
                     
                     <p className="text-xs text-center text-muted-foreground">
-                      We'll contact you within 24 hours. No obligation â¢ No credit card â¢ 100% free.
+                      We'll contact you within 24 hours. No obligation • No credit card • 100% free.
                     </p>
                   </div>
                 </form>

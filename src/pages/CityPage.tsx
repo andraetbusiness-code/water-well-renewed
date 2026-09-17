@@ -16,11 +16,15 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import NotFound from "@/pages/NotFound";
+import { getStoreMarketBySlug } from "@/data/storeServiceAreas";
+import { StoreMarketPage } from "@/pages/StoreMarketPage";
 
 export default function CityPage() {
   const { citySlug } = useParams<{ citySlug: string }>();
   const city = citySlug ? getCityBySlug(citySlug) : undefined;
+  const storeMarket = citySlug ? getStoreMarketBySlug(citySlug) : undefined;
 
+  if (storeMarket) return <StoreMarketPage market={storeMarket} />;
   if (!city) return <NotFound />;
 
   const stateAvg = 90;

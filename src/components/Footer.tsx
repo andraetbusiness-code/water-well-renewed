@@ -17,13 +17,12 @@ const quickLinks = [
 ];
 
 const serviceAreas = [
-  { label: "Beaumont", href: "/service-areas/beaumont" },
-  { label: "Banning", href: "/service-areas/banning" },
-  { label: "Hemet", href: "/service-areas/hemet" },
-  { label: "Moreno Valley", href: "/service-areas/moreno-valley" },
-  { label: "Riverside", href: "/service-areas/riverside" },
-  { label: "San Jacinto", href: "/service-areas/san-jacinto" },
-  { label: "View All Cities", href: "/service-areas" },
+  { label: "All Service Areas", href: "/service-areas" },
+  { label: "Beaumont, CA", href: "/service-areas/beaumont-ca" },
+  { label: "Sacramento, CA", href: "/service-areas/sacramento-ca" },
+  { label: "Fresno, CA", href: "/service-areas/fresno-ca" },
+  { label: "Phoenix, AZ", href: "/service-areas/phoenix-az" },
+  { label: "Scottsdale, AZ", href: "/service-areas/scottsdale-az" },
 ];
 
 export const Footer = () => {

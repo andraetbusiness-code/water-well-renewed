@@ -13,13 +13,11 @@ const servicesItems = [
 ];
 
 const serviceAreaItems = [
-  { label: "Inland Empire Hub", href: "/service-areas" },
-  { label: "Beaumont", href: "/service-areas/beaumont" },
-  { label: "Banning", href: "/service-areas/banning" },
-  { label: "Hemet", href: "/service-areas/hemet" },
-  { label: "Moreno Valley", href: "/service-areas/moreno-valley" },
-  { label: "Riverside", href: "/service-areas/riverside" },
-  { label: "View All Cities", href: "/service-areas" },
+  { label: "All Service Areas", href: "/service-areas" },
+  { label: "Southern California", href: "/service-areas/beaumont-ca" },
+  { label: "Northern California", href: "/service-areas/sacramento-ca" },
+  { label: "Central Valley", href: "/service-areas/fresno-ca" },
+  { label: "Arizona", href: "/service-areas/phoenix-az" },
 ];
 
 interface DropdownProps {
