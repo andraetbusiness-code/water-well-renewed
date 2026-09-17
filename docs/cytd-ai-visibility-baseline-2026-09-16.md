@@ -126,3 +126,18 @@ Before the replacement is published, the remaining high-value work is:
 ## Baseline conclusion
 
 The old `.com` site currently performs slightly better in CYTD's diagnostic because its business category is understandable, but both domains have weak reported AI visibility. The replacement should keep the old site's correct residential identity while adding the new site's technical structure, answer-first content, and cleaner entity signals.
+
+## Post-publication rerun
+
+The redesigned site was published to `selectsourcewaterusa.com` on September 16, 2026. Live verification confirmed:
+
+- HTTP 200 from GitHub Pages
+- `.usa` canonical and Open Graph URLs
+- `.usa` sitemap reference in `robots.txt`
+- crawler access for major search and AI user agents
+- public `https://selectsourcewaterusa.com/llms.txt` with the correct residential SSW identity
+- the revised visual design and brighter original water splash
+
+CYTD was then run again for both `selectsourcewaterusa.com` and `www.selectsourcewaterusa.com`. Both attempts returned the same prior **10 / 100** industrial/oil-and-gas report. The returned report still claimed that `llms.txt` was absent and repeated the same industrial buyer questions, contradicting the live site verified immediately before the rerun.
+
+**Conclusion:** CYTD served a cached or incorrectly normalized report and did not provide a fresh post-publication measurement. Do not treat the repeated 10 / 100 result as a measurement of the redesigned live site. Recheck after CYTD's cache or crawl window refreshes.
