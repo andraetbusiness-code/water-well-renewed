@@ -5,7 +5,7 @@ import { Phone, MapPin, Clock, Shield, CheckCircle, Droplets, ArrowRight } from 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 const benefits = [
@@ -17,6 +17,24 @@ const benefits = [
   "Takes about 20 minutes",
 ];
 
+// GoHighLevel inbound-webhook endpoint for the SoCal sub-account.
+// Submissions create/update a contact and fire the speed-to-lead workflow.
+const LEAD_WEBHOOK_URL =
+  "https://services.leadconnectorhq.com/hooks/MHBfuP1d3M2C7IssHXZD/webhook-trigger/a43c8be8-17d3-4ec2-aa5a-e82ed406bc78";
+
+// Attribution params we capture from the landing URL (Google Ads auto-tagging + UTMs)
+// so booked tests can be traced back to the ad that drove them.
+const ATTRIBUTION_KEYS = [
+  "gclid",
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_term",
+  "utm_content",
+] as const;
+
+type Attribution = Partial<Record<(typeof ATTRIBUTION_KEYS)[number], string>>;
+
 const FreeWaterTest = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -27,15 +45,64 @@ const FreeWaterTest = () => {
   });
   const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Capture attribution once on mount and keep it even if the user later
+  // navigates within the SPA (the query string can be stripped by the router).
+  const attribution = useRef<Attribution>({});
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const captured: Attribution = {};
+      ATTRIBUTION_KEYS.forEach((key) => {
+        const value = params.get(key);
+        if (value) captured[key] = value;
+      });
+      attribution.current = captured;
+    } catch {
+      // window/URL not available — ignore, attribution stays empty
+    }
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submitting) return;
     setSubmitting(true);
-    // Simulate submission
-    setTimeout(() => {
-      toast.success("Thank you! We'll contact you within 24 hours to schedule your free water test.");
+
+    const trimmedName = formData.name.trim();
+    const [firstName, ...rest] = trimmedName.split(/\s+/);
+    const lastName = rest.join(" ");
+
+    const payload = {
+      full_name: trimmedName,
+      first_name: firstName || trimmedName,
+      last_name: lastName,
+      phone: formData.phone.trim(),
+      email: formData.email.trim(),
+      address: formData.address.trim(),
+      message: formData.message.trim(),
+      source: "website - free water test",
+      page_url: typeof window !== "undefined" ? window.location.href : "",
+      ...attribution.current,
+    };
+
+    try {
+      const res = await fetch(LEAD_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error(`Request failed with status ${res.status}`);
+
+      toast.success(
+        "Thank you! We'll contact you within 24 hours to schedule your free water test."
+      );
       setFormData({ name: "", phone: "", email: "", address: "", message: "" });
+    } catch (err) {
+      toast.error(
+        "Sorry — something went wrong sending your request. Please call us at (951) 612-4094 and we'll get you scheduled."
+      );
+    } finally {
       setSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -43,7 +110,7 @@ const FreeWaterTest = () => {
       <Helmet>
         <title>Free Water Test | Inland Empire Home Water Analysis | Select Source Water</title>
         <meta name="description" content="Schedule a free in-home water test in the Inland Empire. We test for hardness, TDS, Chromium-6, and more. No cost, no obligation. Call (951) 612-4094." />
-        <link rel="canonical" href="https://selectsourcewatercalifornia.com/free-water-test" />
+        <link rel="canonical" href="https://selectsourcewaterusa.com/free-water-test" />
       </Helmet>
 
       <PageHero
