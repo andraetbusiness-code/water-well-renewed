@@ -3,6 +3,7 @@ import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { ChevronDown, MessageCircle, Droplets } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import waterGuideCharacter from "@/assets/photos/authentic/ssw-water-guide-character.jpg";
 
 const faqs = [
   {
@@ -131,29 +132,38 @@ export const FAQ = () => {
         </div>
         
         <div className="container relative" ref={ref}>
-          <div className="max-w-4xl mx-auto">
+          <div className="mx-auto grid max-w-6xl items-start gap-14 lg:grid-cols-[.42fr_.58fr] lg:gap-20">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7 }}
-              className="text-center mb-16"
+              className="lg:sticky lg:top-28"
             >
-              <div className="inline-flex items-center gap-2 text-primary font-medium text-sm uppercase tracking-wider mb-4">
+              <div className="mb-4 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-primary">
                 <MessageCircle className="h-4 w-4" />
                 <span>FAQ</span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground mb-5">
-                Questions? We've Got Answers
+              <h2 className="mb-5 font-serif text-3xl text-foreground md:text-4xl lg:text-5xl">
+                Water questions, made clearer.
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Everything Inland Empire homeowners ask us before scheduling their free water test.
+              <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">
+                Straightforward answers to the questions homeowners ask before scheduling a water assessment.
               </p>
+
+              <div className="relative mt-8 overflow-hidden rounded-[1.75rem] shadow-[0_22px_55px_rgba(25,69,96,.18)]">
+                <img src={waterGuideCharacter} alt="Animated water glass guide in a home kitchen" className="aspect-[16/10] w-full object-cover" />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#061d31]/90 via-[#061d31]/45 to-transparent p-6 pt-16 text-white">
+                  <p className="font-serif text-xl">Start with what you notice at home.</p>
+                  <p className="mt-1 text-sm text-white/75">Taste, spots, scale, or something else—we'll help you sort through it.</p>
+                </div>
+              </div>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.2 }}
+              className="rounded-[2rem] border border-border/60 bg-white/80 px-6 shadow-[0_18px_55px_rgba(23,63,88,.08)] backdrop-blur sm:px-8"
             >
               {faqs.map((faq, index) => (
                 <FAQItem
@@ -164,15 +174,8 @@ export const FAQ = () => {
                   onToggle={() => setOpenIndex(openIndex === index ? null : index)}
                 />
               ))}
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="mt-12 text-center"
-            >
-              <div className="inline-flex items-center gap-3 px-6 py-4 rounded-full bg-secondary/50">
+              <div className="py-8 text-center">
+                <div className="inline-flex flex-wrap items-center justify-center gap-2 rounded-full bg-secondary/60 px-5 py-3 text-sm sm:text-base">
                 <Droplets className="h-5 w-5 text-primary" />
                 <span className="text-foreground">
                   Still have questions?{" "}
@@ -182,6 +185,7 @@ export const FAQ = () => {
                   {" "}or{" "}
                   <a href="#contact" className="text-primary font-medium hover:underline">contact us online</a>
                 </span>
+                </div>
               </div>
             </motion.div>
           </div>
