@@ -123,11 +123,11 @@ export const Footer = () => {
                 </div>
                 <span>(833) 422-7765</span>
               </a>
-              <a href="mailto:info@selectsourcewatercalifornia.com" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors group text-sm">
+              <a href="mailto:info@selectsourcewater.com" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors group text-sm">
                 <div className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
                   <Mail className="h-4 w-4" />
                 </div>
-                <span className="break-all">info@selectsourcewatercalifornia.com</span>
+                <span className="break-all">info@selectsourcewater.com</span>
               </a>
               <div className="flex items-center gap-3 text-primary-foreground/70 text-sm">
                 <div className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center">

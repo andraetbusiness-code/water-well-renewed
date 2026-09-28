@@ -38,7 +38,7 @@ const TermsOfService = () => (
           Select Source Water LLC<br />
           790 Beaumont Ave Ste 124, Beaumont, CA 92223<br />
           Phone: <a href="tel:+18334227765">(833) 422-7765</a><br />
-          Email: <a href="mailto:info@selectsourcewatercalifornia.com">info@selectsourcewatercalifornia.com</a>
+          Email: <a href="mailto:info@selectsourcewater.com">info@selectsourcewater.com</a>
         </p>
       </div>
     </section>

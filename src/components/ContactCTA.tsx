@@ -86,7 +86,7 @@ export const ContactCTA = () => {
                   </div>
                 </a>
                 
-                <a href="mailto:info@selectsourcewatercalifornia.com" className="flex items-center gap-5 group">
+                <a href="mailto:info@selectsourcewater.com" className="flex items-center gap-5 group">
                   <div className="relative">
                     <div className="absolute inset-0 bg-primary/20 rounded-full blur-lg group-hover:blur-xl transition-all" />
                     <div className="relative w-14 h-14 rounded-full bg-primary-foreground/10 flex items-center justify-center group-hover:bg-primary-foreground/20 transition-colors">
@@ -95,7 +95,7 @@ export const ContactCTA = () => {
                   </div>
                   <div>
                     <span className="text-sm text-primary-foreground/50 block">Email Us</span>
-                    <span className="text-lg text-primary-foreground font-medium group-hover:text-accent transition-colors">info@selectsourcewatercalifornia.com</span>
+                    <span className="text-lg text-primary-foreground font-medium group-hover:text-accent transition-colors">info@selectsourcewater.com</span>
                   </div>
                 </a>
                 
