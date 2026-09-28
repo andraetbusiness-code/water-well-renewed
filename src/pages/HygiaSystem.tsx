@@ -77,7 +77,7 @@ export default function HygiaSystem() {
     <PageLayout>
       <Helmet>
         <title>HYGIA+ Whole House Water Filtration System | Select Source Water — Inland Empire</title>
-        <meta name="description" content="The HYGIA+ system removes hard water, chlorine, and contaminants from every tap. Home Depot Authorized installation. Lifetime warranty. Free test: (951) 612-4094." />
+        <meta name="description" content="The HYGIA+ system removes hard water, chlorine, and contaminants from every tap. Home Depot Authorized installation. Lifetime warranty. Free test: (833) 422-7765." />
         <link rel="canonical" href="https://selectsourcewaterusa.com/hygia-system" />
       </Helmet>
 
@@ -236,9 +236,9 @@ export default function HygiaSystem() {
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <a href="tel:+19516124094" className="gap-2">
+                  <a href="tel:+18334227765" className="gap-2">
                     <Phone className="h-4 w-4" />
-                    (951) 612-4094
+                    (833) 422-7765
                   </a>
                 </Button>
               </div>

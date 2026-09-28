@@ -87,7 +87,7 @@ export default function Maintenance() {
     <PageLayout>
       <Helmet>
         <title>HYGIA+ System Maintenance Schedule | Select Source Water — Inland Empire</title>
-        <meta name="description" content="Keep your HYGIA+ system running at peak performance. Salt checks, annual inspections, UV bulb replacement. Inland Empire hard water requires specific care. Call (951) 612-4094." />
+        <meta name="description" content="Keep your HYGIA+ system running at peak performance. Salt checks, annual inspections, UV bulb replacement. Inland Empire hard water requires specific care. Call (833) 422-7765." />
         <link rel="canonical" href="https://selectsourcewaterusa.com/maintenance" />
       </Helmet>
       <PageHero 
@@ -288,9 +288,9 @@ export default function Maintenance() {
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <a href="tel:+19516124094" className="gap-2">
+                <a href="tel:+18334227765" className="gap-2">
                   <Phone className="h-4 w-4" />
-                  (951) 612-4094
+                  (833) 422-7765
                 </a>
               </Button>
             </div>

@@ -423,7 +423,7 @@ function StandardApplyPage() {
       toast({
         title: "Something went wrong",
         description:
-          "We couldn't submit your application. Please try again, or text (951) 612-4094.",
+          "We couldn't submit your application. Please try again, or text (833) 422-7765.",
         variant: "destructive",
       });
       return;
@@ -1241,11 +1241,11 @@ function StandardApplyPage() {
           </div>
           <div className="flex items-center gap-4">
             <a
-              href="tel:9516124094"
+              href="tel:8334227765"
               className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"
             >
               <Phone className="h-3.5 w-3.5" />
-              (951) 612-4094
+              (833) 422-7765
             </a>
             <a
               href="/privacy-policy.html"

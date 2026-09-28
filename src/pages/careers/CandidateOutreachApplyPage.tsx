@@ -198,7 +198,7 @@ export default function CandidateOutreachApplyPage() {
     if (!result.ok) {
       toast({
         title: "We couldn't submit your information",
-        description: "Please try again or call Select Source Water at (951) 612-4094.",
+        description: "Please try again or call Select Source Water at (833) 422-7765.",
         variant: "destructive",
       });
       return;
@@ -350,7 +350,7 @@ export default function CandidateOutreachApplyPage() {
       <footer className="border-t border-border/60 px-4 py-8">
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 text-sm text-muted-foreground sm:flex-row">
           <div>© {new Date().getFullYear()} Select Source Water. All rights reserved.</div>
-          <a href="tel:9516124094" className="inline-flex items-center gap-1.5 hover:text-foreground"><Phone className="h-3.5 w-3.5" />(951) 612-4094</a>
+          <a href="tel:8334227765" className="inline-flex items-center gap-1.5 hover:text-foreground"><Phone className="h-3.5 w-3.5" />(833) 422-7765</a>
         </div>
       </footer>
     </div>
