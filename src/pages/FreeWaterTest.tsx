@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { toast } from "sonner";
+import { Checkbox } from "@/components/ui/checkbox";
+import { submitLead, SMS_CONSENT_TEXT } from "@/lib/leadSubmit";
 
 const benefits = [
   "Complete TDS & hardness analysis",
@@ -24,18 +26,34 @@ const FreeWaterTest = () => {
     email: "",
     address: "",
     message: "",
+    smsConsent: false,
   });
   const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    // Simulate submission
-    setTimeout(() => {
+
+    const [firstName, ...rest] = formData.name.trim().split(/\s+/);
+    const result = await submitLead({
+      first_name: firstName || formData.name.trim(),
+      last_name: rest.join(" "),
+      email: formData.email,
+      phone: formData.phone,
+      address: formData.address,
+      message: formData.message,
+      form: "free_water_test",
+      sms_consent: formData.smsConsent,
+    });
+
+    if (result.ok) {
       toast.success("Thank you! We'll contact you within 24 hours to schedule your free water test.");
-      setFormData({ name: "", phone: "", email: "", address: "", message: "" });
-      setSubmitting(false);
-    }, 1000);
+      setFormData({ name: "", phone: "", email: "", address: "", message: "", smsConsent: false });
+    } else {
+      // Never tell someone we received their request when we did not.
+      toast.error("Sorry, we couldn't submit that. Please call us at (833) 422-7765 and we'll get you scheduled.");
+    }
+    setSubmitting(false);
   };
 
   return (
@@ -99,6 +117,23 @@ const FreeWaterTest = () => {
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows={3}
                 />
+                <div className="flex items-start gap-3 rounded-lg bg-muted/40 p-3">
+                  <Checkbox
+                    id="smsConsent"
+                    checked={formData.smsConsent}
+                    onCheckedChange={(checked) =>
+                      setFormData({ ...formData, smsConsent: checked === true })
+                    }
+                    className="mt-0.5"
+                  />
+                  <label htmlFor="smsConsent" className="text-xs leading-relaxed text-muted-foreground cursor-pointer">
+                    {SMS_CONSENT_TEXT}{" "}
+                    See our{" "}
+                    <a href="/privacy-policy.html" className="underline hover:text-primary">Privacy Policy</a>{" "}and{" "}
+                    <a href="/sms-terms.html" className="underline hover:text-primary">SMS Terms</a>.
+                  </label>
+                </div>
+
                 <Button type="submit" size="lg" className="w-full" disabled={submitting}>
                   {submitting ? "Submitting..." : "Schedule My Free Test"}
                   <ArrowRight className="ml-2 h-5 w-5" />
