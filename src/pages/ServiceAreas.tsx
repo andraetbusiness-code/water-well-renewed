@@ -41,7 +41,7 @@ export default function ServiceAreas() {
             <p className="mx-auto mb-8 max-w-3xl text-lg text-muted-foreground">Select Source Water serves homeowners across 54 city markets anchored by 72 verified Home Depot trade-area references. Find your nearest market and schedule a free in-home water test directly with our team.</p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <Button asChild size="lg" variant="hero"><Link to="/free-water-test">Schedule Your Free Water Test<ArrowRight className="ml-2 h-5 w-5" /></Link></Button>
-              <Button asChild size="lg" variant="heroOutline" className="border-primary/30 text-foreground hover:bg-primary/10"><a href="tel:+19516124094"><Phone className="mr-2 h-5 w-5" />(951) 612-4094</a></Button>
+              <Button asChild size="lg" variant="heroOutline" className="border-primary/30 text-foreground hover:bg-primary/10"><a href="tel:+18334227765"><Phone className="mr-2 h-5 w-5" />(833) 422-7765</a></Button>
             </div>
           </motion.div>
         </div>
@@ -78,7 +78,7 @@ export default function ServiceAreas() {
           );
         })}
       </div></div></section>
-      <section className="bg-background py-16"><div className="container text-center"><h2 className="mb-4 font-serif text-2xl text-foreground md:text-3xl">Outside a listed market?</h2><p className="mx-auto mb-6 max-w-2xl text-muted-foreground">Coverage is confirmed by address. Call our team and we’ll check availability for your home.</p><Button asChild variant="hero" size="lg"><a href="tel:+19516124094"><Phone className="mr-2 h-5 w-5" />Call (951) 612-4094</a></Button></div></section>
+      <section className="bg-background py-16"><div className="container text-center"><h2 className="mb-4 font-serif text-2xl text-foreground md:text-3xl">Outside a listed market?</h2><p className="mx-auto mb-6 max-w-2xl text-muted-foreground">Coverage is confirmed by address. Call our team and we’ll check availability for your home.</p><Button asChild variant="hero" size="lg"><a href="tel:+18334227765"><Phone className="mr-2 h-5 w-5" />Call (833) 422-7765</a></Button></div></section>
       <ContactCTA />
       <Footer />
     </>

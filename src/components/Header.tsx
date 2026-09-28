@@ -154,13 +154,13 @@ export const Header = () => {
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-4">
               <a
-                href="tel:+19516124094"
+                href="tel:+18334227765"
                 className="flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
               >
                 <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
                   <Phone className="h-4 w-4" />
                 </div>
-                <span>(951) 612-4094</span>
+                <span>(833) 422-7765</span>
               </a>
               <Button variant="default" size="sm" asChild>
                 <Link to="/free-water-test">Free Water Test</Link>
@@ -272,13 +272,13 @@ export const Header = () => {
                 className="mt-8 pt-8 border-t border-border"
               >
                 <a
-                  href="tel:+19516124094"
+                  href="tel:+18334227765"
                   className="flex items-center gap-3 text-lg font-medium text-primary mb-6"
                 >
                   <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
                     <Phone className="h-5 w-5" />
                   </div>
-                  <span>(951) 612-4094</span>
+                  <span>(833) 422-7765</span>
                 </a>
                 <Button variant="hero" size="lg" className="w-full" asChild>
                   <Link to="/free-water-test" onClick={closeMobile}>

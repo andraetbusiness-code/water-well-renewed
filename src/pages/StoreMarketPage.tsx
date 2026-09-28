@@ -43,7 +43,7 @@ export function StoreMarketPage({ market }: { market: StoreMarket }) {
             <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground">Select Source Water serves homeowners in and around {market.name} with free in-home water testing, whole-home filtration options, professional installation, and ongoing support.</p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <Button asChild size="lg" variant="hero"><Link to="/free-water-test">Schedule a Free Water Test<ArrowRight className="ml-2 h-5 w-5" /></Link></Button>
-              <Button asChild size="lg" variant="heroOutline" className="border-primary/30 text-foreground hover:bg-primary/10"><a href="tel:+19516124094"><Phone className="mr-2 h-5 w-5" />(951) 612-4094</a></Button>
+              <Button asChild size="lg" variant="heroOutline" className="border-primary/30 text-foreground hover:bg-primary/10"><a href="tel:+18334227765"><Phone className="mr-2 h-5 w-5" />(833) 422-7765</a></Button>
             </div>
           </motion.div>
         </div>

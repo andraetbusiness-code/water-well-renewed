@@ -28,7 +28,7 @@ const Index = () => {
             "image": "https://selectsourcewaterusa.com/og-image.png",
             "@id": "https://selectsourcewaterusa.com/#organization",
             "url": "https://selectsourcewaterusa.com/",
-            "telephone": "+19516124094",
+            "telephone": "+18334227765",
             "description": "Select Source Water provides water testing, whole-home water filtration, water softening, and reverse osmosis solutions.",
             "hasOfferCatalog": {
               "@type": "OfferCatalog",
