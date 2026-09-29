@@ -50,8 +50,13 @@ const privateRoutes = [
   "demo/hygia-plus",
 ];
 
+// GitHub Pages serves each route from <route>/index.html and 301s the
+// slash-less URL to the trailing-slash one. Canonicals and the sitemap must
+// name the URL that actually returns 200, or Google sees a redirecting canonical.
+const pageUrl = (route) => (route ? `${site}/${route}/` : `${site}/`);
+
 function withCanonical(html, route) {
-  const canonical = `${site}/${route}`;
+  const canonical = pageUrl(route);
   const pageName = route
     .split("/")
     .at(-1)
@@ -89,10 +94,23 @@ const legacyRedirects = {
   "water-test": "free-water-test",
   "contact": "free-water-test",
   "blogs": "blog",
+  // Pages Google still has indexed from the Webflow site (checked 2026-09-28).
+  "about-us": "about",
+  "licenses": "about",
+  "warranty": "maintenance",
+  "request-service": "maintenance",
+  "referral": "free-water-test",
+  // Webflow articles. Each points to the closest equivalent page until the
+  // original article is restored on the new site.
+  "post/water-softener-installation-cost-southern-california-2026": "blog/water-filtration-cost-inland-empire",
+  "post/best-water-softener-sacramento": "service-areas/sacramento-ca",
+  "post/water-softener-vs-water-conditioner-which-is-best-for-sacramento-homes": "service-areas/sacramento-ca",
+  "post/sensitive-skin-in-pomona-how-your-water-quality-could-be-making-it-worse": "blog/hard-water-inland-empire-what-you-need-to-know",
+  "post/water-filtration-for-desert-homes-best-water-treatment-options-for-coachella-valley": "service-areas/indio-ca",
 };
 
 async function writeRedirect(fromRoute, toRoute) {
-  const target = `${site}/${toRoute}`;
+  const target = pageUrl(toRoute);
   const html = `<!doctype html>
 <html lang="en">
   <head>
@@ -118,10 +136,11 @@ await Promise.all(
   Object.entries(legacyRedirects).map(([from, to]) => writeRedirect(from, to)),
 );
 
+const buildDate = new Date().toISOString().slice(0, 10);
 const sitemapRoutes = ["", ...publicRoutes].filter((route) => !route.startsWith("careers/"));
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemapRoutes.map((route) => `  <url><loc>${site}/${route}</loc></url>`).join("\n")}
+${sitemapRoutes.map((route) => `  <url><loc>${pageUrl(route)}</loc><lastmod>${buildDate}</lastmod></url>`).join("\n")}
 </urlset>
 `;
 await writeFile(join(dist, "sitemap.xml"), sitemap);

@@ -120,7 +120,27 @@ async function run() {
           },
           { timeout: 20000 },
         );
-        const html = await page.evaluate(() => "<!DOCTYPE html>\n" + document.documentElement.outerHTML);
+        const html = await page.evaluate(() => {
+          // react-helmet adds its own description/canonical/og:url next to the
+          // shell's defaults. Keep one of each: the page-specific Helmet tag.
+          for (const sel of ['meta[name="description"]', 'link[rel="canonical"]', 'meta[property="og:url"]', 'meta[property="og:title"]', 'meta[property="og:description"]']) {
+            const tags = [...document.head.querySelectorAll(sel)];
+            if (tags.length > 1) {
+              const keep = tags.find((t) => t.hasAttribute("data-rh")) ?? tags[tags.length - 1];
+              for (const t of tags) if (t !== keep) t.remove();
+            }
+          }
+          // Match the URL GitHub Pages actually serves (trailing slash).
+          for (const sel of ['link[rel="canonical"]', 'meta[property="og:url"]']) {
+            const el = document.head.querySelector(sel);
+            if (!el) continue;
+            const attr = el.tagName === "LINK" ? "href" : "content";
+            const url = new URL(el.getAttribute(attr));
+            if (!url.pathname.endsWith("/")) url.pathname += "/";
+            el.setAttribute(attr, url.toString());
+          }
+          return "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+        });
         await writeFile(item.abs, html);
         done += 1;
       } catch (err) {

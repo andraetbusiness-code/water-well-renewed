@@ -15,7 +15,6 @@ const stateNames = { CA: "California", AZ: "Arizona" } as const;
 export function StoreMarketPage({ market }: { market: StoreMarket }) {
   const stateName = stateNames[market.state];
   const canonical = `https://selectsourcewater.com/service-areas/${market.slug}`;
-  const storeLabel = market.stores.length === 1 ? "store-area reference" : "store-area references";
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -49,6 +48,21 @@ export function StoreMarketPage({ market }: { market: StoreMarket }) {
         </div>
       </section>
       <TrustBar />
+      <StoreReferences market={market} />
+      <section className="bg-secondary/30 py-16 md:py-20"><div className="container"><div className="mx-auto max-w-4xl">
+        <h2 className="mb-8 text-center font-serif text-2xl text-foreground md:text-3xl">What homeowners can schedule</h2>
+        <div className="grid gap-4 sm:grid-cols-2">{["A free in-home water test at your address", "Whole-home filtration and softening recommendations", "Professional installation options", "Product guidance based on your household's needs", "Warranty and continuing service support", "Direct scheduling without relying on store staffing"].map((item) => <div key={item} className="flex items-start gap-3 rounded-xl border border-border bg-card p-4"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><p className="text-sm text-foreground">{item}</p></div>)}</div>
+        <div className="mt-8 flex items-start gap-3 rounded-xl border border-primary/20 bg-primary/5 p-5 text-sm text-muted-foreground"><ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><p>Select Source Water is an Authorized Independent Provider for Home Depot Home Services. Service eligibility is confirmed by address when you schedule.</p></div>
+      </div></div></section>
+      <ContactCTA />
+      <Footer />
+    </>
+  );
+}
+
+export function StoreReferences({ market }: { market: StoreMarket }) {
+  const storeLabel = market.stores.length === 1 ? "store-area reference" : "store-area references";
+  return (
       <section className="bg-background py-16 md:py-24">
         <div className="container"><div className="mx-auto max-w-5xl">
           <div className="mb-10 text-center">
@@ -70,13 +84,5 @@ export function StoreMarketPage({ market }: { market: StoreMarket }) {
           </div>
         </div></div>
       </section>
-      <section className="bg-secondary/30 py-16 md:py-20"><div className="container"><div className="mx-auto max-w-4xl">
-        <h2 className="mb-8 text-center font-serif text-2xl text-foreground md:text-3xl">What homeowners can schedule</h2>
-        <div className="grid gap-4 sm:grid-cols-2">{["A free in-home water test at your address", "Whole-home filtration and softening recommendations", "Professional installation options", "Product guidance based on your household's needs", "Warranty and continuing service support", "Direct scheduling without relying on store staffing"].map((item) => <div key={item} className="flex items-start gap-3 rounded-xl border border-border bg-card p-4"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><p className="text-sm text-foreground">{item}</p></div>)}</div>
-        <div className="mt-8 flex items-start gap-3 rounded-xl border border-primary/20 bg-primary/5 p-5 text-sm text-muted-foreground"><ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><p>Select Source Water is an Authorized Independent Provider for Home Depot Home Services. Service eligibility is confirmed by address when you schedule.</p></div>
-      </div></div></section>
-      <ContactCTA />
-      <Footer />
-    </>
   );
 }
