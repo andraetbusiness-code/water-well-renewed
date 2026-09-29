@@ -17,15 +17,16 @@ import {
 } from "@/components/ui/accordion";
 import NotFound from "@/pages/NotFound";
 import { getStoreMarketBySlug } from "@/data/storeServiceAreas";
-import { StoreMarketPage } from "@/pages/StoreMarketPage";
+import { StoreMarketPage, StoreReferences } from "@/pages/StoreMarketPage";
 
 export default function CityPage() {
   const { citySlug } = useParams<{ citySlug: string }>();
   const city = citySlug ? getCityBySlug(citySlug) : undefined;
   const storeMarket = citySlug ? getStoreMarketBySlug(citySlug) : undefined;
 
-  if (storeMarket) return <StoreMarketPage market={storeMarket} />;
-  if (!city) return <NotFound />;
+  // Rich water-quality pages win over the thinner store-reference template.
+  // When a city has both, the store references render inside the city page.
+  if (!city) return storeMarket ? <StoreMarketPage market={storeMarket} /> : <NotFound />;
 
   const stateAvg = 90;
   const ratio = (city.hardnessPPM / stateAvg).toFixed(1);
@@ -34,12 +35,46 @@ export default function CityPage() {
     .map((slug) => cityData[slug])
     .filter(Boolean);
 
+  const pageUrl = `https://selectsourcewater.com/service-areas/${city.slug}/`;
+  const placeName = city.slug === "inland-empire" ? city.name : `${city.name}, CA`;
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: `Water Softener & Filtration in ${placeName}`,
+      serviceType: ["In-home water testing", "Whole-home water filtration", "Water softener installation"],
+      provider: { "@id": "https://selectsourcewater.com/#organization", "@type": "LocalBusiness", name: "Select Source Water", telephone: "+18334227765", url: "https://selectsourcewater.com/" },
+      areaServed: { "@type": city.slug === "inland-empire" ? "Place" : "City", name: placeName },
+      url: pageUrl,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://selectsourcewater.com/" },
+        { "@type": "ListItem", position: 2, name: "Service Areas", item: "https://selectsourcewater.com/service-areas/" },
+        { "@type": "ListItem", position: 3, name: placeName, item: pageUrl },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        { "@type": "Question", name: `How hard is ${city.name}'s water?`, acceptedAnswer: { "@type": "Answer", text: `${city.name}'s tap water measures approximately ${city.hardnessPPM} PPM (${city.hardnessGPG} GPG), which is classified as ${city.hardnessLevel.toLowerCase()}. The national average is around 60–70 PPM, and California's state average is approximately 90 PPM. ${city.name}'s water is ${ratio}x the state average.` } },
+        { "@type": "Question", name: `What contaminants are in ${city.name}'s water?`, acceptedAnswer: { "@type": "Answer", text: city.faqContaminantAnswer } },
+        { "@type": "Question", name: `How much does a water softener cost in ${city.name}?`, acceptedAnswer: { "@type": "Answer", text: "Every home is different — water hardness, household size, and water usage all factor into the right system size. That's why we start with a free in-home water test. After testing, we'll give you a transparent quote with no pressure. Call (833) 422-7765 or schedule online." } },
+        { "@type": "Question", name: `How long does installation take in ${city.name}?`, acceptedAnswer: { "@type": "Answer", text: "Most installations are completed in a single day. Our technicians are licensed, trained, and equipped to install the HYGIA+ system with minimal disruption to your home." } },
+      ],
+    },
+  ];
+
   return (
     <>
       <Helmet>
         <title>{city.seoTitle}</title>
         <meta name="description" content={city.seoDescription} />
-        <link rel="canonical" href={`https://selectsourcewater.com/service-areas/${city.slug}`} />
+        <link rel="canonical" href={pageUrl} />
+        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 
       <Header />
@@ -83,6 +118,8 @@ export default function CityPage() {
       </section>
 
       <TrustBar />
+
+      {storeMarket && <StoreReferences market={storeMarket} />}
 
       {/* Section 2: Water Hardness Stat Callout */}
       <section className="py-16 bg-background">

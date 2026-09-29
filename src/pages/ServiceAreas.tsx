@@ -9,6 +9,7 @@ import { Footer } from "@/components/Footer";
 import { TrustBar } from "@/components/TrustBar";
 import { ContactCTA } from "@/components/ContactCTA";
 import { serviceRegions, storeMarkets, storeServiceAreas } from "@/data/storeServiceAreas";
+import { cityData } from "@/data/cityData";
 
 export default function ServiceAreas() {
   const structuredData = {
@@ -77,6 +78,17 @@ export default function ServiceAreas() {
             </div>
           );
         })}
+      </div></div></section>
+      <section className="bg-background py-16 md:py-20"><div className="container"><div className="mx-auto max-w-6xl">
+        <div className="mb-8 text-center"><Badge variant="outline" className="mb-3">Local water guides</Badge><h2 className="font-serif text-2xl text-foreground md:text-3xl">Inland Empire Water Quality by City</h2><p className="mx-auto mt-3 max-w-2xl text-muted-foreground">Hardness, local water concerns, and treatment options for communities across the Inland Empire and San Gorgonio Pass.</p></div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {Object.values(cityData).map((city) => (
+            <Link key={city.slug} to={`/service-areas/${city.slug}`} className="rounded-xl border border-border bg-card p-4 shadow-sm transition-shadow hover:shadow-md">
+              <p className="font-semibold text-foreground">{city.slug === "inland-empire" ? city.name : `${city.name}, CA`}</p>
+              <p className="mt-1 text-xs text-muted-foreground">{city.hardnessPPM} PPM · {city.hardnessLevel}</p>
+            </Link>
+          ))}
+        </div>
       </div></div></section>
       <section className="bg-background py-16"><div className="container text-center"><h2 className="mb-4 font-serif text-2xl text-foreground md:text-3xl">Outside a listed market?</h2><p className="mx-auto mb-6 max-w-2xl text-muted-foreground">Coverage is confirmed by address. Call our team and we’ll check availability for your home.</p><Button asChild variant="hero" size="lg"><a href="tel:+18334227765"><Phone className="mr-2 h-5 w-5" />Call (833) 422-7765</a></Button></div></section>
       <ContactCTA />
