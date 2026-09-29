@@ -30,6 +30,7 @@ jobs:
       - run: npm run build
         env:
           VITE_GHL_RECRUITING_WEBHOOK_URL: ${{ secrets.VITE_GHL_RECRUITING_WEBHOOK_URL }}
+          VITE_GHL_LEAD_WEBHOOK_URL: ${{ secrets.VITE_GHL_LEAD_WEBHOOK_URL }}
 
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -8,6 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
+import { Checkbox } from "@/components/ui/checkbox";
+import { submitLead, SMS_CONSENT_TEXT } from "@/lib/leadSubmit";
 import { WaveDivider } from "@/components/WaveDivider";
 import { storeMarkets } from "@/data/storeServiceAreas";
 
@@ -17,12 +19,44 @@ export const ContactCTA = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const emptyForm = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    zip: "",
+    city: "",
+    message: "",
+    contactTime: "",
+    smsConsent: false,
+  };
+  const [formData, setFormData] = useState(emptyForm);
+  const set = (patch: Partial<typeof emptyForm>) =>
+    setFormData((prev) => ({ ...prev, ...patch }));
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    toast.success("Thank you! We'll contact you within 24 hours.");
+
+    const result = await submitLead({
+      first_name: formData.firstName,
+      last_name: formData.lastName,
+      email: formData.email,
+      phone: formData.phone,
+      city: formData.city,
+      postal_code: formData.zip,
+      message: formData.message,
+      preferred_contact_time: formData.contactTime,
+      form: "site_contact_cta",
+      sms_consent: formData.smsConsent,
+    });
+
+    if (result.ok) {
+      toast.success("Thank you! We'll contact you within 24 hours.");
+      setFormData(emptyForm);
+    } else {
+      toast.error("Sorry, we couldn't submit that. Please call us at (833) 422-7765 and we'll get you scheduled.");
+    }
     setIsSubmitting(false);
   };
 
@@ -152,27 +186,33 @@ export const ContactCTA = () => {
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="firstName">First Name *</Label>
-                        <Input id="firstName" placeholder="First Name" required className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors" />
+                        <Input id="firstName" placeholder="First Name" required value={formData.firstName} onChange={(e) => set({ firstName: e.target.value })} className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="lastName">Last Name *</Label>
-                        <Input id="lastName" placeholder="Last Name" required className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors" />
+                        <Input id="lastName" placeholder="Last Name" required value={formData.lastName} onChange={(e) => set({ lastName: e.target.value })} className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors" />
                       </div>
                     </div>
                     
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email *</Label>
-                      <Input id="email" type="email" placeholder="Email" required className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors" />
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email *</Label>
+                        <Input id="email" type="email" placeholder="Email" required value={formData.email} onChange={(e) => set({ email: e.target.value })} className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors" />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="phone">Phone</Label>
+                        <Input id="phone" type="tel" placeholder="Phone Number" value={formData.phone} onChange={(e) => set({ phone: e.target.value })} className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors" />
+                      </div>
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="zip">ZIP Code *</Label>
-                        <Input id="zip" placeholder="ZIP Code" required className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors" />
+                        <Input id="zip" placeholder="ZIP Code" required value={formData.zip} onChange={(e) => set({ zip: e.target.value })} className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="city">City</Label>
-                        <Select>
+                        <Select value={formData.city} onValueChange={(v) => set({ city: v })}>
                           <SelectTrigger className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors">
                             <SelectValue placeholder="Select city" />
                           </SelectTrigger>
@@ -192,6 +232,8 @@ export const ContactCTA = () => {
                       <Textarea
                         id="message"
                         placeholder="Tell us about your water concerns"
+                        value={formData.message}
+                        onChange={(e) => set({ message: e.target.value })}
                         rows={3}
                         className="rounded-xl bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors resize-none"
                       />
@@ -199,7 +241,7 @@ export const ContactCTA = () => {
 
                     <div className="space-y-2">
                       <Label>Preferred Contact Time</Label>
-                      <Select>
+                      <Select value={formData.contactTime} onValueChange={(v) => set({ contactTime: v })}>
                         <SelectTrigger className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors">
                           <SelectValue placeholder="Select time" />
                         </SelectTrigger>
@@ -211,11 +253,25 @@ export const ContactCTA = () => {
                       </Select>
                     </div>
 
+                    <div className="flex items-start gap-3 rounded-xl bg-secondary/30 p-3">
+                      <Checkbox
+                        id="smsConsent"
+                        checked={formData.smsConsent}
+                        onCheckedChange={(checked) => set({ smsConsent: checked === true })}
+                        className="mt-0.5"
+                      />
+                      <label htmlFor="smsConsent" className="text-xs leading-relaxed text-muted-foreground cursor-pointer">
+                        {SMS_CONSENT_TEXT}{" "}
+                        See our{" "}
+                        <a href="/privacy-policy.html" className="underline hover:text-accent transition-colors">Privacy Policy</a>{" "}and{" "}
+                        <a href="/sms-terms.html" className="underline hover:text-accent transition-colors">SMS Terms</a>.
+                      </label>
+                    </div>
+
                     <p className="text-xs text-muted-foreground/70 text-center leading-relaxed">
                       By submitting this form, you agree to our{" "}
                       <a href="/privacy-policy.html" className="underline hover:text-accent transition-colors">Privacy Policy</a>{" "}and{" "}
                       <a href="/terms-of-service.html" className="underline hover:text-accent transition-colors">Terms of Service</a>.
-                      {" "}For SMS opt-in, use the chat widget below.
                     </p>
 
                     <Button
