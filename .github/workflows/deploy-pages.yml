@@ -27,6 +27,12 @@ jobs:
 
       - run: npm ci
 
+      # scripts/prerender.mjs renders every route in a real browser so the
+      # deployed HTML contains the page content, headings and JSON-LD instead of
+      # an empty SPA shell. Without this the build fails rather than shipping
+      # blank pages.
+      - run: npx playwright install --with-deps chromium
+
       - run: npm run build
         env:
           VITE_GHL_RECRUITING_WEBHOOK_URL: ${{ secrets.VITE_GHL_RECRUITING_WEBHOOK_URL }}
