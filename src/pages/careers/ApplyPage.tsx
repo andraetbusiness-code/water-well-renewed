@@ -492,7 +492,7 @@ function StandardApplyPage() {
                 href="/"
                 className="text-primary underline-offset-4 hover:underline"
               >
-                selectsourcewaterusa.com
+                selectsourcewater.com
               </a>
               .
             </p>

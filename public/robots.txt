@@ -10,4 +10,4 @@ Disallow: /presentations
 User-agent: OAI-SearchBot
 Allow: /
 
-Sitemap: https://selectsourcewaterusa.com/sitemap.xml
+Sitemap: https://selectsourcewater.com/sitemap.xml
