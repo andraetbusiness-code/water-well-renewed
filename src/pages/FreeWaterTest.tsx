@@ -61,7 +61,7 @@ const FreeWaterTest = () => {
       <Helmet>
         <title>Free Water Test | Inland Empire Home Water Analysis | Select Source Water</title>
         <meta name="description" content="Schedule a free in-home water test in the Inland Empire. We test for hardness, TDS, Chromium-6, and more. No cost, no obligation. Call (833) 422-7765." />
-        <link rel="canonical" href="https://selectsourcewaterusa.com/free-water-test" />
+        <link rel="canonical" href="https://selectsourcewater.com/free-water-test" />
       </Helmet>
 
       <PageHero

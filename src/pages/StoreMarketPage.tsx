@@ -14,13 +14,13 @@ const stateNames = { CA: "California", AZ: "Arizona" } as const;
 
 export function StoreMarketPage({ market }: { market: StoreMarket }) {
   const stateName = stateNames[market.state];
-  const canonical = `https://selectsourcewaterusa.com/service-areas/${market.slug}`;
+  const canonical = `https://selectsourcewater.com/service-areas/${market.slug}`;
   const storeLabel = market.stores.length === 1 ? "store-area reference" : "store-area references";
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Service",
     name: `Residential Water Treatment in ${market.name}, ${market.state}`,
-    provider: { "@type": "Organization", name: "Select Source Water", url: "https://selectsourcewaterusa.com" },
+    provider: { "@type": "Organization", name: "Select Source Water", url: "https://selectsourcewater.com" },
     areaServed: { "@type": "City", name: market.name, containedInPlace: { "@type": "State", name: stateName } },
     serviceType: ["In-home water testing", "Whole-home water filtration", "Water softener installation"],
     url: canonical,

@@ -15,7 +15,7 @@
  *
  * Required env vars (Supabase Edge Function secrets):
  *   - RESEND_API_KEY              Resend API key (re_...)
- *   - RECRUITING_ALERT_FROM_EMAIL e.g. "alerts@selectsourcewaterusa.com" (must
+ *   - RECRUITING_ALERT_FROM_EMAIL e.g. "alerts@selectsourcewater.com" (must
  *                                 be a verified sender in Resend) or
  *                                 "onboarding@resend.dev" for initial testing
  *   - RECRUITING_ALERT_TO_EMAIL   comma-separated list of recipients,
