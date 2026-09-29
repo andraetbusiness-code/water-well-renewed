@@ -17,10 +17,23 @@
  * no hydration-mismatch handling is needed here.
  */
 import { createServer } from "node:http";
-import { readFile, writeFile, stat } from "node:fs/promises";
-import { join, extname, dirname, relative, sep } from "node:path";
-import { glob } from "node:fs/promises";
+import { readFile, writeFile, stat, readdir } from "node:fs/promises";
+import { join, extname, dirname, sep } from "node:path";
 import { chromium } from "playwright";
+
+/**
+ * Recursive .html walk. Deliberately not fs/promises `glob`, which only exists
+ * on Node 22+ — CI runs Node 20 and the import throws before anything renders.
+ */
+async function findHtml(dir, base = dir) {
+  const out = [];
+  for (const entry of await readdir(dir, { withFileTypes: true })) {
+    const abs = join(dir, entry.name);
+    if (entry.isDirectory()) out.push(...(await findHtml(abs, base)));
+    else if (entry.name.endsWith(".html")) out.push(abs.slice(base.length + 1));
+  }
+  return out;
+}
 
 const root = process.cwd();
 const dist = join(root, "dist");
@@ -46,7 +59,7 @@ const MIME = {
 
 async function collectPages() {
   const pages = [];
-  for await (const entry of glob("**/*.html", { cwd: dist })) {
+  for (const entry of await findHtml(dist)) {
     const abs = join(dist, entry);
     const html = await readFile(abs, "utf8");
 
