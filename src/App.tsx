@@ -30,6 +30,7 @@ import About from "./pages/About";
 import FreeWaterTest from "./pages/FreeWaterTest";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+import { StickyMobileCTA } from "./components/StickyMobileCTA";
 
 const HygiaPlusDemo = lazy(() => import("./pages/demo/HygiaPlusDemo"));
 const MarketingGallerySlide = lazy(() => import("@/components/onboarding/slides/MarketingGallerySlide").then(m => ({ default: m.MarketingGallerySlide })));
@@ -93,7 +94,8 @@ const App = () => (
           ) : isCareersSubdomain ? (
             <CareersRoutes />
           ) : (
-            <Routes>
+            <>
+              <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/hygia-system" element={<HygiaSystem />} />
               <Route path="/filtration-technology" element={<FiltrationTechnology />} />
@@ -122,7 +124,12 @@ const App = () => (
               <Route path="/careers/:slug" element={<Suspense fallback={null}><JobDetailPage /></Suspense>} />
               <Route path="/apply" element={<Suspense fallback={null}><ApplyPage /></Suspense>} />
               <Route path="*" element={<NotFound />} />
-            </Routes>
+              </Routes>
+              {/* Mobile-only sticky Call Now + Book Test bar — shows on
+                  every main-site page after scroll. Not rendered on demo/
+                  marketing/careers subdomains. */}
+              <StickyMobileCTA />
+            </>
           )}
         </BrowserRouter>
       </TooltipProvider>
