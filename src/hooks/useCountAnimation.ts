@@ -24,7 +24,12 @@ export function useCountAnimation({
   suffix = "",
 }: UseCountAnimationOptions): UseCountAnimationResult {
   const ref = useRef<HTMLDivElement>(null);
-  const [displayValue, setDisplayValue] = useState(`${prefix}0${suffix}`);
+  // Initialize with the final target so SSR / crawlers / pre-animation paint show
+  // the real trust number (461+, 25+, 4.7, etc.) instead of a "0". The animation
+  // still runs from 0 → target when the element scrolls into view.
+  const [displayValue, setDisplayValue] = useState(
+    `${prefix}${target.toLocaleString()}${suffix}`
+  );
   const hasAnimated = useRef(false);
   const rafRef = useRef<number | null>(null);
 
