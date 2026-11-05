@@ -19,6 +19,7 @@ const publicRoutes = [
   "hygia-system",
   "filtration-technology",
   "what-in-water",
+  "service",
   "maintenance",
   "process",
   "gallery",
@@ -89,6 +90,11 @@ const legacyRedirects = {
   "water-test": "free-water-test",
   "contact": "free-water-test",
   "blogs": "blog",
+  // Posts removed in the 2026 rebuild (unsourced contaminant, price or local-statistic claims)
+  "blog/arsenic-in-hemet-water": "blog",
+  "blog/chromium-6-california-drinking-water": "blog",
+  "blog/banning-ca-water-quality-report": "blog",
+  "blog/home-depot-authorized-water-treatment-provider": "home-depot-authorized-provider",
 };
 
 async function writeRedirect(fromRoute, toRoute) {

@@ -1,306 +1,47 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Phone, Mail, MapPin, Clock, Shield, ArrowRight, CheckCircle2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { toast } from "sonner";
-import { Checkbox } from "@/components/ui/checkbox";
-import { submitLead, SMS_CONSENT_TEXT } from "@/lib/leadSubmit";
-import { WaveDivider } from "@/components/WaveDivider";
-import { storeMarkets } from "@/data/storeServiceAreas";
+import { LeadForm } from "@/components/LeadForm";
+import { site } from "@/data/site";
 
-const cities = [...storeMarkets.map((market) => `${market.name}, ${market.state}`), "Other"];
-
-export const ContactCTA = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const emptyForm = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    zip: "",
-    city: "",
-    message: "",
-    contactTime: "",
-    smsConsent: false,
-  };
-  const [formData, setFormData] = useState(emptyForm);
-  const set = (patch: Partial<typeof emptyForm>) =>
-    setFormData((prev) => ({ ...prev, ...patch }));
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    const result = await submitLead({
-      first_name: formData.firstName,
-      last_name: formData.lastName,
-      email: formData.email,
-      phone: formData.phone,
-      city: formData.city,
-      postal_code: formData.zip,
-      message: formData.message,
-      preferred_contact_time: formData.contactTime,
-      form: "site_contact_cta",
-      sms_consent: formData.smsConsent,
-    });
-
-    if (result.ok) {
-      toast.success("Thank you! We'll contact you within 24 hours.");
-      setFormData(emptyForm);
-    } else {
-      toast.error("Sorry, we couldn't submit that. Please call us at (833) 422-7765 and we'll get you scheduled.");
-    }
-    setIsSubmitting(false);
-  };
-
-  return (
-    <section id="contact" className="relative py-24 md:py-32 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-foreground via-foreground/95 to-primary/40" />
-      
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <motion.div 
-          className="absolute top-20 right-[10%] w-64 h-64 bg-primary/10 rounded-full blur-3xl"
-          animate={{ y: [-20, 20, -20] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div 
-          className="absolute bottom-20 left-[5%] w-80 h-80 bg-accent/10 rounded-full blur-3xl"
-          animate={{ y: [20, -20, 20] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
-      
-      <WaveDivider position="top" fillColor="hsl(var(--background))" variant="gentle" />
-
-      <div className="container relative z-10" ref={ref}>
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-16"
-          >
-            <span className="inline-block text-accent font-medium text-sm uppercase tracking-wider mb-4">
-              Get Started Today
-            </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-primary-foreground mb-5">
-              Ready for Pure, Soft Water?
-            </h2>
-            <p className="text-lg text-primary-foreground/70 max-w-2xl mx-auto">
-              Schedule your free in-home water test today. We test right in your kitchen and give you results in minutes. No obligation, no credit card, 100% free.
-            </p>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-            {/* Left - Contact info */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="space-y-8"
-            >
-              <div className="space-y-6">
-                <a href="tel:+18334227765" className="flex items-center gap-5 group">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-accent/20 rounded-full blur-lg group-hover:blur-xl transition-all" />
-                    <div className="relative w-14 h-14 rounded-full bg-primary-foreground/10 flex items-center justify-center group-hover:bg-primary-foreground/20 transition-colors">
-                      <Phone className="h-6 w-6 text-primary-foreground" />
-                    </div>
-                  </div>
-                  <div>
-                    <span className="text-sm text-primary-foreground/50 block">Call Us</span>
-                    <span className="text-xl text-primary-foreground font-medium group-hover:text-accent transition-colors">(833) 422-7765</span>
-                  </div>
-                </a>
-                
-                <a href="mailto:info@selectsourcewater.com" className="flex items-center gap-5 group">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-primary/20 rounded-full blur-lg group-hover:blur-xl transition-all" />
-                    <div className="relative w-14 h-14 rounded-full bg-primary-foreground/10 flex items-center justify-center group-hover:bg-primary-foreground/20 transition-colors">
-                      <Mail className="h-6 w-6 text-primary-foreground" />
-                    </div>
-                  </div>
-                  <div>
-                    <span className="text-sm text-primary-foreground/50 block">Email Us</span>
-                    <span className="text-lg text-primary-foreground font-medium group-hover:text-accent transition-colors">info@selectsourcewater.com</span>
-                  </div>
-                </a>
-                
-                <div className="flex items-center gap-5">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-water-light/20 rounded-full blur-lg" />
-                    <div className="relative w-14 h-14 rounded-full bg-primary-foreground/10 flex items-center justify-center">
-                      <MapPin className="h-6 w-6 text-primary-foreground" />
-                    </div>
-                  </div>
-                  <div>
-                    <span className="text-sm text-primary-foreground/50 block">Service Areas</span>
-                    <span className="text-lg text-primary-foreground font-medium">California & Arizona</span>
-                  </div>
-                </div>
-              </div>
-
-              <p className="text-primary-foreground/60 text-sm">
-                Serving 54 city markets across Southern California, Northern California, the Central Valley, and Arizona.
-              </p>
-
-              <div className="flex flex-wrap gap-3 pt-4">
-                {[
-                  { icon: Clock, text: "24hr Response" },
-                  { icon: Shield, text: "Licensed & Insured" },
-                  { icon: CheckCircle2, text: "5-Day Trial" },
-                ].map((item) => (
-                  <div key={item.text} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 text-primary-foreground/80 text-sm">
-                    <item.icon className="h-4 w-4 text-accent" />
-                    <span>{item.text}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Right - Form */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.3 }}
-            >
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-br from-accent/30 to-primary/20 rounded-[2.5rem] blur-2xl" />
-                
-                <form onSubmit={handleSubmit} className="relative bg-card rounded-[2rem] p-8 md:p-10 shadow-2xl">
-                  <h3 className="text-2xl font-serif text-foreground mb-2">
-                    Schedule My Free Water Test
-                  </h3>
-                  <p className="text-muted-foreground mb-8">
-                    We'll contact you within 24 hours.
-                  </p>
-
-                  <div className="space-y-5">
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="firstName">First Name *</Label>
-                        <Input id="firstName" placeholder="First Name" required value={formData.firstName} onChange={(e) => set({ firstName: e.target.value })} className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors" />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="lastName">Last Name *</Label>
-                        <Input id="lastName" placeholder="Last Name" required value={formData.lastName} onChange={(e) => set({ lastName: e.target.value })} className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors" />
-                      </div>
-                    </div>
-                    
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="email">Email *</Label>
-                        <Input id="email" type="email" placeholder="Email" required value={formData.email} onChange={(e) => set({ email: e.target.value })} className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors" />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="phone">Phone</Label>
-                        <Input id="phone" type="tel" placeholder="Phone Number" value={formData.phone} onChange={(e) => set({ phone: e.target.value })} className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors" />
-                      </div>
-                    </div>
-
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="zip">ZIP Code *</Label>
-                        <Input id="zip" placeholder="ZIP Code" required value={formData.zip} onChange={(e) => set({ zip: e.target.value })} className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors" />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="city">City</Label>
-                        <Select value={formData.city} onValueChange={(v) => set({ city: v })}>
-                          <SelectTrigger className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors">
-                            <SelectValue placeholder="Select city" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {cities.map((city) => (
-                              <SelectItem key={city} value={city.toLowerCase().replace(/\s+/g, '-')}>
-                                {city}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="message">Message / Water Concerns (optional)</Label>
-                      <Textarea
-                        id="message"
-                        placeholder="Tell us about your water concerns"
-                        value={formData.message}
-                        onChange={(e) => set({ message: e.target.value })}
-                        rows={3}
-                        className="rounded-xl bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors resize-none"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label>Preferred Contact Time</Label>
-                      <Select value={formData.contactTime} onValueChange={(v) => set({ contactTime: v })}>
-                        <SelectTrigger className="rounded-xl h-12 bg-secondary/30 border-0 focus:bg-secondary/50 transition-colors">
-                          <SelectValue placeholder="Select time" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="morning">Morning</SelectItem>
-                          <SelectItem value="afternoon">Afternoon</SelectItem>
-                          <SelectItem value="evening">Evening</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="flex items-start gap-3 rounded-xl bg-secondary/30 p-3">
-                      <Checkbox
-                        id="smsConsent"
-                        checked={formData.smsConsent}
-                        onCheckedChange={(checked) => set({ smsConsent: checked === true })}
-                        className="mt-0.5"
-                      />
-                      <label htmlFor="smsConsent" className="text-xs leading-relaxed text-muted-foreground cursor-pointer">
-                        {SMS_CONSENT_TEXT}{" "}
-                        See our{" "}
-                        <a href="/privacy-policy.html" className="underline hover:text-accent transition-colors">Privacy Policy</a>{" "}and{" "}
-                        <a href="/sms-terms.html" className="underline hover:text-accent transition-colors">SMS Terms</a>.
-                      </label>
-                    </div>
-
-                    <p className="text-xs text-muted-foreground/70 text-center leading-relaxed">
-                      By submitting this form, you agree to our{" "}
-                      <a href="/privacy-policy.html" className="underline hover:text-accent transition-colors">Privacy Policy</a>{" "}and{" "}
-                      <a href="/terms-of-service.html" className="underline hover:text-accent transition-colors">Terms of Service</a>.
-                    </p>
-
-                    <Button
-                      type="submit"
-                      size="lg"
-                      variant="hero"
-                      className="w-full"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? (
-                        "Sending..."
-                      ) : (
-                        <>
-                          Schedule My Free Water Test
-                          <ArrowRight className="ml-2 h-5 w-5" />
-                        </>
-                      )}
-                    </Button>
-                    
-                    <p className="text-xs text-center text-muted-foreground">
-                      We'll contact you within 24 hours. No obligation • No credit card • 100% free.
-                    </p>
-                  </div>
-                </form>
-              </div>
-            </motion.div>
+export const ContactCTA = () => (
+  <section id="contact" className="border-t border-border bg-secondary">
+    <div className="container grid gap-12 py-20 md:py-28 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
+      <div>
+        <h2 className="display text-4xl sm:text-5xl">Tell us what you need.</h2>
+        <p className="measure mt-6 text-lg text-muted-foreground">
+          Service on a system you already have, or a complimentary in-home water test. Send the form and we will contact you to schedule.
+        </p>
+        <dl className="mt-10 space-y-5 text-base">
+          <div>
+            <dt className="text-sm text-muted-foreground">Call</dt>
+            <dd>
+              <a href={site.phoneHref} className="tabular text-2xl font-semibold tracking-tight hover:text-primary">
+                {site.phone}
+              </a>
+            </dd>
           </div>
-        </div>
+          <div>
+            <dt className="text-sm text-muted-foreground">Email</dt>
+            <dd>
+              <a href={`mailto:${site.email}`} className="font-medium hover:text-primary">
+                {site.email}
+              </a>
+            </dd>
+          </div>
+          <div>
+            <dt className="text-sm text-muted-foreground">Office</dt>
+            <dd className="font-medium">
+              {site.address.street}, {site.address.city}, {site.address.state} {site.address.zip}
+            </dd>
+          </div>
+        </dl>
       </div>
-    </section>
-  );
-};
+      <div className="rounded-lg border border-border bg-background p-6 sm:p-8">
+        <LeadForm
+          formName="site_contact_cta"
+          submitLabel="Send request"
+          messageLabel="What can we help with?"
+          messagePlaceholder="Service on my system, a water test, a question"
+        />
+      </div>
+    </div>
+  </section>
+);

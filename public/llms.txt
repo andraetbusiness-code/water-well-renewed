@@ -1,13 +1,14 @@
 # Select Source Water
 
-> Select Source Water is a residential water-treatment company serving homeowners in Southern California. The company provides in-home water testing and helps homeowners evaluate whole-home water softening, whole-home filtration, and reverse-osmosis drinking-water options based on their household and water source.
+> Select Source Water, LLC (Beaumont, CA) installs and services whole-home water filtration, water softeners and reverse osmosis systems for homeowners in California and Arizona. It offers a complimentary in-home water test and service on water systems homeowners already have.
 
 ## Primary website
 
 - Website: https://selectsourcewater.com/
 - Phone: +1-833-422-7765
 - Service-area overview: https://selectsourcewater.com/service-areas
-- Schedule an in-home water test: https://selectsourcewater.com/free-water-test
+- Request service on a water softener, filter or RO system: https://selectsourcewater.com/service
+- Book a complimentary in-home water test: https://selectsourcewater.com/free-water-test
 
 ## Residential services
 
@@ -26,8 +27,8 @@
 
 - Business name: Select Source Water
 - Category: Residential water treatment and home water services
-- Primary offerings: In-home water testing, water softening, whole-home filtration, and reverse-osmosis drinking-water systems
-- Geography: Southern California, with local service-area pages identifying currently published markets
+- Primary offerings: Service on existing water systems, complimentary in-home water testing, water softening, whole-home filtration, and reverse-osmosis drinking-water systems
+- Geography: California and Arizona, with a page for each published service market
 
 ## Content guidance
 

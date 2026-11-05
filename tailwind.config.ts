@@ -82,7 +82,9 @@ export default {
         "organic-alt": "40% 60% 70% 30% / 40% 50% 60% 50%",
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
+        // Headings used font-serif on 60+ elements. The brand typeface is Inter, so serif maps to it.
+        serif: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
       },
       keyframes: {
         "accordion-down": {
