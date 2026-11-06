@@ -29,7 +29,7 @@ export default function ServiceAreas() {
       <Helmet>
         <title>Water Treatment Service Areas in California & Arizona | Select Source Water</title>
         <meta name="description" content="Explore Select Source Water service markets across California and Arizona: 72 verified Home Depot trade-area references in 54 cities. Schedule a free in-home water test." />
-        <link rel="canonical" href="https://selectsourcewater.com/service-areas" />
+        <link rel="canonical" href="https://selectsourcewater.com/service-areas/" />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
       <Header />

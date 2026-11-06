@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Phone, Mail, MapPin, Clock, Shield, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Shield, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -155,7 +155,6 @@ export const ContactCTA = () => {
                 {[
                   { icon: Clock, text: "24hr Response" },
                   { icon: Shield, text: "Licensed & Insured" },
-                  { icon: CheckCircle2, text: "5-Day Trial" },
                 ].map((item) => (
                   <div key={item.text} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 text-primary-foreground/80 text-sm">
                     <item.icon className="h-4 w-4 text-accent" />

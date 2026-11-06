@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { Shield, CheckCircle, Clock, Phone, Star, Home, Award, Users, ArrowRight, Calendar } from "lucide-react";
+import { Shield, CheckCircle, Clock, Phone, Star, Home, Award, Users, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TrustBar } from "@/components/TrustBar";
 import { Header } from "@/components/Header";
@@ -12,11 +12,6 @@ const benefits = [
     icon: Shield,
     title: "Lifetime Warranty",
     description: "Every HYGIA+ system installed through our Home Depot partnership is backed by a comprehensive Lifetime Warranty — parts, labor, and performance guaranteed.",
-  },
-  {
-    icon: Calendar,
-    title: "5-Day Risk-Free Trial",
-    description: "Try the HYGIA+ system in your home for 5 full days. If you're not completely satisfied, we'll remove it at no charge.",
   },
   {
     icon: Clock,
@@ -70,9 +65,9 @@ const HomeDepotPartnership = () => {
         <title>Home Depot Authorized Water Treatment | Select Source Water</title>
         <meta
           name="description"
-          content="Select Source Water is a Home Depot Authorized Independent Provider for water treatment in the Inland Empire. Lifetime Warranty, 5-day trial, same-week install."
+          content="Select Source Water is a Home Depot Authorized Independent Provider for water treatment in the Inland Empire. Lifetime Warranty and same-week install."
         />
-        <link rel="canonical" href="https://selectsourcewater.com/home-depot-authorized-provider" />
+        <link rel="canonical" href="https://selectsourcewater.com/home-depot-authorized-provider/" />
       </Helmet>
 
       <Header />
