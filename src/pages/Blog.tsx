@@ -19,7 +19,7 @@ export default function Blog() {
       <Helmet>
         <title>Water System Guides | Select Source Water</title>
         <meta name="description" content="Plain-language guides on water softener, filter and reverse osmosis service, hard water, and getting your water tested." />
-        <link rel="canonical" href={`${site.url}/blog`} />
+        <link rel="canonical" href={`${site.url}/blog/`} />
       </Helmet>
 
       <PageHero title="Guides." description="Plain-language help for owners of water softeners, filters and reverse osmosis systems." />

@@ -10,7 +10,7 @@ const HygiaSystem = () => (
     <Helmet>
       <title>HYGIA+ and HYGIA ECO Whole-Home Water Systems | Select Source Water</title>
       <meta name="description" content="HYGIA+ is a salt-based whole-home system and HYGIA ECO is a salt-free conditioner. Both are built around your home's water report." />
-      <link rel="canonical" href={`${site.url}/hygia-system`} />
+      <link rel="canonical" href={`${site.url}/hygia-system/`} />
     </Helmet>
 
     <PageHero

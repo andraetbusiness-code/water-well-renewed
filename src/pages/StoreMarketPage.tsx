@@ -9,7 +9,7 @@ const stateNames = { CA: "California", AZ: "Arizona" } as const;
 
 export function StoreMarketPage({ market }: { market: StoreMarket }) {
   const stateName = stateNames[market.state];
-  const canonical = `${site.url}/service-areas/${market.slug}`;
+  const canonical = `${site.url}/service-areas/${market.slug}/`;
   const neighbors = storeMarkets.filter((m) => m.region === market.region && m.slug !== market.slug).slice(0, 6);
   const guide = regionGuideSlug[market.region];
 

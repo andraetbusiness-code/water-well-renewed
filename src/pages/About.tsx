@@ -10,7 +10,7 @@ const About = () => (
     <Helmet>
       <title>About Select Source Water</title>
       <meta name="description" content="Select Source Water, LLC installs and services whole-home water filtration, softeners and reverse osmosis systems. Headquartered in Beaumont, CA." />
-      <link rel="canonical" href={`${site.url}/about`} />
+      <link rel="canonical" href={`${site.url}/about/`} />
     </Helmet>
 
     <PageHero

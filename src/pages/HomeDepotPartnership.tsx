@@ -10,7 +10,7 @@ const HomeDepotPartnership = () => (
     <Helmet>
       <title>Authorized Independent Provider | Select Source Water</title>
       <meta name="description" content="Select Source Water is an authorized independent provider in The Home Depot ecosystem. Our in-store team can help you book a visit." />
-      <link rel="canonical" href={`${site.url}/home-depot-authorized-provider`} />
+      <link rel="canonical" href={`${site.url}/home-depot-authorized-provider/`} />
     </Helmet>
 
     <PageHero title="Authorized independent provider." description="Select Source Water is an authorized independent provider in The Home Depot ecosystem. We are not The Home Depot." />

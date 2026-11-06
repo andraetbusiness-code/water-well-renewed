@@ -10,7 +10,7 @@ const FreeWaterTest = () => (
     <Helmet>
       <title>Complimentary In-Home Water Test | Select Source Water</title>
       <meta name="description" content="Book a complimentary in-home water test. It takes about 15 to 30 minutes, you see the demonstration yourself, and there is no obligation to buy." />
-      <link rel="canonical" href={`${site.url}/free-water-test`} />
+      <link rel="canonical" href={`${site.url}/free-water-test/`} />
     </Helmet>
 
     <PageHero

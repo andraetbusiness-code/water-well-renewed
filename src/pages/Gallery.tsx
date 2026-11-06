@@ -15,7 +15,7 @@ const Gallery = () => (
   <PageLayout>
     <Helmet>
       <title>Our Work | Select Source Water</title>
-      <link rel="canonical" href={`${site.url}/gallery`} />
+      <link rel="canonical" href={`${site.url}/gallery/`} />
     </Helmet>
     <PageHero title="Our work." />
     <section className="py-16 md:py-24">

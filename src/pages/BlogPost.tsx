@@ -53,7 +53,7 @@ export default function BlogPost() {
   const article = blogArticles.find((a) => a.slug === slug);
   if (!article) return <NotFound />;
 
-  const canonical = `${site.url}/blog/${article.slug}`;
+  const canonical = `${site.url}/blog/${article.slug}/`;
   const more = blogArticles.filter((a) => a.slug !== article.slug && a.category === article.category).slice(0, 3);
   const date = new Date(article.publishedAt + "T00:00:00").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
 

@@ -17,7 +17,7 @@ export default function CityPage() {
   if (!city) return <NotFound />;
 
   const nearby = city.nearbyCities.map((s) => cityData[s]).filter(Boolean);
-  const canonical = `${site.url}/service-areas/${city.slug}`;
+  const canonical = `${site.url}/service-areas/${city.slug}/`;
 
   return (
     <PageLayout>

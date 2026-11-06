@@ -26,7 +26,7 @@ export default function ServiceAreas() {
           name="description"
           content="Where Select Source Water installs and services water softeners, whole-home filters and reverse osmosis systems across California and Arizona."
         />
-        <link rel="canonical" href={`${site.url}/service-areas`} />
+        <link rel="canonical" href={`${site.url}/service-areas/`} />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",

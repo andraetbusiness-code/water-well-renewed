@@ -28,7 +28,7 @@ const Service = () => (
         name="description"
         content="Request service for a water softener, whole-home filter or reverse osmosis system. Tell us what you have and our team will contact you to schedule."
       />
-      <link rel="canonical" href={`${site.url}/service`} />
+      <link rel="canonical" href={`${site.url}/service/`} />
       <meta name="robots" content="index, follow" />
       <script type="application/ld+json">
         {JSON.stringify({

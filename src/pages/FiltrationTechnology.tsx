@@ -9,7 +9,7 @@ const FiltrationTechnology = () => (
     <Helmet>
       <title>How Our Dual-Tank Systems Work | Select Source Water</title>
       <meta name="description" content="Our whole-home systems use two tanks: a carbon tank and a media tank. Why that design makes service simpler." />
-      <link rel="canonical" href={`${site.url}/filtration-technology`} />
+      <link rel="canonical" href={`${site.url}/filtration-technology/`} />
     </Helmet>
 
     <PageHero title="Two tanks, by design." description="Every whole-home system we build uses a carbon tank and a second media tank." />

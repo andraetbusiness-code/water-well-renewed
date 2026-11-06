@@ -9,7 +9,7 @@ const WhatInWater = () => (
     <Helmet>
       <title>What Is in Your Water? How to Find Out | Select Source Water</title>
       <meta name="description" content="Two ways to learn about your home's water: your water provider's annual report and a water test at your tap." />
-      <link rel="canonical" href={`${site.url}/what-in-water`} />
+      <link rel="canonical" href={`${site.url}/what-in-water/`} />
     </Helmet>
 
     <PageHero title="What is in your water?" description="Two places to look. Neither one costs you anything to start." />

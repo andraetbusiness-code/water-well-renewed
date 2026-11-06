@@ -103,6 +103,34 @@ async function serveDist() {
 
 const CONCURRENCY = 6;
 
+// A path GitHub Pages serves as a directory (no file extension, no trailing slash).
+const needsSlash = (path) => path !== "/" && !path.endsWith("/") && !/\.[a-z0-9]{2,5}$/i.test(path);
+const withSlash = (path) => (needsSlash(path) ? `${path}/` : path);
+
+/**
+ * Clean the rendered markup for crawlers that read the static HTML:
+ * - keep one canonical (react-helmet adds a second one next to the shell's)
+ * - point canonical, og:url and internal links at the trailing-slash URL,
+ *   which is what GitHub Pages serves, so none of them hit a 301.
+ * React re-renders on load, so this only changes what non-JS crawlers see.
+ */
+function finalizeHtml(html) {
+  const canonicals = html.match(/<link[^>]*rel="canonical"[^>]*>/g) ?? [];
+  if (canonicals.length > 1) {
+    const keep = canonicals.find((tag) => tag.includes("data-rh")) ?? canonicals[0];
+    for (const tag of canonicals) if (tag !== keep) html = html.replace(tag, "");
+  }
+  html = html.replace(
+    /(<link[^>]*rel="canonical"[^>]*href="|<meta[^>]*property="og:url"[^>]*content=")(https:\/\/selectsourcewater\.com)(\/[^"#?]*)?"/g,
+    (_m, pre, origin, path = "/") => `${pre}${origin}${withSlash(path)}"`,
+  );
+  html = html.replace(
+    /(<a\b[^>]*\shref=")((?:https:\/\/selectsourcewater\.com)?)(\/[^"#?]*)([^"]*)"/g,
+    (_m, pre, origin, path, rest) => `${pre}${origin}${withSlash(path)}${rest}"`,
+  );
+  return html;
+}
+
 async function run() {
   const pages = await collectPages();
   const { server, port } = await serveDist();
@@ -134,7 +162,7 @@ async function run() {
           { timeout: 20000 },
         );
         const html = await page.evaluate(() => "<!DOCTYPE html>\n" + document.documentElement.outerHTML);
-        await writeFile(item.abs, html);
+        await writeFile(item.abs, finalizeHtml(html));
         done += 1;
       } catch (err) {
         failures.push({ route: item.route, error: err.message.split("\n")[0].slice(0, 120) });

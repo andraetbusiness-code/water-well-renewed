@@ -19,7 +19,7 @@ const Maintenance = () => (
     <Helmet>
       <title>Water System Maintenance Schedule | Select Source Water</title>
       <meta name="description" content="Typical maintenance intervals for water softeners, reverse osmosis filters and UV bulbs, and how to schedule service." />
-      <link rel="canonical" href={`${site.url}/maintenance`} />
+      <link rel="canonical" href={`${site.url}/maintenance/`} />
     </Helmet>
 
     <PageHero

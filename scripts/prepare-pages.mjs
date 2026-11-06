@@ -33,11 +33,23 @@ const publicRoutes = [
   "careers/water-testing-specialist",
   "careers/water-treatment-installer",
   "careers/sales-market-manager",
-  "privacy-policy",
-  "terms-of-service",
   ...citySlugs.map((slug) => `service-areas/${slug}`),
   ...blogSlugs.map((slug) => `blog/${slug}`),
 ];
+
+// GitHub Pages serves every route as a directory, so /about 301s to /about/.
+// Canonicals, og:url and the sitemap all use the trailing-slash URL so nothing
+// points at a redirect.
+const pageUrl = (route) => (route ? `${site}/${route}/` : `${site}/`);
+
+// The SMS consent forms link to the static /privacy-policy.html and
+// /terms-of-service.html, so those stay the indexed versions. The React routes
+// with the same content are kept for the footer but point their canonical at
+// the static file and are not indexed.
+const legalMirrors = {
+  "privacy-policy": "privacy-policy.html",
+  "terms-of-service": "terms-of-service.html",
+};
 
 const privateRoutes = [
   "404",
@@ -52,7 +64,7 @@ const privateRoutes = [
 ];
 
 function withCanonical(html, route) {
-  const canonical = `${site}/${route}`;
+  const canonical = pageUrl(route);
   const pageName = route
     .split("/")
     .at(-1)
@@ -82,6 +94,16 @@ await Promise.all(publicRoutes.map((route) => writeRoute(route, withCanonical(so
 await Promise.all(privateRoutes.map((route) => writeRoute(route, noindex(source))));
 await writeFile(join(dist, "404.html"), noindex(source));
 
+function legalMirror(html, staticFile) {
+  const canonical = `${site}/${staticFile}`;
+  return noindex(html)
+    .replace(/<link rel="canonical" href="[^"]+"\s*\/>/, `<link rel="canonical" href="${canonical}" />`)
+    .replace(/<meta name="robots" content="[^"]+"\s*\/>/, '<meta name="robots" content="noindex, follow" />');
+}
+await Promise.all(
+  Object.entries(legalMirrors).map(([route, file]) => writeRoute(route, legalMirror(source, file))),
+);
+
 // Legacy Webflow URLs from the previous selectsourcewater.com site.
 // GitHub Pages cannot serve server-side 301s, so each legacy path gets a small
 // page that carries the canonical of its replacement and sends the visitor there.
@@ -95,10 +117,13 @@ const legacyRedirects = {
   "blog/chromium-6-california-drinking-water": "blog",
   "blog/banning-ca-water-quality-report": "blog",
   "blog/home-depot-authorized-water-treatment-provider": "home-depot-authorized-provider",
+  // Ranking URLs that returned 404 in the 2026-11-05 Semrush audit.
+  "post/water-softener-vs-water-conditioner-which-is-best-for-sacramento-homes": "service-areas/sacramento-ca",
+  "water-filtration-systems-services": "filtration-technology",
 };
 
 async function writeRedirect(fromRoute, toRoute) {
-  const target = `${site}/${toRoute}`;
+  const target = pageUrl(toRoute);
   const html = `<!doctype html>
 <html lang="en">
   <head>
@@ -125,9 +150,10 @@ await Promise.all(
 );
 
 const sitemapRoutes = ["", ...publicRoutes].filter((route) => !route.startsWith("careers/"));
+const sitemapUrls = [...sitemapRoutes.map(pageUrl), ...Object.values(legalMirrors).map((file) => `${site}/${file}`)];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemapRoutes.map((route) => `  <url><loc>${site}/${route}</loc></url>`).join("\n")}
+${sitemapUrls.map((url) => `  <url><loc>${url}</loc></url>`).join("\n")}
 </urlset>
 `;
 await writeFile(join(dist, "sitemap.xml"), sitemap);

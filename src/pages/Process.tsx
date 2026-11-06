@@ -16,7 +16,7 @@ const Process = () => (
     <Helmet>
       <title>How It Works | Select Source Water</title>
       <meta name="description" content="From a complimentary in-home water test to installation and ongoing service: how Select Source Water works." />
-      <link rel="canonical" href={`${site.url}/process`} />
+      <link rel="canonical" href={`${site.url}/process/`} />
     </Helmet>
     <PageHero title="How it works." description="From the first test to ongoing service." />
     <section className="py-16 md:py-24">
