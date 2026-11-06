@@ -13,6 +13,7 @@ import HygiaSystem from "./pages/HygiaSystem";
 import FiltrationTechnology from "./pages/FiltrationTechnology";
 import WhatInWater from "./pages/WhatInWater";
 import Maintenance from "./pages/Maintenance";
+import Service from "./pages/Service";
 import Process from "./pages/Process";
 import Gallery from "./pages/Gallery";
 import Presentations from "./pages/Presentations";
@@ -27,7 +28,7 @@ import HomeDepotPartnership from "./pages/HomeDepotPartnership";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import About from "./pages/About";
-import FreeWaterTest from "./pages/FreeWaterTest";
+import ComplimentaryWaterTest from "./pages/ComplimentaryWaterTest";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 
@@ -98,6 +99,7 @@ const App = () => (
               <Route path="/hygia-system" element={<HygiaSystem />} />
               <Route path="/filtration-technology" element={<FiltrationTechnology />} />
               <Route path="/what-in-water" element={<WhatInWater />} />
+              <Route path="/service" element={<Service />} />
               <Route path="/maintenance" element={<Maintenance />} />
               <Route path="/process" element={<Process />} />
               <Route path="/gallery" element={<Gallery />} />
@@ -114,7 +116,7 @@ const App = () => (
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/service-areas/:citySlug" element={<CityPage />} />
               <Route path="/about" element={<About />} />
-              <Route path="/free-water-test" element={<FreeWaterTest />} />
+              <Route path="/complimentary-water-test" element={<ComplimentaryWaterTest />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms-of-service" element={<TermsOfService />} />
               <Route path="/demo/hygia-plus" element={<Suspense fallback={null}><HygiaPlusDemo /></Suspense>} />

@@ -1,358 +1,58 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { 
-  Droplets, 
-  Shield, 
-  Check, 
-  ArrowRight,
-  Beaker,
-  Leaf,
-  Zap,
-  Home,
-  Phone,
-  Store
-} from "lucide-react";
+import { Link } from "react-router-dom";
 import { PageLayout, PageHero } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
-import { FloatingBubbles } from "@/components/WaterEffects";
-import { InfographicCard, InfographicGrid } from "@/components/InfographicCard";
-import { cacheBust } from "@/lib/cache-bust";
-import homeDepotAuthorized from "@/assets/home-depot-authorized.png";
-import systemDiagramImg from "@/assets/infographics/system-diagram-styled.png";
-import whyChooseUsImg from "@/assets/infographics/why-choose-us-styled.png";
-import waterSoftenerImg from "@/assets/photos/water-softener.png";
+import photo from "@/assets/site/installed-system.webp";
+import { site } from "@/data/site";
 
-const systemFeatures = [
-  {
-    icon: Beaker,
-    title: "Sediment Filtration",
-    description: "Removes sand, silt, rust, and debris from your incoming water supply."
-  },
-  {
-    icon: Leaf,
-    title: "Catalytic Carbon",
-    description: "Reduces chlorine, chloramines, pesticides, and volatile organic compounds (VOCs)."
-  },
-  {
-    icon: Droplets,
-    title: "Ion Exchange Resin",
-    description: "Softens water and removes heavy metals like lead and mercury."
-  },
-  {
-    icon: Shield,
-    title: "Coconut Shell Carbon",
-    description: "Adsorbs additional chlorine, chloramine, and chemical contaminants."
-  },
-  {
-    icon: Zap,
-    title: "KDF Media",
-    description: "Reduces chlorine, heavy metals, and inhibits bacteria growth."
-  },
-  {
-    icon: Home,
-    title: "Clean Water Delivery",
-    description: "Enjoy clean, safe, soft water throughout your entire home."
-  }
-];
+const HygiaSystem = () => (
+  <PageLayout>
+    <Helmet>
+      <title>HYGIA+ and HYGIA ECO Whole-Home Water Systems | Select Source Water</title>
+      <meta name="description" content="HYGIA+ is a salt-based whole-home system and HYGIA ECO is a salt-free conditioner. Both are built around your home's water report." />
+      <link rel="canonical" href={`${site.url}/hygia-system/`} />
+    </Helmet>
 
-const benefits = [
-  "Softer, scale-free water",
-  "Cleaner, great-tasting water",
-  "Removes contaminants, odors & spots",
-  "Installed by professionals you can trust",
-  "Lifetime Warranty",
-  "Customized solutions for your home"
-];
+    <PageHero
+      title="HYGIA+ and HYGIA ECO."
+      description="Two whole-home systems, one salt-based and one salt-free. We sell both, so we have no reason to talk you into the wrong one."
+    />
 
-export default function HygiaSystem() {
-  const featuresRef = useRef(null);
-  const benefitsRef = useRef(null);
-  const featuresInView = useInView(featuresRef, { once: true, margin: "-100px" });
-  const benefitsInView = useInView(benefitsRef, { once: true, margin: "-100px" });
+    <section className="py-16 md:py-24">
+      <div className="container grid items-start gap-14 lg:grid-cols-[1.4fr_1fr] lg:gap-20">
+        <div>
+          <ul className="rule-list border-y border-border">
+            <li className="py-8">
+              <h2 className="text-3xl font-semibold tracking-tight">HYGIA+</h2>
+              <p className="mt-1 text-sm font-medium text-primary">Salt-based water softener</p>
+              <p className="measure mt-3 text-muted-foreground">A carbon tank and a resin tank, with a programmable control valve. Adding salt is the homeowner's maintenance.</p>
+            </li>
+            <li className="py-8">
+              <h2 className="text-3xl font-semibold tracking-tight">HYGIA ECO</h2>
+              <p className="mt-1 text-sm font-medium text-primary">Salt-free water conditioner</p>
+              <p className="measure mt-3 text-muted-foreground">A conditioner, not a softener. It does not remove hardness minerals. It changes how they behave so they have a harder time sticking. It needs no power.</p>
+            </li>
+          </ul>
 
-  return (
-    <PageLayout>
-      <Helmet>
-        <title>HYGIA+ Whole House Water Filtration System | Select Source Water — Inland Empire</title>
-        <meta name="description" content="The HYGIA+ system removes hard water, chlorine, and contaminants from every tap. Home Depot Authorized installation. Lifetime warranty. Free test: (833) 422-7765." />
-        <link rel="canonical" href="https://selectsourcewater.com/hygia-system/" />
-      </Helmet>
+          <h2 className="mt-14 text-3xl font-semibold tracking-tight">Built around your home</h2>
+          <p className="measure mt-4 text-muted-foreground">
+            Systems are built for each home from the water district's report, not off a shelf. Installation typically takes 4 to 5 hours, start to finish.
+          </p>
 
-      <PageHero 
-        badge="HYGIA+ System"
-        title="Whole House Water"
-        subtitle="Filtration Systems"
-        description="The HYGIA+ system combines multiple filtration stages to deliver pure, clean, soft water to every tap in your home."
-      />
+          <h2 className="mt-14 text-3xl font-semibold tracking-tight">Warranty</h2>
+          <p className="measure mt-4 text-muted-foreground">
+            Systems carry a lifetime warranty on the tanks and control valve when purchased. It does not cover damage caused by the user, and it does not cover reverse osmosis filters. A specialist walks you through the details.
+          </p>
 
-      {/* How It Works Section */}
-      <section className="py-20 md:py-28 relative overflow-hidden">
-        <FloatingBubbles count={8} />
-        
-        <div className="container relative" ref={featuresRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={featuresInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4">
-              How The System Works
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Water flows through multiple stages of advanced filtration media, each targeting specific contaminants.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {systemFeatures.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={featuresInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative"
-              >
-                <div className="p-6 rounded-2xl bg-card border border-border/50 hover:border-primary/30 hover:shadow-lg transition-all duration-300 h-full">
-                  <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">
-                    {index + 1}
-                  </div>
-                  
-                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                    <feature.icon className="h-7 w-7 text-primary" />
-                  </div>
-                  
-                  <h3 className="text-xl font-serif text-foreground mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-muted-foreground">
-                    {feature.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <Button size="lg" asChild><Link to="/complimentary-water-test">Book a complimentary water test</Link></Button>
+            <Button size="lg" variant="outline" asChild><Link to="/filtration-technology">How the dual-tank design works</Link></Button>
           </div>
         </div>
-      </section>
+        <img src={photo} width={505} height={760} alt="Two installed water treatment tanks in a home" loading="lazy" className="mx-auto aspect-[2/3] w-full max-w-sm rounded-lg object-cover" />
+      </div>
+    </section>
+  </PageLayout>
+);
 
-      {/* System Infographics */}
-      <section className="py-16 md:py-20 relative overflow-hidden bg-secondary/20">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4">
-              Visual <span className="text-primary">Guides</span>
-            </h2>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto mb-12"
-          >
-            <div className="relative group overflow-hidden rounded-2xl border border-border/30 shadow-xl">
-              <img 
-                src={waterSoftenerImg} 
-                alt="HYGIA+ Water Softener System" 
-                className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-foreground/80 to-transparent p-6">
-                <p className="text-primary-foreground font-serif text-xl">HYGIA+ Dual-Tank System</p>
-                <p className="text-primary-foreground/70 text-sm">Premium water softening equipment</p>
-              </div>
-            </div>
-          </motion.div>
-          
-          <InfographicGrid columns={2}>
-            <InfographicCard 
-              src={cacheBust(systemDiagramImg)} 
-              alt="HYGIA+ Water Filtration System Diagram"
-              delay={0}
-            />
-            <InfographicCard 
-              src={cacheBust(whyChooseUsImg)} 
-              alt="Why Choose Select Source Water"
-              delay={0.15}
-            />
-          </InfographicGrid>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="py-20 md:py-28 bg-secondary/30 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-water-light/20 rounded-full blur-3xl" />
-        </div>
-        
-        <div className="container relative" ref={benefitsRef}>
-          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={benefitsInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-8">
-                Better Water <span className="text-primary">Starts Here</span>
-              </h2>
-              
-              <div className="space-y-4">
-                {benefits.map((benefit, index) => (
-                  <motion.div
-                    key={benefit}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={benefitsInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
-                    className="flex items-center gap-4"
-                  >
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                      <Check className="h-4 w-4 text-primary" />
-                    </div>
-                    <span className="text-lg text-foreground">{benefit}</span>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* SoCal relevance paragraph */}
-              <p className="mt-8 text-muted-foreground text-base leading-relaxed">
-                Beaumont's water tests at 177 PPM hardness — hard enough to damage appliances and dry out your skin. The HYGIA+ system is designed for exactly this type of water.
-              </p>
-              
-              <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg">
-                  <Link to="/free-water-test" className="gap-2">
-                    Schedule Your Free Water Test in the Inland Empire
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <a href="tel:+18334227765" className="gap-2">
-                    <Phone className="h-4 w-4" />
-                    (833) 422-7765
-                  </a>
-                </Button>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={benefitsInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="p-8 rounded-3xl bg-card border border-border/50 text-center">
-                <div className="mb-6">
-                  <span className="text-5xl md:text-6xl font-serif text-primary">Lifetime</span>
-                  <p className="text-xl font-medium text-foreground">Warranty</p>
-                </div>
-                
-                <div className="w-full h-px bg-border my-6" />
-                
-                <img 
-                  src={homeDepotAuthorized} 
-                  alt="Home Depot Authorized Independent Provider" 
-                  className="h-24 md:h-28 w-auto mx-auto drop-shadow-lg"
-                />
-                
-                <p className="mt-6 text-muted-foreground">
-                  Installed by Select Source Water,<br />
-                  a Home Depot Authorized Water<br />
-                  Treatment Service Provider.
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Home Depot Authorized Section */}
-      <section className="py-20 md:py-28 relative overflow-hidden bg-[hsl(var(--light-blue-bg,210_100%_97%))]">
-        <div className="container">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4">
-                HOME DEPOT AUTHORIZED PROVIDER
-              </span>
-              <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-6">
-                Installed by an Authorized <span className="text-primary">Home Depot Partner</span>
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-                Select Source Water is an Authorized Independent Provider for Home Depot Home Services. That means you get the HYGIA+ system installed by factory-trained technicians — backed by Home Depot's customer satisfaction guarantee and SSW's Lifetime Warranty.
-              </p>
-
-              <div className="flex justify-center mb-8">
-                <img 
-                  src={homeDepotAuthorized} 
-                  alt="Home Depot Authorized Independent Provider" 
-                  className="h-20 md:h-24 w-auto drop-shadow-lg"
-                />
-              </div>
-              
-              <Button asChild size="lg">
-                <Link to="/home-depot-authorized-provider" className="gap-2">
-                  <Store className="h-4 w-4" />
-                  Learn About Our HD Partnership
-                </Link>
-              </Button>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Optional RO System */}
-      <section className="py-20 md:py-28 relative overflow-hidden">
-        <div className="container">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <span className="inline-block text-primary font-medium text-sm uppercase tracking-wider mb-4">
-                Optional Add-On
-              </span>
-              <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4">
-                Point-of-Use <span className="text-primary">RO System</span>
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-                For the purest drinking water, add our optional Reverse Osmosis system. 
-                It provides pure, great-tasting drinking water by removing dissolved solids 
-                like salts, lead, and fluoride.
-              </p>
-              
-              <div className="flex flex-wrap justify-center gap-4">
-                <Button asChild size="lg">
-                  <Link to="/filtration-technology" className="gap-2">
-                    Learn About Filtration
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link to="/maintenance" className="gap-2">
-                    View Maintenance Plans
-                  </Link>
-                </Button>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-    </PageLayout>
-  );
-}
+export default HygiaSystem;

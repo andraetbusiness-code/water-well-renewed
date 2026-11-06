@@ -1,72 +1,63 @@
-import { Header } from "@/components/Header";
-import { Hero } from "@/components/Hero";
-import { WaterHardnessData } from "@/components/WaterHardnessData";
-import { WaterAnswers } from "@/components/WaterAnswers";
-import { ProblemSolution } from "@/components/ProblemSolution";
-import { Services } from "@/components/Services";
-import { HowItWorks } from "@/components/HowItWorks";
-import { GoogleReviews } from "@/components/GoogleReviews";
-import { TrustBadges } from "@/components/TrustBadges";
-import { FAQ } from "@/components/FAQ";
-import { ContactCTA } from "@/components/ContactCTA";
-import { Footer } from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
+import { PageLayout } from "@/components/layout/PageLayout";
+import { HomeHero } from "@/components/home/Hero";
+import { Offerings } from "@/components/home/Offerings";
+import { ServiceSteps } from "@/components/home/ServiceSteps";
+import { WaterTest } from "@/components/home/WaterTest";
+import { Coverage } from "@/components/home/Coverage";
+import { HomeFaq, homeFaqItems } from "@/components/home/HomeFaq";
+import { site } from "@/data/site";
 
-const Index = () => {
-  return (
-    <div className="min-h-screen">
-      <Helmet>
-        <title>Whole-Home Water Filtration &amp; Softening | Select Source Water</title>
-        <meta name="description" content="Water testing, whole-home filtration, water softening, and reverse osmosis solutions designed around your household and water source." />
-        <meta name="robots" content="index, follow, max-image-preview:large" />
-        <link rel="canonical" href="https://selectsourcewater.com/" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            "name": "Select Source Water",
-            "image": "https://selectsourcewater.com/og-image.png",
-            "@id": "https://selectsourcewater.com/#organization",
-            "url": "https://selectsourcewater.com/",
-            "telephone": "+18334227765",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "790 Beaumont Ave Ste 124",
-              "addressLocality": "Beaumont",
-              "addressRegion": "CA",
-              "postalCode": "92223",
-              "addressCountry": "US"
-            },
-            "description": "Select Source Water provides water testing, whole-home water filtration, water softening, and reverse osmosis solutions.",
-            "hasOfferCatalog": {
-              "@type": "OfferCatalog",
-              "name": "Water Treatment Services",
-              "itemListElement": [
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Complimentary In-Home Water Test"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "HYGIA+ Whole-House Water Softener Installation"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Whole-House Water Filtration"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Reverse Osmosis Drinking Water System"}}
-              ]
-            }
-          })}
-        </script>
-      </Helmet>
-      <Header />
-      <main>
-        <Hero />
-        <WaterAnswers />
-        <WaterHardnessData />
-        <ProblemSolution />
-        <Services />
-        <HowItWorks />
-        <GoogleReviews />
-        <TrustBadges />
-        <FAQ />
-        <ContactCTA />
-      </main>
-      <Footer />
-    </div>
-  );
-};
+const Index = () => (
+  <PageLayout showTrustBar>
+    <Helmet>
+      <title>Water Filter, Softener and RO Service | Select Source Water</title>
+      <meta
+        name="description"
+        content="Select Source Water installs and services whole-home water filtration, water softeners and reverse osmosis systems across California and Arizona."
+      />
+      <meta name="robots" content="index, follow, max-image-preview:large" />
+      <link rel="canonical" href={`${site.url}/`} />
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "@id": `${site.url}/#organization`,
+          name: site.name,
+          url: `${site.url}/`,
+          telephone: "+18334227765",
+          email: site.email,
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: site.address.street,
+            addressLocality: site.address.city,
+            addressRegion: site.address.state,
+            postalCode: site.address.zip,
+            addressCountry: "US",
+          },
+          description:
+            "Installation and service of whole-home water filtration, water softeners and reverse osmosis systems.",
+        })}
+      </script>
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: homeFaqItems.map((i) => ({
+            "@type": "Question",
+            name: i.q,
+            acceptedAnswer: { "@type": "Answer", text: i.a },
+          })),
+        })}
+      </script>
+    </Helmet>
+    <HomeHero />
+    <Offerings />
+    <ServiceSteps />
+    <WaterTest />
+    <Coverage />
+    <HomeFaq />
+  </PageLayout>
+);
 
 export default Index;

@@ -1,227 +1,63 @@
-import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Facebook, Instagram, Droplets, Briefcase, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
-import { JOB_LISTINGS } from "@/data/careers";
+import hdBadge from "@/assets/home-depot-authorized.png";
+import { footerGroups, site } from "@/data/site";
 
-const quickLinks = [
-  { label: "Home", href: "/", isInternal: true },
-  { label: "HYGIA+ System", href: "/hygia-system", isInternal: true },
-  { label: "Filtration Technology", href: "/filtration-technology", isInternal: true },
-  { label: "Process", href: "/process", isInternal: true },
-  { label: "Gallery", href: "/gallery", isInternal: true },
-  { label: "About", href: "/about", isInternal: true },
-  { label: "Blog", href: "/blog", isInternal: true },
-  { label: "Careers", href: "/careers", isInternal: true },
-  { label: "Contact", href: "/#contact" },
-];
-
-const serviceAreas = [
-  { label: "All Service Areas", href: "/service-areas" },
-  { label: "Beaumont, CA", href: "/service-areas/beaumont-ca" },
-  { label: "Sacramento, CA", href: "/service-areas/sacramento-ca" },
-  { label: "Fresno, CA", href: "/service-areas/fresno-ca" },
-  { label: "Phoenix, AZ", href: "/service-areas/phoenix-az" },
-  { label: "Scottsdale, AZ", href: "/service-areas/scottsdale-az" },
-];
-
-export const Footer = () => {
-  return (
-    <footer className="relative bg-foreground overflow-hidden">
-      {/* Organic wave decoration at top */}
-      <div className="absolute top-0 left-0 right-0 h-20 overflow-hidden">
-        <svg
-          viewBox="0 0 1440 100"
-          preserveAspectRatio="none"
-          className="absolute bottom-0 w-full h-full"
-          style={{ fill: "hsl(var(--foreground))" }}
-        >
-          <path d="M0,40 C360,100 1080,0 1440,60 L1440,100 L0,100 Z" opacity="0.3" fill="currentColor" />
-        </svg>
-      </div>
-
-      {/* Floating droplets decoration */}
-      <motion.div
-        className="absolute top-32 right-[10%] w-3 h-4 bg-primary-foreground/5 rounded-full"
-        animate={{ y: [-10, 10, -10] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-32 left-[15%] w-4 h-5 bg-primary-foreground/5 rounded-full"
-        animate={{ y: [-5, 15, -5] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      <div className="container relative pt-20">
-        {/* ── Careers band ──────────────────────────────────────────────────── */}
-        <div className="mb-16 rounded-2xl border border-primary-foreground/10 bg-primary-foreground/[0.03] p-7 sm:p-9">
-          <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
-            <div className="max-w-md">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-accent/15 px-3 py-1 text-xs font-medium uppercase tracking-wider text-accent">
-                <Briefcase className="h-3.5 w-3.5" />
-                We're hiring
-              </div>
-              <h3 className="mb-3 font-serif text-2xl text-primary-foreground sm:text-3xl">
-                Join the Select Source Water team
-              </h3>
-              <p className="text-sm leading-relaxed text-primary-foreground/60">
-                Paid training, performance-based pay, and a clear path into leadership —
-                across Orange County, the Inland Empire, and the Coachella Valley.
-              </p>
-              <Link
-                to="/careers"
-                className="mt-5 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90"
-              >
-                View all openings
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-
-            <div className="w-full lg:max-w-md">
-              <h4 className="mb-4 text-xs font-medium uppercase tracking-wider text-primary-foreground">
-                Open roles
-              </h4>
-              <ul className="space-y-2.5">
-                {JOB_LISTINGS.map((job) => (
-                  <li key={job.slug}>
-                    <Link
-                      to={`/careers/${job.slug}`}
-                      className="group flex items-baseline justify-between gap-4 border-b border-primary-foreground/10 pb-2.5 text-sm text-primary-foreground/70 transition-colors hover:text-accent"
-                    >
-                      <span className="font-medium">{job.title}</span>
-                      <span className="shrink-0 text-xs text-primary-foreground/40 group-hover:text-accent/70">
-                        {job.employmentType} · {job.paySummary}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+export const Footer = () => (
+  <footer className="bg-foreground text-background">
+    <div className="container py-16 md:py-20">
+      <div className="grid gap-12 lg:grid-cols-[1.4fr_repeat(3,1fr)]">
+        <div className="max-w-xs">
+          <Link to="/" aria-label="Select Source Water, home">
+            <img src={logo} alt="Select Source Water" className="h-16 w-auto" />
+          </Link>
+          <address className="mt-6 not-italic text-sm leading-relaxed text-background/70">
+            {site.address.street}
+            <br />
+            {site.address.city}, {site.address.state} {site.address.zip}
+          </address>
+          <p className="mt-4 text-sm">
+            <a href={site.phoneHref} className="tabular font-semibold hover:text-primary">
+              {site.phone}
+            </a>
+            <br />
+            <a href={`mailto:${site.email}`} className="text-background/70 hover:text-background">
+              {site.email}
+            </a>
+          </p>
         </div>
 
-        <div className="pb-12">
-        {/* 4-column grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
-          {/* Column 1 — Brand */}
-          <div className="sm:col-span-2 lg:col-span-1">
-            <Link to="/" className="inline-block mb-6">
-              <img
-                src={logo}
-                alt="Select Source Water"
-                className="h-14 w-auto brightness-0 invert opacity-90"
-              />
-            </Link>
-            <p className="text-primary-foreground/60 mb-6 leading-relaxed text-sm">
-              Serving the Inland Empire since 1998. Experience the difference with our Lifetime Warranty and dedicated service.
-            </p>
-
-            <div className="space-y-3">
-              <a href="tel:+18334227765" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors group text-sm">
-                <div className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                  <Phone className="h-4 w-4" />
-                </div>
-                <span>(833) 422-7765</span>
-              </a>
-              <a href="mailto:info@selectsourcewater.com" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors group text-sm">
-                <div className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                  <Mail className="h-4 w-4" />
-                </div>
-                <span className="break-all">info@selectsourcewater.com</span>
-              </a>
-              <div className="flex items-center gap-3 text-primary-foreground/70 text-sm">
-                <div className="w-9 h-9 rounded-full bg-primary-foreground/10 flex items-center justify-center">
-                  <MapPin className="h-4 w-4" />
-                </div>
-                <span>790 Beaumont Ave Ste 124<br />Beaumont, CA 92223</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Column 2 — Quick Links */}
-          <div>
-            <h4 className="font-medium text-primary-foreground mb-5 text-sm uppercase tracking-wider">Quick Links</h4>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.label}>
-                  {link.isInternal ? (
-                    <Link to={link.href} className="text-primary-foreground/50 hover:text-accent transition-colors inline-block text-sm">
-                      {link.label}
-                    </Link>
-                  ) : (
-                    <a href={link.href} className="text-primary-foreground/50 hover:text-accent transition-colors inline-block text-sm">
-                      {link.label}
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3 — Service Areas */}
-          <div>
-            <h4 className="font-medium text-primary-foreground mb-5 text-sm uppercase tracking-wider">Service Areas</h4>
-            <ul className="space-y-3">
-              {serviceAreas.map((link) => (
-                <li key={link.label}>
-                  <Link to={link.href} className="text-primary-foreground/50 hover:text-accent transition-colors inline-block text-sm">
-                    {link.label}
+        {footerGroups.map((group) => (
+          <nav key={group.title} aria-label={group.title}>
+            <h2 className="text-sm font-semibold tracking-normal text-background">{group.title}</h2>
+            <ul className="mt-4 space-y-3">
+              {group.links.map((l) => (
+                <li key={l.href}>
+                  <Link to={l.href} className="text-sm text-background/70 hover:text-background">
+                    {l.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
-
-          {/* Column 4 — Connect */}
-          <div>
-            <h4 className="font-medium text-primary-foreground mb-5 text-sm uppercase tracking-wider">Connect</h4>
-            <div className="flex items-center gap-3 mb-6">
-              {[
-                { icon: Facebook, label: "Facebook" },
-                { icon: Instagram, label: "Instagram" },
-              ].map((social) => (
-                <a
-                  key={social.label}
-                  href="#"
-                  aria-label={social.label}
-                  className="w-10 h-10 rounded-full bg-primary-foreground/5 flex items-center justify-center hover:bg-accent/20 text-primary-foreground/60 hover:text-accent transition-all"
-                >
-                  <social.icon className="h-4 w-4" />
-                </a>
-              ))}
-            </div>
-            <a
-              href="https://g.page/selectsourcewater"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block text-sm text-primary-foreground/50 hover:text-accent transition-colors"
-            >
-              ⭐ Google Reviews
-            </a>
-          </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="relative pt-8">
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-foreground/20 to-transparent" />
-
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-primary-foreground/40 text-xs text-center md:text-left">
-              © {new Date().getFullYear()} Select Source Water LLC | Est. 1998 | Licensed & Insured |{" "}
-              <Link to="/privacy-policy" className="hover:text-accent transition-colors">Privacy Policy</Link> |{" "}
-              <Link to="/terms-of-service" className="hover:text-accent transition-colors">Terms</Link> |{" "}
-              <Link to="/sms-terms.html" className="hover:text-accent transition-colors">SMS Terms</Link> |{" "}
-              <Link to="/portal" className="hover:text-accent transition-colors">Staff Login</Link>
-            </p>
-          </div>
-        </div>
-        </div>
+          </nav>
+        ))}
       </div>
 
-      {/* Large decorative element */}
-      <div className="absolute bottom-0 right-0 opacity-[0.02] pointer-events-none">
-        <Droplets className="w-80 h-80" />
+      <div className="mt-16 flex flex-col gap-6 border-t border-background/15 pt-8 md:flex-row md:items-center md:justify-between">
+        <div className="flex items-center gap-4">
+          <img src={hdBadge} alt="The Home Depot authorized independent provider" className="h-14 w-auto" />
+          <p className="max-w-xs text-xs leading-relaxed text-background/60">
+            Select Source Water is an authorized independent provider. We are not The Home Depot.
+          </p>
+        </div>
+        <ul className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-background/60">
+          <li>© {new Date().getFullYear()} Select Source Water, LLC</li>
+          <li><a href="/privacy-policy.html" className="hover:text-background">Privacy</a></li>
+          <li><a href="/terms-of-service.html" className="hover:text-background">Terms</a></li>
+          <li><a href="/sms-terms.html" className="hover:text-background">SMS terms</a></li>
+          <li><Link to="/portal" className="hover:text-background">Staff login</Link></li>
+        </ul>
       </div>
-    </footer>
-  );
-};
+    </div>
+  </footer>
+);
