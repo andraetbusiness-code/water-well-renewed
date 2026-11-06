@@ -4,6 +4,8 @@ import { PageLayout, PageHero } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { storeMarkets, type StoreMarket } from "@/data/storeServiceAreas";
 import { regionGuideSlug, site } from "@/data/site";
+import { getFocusMarket } from "@/data/focusMarkets";
+import { cityData } from "@/data/cityData";
 
 const stateNames = { CA: "California", AZ: "Arizona" } as const;
 
@@ -12,15 +14,23 @@ export function StoreMarketPage({ market }: { market: StoreMarket }) {
   const canonical = `${site.url}/service-areas/${market.slug}/`;
   const neighbors = storeMarkets.filter((m) => m.region === market.region && m.slug !== market.slug).slice(0, 6);
   const guide = regionGuideSlug[market.region];
+  const focus = getFocusMarket(market.slug);
+  const inStore = focus ? market.stores.find((s) => s.storeNumber === focus.inStoreNumber) : undefined;
+  const nameFor = (slug: string) =>
+    storeMarkets.find((m) => m.slug === slug)?.name ?? cityData[slug]?.name;
+  const nearbyLinks = focus
+    ? focus.nearby.map((slug) => ({ slug, name: nameFor(slug) })).filter((n): n is { slug: string; name: string } => Boolean(n.name))
+    : neighbors.map((n) => ({ slug: n.slug, name: n.name }));
+  const title = focus?.metaTitle ?? `Water Softener, Filter and RO Service in ${market.name}, ${market.state} | Select Source Water`;
+  const description =
+    focus?.metaDescription ??
+    `Select Source Water installs and services water softeners, whole-home filters and reverse osmosis systems in ${market.name}, ${stateName}. Request service or a complimentary water test.`;
 
   return (
     <PageLayout showContactCTA>
       <Helmet>
-        <title>Water Softener, Filter and RO Service in {market.name}, {market.state} | Select Source Water</title>
-        <meta
-          name="description"
-          content={`Select Source Water installs and services water softeners, whole-home filters and reverse osmosis systems in ${market.name}, ${stateName}. Request service or a complimentary water test.`}
-        />
+        <title>{title}</title>
+        <meta name="description" content={description} />
         <link rel="canonical" href={canonical} />
         <script type="application/ld+json">
           {JSON.stringify({
@@ -32,12 +42,25 @@ export function StoreMarketPage({ market }: { market: StoreMarket }) {
             url: canonical,
           })}
         </script>
+        {focus && (
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: focus.faqs.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
+            })}
+          </script>
+        )}
       </Helmet>
 
       <PageHero
         badge={market.region}
-        title={`Water system service in ${market.name}, ${market.state}.`}
-        description="Installation and service for water softeners, whole-home filters and reverse osmosis systems."
+        title={focus?.heroTitle ?? `Water system service in ${market.name}, ${market.state}.`}
+        description={focus?.heroDescription ?? "Installation and service for water softeners, whole-home filters and reverse osmosis systems."}
       >
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <Button size="lg" asChild>
@@ -49,9 +72,17 @@ export function StoreMarketPage({ market }: { market: StoreMarket }) {
         </div>
       </PageHero>
 
+      {focus && (
+        <section className="pt-16 md:pt-24">
+          <div className="container">
+            <p className="measure text-lg text-muted-foreground">{focus.intro}</p>
+          </div>
+        </section>
+      )}
+
       <section className="py-16 md:py-24">
         <div className="container grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
-          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">What we do in {market.name}</h2>
+          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Water softener, filtration and RO service in {market.name}</h2>
           <ul className="rule-list border-y border-border">
             {[
               ["Service on the system you have", "/service"],
@@ -70,12 +101,52 @@ export function StoreMarketPage({ market }: { market: StoreMarket }) {
         </div>
       </section>
 
+      {inStore && (
+        <section className="border-t border-border py-16 md:py-20">
+          <div className="container grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
+            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">Find our in-store team at The Home Depot</h2>
+            <div>
+              <p className="text-lg font-medium">
+                The Home Depot, {inStore.address}, {inStore.city}, {inStore.state} {inStore.zip}
+              </p>
+              <p className="measure mt-3 text-muted-foreground">
+                Our in-store team is there during business hours to answer questions about water softeners, filtration and reverse osmosis, and to book a complimentary in-home water test. Financing available through The Home Depot.
+              </p>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`The Home Depot ${inStore.address} ${inStore.city} ${inStore.state} ${inStore.zip}`)}`}
+                className="mt-4 inline-block font-semibold text-primary underline-offset-4 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Get directions
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {focus && (
+        <section className="border-t border-border py-16 md:py-24">
+          <div className="container grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Questions from {market.name} homeowners</h2>
+            <dl className="divide-y divide-border border-y border-border">
+              {focus.faqs.map((f) => (
+                <div key={f.q} className="py-6">
+                  <dt className="text-lg font-medium">{f.q}</dt>
+                  <dd className="measure mt-2 text-muted-foreground">{f.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+      )}
+
       <section className="border-t border-border bg-secondary py-16 md:py-20">
         <div className="container grid gap-12 lg:grid-cols-2 lg:gap-20">
           <div>
             <h2 className="text-2xl font-semibold tracking-tight">Nearby markets</h2>
             <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
-              {neighbors.map((n) => (
+              {nearbyLinks.map((n) => (
                 <li key={n.slug}>
                   <Link to={`/service-areas/${n.slug}`} className="text-muted-foreground hover:text-primary">
                     {n.name}

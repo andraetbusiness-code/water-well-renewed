@@ -359,7 +359,7 @@ export const blogArticles: BlogArticle[] = [
     category: "know-your-water",
     readTime: 3,
     publishedAt: "2026-04-01",
-    metaTitle: "Complimentary In-Home Water Test | Select Source Water",
+    metaTitle: "What to Expect From a Complimentary Water Test | Select Source Water",
     metaDescription: "What to expect from a complimentary in-home water test: about 15 to 30 minutes, a demonstration, and no obligation to buy.",
     tags: ["water test", "in-home water test", "beaumont ca", "riverside county"],
     content: [

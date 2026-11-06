@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
 import { serviceRegions, storeMarkets } from "@/data/storeServiceAreas";
+import { focusMarkets } from "@/data/focusMarkets";
 
 export const Coverage = () => {
   const byRegion = serviceRegions.map((region) => ({
     region,
-    markets: storeMarkets.filter((m) => m.region === region),
+    // Focus markets first, so they always make the short list on the home page.
+    markets: storeMarkets
+      .filter((m) => m.region === region)
+      .sort((a, b) => Number(Boolean(focusMarkets[b.slug])) - Number(Boolean(focusMarkets[a.slug]))),
   }));
   return (
     <section className="border-t border-border py-20 md:py-28">
