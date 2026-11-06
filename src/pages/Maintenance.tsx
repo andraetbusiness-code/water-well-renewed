@@ -282,7 +282,7 @@ export default function Maintenance() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg">
-                <Link to="/free-water-test" className="gap-2">
+                <Link to="/complimentary-water-test" className="gap-2">
                   Schedule Service
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -338,7 +338,7 @@ export default function Maintenance() {
               </p>
               
               <Button asChild size="lg">
-                <Link to="/free-water-test" className="gap-2">
+                <Link to="/complimentary-water-test" className="gap-2">
                   Schedule Your Annual Maintenance
                   <ArrowRight className="h-4 w-4" />
                 </Link>

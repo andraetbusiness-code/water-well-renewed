@@ -47,7 +47,7 @@ const FreeWaterTest = () => {
     });
 
     if (result.ok) {
-      toast.success("Thank you! We'll contact you within 24 hours to schedule your free water test.");
+      toast.success("Thank you! We'll contact you within 24 hours to schedule your complimentary water test.");
       setFormData({ name: "", phone: "", email: "", address: "", message: "", smsConsent: false });
     } else {
       // Never tell someone we received their request when we did not.
@@ -59,16 +59,16 @@ const FreeWaterTest = () => {
   return (
     <PageLayout>
       <Helmet>
-        <title>Free Water Test | Inland Empire Home Water Analysis | Select Source Water</title>
-        <meta name="description" content="Schedule a free in-home water test in the Inland Empire. We test for hardness, TDS, Chromium-6, and more. No cost, no obligation. Call (833) 422-7765." />
-        <link rel="canonical" href="https://selectsourcewater.com/free-water-test/" />
+        <title>Complimentary Water Test | Inland Empire Home Water Analysis | Select Source Water</title>
+        <meta name="description" content="Schedule a complimentary in-home water test in the Inland Empire. We test for hardness, TDS, Chromium-6, and more. No cost, no obligation. Call (833) 422-7765." />
+        <link rel="canonical" href="https://selectsourcewater.com/complimentary-water-test/" />
       </Helmet>
 
       <PageHero
-        badge="100% Free • No Obligation"
-        title="Free In-Home"
+        badge="Complimentary • No Obligation"
+        title="Complimentary In-Home"
         subtitle="Water Test"
-        description="Find out exactly what's in your water. Our certified technicians will test your water on-site and provide a detailed report — completely free."
+        description="Find out exactly what's in your water. Our trained technicians will test your water on-site and walk you through the results at no cost."
       />
 
       <section className="py-16 md:py-24 bg-background">
@@ -135,7 +135,7 @@ const FreeWaterTest = () => {
                 </div>
 
                 <Button type="submit" size="lg" className="w-full" disabled={submitting}>
-                  {submitting ? "Submitting..." : "Schedule My Free Test"}
+                  {submitting ? "Submitting..." : "Schedule My Complimentary Test"}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </form>

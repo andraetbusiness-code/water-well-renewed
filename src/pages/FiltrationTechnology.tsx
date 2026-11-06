@@ -27,7 +27,7 @@ const filtrationStages = [
   { name: "KDF Media", description: "Reduces heavy metals.", side: "right" },
   { name: "Activated Carbon", description: "Improves taste & removes VOCs.", side: "right" },
   { name: "Fine Filter", description: "Polishes and clarifies water.", side: "right" },
-  { name: "UV Light", description: "Kills bacteria & viruses.", side: "right" },
+  { name: "UV Light", description: "Ultraviolet light treatment stage.", side: "right" },
   { name: "Final Polishing Filter", description: "Gives water a fresh taste.", side: "right" }
 ];
 
@@ -49,7 +49,7 @@ export default function FiltrationTechnology() {
     <PageLayout>
       <Helmet>
         <title>10-Stage Water Filtration Technology | Select Source Water — Southern California</title>
-        <meta name="description" content="Our 10-stage whole house system removes hard water, chlorine, chromium-6, arsenic, and more. Built for Inland Empire water conditions. Free test: (833) 422-7765." />
+        <meta name="description" content="Our 10-stage whole house system removes hard water, chlorine, chromium-6, arsenic, and more. Built for Inland Empire water conditions. Complimentary test: (833) 422-7765." />
         <link rel="canonical" href="https://selectsourcewater.com/filtration-technology/" />
       </Helmet>
 
@@ -179,8 +179,8 @@ export default function FiltrationTechnology() {
 
               <div className="mt-8 text-center">
                 <Button asChild size="lg">
-                  <Link to="/free-water-test" className="gap-2">
-                    Get Your Free Water Test
+                  <Link to="/complimentary-water-test" className="gap-2">
+                    Get Your Complimentary Water Test
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>

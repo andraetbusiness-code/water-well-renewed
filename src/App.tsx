@@ -13,6 +13,7 @@ import HygiaSystem from "./pages/HygiaSystem";
 import FiltrationTechnology from "./pages/FiltrationTechnology";
 import WhatInWater from "./pages/WhatInWater";
 import Maintenance from "./pages/Maintenance";
+import Service from "./pages/Service";
 import Process from "./pages/Process";
 import Gallery from "./pages/Gallery";
 import Presentations from "./pages/Presentations";
@@ -110,6 +111,7 @@ const App = () => (
               <Route path="/hygia-system" element={<HygiaSystem />} />
               <Route path="/filtration-technology" element={<FiltrationTechnology />} />
               <Route path="/what-in-water" element={<WhatInWater />} />
+              <Route path="/service" element={<Service />} />
               <Route path="/maintenance" element={<Maintenance />} />
               <Route path="/process" element={<Process />} />
               <Route path="/gallery" element={<Gallery />} />
@@ -126,7 +128,7 @@ const App = () => (
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/service-areas/:citySlug" element={<CityPage />} />
               <Route path="/about" element={<About />} />
-              <Route path="/free-water-test" element={<FreeWaterTest />} />
+              <Route path="/complimentary-water-test" element={<FreeWaterTest />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms-of-service" element={<TermsOfService />} />
               <Route path="/demo/hygia-plus" element={<StaffOnly><HygiaPlusDemo /></StaffOnly>} />

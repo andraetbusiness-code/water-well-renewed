@@ -119,7 +119,7 @@ const infographics = [
     id: 12,
     src: cacheBust(waterTestImg),
     alt: "Water Quality Testing",
-    title: "Free Water Testing",
+    title: "Complimentary Water Testing",
     category: "Process",
     link: "/process"
   },
@@ -325,11 +325,11 @@ export default function Gallery() {
                 Ready to Get Started?
               </h2>
               <p className="text-muted-foreground mb-8">
-                Schedule your free in-home water test and discover the right solution for your Inland Empire home.
+                Schedule your complimentary in-home water test and discover the right solution for your Inland Empire home.
               </p>
               <Button asChild size="lg">
-                <Link to="/free-water-test">
-                  Schedule Free Water Test
+                <Link to="/complimentary-water-test">
+                  Schedule Complimentary Water Test
                 </Link>
               </Button>
             </motion.div>

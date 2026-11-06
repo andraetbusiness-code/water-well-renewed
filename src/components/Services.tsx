@@ -15,7 +15,7 @@ import {
 const services = [
   {
     icon: TestTube,
-    title: "Free Water Testing",
+    title: "Complimentary Water Testing",
     description: "Comprehensive in-home water quality analysis to identify contaminants and hardness levels.",
     accent: "from-accent/30 to-accent/10",
     link: "/process",
@@ -164,7 +164,7 @@ export const Services = () => {
             to="/process" 
             className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
           >
-            <span>Get started with a free water test</span>
+            <span>Get started with a complimentary water test</span>
             <ArrowRight className="h-4 w-4" />
           </Link>
         </motion.div>

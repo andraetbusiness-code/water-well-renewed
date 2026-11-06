@@ -137,6 +137,9 @@ export const Header = () => {
                 onToggle={() => setOpenDropdown(openDropdown === "areas" ? null : "areas")}
                 onClose={() => setOpenDropdown(null)}
               />
+              <Link to="/service" className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-secondary/50 rounded-full transition-all duration-200">
+                Repair &amp; Service
+              </Link>
               <Link to="/home-depot-authorized-provider" className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-secondary/50 rounded-full transition-all duration-200">
                 Home Depot
               </Link>
@@ -163,7 +166,7 @@ export const Header = () => {
                 <span>(833) 422-7765</span>
               </a>
               <Button variant="default" size="sm" asChild>
-                <Link to="/free-water-test">Free Water Test</Link>
+                <Link to="/complimentary-water-test">Complimentary Water Test</Link>
               </Button>
             </div>
 
@@ -251,6 +254,7 @@ export const Header = () => {
 
                 {/* Simple links */}
                 {[
+                  { label: "Repair & Service", href: "/service", delay: 0.15 },
                   { label: "Home Depot", href: "/home-depot-authorized-provider", delay: 0.18 },
                   { label: "Process", href: "/process", delay: 0.24 },
                   { label: "About", href: "/about", delay: 0.30 },
@@ -281,8 +285,8 @@ export const Header = () => {
                   <span>(833) 422-7765</span>
                 </a>
                 <Button variant="hero" size="lg" className="w-full" asChild>
-                  <Link to="/free-water-test" onClick={closeMobile}>
-                    Schedule Free Water Test
+                  <Link to="/complimentary-water-test" onClick={closeMobile}>
+                    Schedule Complimentary Water Test
                   </Link>
                 </Button>
               </motion.div>

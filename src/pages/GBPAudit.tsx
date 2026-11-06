@@ -442,7 +442,7 @@ const GBPAudit = () => {
             Right now, paid acquisition is coming primarily from Meta at $75 per lead. Meta can work, but it's not always capturing customers at the exact moment they're actively searching for a solution.
           </p>
           <p className="text-sm text-gray-700 leading-relaxed mb-4">
-            Google Ads sits in a different intent category: it captures <strong>"I need this now"</strong> searches like <em>water softener installation</em>, <em>whole house water filtration</em>, <em>free water test near me</em>, and <em>water treatment company Sacramento</em>. When the Google foundation is properly structured, Google Ads performance typically improves because Google has clearer signals about what the business is, where it operates, and which searches it should match.
+            Google Ads sits in a different intent category: it captures <strong>"I need this now"</strong> searches like <em>water softener installation</em>, <em>whole house water filtration</em>, <em>complimentary water test near me</em>, and <em>water treatment company Sacramento</em>. When the Google foundation is properly structured, Google Ads performance typically improves because Google has clearer signals about what the business is, where it operates, and which searches it should match.
           </p>
 
           <h4 className="text-sm font-bold mt-6 mb-3 audit-no-break" style={{ color: "#1E6FD9" }}>

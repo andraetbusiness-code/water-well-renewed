@@ -11,17 +11,17 @@ const benefits = [
   {
     icon: Shield,
     title: "Lifetime Warranty",
-    description: "Every HYGIA+ system installed through our Home Depot partnership is backed by a comprehensive Lifetime Warranty — parts, labor, and performance guaranteed.",
+    description: "Every HYGIA+ system installed through our Home Depot partnership is backed by a comprehensive Lifetime Warranty.",
   },
   {
     icon: Clock,
     title: "Same-Week Installation",
-    description: "Our certified technicians install your system within days, not weeks. Most installations are completed in under 2 hours.",
+    description: "Our trained technicians schedule your installation directly with you.",
   },
   {
     icon: Users,
     title: "Factory-Trained Technicians",
-    description: "Every installer is factory-certified and background-checked. We maintain the highest standards Home Depot requires.",
+    description: "Our own trained installers handle every job, start to finish.",
   },
   {
     icon: Award,
@@ -30,16 +30,16 @@ const benefits = [
   },
   {
     icon: Star,
-    title: "4.7★ Customer Rating",
-    description: "With 461+ verified reviews, our customers consistently rate us among the top water treatment providers in the Inland Empire.",
+    title: "4.6★ on Google",
+    description: "Rated 4.6 stars across 484 Google reviews.",
   },
 ];
 
 const process = [
   {
     step: "1",
-    title: "Free In-Home Water Test",
-    description: "A certified technician visits your home to test your water and explain exactly what's in it — no obligation.",
+    title: "Complimentary In-Home Water Test",
+    description: "A trained technician visits your home to test your water and explain exactly what's in it — no obligation.",
   },
   {
     step: "2",
@@ -49,12 +49,12 @@ const process = [
   {
     step: "3",
     title: "Professional Installation",
-    description: "Our factory-trained team installs your system, typically in under 2 hours, with zero disruption to your day.",
+    description: "Our factory-trained team installs your system and walks you through how it works.",
   },
   {
     step: "4",
     title: "Ongoing Support",
-    description: "Enjoy clean water backed by our Lifetime Warranty, annual maintenance options, and 24/7 customer support.",
+    description: "Enjoy clean water backed by our Lifetime Warranty, annual maintenance options, and local customer support.",
   },
 ];
 
@@ -95,8 +95,8 @@ const HomeDepotPartnership = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="hero" size="lg" asChild>
-                <Link to="/free-water-test">
-                  Schedule Free Water Test
+                <Link to="/complimentary-water-test">
+                  Schedule Complimentary Water Test
                   <ArrowRight className="ml-1 h-5 w-5" />
                 </Link>
               </Button>
@@ -187,7 +187,7 @@ const HomeDepotPartnership = () => {
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Home Depot selects only the most qualified, experienced, and reliable providers to serve their customers. 
-                  Our 25+ year track record, factory-certified technicians, and commitment to customer satisfaction 
+                  Our 25+ year track record, trained technicians, and commitment to customer satisfaction 
                   earned us the Authorized Independent Provider designation for water treatment across the Inland Empire.
                 </p>
                 <div className="flex flex-wrap gap-4 text-sm">
@@ -195,7 +195,7 @@ const HomeDepotPartnership = () => {
                     <CheckCircle className="h-4 w-4 text-primary" /> Background-Checked Staff
                   </span>
                   <span className="flex items-center gap-1 text-foreground/70">
-                    <CheckCircle className="h-4 w-4 text-primary" /> Factory Certified
+                    <CheckCircle className="h-4 w-4 text-primary" /> Trained Installers
                   </span>
                   <span className="flex items-center gap-1 text-foreground/70">
                     <CheckCircle className="h-4 w-4 text-primary" /> Fully Insured

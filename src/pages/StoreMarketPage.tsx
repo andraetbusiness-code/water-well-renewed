@@ -8,7 +8,9 @@ import { TrustBar } from "@/components/TrustBar";
 import { ContactCTA } from "@/components/ContactCTA";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import type { StoreMarket } from "@/data/storeServiceAreas";
+import { storeMarkets, type StoreMarket } from "@/data/storeServiceAreas";
+import { cityData } from "@/data/cityData";
+import { getFocusMarket } from "@/data/focusMarkets";
 
 const stateNames = { CA: "California", AZ: "Arizona" } as const;
 
@@ -20,6 +22,9 @@ const seoTitles: Record<string, string> = {
 
 export function StoreMarketPage({ market }: { market: StoreMarket }) {
   const stateName = stateNames[market.state];
+  const focus = getFocusMarket(market.slug);
+  const nameFor = (slug: string) => storeMarkets.find((m) => m.slug === slug)?.name ?? cityData[slug]?.name;
+  const nearby = focus ? focus.nearby.map((slug) => ({ slug, name: nameFor(slug) })).filter((n) => Boolean(n.name)) : [];
   const canonical = `https://selectsourcewater.com/service-areas/${market.slug}/`;
   const storeLabel = market.stores.length === 1 ? "store-area reference" : "store-area references";
   const structuredData = {
@@ -35,26 +40,54 @@ export function StoreMarketPage({ market }: { market: StoreMarket }) {
   return (
     <>
       <Helmet>
-        <title>{seoTitles[market.slug] ?? `Water Filtration & Softeners in ${market.name}, ${market.state} | Select Source Water`}</title>
-        <meta name="description" content={`Whole-home water filtration installation, water softeners and reverse osmosis in ${market.name}, ${stateName}. Start with a complimentary in-home water test. Call (833) 422-7765.`} />
+        <title>{focus?.metaTitle ?? seoTitles[market.slug] ?? `Water Filtration & Softeners in ${market.name}, ${market.state} | Select Source Water`}</title>
+        <meta name="description" content={focus?.metaDescription ?? `Whole-home water filtration installation, water softeners and reverse osmosis in ${market.name}, ${stateName}. Start with a complimentary in-home water test. Call (833) 422-7765.`} />
         <link rel="canonical" href={canonical} />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+        {focus && (
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: focus.faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+            })}
+          </script>
+        )}
       </Helmet>
       <Header />
       <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-accent/5 pb-20 pt-32">
         <div className="container relative z-10">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4 uppercase tracking-wider">{market.region} service market</Badge>
-            <h1 className="mb-6 font-serif text-3xl text-foreground md:text-5xl">Water Treatment Service in {market.name}, {market.state}</h1>
-            <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground">Select Source Water serves homeowners in and around {market.name} with free in-home water testing, whole-home filtration options, professional installation, and ongoing support.</p>
+            <h1 className="mb-6 font-serif text-3xl text-foreground md:text-5xl">{focus ? `Water Softener, Filtration & RO Service in ${market.name}, ${market.state}` : `Water Treatment Service in ${market.name}, ${market.state}`}</h1>
+            <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground">Select Source Water serves homeowners in and around {market.name} with complimentary in-home water testing, whole-home filtration options, professional installation, and ongoing support.</p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <Button asChild size="lg" variant="hero"><Link to="/free-water-test">Schedule a Free Water Test<ArrowRight className="ml-2 h-5 w-5" /></Link></Button>
+              <Button asChild size="lg" variant="hero"><Link to="/complimentary-water-test">Schedule a Complimentary Water Test<ArrowRight className="ml-2 h-5 w-5" /></Link></Button>
               <Button asChild size="lg" variant="heroOutline" className="border-primary/30 text-foreground hover:bg-primary/10"><a href="tel:+18334227765"><Phone className="mr-2 h-5 w-5" />(833) 422-7765</a></Button>
             </div>
           </motion.div>
         </div>
       </section>
       <TrustBar />
+      {focus && (
+        <section className="bg-background py-16 md:py-20">
+          <div className="container"><div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[1.3fr_1fr]">
+            <div>
+              <h2 className="mb-4 font-serif text-2xl text-foreground md:text-3xl">Water softener, filtration and RO service in {market.name}</h2>
+              <p className="text-lg leading-relaxed text-muted-foreground">{focus.intro}</p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <Button asChild size="lg"><Link to="/service">Request service<ArrowRight className="ml-2 h-5 w-5" /></Link></Button>
+                <Button asChild size="lg" variant="outline"><Link to="/complimentary-water-test">Complimentary water test</Link></Button>
+              </div>
+            </div>
+            <ul className="grid gap-3 self-start">
+              {["Water softener installation and repair", "Whole-home water filtration", "Reverse osmosis drinking water systems", "Service on systems another company installed"].map((item) => (
+                <li key={item} className="flex items-start gap-3 rounded-xl border border-border bg-card p-4"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><span className="text-sm text-foreground">{item}</span></li>
+              ))}
+            </ul>
+          </div></div>
+        </section>
+      )}
       <section className="bg-background py-16 md:py-24">
         <div className="container"><div className="mx-auto max-w-5xl">
           <div className="mb-10 text-center">
@@ -78,9 +111,27 @@ export function StoreMarketPage({ market }: { market: StoreMarket }) {
       </section>
       <section className="bg-secondary/30 py-16 md:py-20"><div className="container"><div className="mx-auto max-w-4xl">
         <h2 className="mb-8 text-center font-serif text-2xl text-foreground md:text-3xl">What homeowners can schedule</h2>
-        <div className="grid gap-4 sm:grid-cols-2">{["A free in-home water test at your address", "Whole-home filtration and softening recommendations", "Professional installation options", "Product guidance based on your household's needs", "Warranty and continuing service support", "Direct scheduling without relying on store staffing"].map((item) => <div key={item} className="flex items-start gap-3 rounded-xl border border-border bg-card p-4"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><p className="text-sm text-foreground">{item}</p></div>)}</div>
+        <div className="grid gap-4 sm:grid-cols-2">{["A complimentary in-home water test at your address", "Whole-home filtration and softening recommendations", "Professional installation options", "Product guidance based on your household's needs", "Warranty and continuing service support", "Direct scheduling without relying on store staffing"].map((item) => <div key={item} className="flex items-start gap-3 rounded-xl border border-border bg-card p-4"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><p className="text-sm text-foreground">{item}</p></div>)}</div>
         <div className="mt-8 flex items-start gap-3 rounded-xl border border-primary/20 bg-primary/5 p-5 text-sm text-muted-foreground"><ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><p>Select Source Water is an Authorized Independent Provider for Home Depot Home Services. Service eligibility is confirmed by address when you schedule.</p></div>
       </div></div></section>
+      {focus && (
+        <section className="bg-background py-16 md:py-20"><div className="container"><div className="mx-auto max-w-3xl">
+          <h2 className="mb-8 text-center font-serif text-2xl text-foreground md:text-3xl">Common questions in {market.name}</h2>
+          <dl className="divide-y divide-border rounded-2xl border border-border bg-card">
+            {focus.faqs.map((f) => (
+              <div key={f.q} className="p-6"><dt className="font-semibold text-foreground">{f.q}</dt><dd className="mt-2 text-muted-foreground">{f.a}</dd></div>
+            ))}
+          </dl>
+          {nearby.length > 0 && (
+            <div className="mt-10 text-center">
+              <h2 className="mb-4 font-serif text-xl text-foreground">Nearby areas we serve</h2>
+              <div className="flex flex-wrap justify-center gap-3">
+                {nearby.map((n) => <Link key={n.slug} to={`/service-areas/${n.slug}`} className="rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground hover:border-primary hover:text-primary">{n.name}</Link>)}
+              </div>
+            </div>
+          )}
+        </div></div></section>
+      )}
       <ContactCTA />
       <Footer />
     </>

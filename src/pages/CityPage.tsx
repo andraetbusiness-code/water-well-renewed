@@ -60,14 +60,14 @@ export default function CityPage() {
               Water Softener & Filtration in {city.name}, CA
             </h1>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Select Source Water serves {city.name}, California with free in-home water testing,
+              Select Source Water serves {city.name}, California with complimentary in-home water testing,
               professional HYGIA+ system installation, and lifetime warranty service. We're a Home Depot
               Authorized Independent Provider — locally operated in Beaumont.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" variant="hero">
-                <Link to="/free-water-test">
-                  Get Your Free Water Test in {city.name}
+                <Link to="/complimentary-water-test">
+                  Get Your Complimentary Water Test in {city.name}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
@@ -153,9 +153,9 @@ export default function CityPage() {
             </h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {[
-                { icon: Droplets, text: `Free In-Home Water Test in ${city.name}` },
+                { icon: Droplets, text: `Complimentary In-Home Water Test in ${city.name}` },
                 { icon: Shield, text: `HYGIA+ Whole House Filtration — calibrated for ${city.name}'s ${city.hardnessPPM} PPM water` },
-                { icon: Wrench, text: "Water Softener Installation — same-day service" },
+                { icon: Wrench, text: "Water Softener Installation and Repair" },
                 { icon: Droplets, text: "Point-of-Use RO System — purest drinking water" },
                 { icon: CheckCircle2, text: "Annual Maintenance Plans — less than $6/month" },
                 { icon: Shield, text: "Lifetime Warranty Support — we're local, we stay local" },
@@ -186,7 +186,7 @@ export default function CityPage() {
               </h2>
             </div>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Select Source Water is an Authorized Independent Provider for Home Depot Home Services. Visit any Home Depot in the {city.name} area and ask for a free water test kit — or call us directly at (833) 422-7765 to schedule an in-home visit.
+              Select Source Water is an Authorized Independent Provider for Home Depot Home Services. Visit any Home Depot in the {city.name} area and ask for a complimentary water test kit — or call us directly at (833) 422-7765 to schedule an in-home visit.
             </p>
             <p className="text-xs text-muted-foreground mb-6 italic">
               Your nearest Home Depot — ask associates for the Select Source Water station.
@@ -230,7 +230,7 @@ export default function CityPage() {
             </div>
             <div className="text-center">
               <p className="text-sm text-muted-foreground mb-4">
-                4.7 ⭐ across 461+ reviews —{" "}
+                4.6 ⭐ across 484 Google reviews —{" "}
                 <Link to="/reviews" className="text-primary hover:underline">read them all</Link>
               </p>
             </div>
@@ -264,7 +264,7 @@ export default function CityPage() {
                   Does Home Depot install water softeners in {city.name}?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
-                  Yes — through authorized partners like Select Source Water. We're a Home Depot Authorized Independent Provider. You can pick up a free water test kit at your local Home Depot or schedule directly with us at (833) 422-7765.
+                  Yes — through authorized partners like Select Source Water. We're a Home Depot Authorized Independent Provider. You can pick up a complimentary water test kit at your local Home Depot or schedule directly with us at (833) 422-7765.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="contaminants" className="bg-card rounded-xl border border-border px-6">
@@ -280,7 +280,7 @@ export default function CityPage() {
                   How much does a water softener cost in {city.name}?
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
-                  Every home is different — water hardness, household size, and water usage all factor into the right system size. That's why we start with a free in-home water test. After testing, we'll give you a transparent quote with no pressure. Call (833) 422-7765 or schedule online.
+                  Every home is different — water hardness, household size, and water usage all factor into the right system size. That's why we start with a complimentary in-home water test. After testing, we'll give you a transparent quote with no pressure. Call (833) 422-7765 or schedule online.
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="install" className="bg-card rounded-xl border border-border px-6">
@@ -306,15 +306,15 @@ export default function CityPage() {
             className="max-w-2xl mx-auto text-center"
           >
             <h2 className="text-2xl md:text-3xl font-serif text-foreground mb-4">
-              Schedule Your Free Water Test in {city.name}
+              Schedule Your Complimentary Water Test in {city.name}
             </h2>
             <p className="text-muted-foreground mb-8">
-              We serve {city.name} and all surrounding communities. Our certified water specialists will test your water right in your kitchen and give you results in minutes. No obligation, no credit card required.
+              We serve {city.name} and all surrounding communities. Our trained water specialists will test your water right in your kitchen and give you results in minutes. No obligation, no credit card required.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" variant="hero">
-                <Link to="/free-water-test">
-                  Schedule Free Water Test in {city.name}
+                <Link to="/complimentary-water-test">
+                  Schedule Complimentary Water Test in {city.name}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
