@@ -37,12 +37,16 @@ export interface FocusMarket {
 
 const sharedFaqs = (city: string): FocusFaq[] => [
   {
-    q: `Do you service water softeners, filters and RO systems you did not install in ${city}?`,
-    a: `Yes. We service water softeners, whole-home filters and reverse osmosis systems in ${city}, including systems another company installed. When you book, tell us the brand and model if you know it, so the technician arrives with the right parts.`,
+    q: `Do you repair water softeners, filters and RO systems you did not install in ${city}?`,
+    a: `Yes. We repair and service water softeners, whole-home filters and reverse osmosis systems in ${city}, including systems another company installed. When you book, tell us the brand and model if you know it, so the technician arrives with the right parts.`,
   },
   {
     q: `What happens during a complimentary in-home water test in ${city}?`,
     a: `A specialist comes to your home, tests your tap water with you and walks through what the results mean for your plumbing and appliances. There is no obligation to buy anything.`,
+  },
+  {
+    q: `How often should a water softener be serviced in ${city}?`,
+    a: `It depends on your water, your household and the system. A yearly check is a common starting point. After looking at your system, the technician can recommend a schedule and tell you what upkeep, like adding salt or changing filters, you can do yourself.`,
   },
   {
     q: `Can I install a water softener or whole-home filter in ${city} without paying all at once?`,
@@ -57,9 +61,9 @@ const sharedFaqs = (city: string): FocusFaq[] => [
 export const focusMarkets: Record<string, FocusMarket> = {
   "beaumont-ca": {
     slug: "beaumont-ca",
-    metaTitle: "Water Softener & Filtration in Beaumont, CA | Select Source Water",
+    metaTitle: "Water Softener Install & Repair in Beaumont, CA | Select Source Water",
     metaDescription:
-      "Water softener installation and service, whole-home water filtration and reverse osmosis in Beaumont, CA. Local team based in Beaumont. Book a complimentary water test.",
+      "Water softener installation, repair and service, whole-home water filtration and reverse osmosis in Beaumont, CA. Local team based in Beaumont. Book a complimentary water test.",
     heroTitle: "Water softeners, filtration and RO in Beaumont, CA.",
     heroDescription:
       "Installation and service from a team headquartered in Beaumont, with an in-store team at The Home Depot on 2nd Street.",
@@ -77,9 +81,9 @@ export const focusMarkets: Record<string, FocusMarket> = {
   },
   "north-hollywood-ca": {
     slug: "north-hollywood-ca",
-    metaTitle: "Water Softener & Filtration in North Hollywood, CA | Select Source Water",
+    metaTitle: "Water Softener Install & Repair in North Hollywood, CA | Select Source Water",
     metaDescription:
-      "Water softener installation and service, whole-home water filtration and reverse osmosis in North Hollywood and the San Fernando Valley. Book a complimentary water test.",
+      "Water softener installation, repair and service, whole-home water filtration and reverse osmosis in North Hollywood and the San Fernando Valley. Book a complimentary water test.",
     heroTitle: "Water softeners, filtration and RO in North Hollywood and the Valley.",
     heroDescription:
       "Installation and service for Los Angeles homes, with an in-store team at The Home Depot on Sherman Way.",
@@ -91,9 +95,9 @@ export const focusMarkets: Record<string, FocusMarket> = {
   },
   "roseville-ca": {
     slug: "roseville-ca",
-    metaTitle: "Water Softener & Filtration in Roseville, CA | Select Source Water",
+    metaTitle: "Water Softener Install & Repair in Roseville, CA | Select Source Water",
     metaDescription:
-      "Water softener installation and service, whole-home water filtration and reverse osmosis in Roseville and the greater Sacramento area. Book a complimentary water test.",
+      "Water softener installation, repair and service, whole-home water filtration and reverse osmosis in Roseville and the greater Sacramento area. Book a complimentary water test.",
     heroTitle: "Water softeners, filtration and RO in Roseville, CA.",
     heroDescription:
       "Installation and service for Roseville and the greater Sacramento area, with an in-store team at The Home Depot in Stanford Ranch.",
