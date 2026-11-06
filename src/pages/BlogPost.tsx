@@ -479,7 +479,7 @@ export default function BlogPost() {
       <Helmet>
         <title>{article.metaTitle}</title>
         <meta name="description" content={article.metaDescription} />
-        <link rel="canonical" href={`https://selectsourcewater.com/blog/${article.slug}`} />
+        <link rel="canonical" href={`https://selectsourcewater.com/blog/${article.slug}/`} />
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',

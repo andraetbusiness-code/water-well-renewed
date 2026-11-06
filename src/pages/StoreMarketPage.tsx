@@ -14,7 +14,7 @@ const stateNames = { CA: "California", AZ: "Arizona" } as const;
 
 export function StoreMarketPage({ market }: { market: StoreMarket }) {
   const stateName = stateNames[market.state];
-  const canonical = `https://selectsourcewater.com/service-areas/${market.slug}`;
+  const canonical = `https://selectsourcewater.com/service-areas/${market.slug}/`;
   const storeLabel = market.stores.length === 1 ? "store-area reference" : "store-area references";
   const structuredData = {
     "@context": "https://schema.org",

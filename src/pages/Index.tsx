@@ -29,12 +29,20 @@ const Index = () => {
             "@id": "https://selectsourcewater.com/#organization",
             "url": "https://selectsourcewater.com/",
             "telephone": "+18334227765",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "790 Beaumont Ave Ste 124",
+              "addressLocality": "Beaumont",
+              "addressRegion": "CA",
+              "postalCode": "92223",
+              "addressCountry": "US"
+            },
             "description": "Select Source Water provides water testing, whole-home water filtration, water softening, and reverse osmosis solutions.",
             "hasOfferCatalog": {
               "@type": "OfferCatalog",
               "name": "Water Treatment Services",
               "itemListElement": [
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Free In-Home Water Test"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Complimentary In-Home Water Test"}},
                 {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "HYGIA+ Whole-House Water Softener Installation"}},
                 {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Whole-House Water Filtration"}},
                 {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Reverse Osmosis Drinking Water System"}}
