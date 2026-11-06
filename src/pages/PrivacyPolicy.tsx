@@ -13,7 +13,7 @@ const PrivacyPolicy = () => (
     <section className="py-16 bg-background">
       <div className="container max-w-3xl prose prose-slate dark:prose-invert">
         <h2>Information We Collect</h2>
-        <p>When you request a free water test, schedule service, or contact us, we may collect your name, phone number, email address, and home address. This information is used solely to provide you with water treatment services and communicate with you about your account.</p>
+        <p>When you request a complimentary water test, schedule service, or contact us, we may collect your name, phone number, email address, and home address. This information is used solely to provide you with water treatment services and communicate with you about your account.</p>
 
         <h2>How We Use Your Information</h2>
         <ul>

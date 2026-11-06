@@ -123,8 +123,8 @@ export const blogArticles: BlogArticle[] = [
 
       '## What\'s Included in Select Source Water\'s Pricing',
 
-      'When you invest in a system through Select Source Water, the price isn\'t just for the equipment. It covers a free in-home water test and needs assessment so the system is properly sized for your home\'s actual water chemistry, not a generic one-size-fits-all configuration. It also includes factory-certified installation by a background-checked technician who has been trained specifically on the HYGIA+ system, a lifetime warranty on equipment and labor, a 5-day risk-free trial period so you can experience the difference before making a permanent commitment, and ongoing local service from a team based in the Inland Empire who can be back to your home fast — not a national call center routing a technician from three counties away.',
-      'Other vendors at or above our price point often exclude the warranty, skip the water test, and offer no trial period. That\'s a meaningful difference when you\'re making a $7,000 investment.',
+      'When you invest in a system through Select Source Water, the price isn\'t just for the equipment. It covers a free in-home water test and needs assessment so the system is properly sized for your home\'s actual water chemistry, not a generic one-size-fits-all configuration. It also includes factory-certified installation by a background-checked technician who has been trained specifically on the HYGIA+ system, a lifetime warranty on equipment and labor, and ongoing local service from a team based in the Inland Empire who can be back to your home fast — not a national call center routing a technician from three counties away.',
+      'Other vendors at or above our price point often exclude the warranty or skip the water test. That\'s a meaningful difference when you\'re making a $7,000 investment.',
 
       '## Why Other Home Depot Vendors Charge More',
 
@@ -135,11 +135,6 @@ export const blogArticles: BlogArticle[] = [
 
       'A $7,000 system sounds like a big number. But when you run the math, it looks different. Most IE homeowners finance their water treatment system, spreading the cost across 36–60 months. At current financing rates, a $7,000 system can run $120–$180 per month.',
       'Compare that to what hard water costs you without treatment: bottled water for a family of four runs $50–$100 per month. Hard water damages to your water heater (often requiring early replacement at $800–$2,000) and other appliances add hundreds more per year. Specialty soaps, shampoos, and skincare products to combat dry skin and hair cost families $300–$600 annually. The ROI on a water treatment system is real — it\'s not just cleaner water, it\'s money saved across your entire home.',
-
-      '## The 5-Day Risk-Free Trial',
-
-      'Select Source Water offers something most water treatment companies don\'t: a 5-day trial period. After installation, you have five days to experience softer water, spot-free dishes, better-tasting drinking water, and the difference in how your skin and hair feel. If you\'re not satisfied for any reason, we remove the system at no cost to you.',
-      'This kind of confidence comes from knowing our product works. We\'ve installed thousands of systems across Sacramento and the Inland Empire, and we know what happens when properly sized, properly installed equipment meets real Inland Empire water chemistry.',
 
       '## Get a Real Quote for Your Home',
 
@@ -153,7 +148,7 @@ export const blogArticles: BlogArticle[] = [
       },
       {
         question: 'What does the price include when buying from Select Source Water?',
-        answer: 'Select Source Water\'s pricing includes a free water test and needs assessment, factory-certified installation by a background-checked technician, a lifetime warranty on equipment and labor, a 5-day risk-free trial period, and ongoing local service from an Inland Empire-based team.',
+        answer: 'Select Source Water\'s pricing includes a free water test and needs assessment, factory-certified installation by a background-checked technician, a lifetime warranty on equipment and labor, and ongoing local service from an Inland Empire-based team.',
       },
       {
         question: 'Can I finance a water softener in the Inland Empire?',
@@ -723,11 +718,6 @@ export const blogArticles: BlogArticle[] = [
       'The Inland Empire water treatment market includes legitimate companies and licensed operators, but it also includes trunk slammers — one-person or small operations that sell and install systems without manufacturer certification, adequate insurance, or warranty backing. These operators often offer prices that seem attractive but leave homeowners with no recourse when the system underperforms or when a post-installation plumbing issue appears.',
       'At 177–249 PPM hardness across the IE, a whole-home water softener is a genuinely significant investment that your home will rely on for 10–20 years. Choosing an installer based solely on price is a risk not worth taking. Home Depot Authorized Provider status is one of the clearest signals of accountability, training, and staying power in a market where those qualities are unevenly distributed.',
 
-      '## The 5-Day Risk-Free Trial',
-
-      'One element of Select Source Water\'s offering that goes beyond authorization standards is the 5-day risk-free trial. After installation, you have five days to experience softened water throughout your home. If you\'re not satisfied — for any reason — we remove the system at no cost to you.',
-      'This kind of offer is only possible when a company has complete confidence in both the product and the installation. We\'ve made this trial standard practice because we know what happens when properly calibrated, properly installed equipment meets real Inland Empire water chemistry. The results speak for themselves.',
-
       '## Get Started with a Free In-Home Water Test',
 
       'The first step toward cleaner, softer water in your Inland Empire home is understanding exactly what\'s in your water today. Select Source Water offers free in-home water testing — no obligation, same-day results, and no sales pressure. Learn more about our service in Beaumont, Banning, Hemet, Moreno Valley, Riverside, and throughout the IE.',
@@ -744,7 +734,7 @@ export const blogArticles: BlogArticle[] = [
       },
       {
         question: 'Does Home Depot offer a warranty on water softener installations?',
-        answer: 'Select Source Water\'s installations come with a lifetime warranty on equipment and labor, backed by both Select Source Water and the manufacturer. This warranty is maintained as part of the Home Depot Authorized Provider program. A 5-day risk-free trial is also offered on all installations.',
+        answer: 'Select Source Water\'s installations come with a lifetime warranty on equipment and labor, backed by both Select Source Water and the manufacturer. This warranty is maintained as part of the Home Depot Authorized Provider program.',
       },
       {
         question: 'How do I find a Home Depot water softener installer in the Inland Empire?',

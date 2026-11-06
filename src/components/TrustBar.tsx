@@ -1,11 +1,10 @@
 import { motion } from "framer-motion";
-import { Star, Home, Shield, Calendar, Phone, CheckCircle, Droplets } from "lucide-react";
+import { Star, Home, Shield, Phone, CheckCircle, Droplets } from "lucide-react";
 
 const trustItems = [
   { icon: Star, label: "4.7 Stars (461+ Reviews)" },
   { icon: Home, label: "HD Authorized Provider" },
   { icon: Shield, label: "Lifetime Warranty" },
-  { icon: Calendar, label: "5-Day Risk-Free Trial" },
   { icon: CheckCircle, label: "Licensed & Insured" },
   { icon: Droplets, label: "Same-Day Installation" },
   { icon: Phone, label: "(833) 422-7765", href: "tel:+18334227765" },
