@@ -12,6 +12,12 @@ import type { StoreMarket } from "@/data/storeServiceAreas";
 
 const stateNames = { CA: "California", AZ: "Arizona" } as const;
 
+// Titles matched to real Search Console queries (read 2026-11-05).
+// Redlands ranked about 2.6 for "water filtration installation redlands ca" with 0 clicks.
+const seoTitles: Record<string, string> = {
+  "redlands-ca": "Water Filtration Installation in Redlands, CA | Select Source Water",
+};
+
 export function StoreMarketPage({ market }: { market: StoreMarket }) {
   const stateName = stateNames[market.state];
   const canonical = `https://selectsourcewater.com/service-areas/${market.slug}/`;
@@ -29,8 +35,8 @@ export function StoreMarketPage({ market }: { market: StoreMarket }) {
   return (
     <>
       <Helmet>
-        <title>Water Treatment in {market.name}, {market.state} | Select Source Water</title>
-        <meta name="description" content={`Free in-home water testing and whole-home water treatment service in ${market.name}, ${stateName}. View Select Source Water's verified local service-market references.`} />
+        <title>{seoTitles[market.slug] ?? `Water Filtration & Softeners in ${market.name}, ${market.state} | Select Source Water`}</title>
+        <meta name="description" content={`Whole-home water filtration installation, water softeners and reverse osmosis in ${market.name}, ${stateName}. Start with a complimentary in-home water test. Call (833) 422-7765.`} />
         <link rel="canonical" href={canonical} />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
