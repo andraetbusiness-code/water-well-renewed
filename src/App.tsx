@@ -18,10 +18,9 @@ import Gallery from "./pages/Gallery";
 import Presentations from "./pages/Presentations";
 import PresentationViewer from "./pages/PresentationViewer";
 import PortalRoutes from "./pages/portal/PortalRoutes";
+import { AuthProvider } from "@/components/portal/AuthProvider";
+import { ProtectedRoute } from "@/components/portal/ProtectedRoute";
 import FieldRepOnboarding from "./pages/FieldRepOnboarding";
-import ExecutiveAudit from "./pages/ExecutiveAudit";
-import GrowthExecutionPlan from "./pages/GrowthExecutionPlan";
-import GBPAudit from "./pages/GBPAudit";
 import ServiceAreas from "./pages/ServiceAreas";
 import HomeDepotPartnership from "./pages/HomeDepotPartnership";
 import Blog from "./pages/Blog";
@@ -32,6 +31,19 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 
 const HygiaPlusDemo = lazy(() => import("./pages/demo/HygiaPlusDemo"));
+// Internal pages (audits, growth plan, pricing demo) are staff-only. They load in their
+// own chunks and only render after a portal sign-in, so the public site and its
+// prerendered HTML no longer show their contents.
+const ExecutiveAudit = lazy(() => import("./pages/ExecutiveAudit"));
+const GrowthExecutionPlan = lazy(() => import("./pages/GrowthExecutionPlan"));
+const GBPAudit = lazy(() => import("./pages/GBPAudit"));
+const StaffOnly = ({ children }: { children: import("react").ReactNode }) => (
+  <AuthProvider>
+    <ProtectedRoute>
+      <Suspense fallback={null}>{children}</Suspense>
+    </ProtectedRoute>
+  </AuthProvider>
+);
 const MarketingGallerySlide = lazy(() => import("@/components/onboarding/slides/MarketingGallerySlide").then(m => ({ default: m.MarketingGallerySlide })));
 const ApplyPage = lazy(() => import("./pages/careers/ApplyPage"));
 const CareersPage = lazy(() => import("./pages/careers/CareersPage"));
@@ -105,9 +117,9 @@ const App = () => (
               <Route path="/presentations/:slug" element={<PresentationViewer />} />
               <Route path="/portal/*" element={<PortalRoutes />} />
               <Route path="/onboarding" element={<FieldRepOnboarding />} />
-              <Route path="/audit" element={<ExecutiveAudit />} />
-              <Route path="/growth-plan" element={<GrowthExecutionPlan />} />
-              <Route path="/gbp-audit" element={<GBPAudit />} />
+              <Route path="/audit" element={<StaffOnly><ExecutiveAudit /></StaffOnly>} />
+              <Route path="/growth-plan" element={<StaffOnly><GrowthExecutionPlan /></StaffOnly>} />
+              <Route path="/gbp-audit" element={<StaffOnly><GBPAudit /></StaffOnly>} />
               <Route path="/service-areas" element={<ServiceAreas />} />
               <Route path="/home-depot-authorized-provider" element={<HomeDepotPartnership />} />
               <Route path="/blog" element={<Blog />} />
@@ -117,7 +129,7 @@ const App = () => (
               <Route path="/free-water-test" element={<FreeWaterTest />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms-of-service" element={<TermsOfService />} />
-              <Route path="/demo/hygia-plus" element={<Suspense fallback={null}><HygiaPlusDemo /></Suspense>} />
+              <Route path="/demo/hygia-plus" element={<StaffOnly><HygiaPlusDemo /></StaffOnly>} />
               <Route path="/careers" element={<Suspense fallback={null}><CareersPage /></Suspense>} />
               <Route path="/careers/:slug" element={<Suspense fallback={null}><JobDetailPage /></Suspense>} />
               <Route path="/apply" element={<Suspense fallback={null}><ApplyPage /></Suspense>} />
