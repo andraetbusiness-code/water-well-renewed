@@ -77,7 +77,7 @@ export default function HygiaSystem() {
     <PageLayout>
       <Helmet>
         <title>HYGIA+ Whole House Water Filtration System | Select Source Water — Inland Empire</title>
-        <meta name="description" content="The HYGIA+ system removes hard water, chlorine, and contaminants from every tap. Home Depot Authorized installation. Lifetime warranty. Free test: (833) 422-7765." />
+        <meta name="description" content="The HYGIA+ system removes hard water, chlorine, and contaminants from every tap. Home Depot Authorized installation. Lifetime warranty. Complimentary test: (833) 422-7765." />
         <link rel="canonical" href="https://selectsourcewater.com/hygia-system/" />
       </Helmet>
 
@@ -230,8 +230,8 @@ export default function HygiaSystem() {
               
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg">
-                  <Link to="/free-water-test" className="gap-2">
-                    Schedule Your Free Water Test in the Inland Empire
+                  <Link to="/complimentary-water-test" className="gap-2">
+                    Schedule Your Complimentary Water Test in the Inland Empire
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
@@ -292,7 +292,7 @@ export default function HygiaSystem() {
                 Installed by an Authorized <span className="text-primary">Home Depot Partner</span>
               </h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-                Select Source Water is an Authorized Independent Provider for Home Depot Home Services. That means you get the HYGIA+ system installed by factory-trained technicians — backed by Home Depot's customer satisfaction guarantee and SSW's Lifetime Warranty.
+                Select Source Water is an Authorized Independent Provider for Home Depot Home Services. That means you get the HYGIA+ system installed by factory-trained technicians — backed by SSW's Lifetime Warranty.
               </p>
 
               <div className="flex justify-center mb-8">

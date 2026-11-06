@@ -94,7 +94,7 @@ export const ContactCTA = () => {
               Ready for Pure, Soft Water?
             </h2>
             <p className="text-lg text-primary-foreground/70 max-w-2xl mx-auto">
-              Schedule your free in-home water test today. We test right in your kitchen and give you results in minutes. No obligation, no credit card, 100% free.
+              Schedule your complimentary in-home water test today. We test right in your kitchen and give you results in minutes. No obligation and no credit card.
             </p>
           </motion.div>
 
@@ -175,7 +175,7 @@ export const ContactCTA = () => {
                 
                 <form onSubmit={handleSubmit} className="relative bg-card rounded-[2rem] p-8 md:p-10 shadow-2xl">
                   <h3 className="text-2xl font-serif text-foreground mb-2">
-                    Schedule My Free Water Test
+                    Schedule My Complimentary Water Test
                   </h3>
                   <p className="text-muted-foreground mb-8">
                     We'll contact you within 24 hours.
@@ -284,14 +284,14 @@ export const ContactCTA = () => {
                         "Sending..."
                       ) : (
                         <>
-                          Schedule My Free Water Test
+                          Schedule My Complimentary Water Test
                           <ArrowRight className="ml-2 h-5 w-5" />
                         </>
                       )}
                     </Button>
                     
                     <p className="text-xs text-center text-muted-foreground">
-                      We'll contact you within 24 hours. No obligation • No credit card • 100% free.
+                      We'll contact you within 24 hours. No obligation • No credit card
                     </p>
                   </div>
                 </form>

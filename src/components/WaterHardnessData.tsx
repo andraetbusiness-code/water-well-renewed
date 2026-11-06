@@ -52,7 +52,7 @@ export const WaterHardnessData = () => {
 
         <motion.div initial={{ opacity: 0, y: 18 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.55, delay: 0.35 }} className="mt-10 flex flex-col items-center justify-center gap-5 text-center sm:flex-row">
           <Button size="lg" asChild>
-            <Link to="/free-water-test">Schedule a water test<ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" /></Link>
+            <Link to="/complimentary-water-test">Schedule a water test<ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" /></Link>
           </Button>
           <Link to="/service-areas" className="font-semibold text-primary hover:underline">Explore local service-area guides</Link>
         </motion.div>

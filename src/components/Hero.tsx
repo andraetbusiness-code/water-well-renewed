@@ -63,10 +63,14 @@ export const Hero = () => {
 
           <motion.div initial="hidden" animate="visible" variants={reveal} transition={{ duration: reduceMotion ? 0 : 0.65, delay: reduceMotion ? 0 : 0.25 }} className="mt-9 flex flex-col gap-4 sm:flex-row">
             <Button size="lg" variant="hero" className="w-full sm:w-auto" asChild>
-              <Link to="/free-water-test">Schedule a water test<ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" /></Link>
+              <Link to="/complimentary-water-test">Schedule a water test<ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" /></Link>
             </Button>
             <Button size="lg" variant="heroOutline" className="w-full sm:w-auto" asChild><Link to="/hygia-system">Explore HYGIA+ systems</Link></Button>
           </motion.div>
+          <motion.p initial="hidden" animate="visible" variants={reveal} transition={{ duration: reduceMotion ? 0 : 0.65, delay: reduceMotion ? 0 : 0.3 }} className="mt-5 text-white/85">
+            Already have a system?{" "}
+            <Link to="/service" className="font-semibold text-white underline underline-offset-4 hover:text-white/90">Request repair or service</Link>
+          </motion.p>
 
           <motion.div initial="hidden" animate="visible" variants={reveal} transition={{ duration: reduceMotion ? 0 : 0.65, delay: reduceMotion ? 0 : 0.34 }} className="mt-10 grid max-w-2xl gap-3 border-t border-white/20 pt-6 sm:grid-cols-3">
             {trustPoints.map(({ icon: Icon, label }) => (

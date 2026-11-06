@@ -120,6 +120,13 @@ function finalizeHtml(html) {
     const keep = canonicals.find((tag) => tag.includes("data-rh")) ?? canonicals[0];
     for (const tag of canonicals) if (tag !== keep) html = html.replace(tag, "");
   }
+  // index.html ships a site-wide default description; Helmet adds the page's own
+  // (data-rh). Keep only the page's version so Google doesn't read the default.
+  const descriptions = html.match(/<meta[^>]*name="description"[^>]*>/g) ?? [];
+  if (descriptions.length > 1) {
+    const keep = descriptions.find((tag) => tag.includes("data-rh")) ?? descriptions[0];
+    for (const tag of descriptions) if (tag !== keep) html = html.replace(tag, "");
+  }
   html = html.replace(
     /(<link[^>]*rel="canonical"[^>]*href="|<meta[^>]*property="og:url"[^>]*content=")(https:\/\/selectsourcewater\.com)(\/[^"#?]*)?"/g,
     (_m, pre, origin, path = "/") => `${pre}${origin}${withSlash(path)}"`,

@@ -28,7 +28,7 @@ export default function ServiceAreas() {
     <>
       <Helmet>
         <title>Water Treatment Service Areas in California & Arizona | Select Source Water</title>
-        <meta name="description" content="Explore Select Source Water service markets across California and Arizona: 72 verified Home Depot trade-area references in 54 cities. Schedule a free in-home water test." />
+        <meta name="description" content="Explore Select Source Water service markets across California and Arizona: 72 verified Home Depot trade-area references in 54 cities. Schedule a complimentary in-home water test." />
         <link rel="canonical" href="https://selectsourcewater.com/service-areas/" />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
@@ -38,9 +38,9 @@ export default function ServiceAreas() {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="mx-auto max-w-4xl text-center">
             <Badge variant="secondary" className="mb-4 uppercase tracking-wider">California & Arizona</Badge>
             <h1 className="mb-6 font-serif text-3xl text-foreground md:text-5xl">Water Treatment Service Areas</h1>
-            <p className="mx-auto mb-8 max-w-3xl text-lg text-muted-foreground">Select Source Water serves homeowners across 54 city markets anchored by 72 verified Home Depot trade-area references. Find your nearest market and schedule a free in-home water test directly with our team.</p>
+            <p className="mx-auto mb-8 max-w-3xl text-lg text-muted-foreground">Select Source Water serves homeowners across 54 city markets anchored by 72 verified Home Depot trade-area references. Find your nearest market and schedule a complimentary in-home water test directly with our team.</p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <Button asChild size="lg" variant="hero"><Link to="/free-water-test">Schedule Your Free Water Test<ArrowRight className="ml-2 h-5 w-5" /></Link></Button>
+              <Button asChild size="lg" variant="hero"><Link to="/complimentary-water-test">Schedule Your Complimentary Water Test<ArrowRight className="ml-2 h-5 w-5" /></Link></Button>
               <Button asChild size="lg" variant="heroOutline" className="border-primary/30 text-foreground hover:bg-primary/10"><a href="tel:+18334227765"><Phone className="mr-2 h-5 w-5" />(833) 422-7765</a></Button>
             </div>
           </motion.div>

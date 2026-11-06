@@ -589,9 +589,9 @@ export default function BlogPost() {
 
               {/* CTA */}
               <div className="mt-12 bg-primary/5 border border-primary/20 rounded-2xl p-8 text-center">
-                <h3 className="text-xl font-bold text-foreground mb-2">Get Your Free Water Test</h3>
+                <h3 className="text-xl font-bold text-foreground mb-2">Get Your Complimentary Water Test</h3>
                 <p className="text-muted-foreground mb-5">
-                  Find out exactly what's in your Inland Empire water supply — completely free, no obligation.
+                  Find out exactly what's in your Inland Empire water supply — complimentary, with no obligation.
                 </p>
                 <a
                   href="tel:+18334227765"

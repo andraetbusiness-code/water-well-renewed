@@ -14,7 +14,7 @@ const steps = [
   {
     number: "01",
     icon: CalendarCheck,
-    title: "Schedule Free Assessment",
+    title: "Schedule a Complimentary Assessment",
     description: "Book your complimentary in-home water quality test at a time that works for you.",
     color: "from-primary/20 to-water-light/30",
   },
@@ -218,7 +218,7 @@ export const HowItWorks = () => {
         >
           <Button size="lg" variant="default" asChild>
             <a href="#contact">
-              Start Your Free Assessment
+              Start Your Complimentary Assessment
               <ArrowRight className="ml-2 h-5 w-5" />
             </a>
           </Button>

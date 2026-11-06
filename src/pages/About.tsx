@@ -8,7 +8,7 @@ const values = [
   { icon: Shield, title: "Integrity First", description: "We never upsell or pressure. Every recommendation is based on your actual water test results." },
   { icon: Heart, title: "Family-Owned", description: "Founded in 1998, we treat every home like our own. Our reputation is built on relationships, not transactions." },
   { icon: Droplets, title: "Water Expertise", description: "Over 25 years of experience solving hard water, contaminants, and whole-home filtration for Southern California families." },
-  { icon: Award, title: "Quality Guaranteed", description: "Lifetime warranty on every HYGIA+ system. We stand behind our work — period." },
+  { icon: Award, title: "Backed by Our Warranty", description: "Lifetime warranty on every HYGIA+ system. We stand behind our work — period." },
 ];
 
 const milestones = [
@@ -16,7 +16,6 @@ const milestones = [
   { year: "2005", event: "Expanded to serve the entire Inland Empire region" },
   { year: "2015", event: "Became a Home Depot Authorized Service Provider" },
   { year: "2020", event: "Launched the HYGIA+ whole-home water system" },
-  { year: "2024", event: "Surpassed 461+ five-star reviews across Google" },
   { year: "2025", event: "Introduced Lifetime Warranty on all systems" },
 ];
 
@@ -25,7 +24,7 @@ const About = () => {
     <PageLayout>
       <Helmet>
         <title>About Select Source Water | Inland Empire Water Treatment Since 1998</title>
-        <meta name="description" content="Family-owned water treatment company serving the Inland Empire since 1998. Home Depot Authorized Provider with 461+ five-star reviews. Learn our story." />
+        <meta name="description" content="Family-owned water treatment company serving the Inland Empire since 1998. Home Depot Authorized Provider rated 4.6 stars across 484 Google reviews. Learn our story." />
         <link rel="canonical" href="https://selectsourcewater.com/about/" />
       </Helmet>
 
@@ -51,7 +50,7 @@ const About = () => {
                 Select Source Water started in 1998 with a simple belief: every family deserves access to clean, safe water — without the gimmicks or high-pressure sales tactics that plagued the industry.
               </p>
               <p>
-                Over two decades later, we've grown into the Inland Empire's most trusted water treatment provider. We're a Home Depot Authorized Service Provider, and we've earned over 461 five-star reviews from real homeowners across Beaumont, Riverside, Hemet, and beyond.
+                Over two decades later, we've grown into a Home Depot Authorized Service Provider, rated 4.6 stars across 484 Google reviews from homeowners across Beaumont, Riverside, Hemet, and beyond.
               </p>
               <p>
                 Our HYGIA+ whole-home water system is the culmination of everything we've learned — a single solution that softens, filters, and purifies your water for every tap in your home.
@@ -117,7 +116,7 @@ const About = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {[
               { icon: Clock, stat: "25+", label: "Years in Business" },
-              { icon: Users, stat: "461+", label: "Five-Star Reviews" },
+              { icon: Users, stat: "484", label: "Google Reviews" },
               { icon: MapPin, stat: "12", label: "Cities Served" },
               { icon: Award, stat: "Lifetime", label: "Warranty on Systems" },
             ].map((item, i) => (
@@ -142,7 +141,7 @@ const About = () => {
         <div className="container max-w-2xl text-center">
           <h2 className="text-3xl md:text-4xl font-serif text-foreground mb-4">Ready to See the Difference?</h2>
           <p className="text-muted-foreground text-lg mb-8">
-            Schedule your free in-home water test and see exactly what's in your water — no obligation, no pressure.
+            Schedule your complimentary in-home water test and see exactly what's in your water — no obligation, no pressure.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

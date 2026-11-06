@@ -24,15 +24,14 @@ export const cityData: Record<string, CityData> = {
     hardnessGPG: 10.4,
     hardnessLevel: "Hard",
     population: "59,700",
-    keyContaminant: "2 contaminants above EPA MCLGs",
+    keyContaminant: "Hard water, about 177 PPM",
     whyReasons: [
       "177 PPM hardness — hard enough to coat your water heater in scale within 3 years",
-      "2 contaminants detected above EPA Maximum Contaminant Level Goals (MCLGs)",
       "4,210 new housing units planned — most without filtration systems pre-installed",
       "City population growing 8%+ year over year — water demand increasing faster than infrastructure upgrades",
     ],
     faqContaminantAnswer:
-      "Beaumont's water has 2 contaminants detected above EPA Maximum Contaminant Level Goals (MCLGs). With rapid population growth and increasing water demand, a whole-house filtration system ensures your family's water is clean regardless of seasonal fluctuations.",
+      "Beaumont's tap water is hard, about 177 PPM. With rapid population growth and increasing water demand, a whole-house filtration system ensures your family's water is clean regardless of seasonal fluctuations.",
     nearbyCities: ["banning-ca", "calimesa-ca", "cherry-valley-ca", "yucaipa-ca"],
     reviews: [
       {
@@ -48,7 +47,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Beaumont, CA | Select Source Water",
     seoDescription:
-      "Free water test in Beaumont, CA. 177 PPM hardness, 2 contaminants above EPA goals. HYGIA+ whole-house system, same-day install, lifetime warranty. Call (833) 422-7765.",
+      "Complimentary water test in Beaumont, CA. 177 PPM hardness. HYGIA+ whole-house system, professional install, lifetime warranty. Call (833) 422-7765.",
   },
   "banning-ca": {
     name: "Banning",
@@ -82,7 +81,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Banning, CA | Select Source Water",
     seoDescription:
-      "Free water test in Banning, CA. 249 PPM — hardest water in the Pass. Chromium-6 detected. HYGIA+ system removes it all. Call (833) 422-7765.",
+      "Complimentary water test in Banning, CA. 249 PPM — hardest water in the Pass. Chromium-6 detected. HYGIA+ system removes it all. Call (833) 422-7765.",
   },
   "hemet-ca": {
     name: "Hemet",
@@ -116,7 +115,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Hemet, CA | Select Source Water",
     seoDescription:
-      "Free water test in Hemet, CA. Arsenic + chromium-6 detected, 10 contaminants of concern. HYGIA+ whole-house filtration. Call (833) 422-7765.",
+      "Complimentary water test in Hemet, CA. Arsenic + chromium-6 detected, 10 contaminants of concern. HYGIA+ whole-house filtration. Call (833) 422-7765.",
   },
   "san-jacinto-ca": {
     name: "San Jacinto",
@@ -149,7 +148,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in San Jacinto, CA | Select Source Water",
     seoDescription:
-      "Free water test in San Jacinto, CA. 155 PPM hardness, shared contamination with Hemet. HYGIA+ system, same-day install. Call (833) 422-7765.",
+      "Complimentary water test in San Jacinto, CA. 155 PPM hardness, shared contamination with Hemet. HYGIA+ system, professional install. Call (833) 422-7765.",
   },
   "moreno-valley-ca": {
     name: "Moreno Valley",
@@ -166,7 +165,7 @@ export const cityData: Record<string, CityData> = {
       "Scale buildup affects appliances across the board in MoVal homes",
     ],
     faqContaminantAnswer:
-      "Moreno Valley's water meets all EPA legal standards. However, hardness minerals at 197 PPM are well above ideal levels and cause scale buildup, appliance damage, and skin/hair issues. A free in-home water test gives you real-time results for your specific address.",
+      "Moreno Valley's water meets all EPA legal standards. However, hardness minerals at 197 PPM are well above ideal levels and cause scale buildup, appliance damage, and skin/hair issues. A complimentary in-home water test gives you real-time results for your specific address.",
     nearbyCities: ["riverside-ca", "hemet-ca", "san-jacinto-ca"],
     reviews: [
       {
@@ -182,7 +181,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Moreno Valley, CA | Select Source Water",
     seoDescription:
-      "Free water test in Moreno Valley, CA. 197 PPM hardness — very hard. HYGIA+ whole-house filtration, same-day install, lifetime warranty. Call (833) 422-7765.",
+      "Complimentary water test in Moreno Valley, CA. 197 PPM hardness — very hard. HYGIA+ whole-house filtration, professional install, lifetime warranty. Call (833) 422-7765.",
   },
   "riverside-ca": {
     name: "Riverside",
@@ -199,7 +198,7 @@ export const cityData: Record<string, CityData> = {
       "Many homes in Riverside are 30–60 years old with original galvanized plumbing that compounds mineral buildup",
     ],
     faqContaminantAnswer:
-      "Riverside's water meets all EPA legal standards. However, hardness minerals at 202 PPM are well above ideal levels. Many Riverside homes have 30–60 year old plumbing that compounds mineral buildup. A free in-home test shows exactly what's in your water.",
+      "Riverside's water meets all EPA legal standards. However, hardness minerals at 202 PPM are well above ideal levels. Many Riverside homes have 30–60 year old plumbing that compounds mineral buildup. A complimentary in-home test shows exactly what's in your water.",
     nearbyCities: ["moreno-valley-ca", "redlands-ca", "highland-ca"],
     reviews: [
       {
@@ -215,7 +214,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Riverside, CA | Select Source Water",
     seoDescription:
-      "Free water test in Riverside, CA. 202 PPM hardness — very hard. Oldest infrastructure in IE. HYGIA+ filtration, lifetime warranty. Call (833) 422-7765.",
+      "Complimentary water test in Riverside, CA. 202 PPM hardness — very hard. Oldest infrastructure in IE. HYGIA+ filtration, lifetime warranty. Call (833) 422-7765.",
   },
   "yucaipa-ca": {
     name: "Yucaipa",
@@ -232,7 +231,7 @@ export const cityData: Record<string, CityData> = {
       "Many well-water properties in Yucaipa foothills",
     ],
     faqContaminantAnswer:
-      "Yucaipa's water meets all EPA legal standards. However, hardness minerals at ~180 PPM are well above ideal levels and cause scale buildup, appliance damage, and skin/hair issues. A free in-home water test gives you real-time results for your specific address.",
+      "Yucaipa's water meets all EPA legal standards. However, hardness minerals at ~180 PPM are well above ideal levels and cause scale buildup, appliance damage, and skin/hair issues. A complimentary in-home water test gives you real-time results for your specific address.",
     nearbyCities: ["calimesa-ca", "beaumont-ca", "redlands-ca", "cherry-valley-ca"],
     reviews: [
       {
@@ -248,7 +247,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Yucaipa, CA | Select Source Water",
     seoDescription:
-      "Free water test in Yucaipa, CA. ~180 PPM hardness, agricultural water history. HYGIA+ whole-house system, same-day install. Call (833) 422-7765.",
+      "Complimentary water test in Yucaipa, CA. ~180 PPM hardness, agricultural water history. HYGIA+ whole-house system, professional install. Call (833) 422-7765.",
   },
   "calimesa-ca": {
     name: "Calimesa",
@@ -281,7 +280,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Calimesa, CA | Select Source Water",
     seoDescription:
-      "Free water test in Calimesa, CA. ~170 PPM hardness, new construction without filtration. HYGIA+ system, lifetime warranty. Call (833) 422-7765.",
+      "Complimentary water test in Calimesa, CA. ~170 PPM hardness, new construction without filtration. HYGIA+ system, lifetime warranty. Call (833) 422-7765.",
   },
   "cherry-valley-ca": {
     name: "Cherry Valley",
@@ -298,7 +297,7 @@ export const cityData: Record<string, CityData> = {
       "~180 PPM for municipal connections; private wells can vary widely",
     ],
     faqContaminantAnswer:
-      "Cherry Valley is an unincorporated area where many homes rely on private wells with no mandatory testing. Private wells can have elevated mineral content and unknown contaminants. A free in-home water test is especially important here.",
+      "Cherry Valley is an unincorporated area where many homes rely on private wells with no mandatory testing. Private wells can have elevated mineral content and unknown contaminants. A complimentary in-home water test is especially important here.",
     nearbyCities: ["beaumont-ca", "banning-ca", "calimesa-ca", "yucaipa-ca"],
     reviews: [
       {
@@ -314,7 +313,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Cherry Valley, CA | Select Source Water",
     seoDescription:
-      "Free water test in Cherry Valley, CA. ~180 PPM, many private wells without testing. HYGIA+ whole-house filtration. Call (833) 422-7765.",
+      "Complimentary water test in Cherry Valley, CA. ~180 PPM, many private wells without testing. HYGIA+ whole-house filtration. Call (833) 422-7765.",
   },
   "redlands-ca": {
     name: "Redlands",
@@ -331,7 +330,7 @@ export const cityData: Record<string, CityData> = {
       "Redlands has affluent pockets where high-quality home systems are expected",
     ],
     faqContaminantAnswer:
-      "Redlands' water meets all EPA legal standards. However, hardness at ~175 PPM causes scale buildup. Many older homes have aging pipes that compound mineral buildup. A free in-home test shows exactly what's in your water.",
+      "Redlands' water meets all EPA legal standards. However, hardness at ~175 PPM causes scale buildup. Many older homes have aging pipes that compound mineral buildup. A complimentary in-home test shows exactly what's in your water.",
     nearbyCities: ["highland-ca", "yucaipa-ca", "riverside-ca", "calimesa-ca"],
     reviews: [
       {
@@ -347,7 +346,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Redlands, CA | Select Source Water",
     seoDescription:
-      "Free water test in Redlands, CA. ~175 PPM hardness, mix of older & newer homes. HYGIA+ system, same-day install, lifetime warranty. Call (833) 422-7765.",
+      "Complimentary water test in Redlands, CA. ~175 PPM hardness, mix of older & newer homes. HYGIA+ system, professional install, lifetime warranty. Call (833) 422-7765.",
   },
   "highland-ca": {
     name: "Highland",
@@ -364,7 +363,7 @@ export const cityData: Record<string, CityData> = {
       "Growing population of ~55,000",
     ],
     faqContaminantAnswer:
-      "Highland's water meets all EPA legal standards. However, hardness at ~190 PPM causes scale buildup, appliance damage, and skin/hair issues. A free in-home water test gives you real-time results for your address.",
+      "Highland's water meets all EPA legal standards. However, hardness at ~190 PPM causes scale buildup, appliance damage, and skin/hair issues. A complimentary in-home water test gives you real-time results for your address.",
     nearbyCities: ["redlands-ca", "riverside-ca", "yucaipa-ca"],
     reviews: [
       {
@@ -380,7 +379,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Softener & Filtration in Highland, CA | Select Source Water",
     seoDescription:
-      "Free water test in Highland, CA. ~190 PPM hardness, SB County hard water. HYGIA+ whole-house filtration, lifetime warranty. Call (833) 422-7765.",
+      "Complimentary water test in Highland, CA. ~190 PPM hardness, SB County hard water. HYGIA+ whole-house filtration, lifetime warranty. Call (833) 422-7765.",
   },
   "inland-empire": {
     name: "Inland Empire",
@@ -398,7 +397,7 @@ export const cityData: Record<string, CityData> = {
       "Agricultural history means potential contamination from runoff, pesticides, and fertilizers",
     ],
     faqContaminantAnswer:
-      "The Inland Empire has some of the hardest water in California, ranging from 155 to 249 PPM across the region. Cities like Banning have chromium-6, and Hemet has arsenic detected. A free in-home water test shows exactly what's in your specific water supply.",
+      "The Inland Empire has some of the hardest water in California, ranging from 155 to 249 PPM across the region. Cities like Banning have chromium-6, and Hemet has arsenic detected. A complimentary in-home water test shows exactly what's in your specific water supply.",
     nearbyCities: ["beaumont-ca", "banning-ca", "hemet-ca", "moreno-valley-ca", "riverside-ca"],
     reviews: [
       {
@@ -414,7 +413,7 @@ export const cityData: Record<string, CityData> = {
     ],
     seoTitle: "Water Treatment in the Inland Empire, California | Select Source Water",
     seoDescription:
-      "Select Source Water serves the entire Inland Empire — 155 to 249 PPM hardness. Free water tests, HYGIA+ systems, same-day install. Call (833) 422-7765.",
+      "Select Source Water serves the entire Inland Empire — 155 to 249 PPM hardness. Complimentary water tests, HYGIA+ systems, professional install. Call (833) 422-7765.",
   },
 };
 

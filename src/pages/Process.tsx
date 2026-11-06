@@ -25,12 +25,12 @@ import proInstallsImg from "@/assets/photos/pro-installs.png";
 const processSteps = [
   {
     icon: Calendar,
-    title: "Schedule Free Water Test",
-    description: "Call us or fill out our contact form to schedule a free in-home water quality assessment. We serve Beaumont, Banning, Hemet, Moreno Valley, Riverside, and all of the Inland Empire. Available 7 days a week.",
+    title: "Schedule Complimentary Water Test",
+    description: "Call us or fill out our contact form to schedule a complimentary in-home water quality assessment. We serve Beaumont, Banning, Hemet, Moreno Valley, Riverside, and all of the Inland Empire. Available 7 days a week.",
     details: [
       "No-obligation consultation",
       "Flexible scheduling",
-      "Certified water specialists"
+      "Trained water specialists"
     ]
   },
   {
@@ -70,7 +70,7 @@ const processSteps = [
     details: [
       "Lifetime Warranty",
       "Lifetime customer support",
-      "Satisfaction guaranteed"
+      "Local follow-up support"
     ]
   }
 ];
@@ -82,8 +82,8 @@ export default function Process() {
   return (
     <PageLayout>
       <Helmet>
-        <title>How It Works — Free Water Test to Installation | Select Source Water SoCal</title>
-        <meta name="description" content="5 simple steps: free water test → custom solution → same-day installation → lifetime warranty. Serving the Inland Empire. Call (833) 422-7765 to get started." />
+        <title>How It Works — Complimentary Water Test to Installation | Select Source Water SoCal</title>
+        <meta name="description" content="5 simple steps: complimentary water test → custom solution → professional installation → lifetime warranty. Serving the Inland Empire. Call (833) 422-7765 to get started." />
         <link rel="canonical" href="https://selectsourcewater.com/process/" />
       </Helmet>
       <PageHero 
@@ -202,7 +202,7 @@ export default function Process() {
               </div>
               <div className="absolute bottom-4 left-4 right-4 bg-card/90 backdrop-blur-sm rounded-lg p-3">
                 <p className="font-semibold text-foreground text-sm">Water Quality Assessment</p>
-                <p className="text-muted-foreground text-xs">Free in-home testing by certified specialists</p>
+                <p className="text-muted-foreground text-xs">Complimentary in-home testing by trained specialists</p>
               </div>
             </motion.div>
             
@@ -261,13 +261,13 @@ export default function Process() {
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
                 Take the first step toward cleaner, healthier water for your family. 
-                Schedule your free water test today.
+                Schedule your complimentary water test today.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg">
-                  <Link to="/free-water-test" className="gap-2">
-                    Schedule Free Test
+                  <Link to="/complimentary-water-test" className="gap-2">
+                    Schedule Complimentary Test
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>

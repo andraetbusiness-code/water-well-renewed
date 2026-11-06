@@ -8,11 +8,11 @@ import waterGuideCharacter from "@/assets/photos/authentic/ssw-water-guide-chara
 const faqs = [
   {
     question: "How hard is the water in Beaumont, CA?",
-    answer: "Beaumont's tap water measures approximately 177 PPM (10.4 GPG) — well into the 'hard' category. The national average is around 60–70 PPM. Beaumont's water is nearly 2x the state average of 90 PPM and has 2 detected contaminants above EPA Maximum Contaminant Level Goals (MCLGs). A free water test will show you exactly what's in your water.",
+    answer: "Beaumont's tap water measures approximately 177 PPM (10.4 GPG) — well into the 'hard' category. The national average is around 60–70 PPM. Beaumont's water is nearly 2x the state average of 90 PPM. A complimentary water test will show you exactly what's in your water.",
   },
   {
-    question: "What does a free in-home water test include?",
-    answer: "Our free water test covers total dissolved solids (TDS), water hardness (calcium & magnesium), chlorine levels, pH balance, iron content, and a contaminant screening relevant to your specific area. We test right in your kitchen, give you results in about 20 minutes, and explain exactly what we found — no sales pressure, no obligation.",
+    question: "What does a complimentary in-home water test include?",
+    answer: "Our complimentary water test covers total dissolved solids (TDS), water hardness (calcium & magnesium), chlorine levels, pH balance, iron content, and a contaminant screening relevant to your specific area. We test right in your kitchen, give you results in about 20 minutes, and explain exactly what we found — no sales pressure, no obligation.",
   },
   {
     question: "How long does water softener installation take?",
@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     question: "How much does a water softener cost in the Inland Empire?",
-    answer: "Every home is different — water hardness, household size, and usage all factor into the right system. As a Home Depot Authorized Provider, Select Source Water offers competitive pricing that's $2,500–$2,800 below what other Home Depot vendors typically charge. We provide a transparent, no-pressure quote after your free water test. Monthly financing is available.",
+    answer: "Every home is different — water hardness, household size, and usage all factor into the right system. We provide a transparent, no-pressure quote after your complimentary water test. Monthly financing is available.",
   },
   {
     question: "Is chromium-6 in Inland Empire water dangerous?",

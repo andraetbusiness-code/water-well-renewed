@@ -1,4 +1,5 @@
 import { Header } from "@/components/Header";
+import { ServiceCallout } from "@/components/ServiceCallout";
 import { Hero } from "@/components/Hero";
 import { WaterHardnessData } from "@/components/WaterHardnessData";
 import { WaterAnswers } from "@/components/WaterAnswers";
@@ -58,6 +59,7 @@ const Index = () => {
         <WaterHardnessData />
         <ProblemSolution />
         <Services />
+        <ServiceCallout />
         <HowItWorks />
         <GoogleReviews />
         <TrustBadges />

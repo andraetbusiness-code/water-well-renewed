@@ -53,7 +53,7 @@ export function WaterAnswers() {
           </div>
 
           <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <Link to="/free-water-test" className="inline-flex items-center gap-2 font-semibold text-primary transition-colors hover:text-primary/75">Start with a water test <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+            <Link to="/complimentary-water-test" className="inline-flex items-center gap-2 font-semibold text-primary transition-colors hover:text-primary/75">Start with a water test <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
             <span className="hidden h-5 w-px bg-border sm:block" aria-hidden="true" />
             <Link to="/filtration-technology" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"><CheckCircle2 className="h-4 w-4 text-primary" aria-hidden="true" /> Compare treatment types</Link>
           </div>

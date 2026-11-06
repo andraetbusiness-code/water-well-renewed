@@ -35,7 +35,7 @@ const cityData = [
   {
     city: "Beaumont, CA",
     hardness: "177 PPM / 10.4 GPG (Moderate-Hard)",
-    epaConcern: "2 contaminants detected above EPA Maximum Contaminant Level Goals (MCLGs)",
+    epaConcern: "Ask for your local water quality report, or start with a complimentary in-home test",
     population: "59,700+ residents",
     growthNote: "4,210 new housing units planned — water demand increasing",
     recommendation: "HYGIA+ whole-house system + annual maintenance",
@@ -103,8 +103,8 @@ const contaminants = [
     name: "Cost Savings",
     before: "Expensive bottled water",
     after: "Eliminated",
-    beforeDetail: "Average family spends $500+ yearly on bottled water.",
-    afterDetail: "Clean water from every tap saves money instantly."
+    beforeDetail: "Bottled water is a cost that repeats every week.",
+    afterDetail: "Filtered water from every tap."
   }
 ];
 
@@ -131,7 +131,7 @@ export default function WhatInWater() {
     <PageLayout>
       <Helmet>
         <title>What's In Inland Empire Water? Contaminants, Hardness & Solutions | SSW SoCal</title>
-        <meta name="description" content="Chromium-6 in Banning, arsenic in Hemet, 177 PPM hardness in Beaumont. Learn what's in your water and how we fix it. Free test: (833) 422-7765." />
+        <meta name="description" content="Chromium-6 in Banning, arsenic in Hemet, 177 PPM hardness in Beaumont. Learn what's in your water and how we fix it. Complimentary test: (833) 422-7765." />
         <link rel="canonical" href="https://selectsourcewater.com/what-in-water/" />
       </Helmet>
 
@@ -225,7 +225,7 @@ export default function WhatInWater() {
           </div>
 
           <p className="text-xs text-muted-foreground text-center max-w-3xl mx-auto italic">
-            Data sourced from Environmental Working Group (EWG) Tap Water Database and local water utility quality reports. Contaminant levels change seasonally. A free in-home water test gives you real-time data for your specific address.
+            Data sourced from Environmental Working Group (EWG) Tap Water Database and local water utility quality reports. Contaminant levels change seasonally. A complimentary in-home water test gives you real-time data for your specific address.
           </p>
         </div>
       </section>
@@ -408,14 +408,14 @@ export default function WhatInWater() {
                 <span className="text-primary">Great-Tasting Water!</span>
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Get a free in-home water test to find out exactly what's in your water 
+                Get a complimentary in-home water test to find out exactly what's in your water 
                 and receive a customized solution for your Inland Empire home.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg">
-                  <Link to="/free-water-test" className="gap-2">
-                    Schedule Free Water Test
+                  <Link to="/complimentary-water-test" className="gap-2">
+                    Schedule Complimentary Water Test
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>

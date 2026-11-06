@@ -8,7 +8,7 @@ const site = "https://selectsourcewater.com";
 
 const citySource = await readFile(join(root, "src/data/cityData.ts"), "utf8");
 const storeAreaSource = await readFile(join(root, "src/data/storeServiceAreas.ts"), "utf8");
-const blogSource = await readFile(join(root, "src/data/blogData.ts"), "utf8");
+const blogSource = await readFile(join(root, "src/data/guideData.ts"), "utf8");
 const citySlugs = [...new Set([
   ...[...citySource.matchAll(/slug:\s*["']([^"']+)["']/g)].map((match) => match[1]),
   ...[...storeAreaSource.matchAll(/marketSlug:\s*["']([^"']+)["']/g)].map((match) => match[1]),
@@ -19,6 +19,7 @@ const publicRoutes = [
   "hygia-system",
   "filtration-technology",
   "what-in-water",
+  "service",
   "maintenance",
   "process",
   "gallery",
@@ -26,7 +27,7 @@ const publicRoutes = [
   "home-depot-authorized-provider",
   "blog",
   "about",
-  "free-water-test",
+  "complimentary-water-test",
   "careers",
   "careers/customer-engagement-representative",
   "careers/water-testing-specialist",
@@ -108,12 +109,22 @@ await Promise.all(
 // page that carries the canonical of its replacement and sends the visitor there.
 const legacyRedirects = {
   "water-filtration-systems-and-services": "filtration-technology",
-  "water-test": "free-water-test",
-  "contact": "free-water-test",
+  "water-test": "complimentary-water-test",
+  "contact": "complimentary-water-test",
+  // Renamed 2026-11-06: the test is complimentary, never "free".
+  "free-water-test": "complimentary-water-test",
+  "blog/free-water-test-beaumont-riverside-county": "blog/complimentary-water-test-beaumont-riverside-county",
   "blogs": "blog",
+  // Posts removed 2026-11-06 (unsourced contaminant, price or local-statistic claims)
+  "blog/arsenic-in-hemet-water": "blog",
+  "blog/chromium-6-california-drinking-water": "blog",
+  "blog/banning-ca-water-quality-report": "blog",
+  "blog/home-depot-authorized-water-treatment-provider": "home-depot-authorized-provider",
   // Ranking URLs that returned 404 in the 2026-11-05 Semrush audit.
   "post/water-softener-vs-water-conditioner-which-is-best-for-sacramento-homes": "service-areas/sacramento-ca",
   "water-filtration-systems-services": "filtration-technology",
+  // 404s still collecting impressions in Search Console (read 2026-11-05).
+  "warranty": "hygia-system",
 };
 
 async function writeRedirect(fromRoute, toRoute) {
