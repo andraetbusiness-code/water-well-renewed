@@ -67,7 +67,7 @@ export function StoreMarketPage({ market }: { market: StoreMarket }) {
             <Link to="/service">Request service</Link>
           </Button>
           <Button size="lg" variant="outline" asChild>
-            <Link to="/free-water-test">Complimentary water test</Link>
+            <Link to="/complimentary-water-test">Complimentary water test</Link>
           </Button>
         </div>
       </PageHero>
@@ -88,7 +88,7 @@ export function StoreMarketPage({ market }: { market: StoreMarket }) {
               ["Service on the system you have", "/service"],
               ["Monthly service plan", "/maintenance"],
               ["New whole-home filtration, softening and RO", "/hygia-system"],
-              ["Complimentary in-home water test", "/free-water-test"],
+              ["Complimentary in-home water test", "/complimentary-water-test"],
             ].map(([label, href]) => (
               <li key={href}>
                 <Link to={href} className="flex items-baseline justify-between gap-6 py-5 text-lg font-medium hover:text-primary">

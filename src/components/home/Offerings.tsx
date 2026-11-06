@@ -22,7 +22,7 @@ const rows = [
   {
     title: "Complimentary water test",
     body: "An in-home test and demonstration. No obligation to buy.",
-    href: "/free-water-test",
+    href: "/complimentary-water-test",
     cta: "Book a test",
   },
 ];

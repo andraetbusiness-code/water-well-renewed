@@ -11,7 +11,7 @@ export const WaterTest = () => (
           The in-home water test is complimentary and takes about 15 to 30 minutes. You see the demonstration yourself, then decide what, if anything, makes sense for your home. There is no obligation to buy.
         </p>
         <Button size="lg" className="mt-8" asChild>
-          <Link to="/free-water-test">Book a complimentary water test</Link>
+          <Link to="/complimentary-water-test">Book a complimentary water test</Link>
         </Button>
       </div>
       <img

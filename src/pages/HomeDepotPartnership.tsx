@@ -27,7 +27,7 @@ const HomeDepotPartnership = () => (
             Financing is available, including through The Home Depot, on approved credit. A specialist walks through the options at your home.
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <Button size="lg" asChild><Link to="/free-water-test">Book a complimentary water test</Link></Button>
+            <Button size="lg" asChild><Link to="/complimentary-water-test">Book a complimentary water test</Link></Button>
             <Button size="lg" variant="outline" asChild><Link to="/service-areas">Where we work</Link></Button>
           </div>
         </div>

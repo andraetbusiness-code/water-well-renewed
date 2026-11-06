@@ -47,7 +47,7 @@ export default function CityPage() {
             <Link to="/service">Request service</Link>
           </Button>
           <Button size="lg" variant="outline" asChild>
-            <Link to="/free-water-test">Complimentary water test</Link>
+            <Link to="/complimentary-water-test">Complimentary water test</Link>
           </Button>
         </div>
       </PageHero>

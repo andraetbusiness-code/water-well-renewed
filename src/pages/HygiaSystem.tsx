@@ -45,7 +45,7 @@ const HygiaSystem = () => (
           </p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <Button size="lg" asChild><Link to="/free-water-test">Book a complimentary water test</Link></Button>
+            <Button size="lg" asChild><Link to="/complimentary-water-test">Book a complimentary water test</Link></Button>
             <Button size="lg" variant="outline" asChild><Link to="/filtration-technology">How the dual-tank design works</Link></Button>
           </div>
         </div>

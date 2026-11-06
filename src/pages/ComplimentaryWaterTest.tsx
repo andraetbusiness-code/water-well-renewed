@@ -4,13 +4,13 @@ import { LeadForm } from "@/components/LeadForm";
 import photo from "@/assets/site/water-test-demo.webp";
 import { site } from "@/data/site";
 
-// Route stays /free-water-test (legacy URL and redirects point here). Copy says "complimentary".
-const FreeWaterTest = () => (
+// Route renamed from /free-water-test on 2026-11-06; the old URL redirects here.
+const ComplimentaryWaterTest = () => (
   <PageLayout showContactCTA={false}>
     <Helmet>
       <title>Complimentary In-Home Water Test | Select Source Water</title>
       <meta name="description" content="Book a complimentary in-home water test. It takes about 15 to 30 minutes, you see the demonstration yourself, and there is no obligation to buy." />
-      <link rel="canonical" href={`${site.url}/free-water-test/`} />
+      <link rel="canonical" href={`${site.url}/complimentary-water-test/`} />
     </Helmet>
 
     <PageHero
@@ -45,4 +45,4 @@ const FreeWaterTest = () => (
   </PageLayout>
 );
 
-export default FreeWaterTest;
+export default ComplimentaryWaterTest;

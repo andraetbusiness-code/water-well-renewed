@@ -226,7 +226,7 @@ export const blogArticles: BlogArticle[] = [
       "Your water provider publishes an annual water quality report you can read. A water test at your home shows the reading at your tap.",
     ],
     related: [
-      { label: "Complimentary water test", href: "/free-water-test" },
+      { label: "Complimentary water test", href: "/complimentary-water-test" },
       { label: "Request service", href: "/service" },
     ],
   },
@@ -252,7 +252,7 @@ export const blogArticles: BlogArticle[] = [
       "- Find out how hard your water is, from your water provider's report or a water test.",
       "A softener reduces the minerals that form scale before they reach your heater. Whether one makes sense for your home depends on your water.",
     ],
-    related: [{ label: "Complimentary water test", href: "/free-water-test" }],
+    related: [{ label: "Complimentary water test", href: "/complimentary-water-test" }],
   },
   {
     slug: "hard-water-inland-empire-what-you-need-to-know",
@@ -276,7 +276,7 @@ export const blogArticles: BlogArticle[] = [
       "If you would like to see the reading at your tap, book a complimentary in-home water test.",
     ],
     related: [
-      { label: "Complimentary water test", href: "/free-water-test" },
+      { label: "Complimentary water test", href: "/complimentary-water-test" },
       { label: "Inland Empire guide", href: "/blog/water-system-service-inland-empire" },
     ],
   },
@@ -299,7 +299,7 @@ export const blogArticles: BlogArticle[] = [
       "## What it means for treatment",
       "The right system depends on the water it has to work on. That is why a water test comes before a recommendation.",
     ],
-    related: [{ label: "Complimentary water test", href: "/free-water-test" }],
+    related: [{ label: "Complimentary water test", href: "/complimentary-water-test" }],
   },
   {
     slug: "water-filtration-cost-inland-empire",
@@ -324,7 +324,7 @@ export const blogArticles: BlogArticle[] = [
       "## Payment options",
       "Monthly options are available, including financing through The Home Depot. A specialist walks through them at your home.",
     ],
-    related: [{ label: "Complimentary water test", href: "/free-water-test" }],
+    related: [{ label: "Complimentary water test", href: "/complimentary-water-test" }],
   },
   {
     slug: "water-softener-beaumont-ca-guide",
@@ -353,7 +353,7 @@ export const blogArticles: BlogArticle[] = [
     ],
   },
   {
-    slug: "free-water-test-beaumont-riverside-county",
+    slug: "complimentary-water-test-beaumont-riverside-county",
     title: "Complimentary in-home water test: what to expect",
     excerpt: "How long it takes, what you will see, and why there is no obligation.",
     category: "know-your-water",
@@ -373,7 +373,7 @@ export const blogArticles: BlogArticle[] = [
       "## Before the visit",
       "Know which tap you use for drinking, and whether you have a softener, whole-home filter or RO system already.",
     ],
-    related: [{ label: "Book a complimentary water test", href: "/free-water-test" }],
+    related: [{ label: "Book a complimentary water test", href: "/complimentary-water-test" }],
     faqSchema: [
       { question: "How long does the water test take?", answer: "About 15 to 30 minutes at your home." },
       { question: "Do I have to buy anything?", answer: "No. The test is complimentary, with no obligation to buy." },

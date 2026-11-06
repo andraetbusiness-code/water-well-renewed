@@ -27,7 +27,7 @@ const publicRoutes = [
   "home-depot-authorized-provider",
   "blog",
   "about",
-  "free-water-test",
+  "complimentary-water-test",
   "careers",
   "careers/customer-engagement-representative",
   "careers/water-testing-specialist",
@@ -109,8 +109,11 @@ await Promise.all(
 // page that carries the canonical of its replacement and sends the visitor there.
 const legacyRedirects = {
   "water-filtration-systems-and-services": "filtration-technology",
-  "water-test": "free-water-test",
-  "contact": "free-water-test",
+  "water-test": "complimentary-water-test",
+  "contact": "complimentary-water-test",
+  // Renamed 2026-11-06: the test is complimentary, never "free".
+  "free-water-test": "complimentary-water-test",
+  "blog/free-water-test-beaumont-riverside-county": "blog/complimentary-water-test-beaumont-riverside-county",
   "blogs": "blog",
   // Posts removed in the 2026 rebuild (unsourced contaminant, price or local-statistic claims)
   "blog/arsenic-in-hemet-water": "blog",

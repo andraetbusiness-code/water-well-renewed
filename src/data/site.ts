@@ -28,7 +28,7 @@ export const footerGroups = [
     links: [
       { label: "Request service", href: "/service" },
       { label: "Maintenance", href: "/maintenance" },
-      { label: "Complimentary water test", href: "/free-water-test" },
+      { label: "Complimentary water test", href: "/complimentary-water-test" },
     ],
   },
   {

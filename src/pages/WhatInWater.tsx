@@ -31,7 +31,7 @@ const WhatInWater = () => (
             A report shows the water at the provider. A test shows the water at your own tap. Our in-home test is complimentary, takes about 15 to 30 minutes, and carries no obligation to buy.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button size="lg" asChild><Link to="/free-water-test">Book a complimentary water test</Link></Button>
+            <Button size="lg" asChild><Link to="/complimentary-water-test">Book a complimentary water test</Link></Button>
           </div>
         </div>
       </div>
