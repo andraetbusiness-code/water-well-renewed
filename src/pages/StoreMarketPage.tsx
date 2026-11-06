@@ -9,6 +9,12 @@ import { cityData } from "@/data/cityData";
 
 const stateNames = { CA: "California", AZ: "Arizona" } as const;
 
+// Titles matched to real Search Console queries (read 2026-11-05).
+// Redlands ranked about 2.6 for "water filtration installation redlands ca" with 0 clicks.
+const queryTitles: Record<string, string> = {
+  "redlands-ca": "Water Filtration Installation in Redlands, CA | Select Source Water",
+};
+
 export function StoreMarketPage({ market }: { market: StoreMarket }) {
   const stateName = stateNames[market.state];
   const canonical = `${site.url}/service-areas/${market.slug}/`;
@@ -21,7 +27,7 @@ export function StoreMarketPage({ market }: { market: StoreMarket }) {
   const nearbyLinks = focus
     ? focus.nearby.map((slug) => ({ slug, name: nameFor(slug) })).filter((n): n is { slug: string; name: string } => Boolean(n.name))
     : neighbors.map((n) => ({ slug: n.slug, name: n.name }));
-  const title = focus?.metaTitle ?? `Water Softener, Filter and RO Service in ${market.name}, ${market.state} | Select Source Water`;
+  const title = focus?.metaTitle ?? queryTitles[market.slug] ?? `Water Softener, Filter and RO Service in ${market.name}, ${market.state} | Select Source Water`;
   const description =
     focus?.metaDescription ??
     `Select Source Water installs and services water softeners, whole-home filters and reverse osmosis systems in ${market.name}, ${stateName}. Request service or a complimentary water test.`;

@@ -123,6 +123,8 @@ const legacyRedirects = {
   // Ranking URLs that returned 404 in the 2026-11-05 Semrush audit.
   "post/water-softener-vs-water-conditioner-which-is-best-for-sacramento-homes": "service-areas/sacramento-ca",
   "water-filtration-systems-services": "filtration-technology",
+  // 404s still collecting impressions in Search Console (read 2026-11-05).
+  "warranty": "hygia-system",
 };
 
 async function writeRedirect(fromRoute, toRoute) {
